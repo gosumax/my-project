@@ -1,0 +1,137 @@
+{
+  "schema": "pokerdom.board-glyphs.fixed-chat.v1",
+  "profile": "847x404_chat_row_16px",
+  "glyph_size": [
+    8,
+    8
+  ],
+  "segmentation": {
+    "tile_header_y": 3,
+    "light_threshold": 150,
+    "ink_threshold": 190,
+    "component_min_area": 5
+  },
+  "ranks": [
+    {
+      "label": "8",
+      "bits": "0000100011111111111101111111011111111111111111111111011111111111",
+      "source_crop_sha256": "66ed8d742e42b8aa7e580dc8b01fbfcda5173509efaf112671a0921b308b52f0",
+      "source_tile_index": 0,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "9",
+      "bits": "0000100011111111111101111111011111111111001111110000011100111111",
+      "source_crop_sha256": "66ed8d742e42b8aa7e580dc8b01fbfcda5173509efaf112671a0921b308b52f0",
+      "source_tile_index": 1,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "10",
+      "bits": "0000010011111110111110111111101111111011111110111111101111111111",
+      "source_crop_sha256": "66ed8d742e42b8aa7e580dc8b01fbfcda5173509efaf112671a0921b308b52f0",
+      "source_tile_index": 2,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "J",
+      "bits": "0000001000000011000000110000001100000011001000111110001111111110",
+      "source_crop_sha256": "66ed8d742e42b8aa7e580dc8b01fbfcda5173509efaf112671a0921b308b52f0",
+      "source_tile_index": 3,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "Q",
+      "bits": "0001110000111110001111110010001100100011001000111111111100111111",
+      "source_crop_sha256": "66ed8d742e42b8aa7e580dc8b01fbfcda5173509efaf112671a0921b308b52f0",
+      "source_tile_index": 4,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "3",
+      "bits": "0011100011111111111101110000011100001111000011110000011111111111",
+      "source_crop_sha256": "37d2fbfc37e054f84fb646640610c433f02319e72834adc37244a4e8823878bd",
+      "source_tile_index": 0,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "K",
+      "bits": "0010001111101110111111101111110011111100111111001111111011101110",
+      "source_crop_sha256": "2a972d3f72138084f60ed934a084d0482b7aa562241e42cc81e2d11663e3e101",
+      "source_tile_index": 3,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "5",
+      "bits": "1111111011111110111100001111111011111111000001110000011111111111",
+      "source_crop_sha256": "a54a76292a357f6942d2fc6c17a304079d20d2f56fa1af5999a07766a5dadef1",
+      "source_tile_index": 0,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "Q",
+      "bits": "0011111011111111111101111111011111110001111101111111111111111111",
+      "source_crop_sha256": "a54a76292a357f6942d2fc6c17a304079d20d2f56fa1af5999a07766a5dadef1",
+      "source_tile_index": 2,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "A",
+      "bits": "0000110000011100000111100001111000111110001111100011111111111111",
+      "source_crop_sha256": "a54a76292a357f6942d2fc6c17a304079d20d2f56fa1af5999a07766a5dadef1",
+      "source_tile_index": 3,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "7",
+      "bits": "1111111011111111000001100000111000001110000010000011100000110000",
+      "source_crop_sha256": "a54a76292a357f6942d2fc6c17a304079d20d2f56fa1af5999a07766a5dadef1",
+      "source_tile_index": 4,
+      "label_source": "VL_RAW_UNREVIEWED"
+    }
+  ],
+  "suits": [
+    {
+      "label": "♥",
+      "bits": "0110010011111110111111111111111111111110011111100111110000111000",
+      "source_crop_sha256": "66ed8d742e42b8aa7e580dc8b01fbfcda5173509efaf112671a0921b308b52f0",
+      "source_tile_index": 0,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "♥",
+      "bits": "0000010011111111111111111111111111111111011111100111110000111100",
+      "source_crop_sha256": "37d2fbfc37e054f84fb646640610c433f02319e72834adc37244a4e8823878bd",
+      "source_tile_index": 2,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "♣",
+      "bits": "0011110000111100001111001111111011111111111111110011110000111100",
+      "source_crop_sha256": "66ed8d742e42b8aa7e580dc8b01fbfcda5173509efaf112671a0921b308b52f0",
+      "source_tile_index": 1,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "♣",
+      "bits": "0011110000111100001110000111111011111111111111110011110000111100",
+      "source_crop_sha256": "37d2fbfc37e054f84fb646640610c433f02319e72834adc37244a4e8823878bd",
+      "source_tile_index": 1,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "♠",
+      "bits": "0001110000111110011111111111111111111111011111110001110000111110",
+      "source_crop_sha256": "66ed8d742e42b8aa7e580dc8b01fbfcda5173509efaf112671a0921b308b52f0",
+      "source_tile_index": 3,
+      "label_source": "VL_RAW_UNREVIEWED"
+    },
+    {
+      "label": "♦",
+      "bits": "0000110000011100001111101111111100111111000111100001110000001000",
+      "source_crop_sha256": "37d2fbfc37e054f84fb646640610c433f02319e72834adc37244a4e8823878bd",
+      "source_tile_index": 0,
+      "label_source": "VL_RAW_UNREVIEWED"
+    }
+  ]
+}

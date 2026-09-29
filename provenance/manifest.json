@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-09-27T22:13:23.619768+00:00",
+  "entries": [
+    {
+      "name": "table_chat_detector",
+      "kind": "model",
+      "source": "D:\\Проэкты\\Парсер пд v1.0\\experiments\\yolo_pd_eventlog_20260926\\train_occupied_table\\weights\\seat_coverage.pt",
+      "local": "models/table_chat.pt",
+      "bytes": 21219939,
+      "sha256": "7c8a509a5ee55aa0cd447d63a0bb0baeef73498d86f32685abf8db9da526e021"
+    },
+    {
+      "name": "board_presence_detector",
+      "kind": "model",
+      "source": "D:\\Проэкты\\Парсер пд v1.0\\experiments\\yolo_pd_eventlog_20260926\\train_verified_board\\weights\\best.pt",
+      "local": "models/board_presence.pt",
+      "bytes": 21217891,
+      "sha256": "fcf322087016725a7c0af2d80510bfc8d59b9b6cf9395e9af4c033bc18084cda"
+    },
+    {
+      "name": "shown_pair_classifier",
+      "kind": "model",
+      "source": "D:\\Проэкты\\Парсер пд v1.0\\experiments\\yolo_pd_eventlog_20260926\\train_shown_state_v2\\best.pt",
+      "local": "models/shown_pair.pt",
+      "bytes": 714431,
+      "sha256": "0d5105d0dead2b9c030d3622984f4686cc88f55649b4dd18d106e44126af83cb"
+    },
+    {
+      "name": "tesseract_rus_language",
+      "kind": "model",
+      "source": "D:\\Проэкты\\V2.0 PD\\outputs\\ocr_paddle_tesseract_10rows_20260927\\tessdata\\rus.traineddata",
+      "local": "models/tessdata/rus.traineddata",
+      "bytes": 3861738,
+      "sha256": "e16e5e036cce1d9ec2b00063cf8b54472625b9e14d893a169e2b0dedeb4df225"
+    },
+    {
+      "name": "tesseract_eng_language",
+      "kind": "model",
+      "source": "C:\\Program Files\\Tesseract-OCR\\tessdata\\eng.traineddata",
+      "local": "models/tessdata/eng.traineddata",
+      "bytes": 4113088,
+      "sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
+    },
+    {
+      "name": "nine_table_detector",
+      "kind": "model",
+      "source": "D:\\Проэкты\\V2.0 PD\\assets\\models\\pokerdom_table_chat\\best.pt",
+      "local": "models/nine_table.pt",
+      "bytes": 5455825,
+      "sha256": "a9e3f5f79e6bd5c6e0df3a46fb2c889723656b00140398b274f2cd747ee6bdff"
+    },
+    {
+      "name": "nine_table_layout_profile",
+      "kind": "config",
+      "source": "D:\\Проэкты\\V2.0 PD\\config\\proven\\layout_847x404.json",
+      "local": "configs/layout_847x404.json",
+      "bytes": 67024,
+      "sha256": "777d1f02e5a927cf7066e89cce53fb5f24e6e241ed2cc87841794037dfd35300"
+    },
+    {
+      "name": "nine_table_event_rois",
+      "kind": "config",
+      "source": "D:\\Проэкты\\V2.0 PD\\config\\nine_table_event_rois.json",
+      "local": "configs/nine_table_event_rois.json",
+      "bytes": 544,
+      "sha256": "0965357b8d0acaca0256e4ee02ac8f8aa020fba472166daf1d0c3e816925bfeb"
+    },
+    {
+      "name": "nine_table_split_layout",
+      "kind": "config",
+      "source": "D:\\Проэкты\\V2.0 PD\\config\\proven\\nine_table_layout.json",
+      "local": "configs/nine_table_layout.json",
+      "bytes": 7967,
+      "sha256": "b6722d12f30e872207566272802920b9017d50cd6e521712248e409d9a45acec"
+    },
+    {
+      "name": "chat_log_bottom_calibration",
+      "kind": "config",
+      "source": "D:\\Проэкты\\V2.0 PD\\config\\chat_log_bottom_rois.json",
+      "local": "configs/chat_log_bottom_rois.json",
+      "bytes": 585,
+      "sha256": "a79427cf111c243cbff288813c85ea54f90864291d4d435b32139f029a5fec01"
+    },
+    {
+      "name": "chat_event_types",
+      "kind": "reference_catalog",
+      "source": "D:\\Проэкты\\V2.0 PD\\outputs\\chat_only_inventory_smoke11_20260927\\chat_event_types.md",
+      "local": null,
+      "bytes": 8486,
+      "sha256": "7e8b6abe27e1a11ed3372fb69802ee455676401f3aa768b9910a9c751d8ebc6b"
+    },
+    {
+      "name": "chat_event_candidates",
+      "kind": "reference_catalog",
+      "source": "D:\\Проэкты\\V2.0 PD\\outputs\\chat_only_inventory_smoke11_20260927\\chat_event_candidates.csv",
+      "local": null,
+      "bytes": 1231270,
+      "sha256": "753e7b2b6abeed3dd09f918615a612ad2d6a9432cdd0d58c4179f1130cecfa72"
+    },
+    {
+      "name": "all_chat_rows_audit",
+      "kind": "reference_catalog",
+      "source": "D:\\Проэкты\\V2.0 PD\\outputs\\chat_only_inventory_smoke11_20260927\\all_chat_rows_audit.csv",
+      "local": null,
+      "bytes": 1342984,
+      "sha256": "9ab088f1f1e4fed9456fb27b2da088f01327bea064c4e27e06a3b10db5874ac6"
+    },
+    {
+      "name": "unresolved_chat_views",
+      "kind": "reference_catalog",
+      "source": "D:\\Проэкты\\V2.0 PD\\outputs\\chat_only_inventory_smoke11_20260927\\unresolved_chat_views.csv",
+      "local": null,
+      "bytes": 42003,
+      "sha256": "47748d5bae99daf876d97231e41c791f39150d2ab6dbe92fc7098125b6ba3c25"
+    },
+    {
+      "name": "chat_entity_types",
+      "kind": "reference_catalog",
+      "source": "D:\\Проэкты\\V2.0 PD\\outputs\\chat_entities_smoke11_20260927\\chat_entity_types.md",
+      "local": null,
+      "bytes": 9573,
+      "sha256": "26d38363689b29fa93fa48992554a406162f8640e79eba52281465dafca0989a"
+    },
+    {
+      "name": "chat_entity_mentions",
+      "kind": "reference_catalog",
+      "source": "D:\\Проэкты\\V2.0 PD\\outputs\\chat_entities_smoke11_20260927\\chat_entity_mentions.csv",
+      "local": null,
+      "bytes": 1617050,
+      "sha256": "e53f822d6735523eaaac074e30b96e62a72168c5a4776ab5ee363f1d5c762e92"
+    },
+    {
+      "name": "nickname_ocr_variants",
+      "kind": "reference_catalog",
+      "source": "D:\\Проэкты\\V2.0 PD\\outputs\\chat_entities_smoke11_20260927\\nickname_ocr_variants.csv",
+      "local": null,
+      "bytes": 56300,
+      "sha256": "f9950ebcd18f70aa4002ad7ae604b07032804dbc96057e1437749e259bd66561"
+    },
+    {
+      "name": "money_amounts",
+      "kind": "reference_catalog",
+      "source": "D:\\Проэкты\\V2.0 PD\\outputs\\chat_entities_smoke11_20260927\\money_amounts.csv",
+      "local": null,
+      "bytes": 246564,
+      "sha256": "b82462eec396500220b9e17e0aa78400b29309e20679c6051227c513d085107e"
+    },
+    {
+      "name": "system_messages",
+      "kind": "reference_catalog",
+      "source": "D:\\Проэкты\\V2.0 PD\\outputs\\chat_entities_smoke11_20260927\\system_messages.csv",
+      "local": null,
+      "bytes": 142460,
+      "sha256": "ad2c94ca2dddbd5825f1422451c83f470f7f17fae4fd896ad1432451e54caba1"
+    },
+    {
+      "name": "chat_entity_gaps",
+      "kind": "reference_catalog",
+      "source": "D:\\Проэкты\\V2.0 PD\\outputs\\chat_entities_smoke11_20260927\\chat_entity_gaps.csv",
+      "local": null,
+      "bytes": 200024,
+      "sha256": "8168aec79c57b3f3deec76f7bda1b27a60cf8a6f60c9db31e52c937dfca028b3"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "pokerdom.chat-log-bottom-rois.v1",
+  "coordinate_system": "847x404 table-local xyxy; y2 exclusive",
+  "source": "Smoke11 saved full-table snapshots and YOLO chat_text_viewport at frame 0, 2026-09-27",
+  "reason": "The frozen layout ends every chat_log at y=388, cutting the last visible line. The calibrated ends follow the detected viewport, without changing x1/y1/x2.",
+  "slots": {
+    "slot_01": 402,
+    "slot_02": 402,
+    "slot_03": 404,
+    "slot_04": 403,
+    "slot_05": 403,
+    "slot_06": 404,
+    "slot_07": 401,
+    "slot_08": 402,
+    "slot_09": 399
+  }
+}

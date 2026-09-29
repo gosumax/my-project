@@ -1,0 +1,31 @@
+Smoke14 row identity short-history fix
+
+Changed:
+- parser_core/chat_rows.py
+  * ROW_TRACKER_VERSION -> row_track_v11_history
+  * canonical row representation
+  * conservative contiguous block matcher
+  * single-line matches are never enough to suppress a row
+- parser_core/ram_first_stage.py
+  * keeps last 12 chat states per table in RAM
+  * invokes history matching only on hard transitions
+  * reuses stable_row_id for proven old rows
+  * suppresses proven old rows before OCR/timeline
+  * unmatched suffix after proven historical overlap remains NEW_CANDIDATE
+- scripts/run_smoke14_ram.py
+  * writes stable_row_id into JSONL/timeline
+  * records row-identity mode in run metadata
+- tests/test_row_identity_history.py
+  * old block + new suffix
+  * single repeated line must not be deduplicated
+  * strong two-row block is accepted
+
+Validation in build environment:
+- py_compile: PASS
+- pytest tests/test_row_identity_history.py: 3 passed
+
+Recommended validation on target project:
+1) python -X utf8 -m pytest tests\test_row_identity_history.py -q
+2) 500-frame Smoke14 run
+3) full Smoke14 only if 500-frame run is healthy
+4) inspect known cases T02 ~1:46, T03 ~4:41, T06 ~1:05, T07 ~1:36

@@ -1,0 +1,22 @@
+# Local captures, reviews, and generated reports
+/annotation/
+/runs/
+/outputs/
+/video/
+/experiments/*
+!/experiments/*.py
+
+# Machine and tool state
+/.codex/
+/.pytest_cache/
+**/__pycache__/
+*.py[cod]
+**/node_modules/
+.env
+.env.*
+*.key
+*.pem
+
+# Generated editor and OS files
+.DS_Store
+Thumbs.db

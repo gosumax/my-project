@@ -1,0 +1,10 @@
+{
+  "schema": "pokerdom.nine_table_event_rois.v1",
+  "coordinate_system": "split-table 847x404 xyxy exclusive",
+  "source_video": "video/smoke_11.mp4",
+  "source_video_sha256": "e27c1b349b647ab540a36ddcb85505baf518f8977289ce32b2a4a25f4a4d5835",
+  "pot_value": [258, 120, 378, 146],
+  "pot_visual_proof": "experiments/nine_table_eventlog_20260927/pot_contact_frame0.jpg",
+  "pot_visual_proof_sha256": "f94198702f949b50b15ecb9ea60e5819badca27ccdbf8a71ac27d2edfd638494",
+  "scope": "smoke_11 2560x1440 3x3 layout; validate before other layouts"
+}

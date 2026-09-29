@@ -1,0 +1,3263 @@
+{
+  "schema": "pokerdom.layout_profile_847x404.slot_routed.v1",
+  "experiment_only": true,
+  "production_integration": false,
+  "frame_dimensions_wh": [
+    847,
+    404
+  ],
+  "coordinate_system": "split-table local top-left origin; xyxy; x2/y2 exclusive",
+  "routing_contract": "slot_id -> seat_id -> ROI",
+  "shared_profile_for_all_slots": false,
+  "blind_scale_used": false,
+  "nickname_authority": {
+    "manual_geometry_source": "D:\\Проекты\\RSGAN_TEST\\nine_table_nickname_roi_20260901_042101\\manual_all9_roi_extraction\\per_table_nickname_roi_9table_847x404.json",
+    "manual_geometry_sha256": "b39b290cca91a470b130bb845c11374fb85ac73a970e188c05bd9eb1a106fd19",
+    "tiny_human_label_code_source": "D:\\Проекты\\RSGAN_TEST\\tiny_character_coverage_and_9table_donor_20260901_035936\\audit_runner.py",
+    "tiny_human_label_manifest": "D:\\Проекты\\RSGAN_TEST\\tiny_character_coverage_and_9table_donor_20260901_035936\\donor_manifest.csv",
+    "nickname_recalibration_performed": false,
+    "routes_proven": "72/72"
+  },
+  "stack_geometry_basis": "user-corrected horizontal contract x1/x2 exactly equal nickname; independently visual-checked vertical band y1=nickname.y2, y2=nickname.y2+18 on all 72 real panels",
+  "chat_geometry_basis": "direct visual table/chat boundary and log viewport inspection per slot",
+  "hand_number_geometry_basis": "direct visible vertical strip; frozen production preprocessing+OCR exact on one manual reference per slot",
+  "action_geometry_basis": "user-marked inner red ACTION rectangles on slot_02 frame 29815; expanded 3 px on every side; transferred by seat-specific player-panel center correspondence; accepted only after real ordinary-action visual proof",
+  "action_geometry_evidence": {
+    "proof": "D:\\Проекты\\RSGAN_TEST\\smoke05_847x404_layout_profile_20260901\\action_roi_proof\\action_roi_proof_results.json",
+    "proof_sha256": "dbe749ee46a27a9a664d670f58c8ad233a1fb46e1b58e8a307c2c94fcdd76ac6",
+    "reference_slot": 2,
+    "reference_frame_index": 29815,
+    "coordinate_system": "847x404 table-local xyxy; x2/y2 exclusive",
+    "padding_ltrb": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "routes_proven": "71/72",
+    "assigned_field": "action_label",
+    "unproven": [
+      {
+        "slot_id": 8,
+        "seat_id": 4,
+        "profile_value": null,
+        "reason": "NO_CLEAN_ORDINARY_ACTION_VISIBLE; route shows FREE/OUT/SHOW states only"
+      }
+    ]
+  },
+  "slots": {
+    "slot_01": {
+      "slot_id": 1,
+      "manual_reference_frame_index": 21140,
+      "resolution": {
+        "width": 847,
+        "height": 404
+      },
+      "roi_types": {
+        "required": [
+          "nick",
+          "stack",
+          "chat_log"
+        ],
+        "authoritative_boundary": [
+          "hand_number"
+        ],
+        "not_claimed": [
+          "shown_cards",
+          "action_bet",
+          "pot_value",
+          "ante"
+        ]
+      },
+      "seats": {
+        "seat1": {
+          "nick": [
+            286,
+            59,
+            367,
+            74
+          ],
+          "stack": [
+            286,
+            74,
+            367,
+            92
+          ],
+          "action_label": [
+            282,
+            67,
+            371,
+            85
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            281,
+            19,
+            339,
+            54
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            282,
+            67,
+            371,
+            85
+          ]
+        },
+        "seat2": {
+          "nick": [
+            436,
+            89,
+            518,
+            104
+          ],
+          "stack": [
+            436,
+            104,
+            518,
+            122
+          ],
+          "action_label": [
+            433,
+            98,
+            522,
+            115
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            431,
+            49,
+            489,
+            84
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            433,
+            98,
+            522,
+            115
+          ]
+        },
+        "seat3": {
+          "nick": [
+            533,
+            184,
+            612,
+            199
+          ],
+          "stack": [
+            533,
+            199,
+            612,
+            217
+          ],
+          "action_label": [
+            528,
+            193,
+            617,
+            210
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            527,
+            144,
+            585,
+            179
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            528,
+            193,
+            617,
+            210
+          ]
+        },
+        "seat4": {
+          "nick": [
+            436,
+            283,
+            518,
+            298
+          ],
+          "stack": [
+            436,
+            298,
+            518,
+            316
+          ],
+          "action_label": [
+            434,
+            291,
+            522,
+            309
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            431,
+            243,
+            489,
+            278
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            434,
+            291,
+            522,
+            309
+          ]
+        },
+        "seat5": {
+          "nick": [
+            286,
+            312,
+            365,
+            326
+          ],
+          "stack": [
+            286,
+            326,
+            365,
+            344
+          ],
+          "action_label": [
+            282,
+            319,
+            371,
+            337
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            280,
+            271,
+            338,
+            306
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            282,
+            319,
+            371,
+            337
+          ]
+        },
+        "seat6": {
+          "nick": [
+            135,
+            283,
+            214,
+            300
+          ],
+          "stack": [
+            135,
+            300,
+            214,
+            318
+          ],
+          "action_label": [
+            130,
+            291,
+            219,
+            309
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            129,
+            244,
+            187,
+            279
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            130,
+            291,
+            219,
+            309
+          ]
+        },
+        "seat7": {
+          "nick": [
+            45,
+            184,
+            118,
+            199
+          ],
+          "stack": [
+            45,
+            199,
+            118,
+            217
+          ],
+          "action_label": [
+            39,
+            192,
+            126,
+            210
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            36,
+            144,
+            94,
+            179
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            39,
+            192,
+            126,
+            210
+          ]
+        },
+        "seat8": {
+          "nick": [
+            135,
+            89,
+            214,
+            106
+          ],
+          "stack": [
+            135,
+            106,
+            214,
+            124
+          ],
+          "action_label": [
+            131,
+            97,
+            218,
+            116
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            129,
+            50,
+            187,
+            85
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            131,
+            97,
+            218,
+            116
+          ]
+        }
+      },
+      "chat": {
+        "chat_log": [
+          619,
+          25,
+          847,
+          388
+        ]
+      },
+      "global": {
+        "players_left": null,
+        "paid_places": null,
+        "stage_color_banner": null,
+        "pot_value": null,
+        "hand_number": [
+          604,
+          27,
+          619,
+          112
+        ],
+        "ante": null,
+        "board_flop": [
+          198,
+          160,
+          331,
+          220
+        ],
+        "board_turn": [
+          335,
+          160,
+          374,
+          220
+        ],
+        "board_river": [
+          380,
+          161,
+          420,
+          220
+        ],
+        "tournament_bounty_popup": null,
+        "tournament_elimination_popup": null,
+        "tournament_notification": null
+      }
+    },
+    "slot_02": {
+      "slot_id": 2,
+      "manual_reference_frame_index": 3131,
+      "resolution": {
+        "width": 847,
+        "height": 404
+      },
+      "roi_types": {
+        "required": [
+          "nick",
+          "stack",
+          "chat_log"
+        ],
+        "authoritative_boundary": [
+          "hand_number"
+        ],
+        "not_claimed": [
+          "shown_cards",
+          "action_bet",
+          "pot_value",
+          "ante"
+        ]
+      },
+      "seats": {
+        "seat1": {
+          "nick": [
+            287,
+            57,
+            370,
+            74
+          ],
+          "stack": [
+            287,
+            74,
+            370,
+            92
+          ],
+          "action_label": [
+            284,
+            66,
+            373,
+            84
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            283,
+            18,
+            341,
+            53
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            284,
+            66,
+            373,
+            84
+          ]
+        },
+        "seat2": {
+          "nick": [
+            440,
+            89,
+            521,
+            105
+          ],
+          "stack": [
+            440,
+            105,
+            521,
+            123
+          ],
+          "action_label": [
+            436,
+            98,
+            525,
+            115
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            435,
+            49,
+            493,
+            84
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            436,
+            98,
+            525,
+            115
+          ]
+        },
+        "seat3": {
+          "nick": [
+            535,
+            183,
+            617,
+            199
+          ],
+          "stack": [
+            535,
+            199,
+            617,
+            217
+          ],
+          "action_label": [
+            531,
+            192,
+            620,
+            209
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            530,
+            143,
+            588,
+            178
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            531,
+            192,
+            620,
+            209
+          ]
+        },
+        "seat4": {
+          "nick": [
+            439,
+            283,
+            521,
+            299
+          ],
+          "stack": [
+            439,
+            299,
+            521,
+            317
+          ],
+          "action_label": [
+            437,
+            291,
+            525,
+            309
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            434,
+            243,
+            492,
+            278
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            437,
+            291,
+            525,
+            309
+          ]
+        },
+        "seat5": {
+          "nick": [
+            288,
+            311,
+            370,
+            327
+          ],
+          "stack": [
+            288,
+            327,
+            370,
+            345
+          ],
+          "action_label": [
+            285,
+            319,
+            374,
+            337
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            283,
+            271,
+            341,
+            306
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            285,
+            319,
+            374,
+            337
+          ]
+        },
+        "seat6": {
+          "nick": [
+            137,
+            283,
+            216,
+            300
+          ],
+          "stack": [
+            137,
+            300,
+            216,
+            318
+          ],
+          "action_label": [
+            132,
+            291,
+            221,
+            309
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            131,
+            244,
+            189,
+            279
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            132,
+            291,
+            221,
+            309
+          ]
+        },
+        "seat7": {
+          "nick": [
+            40,
+            183,
+            121,
+            199
+          ],
+          "stack": [
+            40,
+            199,
+            121,
+            217
+          ],
+          "action_label": [
+            38,
+            191,
+            125,
+            209
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            35,
+            143,
+            93,
+            178
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            38,
+            191,
+            125,
+            209
+          ]
+        },
+        "seat8": {
+          "nick": [
+            137,
+            89,
+            217,
+            106
+          ],
+          "stack": [
+            137,
+            106,
+            217,
+            124
+          ],
+          "action_label": [
+            133,
+            97,
+            220,
+            116
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            131,
+            50,
+            189,
+            85
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            133,
+            97,
+            220,
+            116
+          ]
+        }
+      },
+      "chat": {
+        "chat_log": [
+          621,
+          25,
+          847,
+          388
+        ]
+      },
+      "global": {
+        "players_left": null,
+        "paid_places": null,
+        "stage_color_banner": null,
+        "pot_value": null,
+        "hand_number": [
+          604,
+          27,
+          619,
+          112
+        ],
+        "ante": null,
+        "board_flop": [
+          200,
+          160,
+          333,
+          220
+        ],
+        "board_turn": [
+          339,
+          160,
+          377,
+          220
+        ],
+        "board_river": [
+          382,
+          161,
+          424,
+          220
+        ],
+        "tournament_bounty_popup": null,
+        "tournament_elimination_popup": null,
+        "tournament_notification": null
+      }
+    },
+    "slot_03": {
+      "slot_id": 3,
+      "manual_reference_frame_index": 0,
+      "resolution": {
+        "width": 847,
+        "height": 404
+      },
+      "roi_types": {
+        "required": [
+          "nick",
+          "stack",
+          "chat_log"
+        ],
+        "authoritative_boundary": [
+          "hand_number"
+        ],
+        "not_claimed": [
+          "shown_cards",
+          "action_bet",
+          "pot_value",
+          "ante"
+        ]
+      },
+      "seats": {
+        "seat1": {
+          "nick": [
+            290,
+            58,
+            371,
+            75
+          ],
+          "stack": [
+            290,
+            75,
+            371,
+            93
+          ],
+          "action_label": [
+            286,
+            67,
+            375,
+            85
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            285,
+            19,
+            343,
+            54
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            286,
+            67,
+            375,
+            85
+          ]
+        },
+        "seat2": {
+          "nick": [
+            439,
+            88,
+            521,
+            106
+          ],
+          "stack": [
+            439,
+            106,
+            521,
+            124
+          ],
+          "action_label": [
+            436,
+            98,
+            525,
+            115
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            434,
+            49,
+            492,
+            84
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            436,
+            98,
+            525,
+            115
+          ]
+        },
+        "seat3": {
+          "nick": [
+            535,
+            181,
+            618,
+            199
+          ],
+          "stack": [
+            535,
+            199,
+            618,
+            217
+          ],
+          "action_label": [
+            532,
+            191,
+            621,
+            208
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            531,
+            142,
+            589,
+            177
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            532,
+            191,
+            621,
+            208
+          ]
+        },
+        "seat4": {
+          "nick": [
+            440,
+            281,
+            523,
+            300
+          ],
+          "stack": [
+            440,
+            300,
+            523,
+            318
+          ],
+          "action_label": [
+            439,
+            291,
+            527,
+            309
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            436,
+            243,
+            494,
+            278
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            439,
+            291,
+            527,
+            309
+          ]
+        },
+        "seat5": {
+          "nick": [
+            290,
+            308,
+            371,
+            325
+          ],
+          "stack": [
+            290,
+            325,
+            371,
+            343
+          ],
+          "action_label": [
+            287,
+            317,
+            376,
+            335
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            285,
+            269,
+            343,
+            304
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            287,
+            317,
+            376,
+            335
+          ]
+        },
+        "seat6": {
+          "nick": [
+            141,
+            282,
+            220,
+            299
+          ],
+          "stack": [
+            141,
+            299,
+            220,
+            317
+          ],
+          "action_label": [
+            136,
+            290,
+            225,
+            308
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            135,
+            243,
+            193,
+            278
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            136,
+            290,
+            225,
+            308
+          ]
+        },
+        "seat7": {
+          "nick": [
+            44,
+            181,
+            124,
+            199
+          ],
+          "stack": [
+            44,
+            199,
+            124,
+            217
+          ],
+          "action_label": [
+            42,
+            190,
+            129,
+            208
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            38,
+            142,
+            96,
+            177
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            42,
+            190,
+            129,
+            208
+          ]
+        },
+        "seat8": {
+          "nick": [
+            139,
+            88,
+            219,
+            106
+          ],
+          "stack": [
+            139,
+            106,
+            219,
+            124
+          ],
+          "action_label": [
+            135,
+            97,
+            222,
+            116
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            133,
+            49,
+            191,
+            84
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            135,
+            97,
+            222,
+            116
+          ]
+        }
+      },
+      "chat": {
+        "chat_log": [
+          621,
+          25,
+          847,
+          388
+        ]
+      },
+      "global": {
+        "players_left": null,
+        "paid_places": null,
+        "stage_color_banner": null,
+        "pot_value": null,
+        "hand_number": [
+          604,
+          28,
+          621,
+          114
+        ],
+        "ante": null,
+        "board_flop": [
+          202,
+          160,
+          335,
+          219
+        ],
+        "board_turn": [
+          339,
+          160,
+          379,
+          219
+        ],
+        "board_river": [
+          384,
+          161,
+          425,
+          219
+        ],
+        "tournament_bounty_popup": null,
+        "tournament_elimination_popup": null,
+        "tournament_notification": null
+      }
+    },
+    "slot_04": {
+      "slot_id": 4,
+      "manual_reference_frame_index": 8944,
+      "resolution": {
+        "width": 847,
+        "height": 404
+      },
+      "roi_types": {
+        "required": [
+          "nick",
+          "stack",
+          "chat_log"
+        ],
+        "authoritative_boundary": [
+          "hand_number"
+        ],
+        "not_claimed": [
+          "shown_cards",
+          "action_bet",
+          "pot_value",
+          "ante"
+        ]
+      },
+      "seats": {
+        "seat1": {
+          "nick": [
+            282,
+            57,
+            365,
+            74
+          ],
+          "stack": [
+            282,
+            74,
+            365,
+            92
+          ],
+          "action_label": [
+            279,
+            66,
+            368,
+            84
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            278,
+            18,
+            336,
+            53
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            279,
+            66,
+            368,
+            84
+          ]
+        },
+        "seat2": {
+          "nick": [
+            433,
+            88,
+            514,
+            105
+          ],
+          "stack": [
+            433,
+            105,
+            514,
+            123
+          ],
+          "action_label": [
+            429,
+            98,
+            518,
+            115
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            428,
+            49,
+            486,
+            84
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            429,
+            98,
+            518,
+            115
+          ]
+        },
+        "seat3": {
+          "nick": [
+            530,
+            181,
+            612,
+            198
+          ],
+          "stack": [
+            530,
+            198,
+            612,
+            216
+          ],
+          "action_label": [
+            526,
+            191,
+            615,
+            208
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            525,
+            142,
+            583,
+            177
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            526,
+            191,
+            615,
+            208
+          ]
+        },
+        "seat4": {
+          "nick": [
+            434,
+            282,
+            515,
+            299
+          ],
+          "stack": [
+            434,
+            299,
+            515,
+            317
+          ],
+          "action_label": [
+            432,
+            291,
+            520,
+            309
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            429,
+            243,
+            487,
+            278
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            432,
+            291,
+            520,
+            309
+          ]
+        },
+        "seat5": {
+          "nick": [
+            282,
+            309,
+            364,
+            327
+          ],
+          "stack": [
+            282,
+            327,
+            364,
+            345
+          ],
+          "action_label": [
+            279,
+            318,
+            368,
+            336
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            277,
+            270,
+            335,
+            305
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            279,
+            318,
+            368,
+            336
+          ]
+        },
+        "seat6": {
+          "nick": [
+            130,
+            280,
+            211,
+            299
+          ],
+          "stack": [
+            130,
+            299,
+            211,
+            317
+          ],
+          "action_label": [
+            126,
+            289,
+            215,
+            307
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            125,
+            242,
+            183,
+            277
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            126,
+            289,
+            215,
+            307
+          ]
+        },
+        "seat7": {
+          "nick": [
+            33,
+            181,
+            116,
+            199
+          ],
+          "stack": [
+            33,
+            199,
+            116,
+            217
+          ],
+          "action_label": [
+            32,
+            190,
+            119,
+            208
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            29,
+            142,
+            87,
+            177
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            32,
+            190,
+            119,
+            208
+          ]
+        },
+        "seat8": {
+          "nick": [
+            129,
+            88,
+            211,
+            105
+          ],
+          "stack": [
+            129,
+            105,
+            211,
+            123
+          ],
+          "action_label": [
+            126,
+            96,
+            213,
+            115
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            124,
+            49,
+            182,
+            84
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            126,
+            96,
+            213,
+            115
+          ]
+        }
+      },
+      "chat": {
+        "chat_log": [
+          617,
+          25,
+          847,
+          388
+        ]
+      },
+      "global": {
+        "players_left": null,
+        "paid_places": null,
+        "stage_color_banner": null,
+        "pot_value": null,
+        "hand_number": [
+          602,
+          22,
+          621,
+          116
+        ],
+        "ante": null,
+        "board_flop": [
+          194,
+          159,
+          328,
+          219
+        ],
+        "board_turn": [
+          331,
+          159,
+          372,
+          219
+        ],
+        "board_river": [
+          376,
+          160,
+          419,
+          219
+        ],
+        "tournament_bounty_popup": null,
+        "tournament_elimination_popup": null,
+        "tournament_notification": null
+      }
+    },
+    "slot_05": {
+      "slot_id": 5,
+      "manual_reference_frame_index": 32556,
+      "resolution": {
+        "width": 847,
+        "height": 404
+      },
+      "roi_types": {
+        "required": [
+          "nick",
+          "stack",
+          "chat_log"
+        ],
+        "authoritative_boundary": [
+          "hand_number"
+        ],
+        "not_claimed": [
+          "shown_cards",
+          "action_bet",
+          "pot_value",
+          "ante"
+        ]
+      },
+      "seats": {
+        "seat1": {
+          "nick": [
+            286,
+            57,
+            368,
+            74
+          ],
+          "stack": [
+            286,
+            74,
+            368,
+            92
+          ],
+          "action_label": [
+            283,
+            66,
+            372,
+            84
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            281,
+            18,
+            339,
+            53
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            283,
+            66,
+            372,
+            84
+          ]
+        },
+        "seat2": {
+          "nick": [
+            438,
+            88,
+            520,
+            105
+          ],
+          "stack": [
+            438,
+            105,
+            520,
+            123
+          ],
+          "action_label": [
+            435,
+            98,
+            524,
+            115
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            433,
+            49,
+            491,
+            84
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            435,
+            98,
+            524,
+            115
+          ]
+        },
+        "seat3": {
+          "nick": [
+            534,
+            182,
+            615,
+            199
+          ],
+          "stack": [
+            534,
+            199,
+            615,
+            217
+          ],
+          "action_label": [
+            530,
+            192,
+            619,
+            209
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            529,
+            143,
+            587,
+            178
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            530,
+            192,
+            619,
+            209
+          ]
+        },
+        "seat4": {
+          "nick": [
+            439,
+            280,
+            522,
+            299
+          ],
+          "stack": [
+            439,
+            299,
+            522,
+            317
+          ],
+          "action_label": [
+            438,
+            290,
+            526,
+            308
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            435,
+            242,
+            493,
+            277
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            438,
+            290,
+            526,
+            308
+          ]
+        },
+        "seat5": {
+          "nick": [
+            287,
+            310,
+            368,
+            327
+          ],
+          "stack": [
+            287,
+            327,
+            368,
+            345
+          ],
+          "action_label": [
+            284,
+            319,
+            373,
+            337
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            282,
+            271,
+            340,
+            306
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            284,
+            319,
+            373,
+            337
+          ]
+        },
+        "seat6": {
+          "nick": [
+            134,
+            280,
+            216,
+            299
+          ],
+          "stack": [
+            134,
+            299,
+            216,
+            317
+          ],
+          "action_label": [
+            131,
+            289,
+            220,
+            307
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            129,
+            242,
+            187,
+            277
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            131,
+            289,
+            220,
+            307
+          ]
+        },
+        "seat7": {
+          "nick": [
+            40,
+            181,
+            121,
+            199
+          ],
+          "stack": [
+            40,
+            199,
+            121,
+            217
+          ],
+          "action_label": [
+            38,
+            190,
+            125,
+            208
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            35,
+            142,
+            93,
+            177
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            38,
+            190,
+            125,
+            208
+          ]
+        },
+        "seat8": {
+          "nick": [
+            134,
+            88,
+            217,
+            105
+          ],
+          "stack": [
+            134,
+            105,
+            217,
+            123
+          ],
+          "action_label": [
+            132,
+            96,
+            219,
+            115
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            130,
+            49,
+            188,
+            84
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            132,
+            96,
+            219,
+            115
+          ]
+        }
+      },
+      "chat": {
+        "chat_log": [
+          621,
+          25,
+          847,
+          388
+        ]
+      },
+      "global": {
+        "players_left": null,
+        "paid_places": null,
+        "stage_color_banner": null,
+        "pot_value": null,
+        "hand_number": [
+          604,
+          27,
+          619,
+          112
+        ],
+        "ante": null,
+        "board_flop": [
+          200,
+          159,
+          334,
+          219
+        ],
+        "board_turn": [
+          337,
+          159,
+          377,
+          219
+        ],
+        "board_river": [
+          382,
+          160,
+          423,
+          219
+        ],
+        "tournament_bounty_popup": null,
+        "tournament_elimination_popup": null,
+        "tournament_notification": null
+      }
+    },
+    "slot_06": {
+      "slot_id": 6,
+      "manual_reference_frame_index": 180,
+      "resolution": {
+        "width": 847,
+        "height": 404
+      },
+      "roi_types": {
+        "required": [
+          "nick",
+          "stack",
+          "chat_log"
+        ],
+        "authoritative_boundary": [
+          "hand_number"
+        ],
+        "not_claimed": [
+          "shown_cards",
+          "action_bet",
+          "pot_value",
+          "ante"
+        ]
+      },
+      "seats": {
+        "seat1": {
+          "nick": [
+            289,
+            55,
+            372,
+            73
+          ],
+          "stack": [
+            289,
+            73,
+            372,
+            91
+          ],
+          "action_label": [
+            286,
+            65,
+            375,
+            83
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            285,
+            16,
+            343,
+            51
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            286,
+            65,
+            375,
+            83
+          ]
+        },
+        "seat2": {
+          "nick": [
+            439,
+            87,
+            522,
+            104
+          ],
+          "stack": [
+            439,
+            104,
+            522,
+            122
+          ],
+          "action_label": [
+            436,
+            97,
+            525,
+            114
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            435,
+            48,
+            493,
+            83
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            436,
+            97,
+            525,
+            114
+          ]
+        },
+        "seat3": {
+          "nick": [
+            536,
+            179,
+            618,
+            197
+          ],
+          "stack": [
+            536,
+            197,
+            618,
+            215
+          ],
+          "action_label": [
+            532,
+            189,
+            621,
+            206
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            531,
+            140,
+            589,
+            175
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            532,
+            189,
+            621,
+            206
+          ]
+        },
+        "seat4": {
+          "nick": [
+            441,
+            278,
+            522,
+            296
+          ],
+          "stack": [
+            441,
+            296,
+            522,
+            314
+          ],
+          "action_label": [
+            439,
+            287,
+            527,
+            305
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            436,
+            239,
+            494,
+            274
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            439,
+            287,
+            527,
+            305
+          ]
+        },
+        "seat5": {
+          "nick": [
+            290,
+            308,
+            371,
+            324
+          ],
+          "stack": [
+            290,
+            324,
+            371,
+            342
+          ],
+          "action_label": [
+            287,
+            316,
+            376,
+            334
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            285,
+            268,
+            343,
+            303
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            287,
+            316,
+            376,
+            334
+          ]
+        },
+        "seat6": {
+          "nick": [
+            139,
+            277,
+            221,
+            295
+          ],
+          "stack": [
+            139,
+            295,
+            221,
+            313
+          ],
+          "action_label": [
+            136,
+            286,
+            225,
+            304
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            134,
+            238,
+            192,
+            273
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            136,
+            286,
+            225,
+            304
+          ]
+        },
+        "seat7": {
+          "nick": [
+            42,
+            179,
+            123,
+            196
+          ],
+          "stack": [
+            42,
+            196,
+            123,
+            214
+          ],
+          "action_label": [
+            40,
+            188,
+            127,
+            206
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            37,
+            140,
+            95,
+            175
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            40,
+            188,
+            127,
+            206
+          ]
+        },
+        "seat8": {
+          "nick": [
+            139,
+            88,
+            218,
+            105
+          ],
+          "stack": [
+            139,
+            105,
+            218,
+            123
+          ],
+          "action_label": [
+            135,
+            96,
+            222,
+            115
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            133,
+            49,
+            191,
+            84
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            135,
+            96,
+            222,
+            115
+          ]
+        }
+      },
+      "chat": {
+        "chat_log": [
+          623,
+          25,
+          847,
+          388
+        ]
+      },
+      "global": {
+        "players_left": null,
+        "paid_places": null,
+        "stage_color_banner": null,
+        "pot_value": null,
+        "hand_number": [
+          603,
+          24,
+          620,
+          114
+        ],
+        "ante": null,
+        "board_flop": [
+          202,
+          157,
+          336,
+          217
+        ],
+        "board_turn": [
+          339,
+          157,
+          380,
+          217
+        ],
+        "board_river": [
+          384,
+          158,
+          427,
+          217
+        ],
+        "tournament_bounty_popup": null,
+        "tournament_elimination_popup": null,
+        "tournament_notification": null
+      }
+    },
+    "slot_07": {
+      "slot_id": 7,
+      "manual_reference_frame_index": 9214,
+      "resolution": {
+        "width": 847,
+        "height": 404
+      },
+      "roi_types": {
+        "required": [
+          "nick",
+          "stack",
+          "chat_log"
+        ],
+        "authoritative_boundary": [
+          "hand_number"
+        ],
+        "not_claimed": [
+          "shown_cards",
+          "action_bet",
+          "pot_value",
+          "ante"
+        ]
+      },
+      "seats": {
+        "seat1": {
+          "nick": [
+            284,
+            53,
+            368,
+            71
+          ],
+          "stack": [
+            284,
+            71,
+            368,
+            89
+          ],
+          "action_label": [
+            282,
+            63,
+            371,
+            81
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            280,
+            14,
+            338,
+            49
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            282,
+            63,
+            371,
+            81
+          ]
+        },
+        "seat2": {
+          "nick": [
+            437,
+            86,
+            518,
+            103
+          ],
+          "stack": [
+            437,
+            103,
+            518,
+            121
+          ],
+          "action_label": [
+            433,
+            96,
+            522,
+            113
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            432,
+            47,
+            490,
+            82
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            433,
+            96,
+            522,
+            113
+          ]
+        },
+        "seat3": {
+          "nick": [
+            532,
+            177,
+            616,
+            196
+          ],
+          "stack": [
+            532,
+            196,
+            616,
+            214
+          ],
+          "action_label": [
+            529,
+            188,
+            618,
+            205
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            528,
+            139,
+            586,
+            174
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            529,
+            188,
+            618,
+            205
+          ]
+        },
+        "seat4": {
+          "nick": [
+            437,
+            277,
+            520,
+            296
+          ],
+          "stack": [
+            437,
+            296,
+            520,
+            314
+          ],
+          "action_label": [
+            436,
+            287,
+            524,
+            305
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            433,
+            239,
+            491,
+            274
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            436,
+            287,
+            524,
+            305
+          ]
+        },
+        "seat5": {
+          "nick": [
+            286,
+            305,
+            367,
+            324
+          ],
+          "stack": [
+            286,
+            324,
+            367,
+            342
+          ],
+          "action_label": [
+            283,
+            315,
+            372,
+            333
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            281,
+            267,
+            339,
+            302
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            283,
+            315,
+            372,
+            333
+          ]
+        },
+        "seat6": {
+          "nick": [
+            134,
+            277,
+            215,
+            295
+          ],
+          "stack": [
+            134,
+            295,
+            215,
+            313
+          ],
+          "action_label": [
+            130,
+            286,
+            219,
+            304
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            129,
+            238,
+            187,
+            273
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            130,
+            286,
+            219,
+            304
+          ]
+        },
+        "seat7": {
+          "nick": [
+            38,
+            179,
+            118,
+            196
+          ],
+          "stack": [
+            38,
+            196,
+            118,
+            214
+          ],
+          "action_label": [
+            36,
+            188,
+            123,
+            206
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            32,
+            140,
+            90,
+            175
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            36,
+            188,
+            123,
+            206
+          ]
+        },
+        "seat8": {
+          "nick": [
+            133,
+            84,
+            216,
+            103
+          ],
+          "stack": [
+            133,
+            103,
+            216,
+            121
+          ],
+          "action_label": [
+            131,
+            93,
+            218,
+            112
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            129,
+            46,
+            187,
+            81
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            131,
+            93,
+            218,
+            112
+          ]
+        }
+      },
+      "chat": {
+        "chat_log": [
+          619,
+          25,
+          847,
+          388
+        ]
+      },
+      "global": {
+        "players_left": null,
+        "paid_places": null,
+        "stage_color_banner": null,
+        "pot_value": null,
+        "hand_number": [
+          603,
+          24,
+          620,
+          114
+        ],
+        "ante": null,
+        "board_flop": [
+          198,
+          156,
+          332,
+          216
+        ],
+        "board_turn": [
+          335,
+          156,
+          376,
+          216
+        ],
+        "board_river": [
+          380,
+          157,
+          423,
+          216
+        ],
+        "tournament_bounty_popup": null,
+        "tournament_elimination_popup": null,
+        "tournament_notification": null
+      }
+    },
+    "slot_08": {
+      "slot_id": 8,
+      "manual_reference_frame_index": 23912,
+      "resolution": {
+        "width": 847,
+        "height": 404
+      },
+      "roi_types": {
+        "required": [
+          "nick",
+          "stack",
+          "chat_log"
+        ],
+        "authoritative_boundary": [
+          "hand_number"
+        ],
+        "not_claimed": [
+          "shown_cards",
+          "action_bet",
+          "pot_value",
+          "ante"
+        ]
+      },
+      "seats": {
+        "seat1": {
+          "nick": [
+            289,
+            53,
+            370,
+            72
+          ],
+          "stack": [
+            289,
+            72,
+            370,
+            90
+          ],
+          "action_label": [
+            285,
+            63,
+            374,
+            81
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            284,
+            15,
+            342,
+            50
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            285,
+            63,
+            374,
+            81
+          ]
+        },
+        "seat2": {
+          "nick": [
+            440,
+            85,
+            523,
+            103
+          ],
+          "stack": [
+            440,
+            103,
+            523,
+            121
+          ],
+          "action_label": [
+            437,
+            95,
+            526,
+            112
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            436,
+            46,
+            494,
+            81
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            437,
+            95,
+            526,
+            112
+          ]
+        },
+        "seat3": {
+          "nick": [
+            536,
+            177,
+            618,
+            196
+          ],
+          "stack": [
+            536,
+            196,
+            618,
+            214
+          ],
+          "action_label": [
+            532,
+            188,
+            621,
+            205
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            531,
+            139,
+            589,
+            174
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            532,
+            188,
+            621,
+            205
+          ]
+        },
+        "seat4": {
+          "nick": [
+            441,
+            277,
+            522,
+            295
+          ],
+          "stack": [
+            441,
+            295,
+            522,
+            313
+          ],
+          "action_label": null,
+          "bet_amount_bb": null,
+          "shown_cards": [
+            436,
+            238,
+            494,
+            273
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": null
+        },
+        "seat5": {
+          "nick": [
+            290,
+            306,
+            371,
+            324
+          ],
+          "stack": [
+            290,
+            324,
+            371,
+            342
+          ],
+          "action_label": [
+            287,
+            315,
+            376,
+            333
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            285,
+            267,
+            343,
+            302
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            287,
+            315,
+            376,
+            333
+          ]
+        },
+        "seat6": {
+          "nick": [
+            136,
+            277,
+            218,
+            296
+          ],
+          "stack": [
+            136,
+            296,
+            218,
+            314
+          ],
+          "action_label": [
+            133,
+            286,
+            222,
+            304
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            131,
+            239,
+            189,
+            274
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            133,
+            286,
+            222,
+            304
+          ]
+        },
+        "seat7": {
+          "nick": [
+            41,
+            177,
+            122,
+            196
+          ],
+          "stack": [
+            41,
+            196,
+            122,
+            214
+          ],
+          "action_label": [
+            39,
+            187,
+            126,
+            205
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            36,
+            139,
+            94,
+            174
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            39,
+            187,
+            126,
+            205
+          ]
+        },
+        "seat8": {
+          "nick": [
+            136,
+            86,
+            216,
+            102
+          ],
+          "stack": [
+            136,
+            102,
+            216,
+            120
+          ],
+          "action_label": [
+            132,
+            94,
+            219,
+            113
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            130,
+            46,
+            188,
+            81
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            132,
+            94,
+            219,
+            113
+          ]
+        }
+      },
+      "chat": {
+        "chat_log": [
+          623,
+          25,
+          847,
+          388
+        ]
+      },
+      "global": {
+        "players_left": null,
+        "paid_places": null,
+        "stage_color_banner": null,
+        "pot_value": null,
+        "hand_number": [
+          604,
+          24,
+          621,
+          114
+        ],
+        "ante": null,
+        "board_flop": [
+          202,
+          156,
+          335,
+          216
+        ],
+        "board_turn": [
+          339,
+          156,
+          379,
+          216
+        ],
+        "board_river": [
+          384,
+          157,
+          425,
+          216
+        ],
+        "tournament_bounty_popup": null,
+        "tournament_elimination_popup": null,
+        "tournament_notification": null
+      }
+    },
+    "slot_09": {
+      "slot_id": 9,
+      "manual_reference_frame_index": 9244,
+      "resolution": {
+        "width": 847,
+        "height": 404
+      },
+      "roi_types": {
+        "required": [
+          "nick",
+          "stack",
+          "chat_log"
+        ],
+        "authoritative_boundary": [
+          "hand_number"
+        ],
+        "not_claimed": [
+          "shown_cards",
+          "action_bet",
+          "pot_value",
+          "ante"
+        ]
+      },
+      "seats": {
+        "seat1": {
+          "nick": [
+            289,
+            52,
+            372,
+            71
+          ],
+          "stack": [
+            289,
+            71,
+            372,
+            89
+          ],
+          "action_label": [
+            286,
+            62,
+            375,
+            80
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            285,
+            14,
+            343,
+            49
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            286,
+            62,
+            375,
+            80
+          ]
+        },
+        "seat2": {
+          "nick": [
+            440,
+            84,
+            522,
+            102
+          ],
+          "stack": [
+            440,
+            102,
+            522,
+            120
+          ],
+          "action_label": [
+            437,
+            94,
+            526,
+            111
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            435,
+            45,
+            493,
+            80
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            437,
+            94,
+            526,
+            111
+          ]
+        },
+        "seat3": {
+          "nick": [
+            536,
+            177,
+            618,
+            195
+          ],
+          "stack": [
+            536,
+            195,
+            618,
+            213
+          ],
+          "action_label": [
+            532,
+            187,
+            621,
+            204
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            531,
+            138,
+            589,
+            173
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            532,
+            187,
+            621,
+            204
+          ]
+        },
+        "seat4": {
+          "nick": [
+            440,
+            275,
+            523,
+            293
+          ],
+          "stack": [
+            440,
+            293,
+            523,
+            311
+          ],
+          "action_label": [
+            439,
+            284,
+            527,
+            302
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            436,
+            236,
+            494,
+            271
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            439,
+            284,
+            527,
+            302
+          ]
+        },
+        "seat5": {
+          "nick": [
+            289,
+            303,
+            371,
+            322
+          ],
+          "stack": [
+            289,
+            322,
+            371,
+            340
+          ],
+          "action_label": [
+            286,
+            313,
+            375,
+            331
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            284,
+            265,
+            342,
+            300
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            286,
+            313,
+            375,
+            331
+          ]
+        },
+        "seat6": {
+          "nick": [
+            138,
+            275,
+            220,
+            294
+          ],
+          "stack": [
+            138,
+            294,
+            220,
+            312
+          ],
+          "action_label": [
+            135,
+            284,
+            224,
+            302
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            133,
+            237,
+            191,
+            272
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            135,
+            284,
+            224,
+            302
+          ]
+        },
+        "seat7": {
+          "nick": [
+            42,
+            178,
+            123,
+            195
+          ],
+          "stack": [
+            42,
+            195,
+            123,
+            213
+          ],
+          "action_label": [
+            40,
+            187,
+            127,
+            205
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            37,
+            139,
+            95,
+            174
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            40,
+            187,
+            127,
+            205
+          ]
+        },
+        "seat8": {
+          "nick": [
+            138,
+            83,
+            220,
+            102
+          ],
+          "stack": [
+            138,
+            102,
+            220,
+            120
+          ],
+          "action_label": [
+            135,
+            92,
+            222,
+            111
+          ],
+          "bet_amount_bb": null,
+          "shown_cards": [
+            133,
+            45,
+            191,
+            80
+          ],
+          "action_bet": null,
+          "showdown_status": null,
+          "showdown_info_bar": null,
+          "role": [
+            135,
+            92,
+            222,
+            111
+          ]
+        }
+      },
+      "chat": {
+        "chat_log": [
+          623,
+          25,
+          847,
+          388
+        ]
+      },
+      "global": {
+        "players_left": null,
+        "paid_places": null,
+        "stage_color_banner": null,
+        "pot_value": null,
+        "hand_number": [
+          604,
+          24,
+          621,
+          114
+        ],
+        "ante": null,
+        "board_flop": [
+          202,
+          154,
+          336,
+          214
+        ],
+        "board_turn": [
+          339,
+          154,
+          380,
+          214
+        ],
+        "board_river": [
+          384,
+          155,
+          427,
+          214
+        ],
+        "tournament_bounty_popup": null,
+        "tournament_elimination_popup": null,
+        "tournament_notification": null
+      }
+    }
+  },
+  "board_geometry_basis": "user-marked T03 FLOP/TURN/RIVER street groups plus direct table-specific visible-card boundary checks on one clean real river frame per slot",
+  "board_geometry_evidence": {
+    "proof": "D:\\Проекты\\RSGAN_TEST\\smoke05_847x404_layout_profile_20260901\\board_roi_proof\\board_roi_proof_results.json",
+    "proof_sha256": "04b9b9b7fcf2b80975884c74929afa0eb4a53d9d68987b941a036a178608629b",
+    "manual_reference": "D:\\Проекты\\RSGAN_TEST\\smoke05_847x404_layout_profile_20260901\\board_roi_manual\\board_reference_847x404.png",
+    "manual_reference_sha256": "6cf05e7850e2b453cf8e7b26d12b80d156ae58836648ca9fe32eee424c37a2ff",
+    "manual_authority_table": "T03",
+    "manual_authority_frame_index": 6210,
+    "coordinate_system": "847x404 table-local xyxy; x2/y2 exclusive",
+    "table_slots_proven": "9/9",
+    "routes_proven": "27/27",
+    "assigned_fields": [
+      "board_flop",
+      "board_turn",
+      "board_river"
+    ],
+    "central_tournament_notifications_in_selected_frames": 0,
+    "recognition_performed": false
+  }
+}

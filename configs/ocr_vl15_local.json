@@ -1,0 +1,12 @@
+{
+  "schema": "pokerdom.chat-ocr.vl15.local.v1",
+  "enabled": true,
+  "python": "D:\\PD_BENCH\\paddleocr_vl15_all_crops_20260928\\venv\\Scripts\\python.exe",
+  "model_dir": "D:\\PD_BENCH\\paddleocr_vl15_all_crops_20260928\\model",
+  "model_revision": "2a4195faa5e7914c12f2fc601d72c81caf8d2da5",
+  "weights_sha256": "d557c9d8997ae57ed3b1b33bdf347be878cc335687f32ca105341c16973f8958",
+  "right_trim_px": 12,
+  "primary_upscale": 2,
+  "nickname_route": ["CYRILLIC_IN_NICKNAME", "LATIN_I_OR_L_IN_NICKNAME", "UNCERTAIN_GLYPH_IN_NICKNAME"],
+  "board_tile_route": true
+}
