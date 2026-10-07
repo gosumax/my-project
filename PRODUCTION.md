@@ -30,8 +30,34 @@ old identity are written to physical_chat_admission.jsonl. Card crop identity
 never overwrites the separate row_identity_status. Raw pixels/OCR remain intact.
 
 The existing direct live START_STACK/binding lane and digit-gated SQLite lane
-receive the same ordered frame observations. Their independent evidence is not
-silently equated: missing occupancy/player/action-interval proof remains UNKNOWN.
+receive the same ordered frame observations. FULL applies the user-confirmed
+PokerDom rule (2026-10-07): the first visible numeric stack after the current
+forced-post overlay is already net of ANTE/SB/BB. HH START_STACK adds back only
+the exact bound forced posts. The displayed value remains an immutable fact.
+Three initial sources must positively match native, visually labelled static
+ANTE/SB/BB templates; every subsequent pre-number frame must retain that same
+glyph shape through fading or be a near-uniform blank within the measured codec
+noise range. An unexplained nonblank frame, source gap, context conflict, or an
+earlier reliable number withholds authority. The first numeric triple must pass
+the existing .95 OCR gate. A later convenient triple cannot replace it.
+The frozen digit gate remains independent evidence; rejection is not proof of
+numeric absence. Three verified forced-overlay template matches (.98), positive fade
+NCC (.90), and blank gray range <=3 are separate visibility rules on fixed text
+interiors; they do not change STACK OCR, digit gating, or visual state admission.
+The direct FULL first-stack lane separately evaluates a doubled nearest-neighbor
+representation when its primary OCR is numeric but below .95. Primary text,
+confidence and pixels remain immutable. Only the same literal number read at .95
+or higher from that exact doubled source can provide additional numeric evidence.
+The receipt reproduces both pixel hashes, fixed seat/frame item, and model identity.
+All three consecutive first-number sources and the entire preceding forced-overlay
+proof remain mandatory. The frozen digit-gated SQLite OCR path is unchanged.
+The additional synchronous inference uses the existing Tiny worker, retains its
+raw response, and records a separate exact compute interval. Failure remains UNKNOWN.
+Native measurements found 46 and 51 frame overlay-to-number intervals, so no
+universal fixed frame count is asserted or used to certify a snapshot.
+Missing occupancy, player, epoch, forced-post or first-visibility proof remains
+UNKNOWN. Raw OCR, including low-confidence numeric ghosts during fading, stays
+unchanged. Numbers are never inferred from those ghosts or the overlay timer.
 FULL now samples fixed-seat labels before TABLE completion through the existing
 bounded source window. All configured seats must resolve through three exact
 label crops and continuous identical pixels: literal nickname or explicit OPEN
@@ -41,6 +67,34 @@ positive route remains available. Current occupancy grants no historical actor
 or START_STACK authority; canonical binding still uses fresh post-deal labels.
 Expiry is explicitly logged and cannot create a mask.
 
+FULL also accepts a positive complete OPEN SEAT button on a separate fixed ROI.
+Full region, text glyph and outside-text border each require .98 agreement with
+reviewed native templates. Every remaining occupied seat requires positive cards
+on the same three consecutive source frames, with increasing PTS and a stable
+partition. EMPTY/cards or current nickname conflicts block all completion routes.
+The existing 70 frozen table-card templates are unchanged. A separate .98 native
+card-back supplement covers an absent frozen key only; any supplement route keeps
+all three source-frame card pixels and distinct proof provenance. The joint
+receipt grants current occupancy only, with no actor or START_STACK authority.
+Retained replay includes source nickname conflicts; missing evidence stays UNKNOWN.
+Bounded native diagnostics confirm completion before first numbers on three
+windows; they do not establish full-video occupancy accuracy. See
+docs/EMPTY_SEAT_CARD_COMPLETION_DESIGN_20261007.md and the occupancy_source_review
+and empty_button_tests_v2 folders under the current task baseline.
+
+FULL historical actor binding also accepts a separately reproduced literal-prefix
+proof for visually truncated nicknames. A complete physical forced-post roster
+must have one ANTE for every distinct participant and exactly as many actors as
+independently occupied participant seats. Every seat requires a fresh .95 nickname
+triple with a literal exact name or an explicit nonempty prefix ending in ellipsis.
+All eligible same-epoch labels constrain the graph by intersection. Exactly one
+complete matching is required; a bare ellipsis, fuzzy alias, roster complement,
+contradictory label, changed seat, missing participant membership, source gap in
+the forced prefix or a non-unique matching remains UNKNOWN. The receipt preserves
+raw nickname pixels/OCR, complete CHAT prefix, frame/PTS, fixed seat ROI and full
+seat history. Canonical consumption replays the matching proof. This FULL-only
+rule does not rewrite the exact-label route or raw observations.
+
 FULL reconstruction explores both added and total meanings of bare CALL and
 pairs missing amounts with the intended interpretation. Source removal and
 inference-count ranking are disabled before uniqueness. Equivalent meanings
@@ -49,8 +103,22 @@ state and intermediate ledger agree. A separate candidate retains exact original
 source rows, records derived amount proofs, and passes the existing logic/math,
 OCR, card and identity validators again. Original observations stay unchanged.
 JSON and text HH export use validated economic amounts and retain source OCR.
-The SQLite STACK consumer joins snapshot candidates only by exact source frame,
-seat and pixel hash; an absent clean action interval still withholds START_STACK.
+The direct and SQLite lanes use different registered stack ROIs and grayscale
+conversions. FULL retains original RGB pixels and reproduces both grayscale
+representations before joining the same table/session/seat/frame/PTS to a SQLite
+state. Independent SQLite OCR remains intact, including UNKNOWN. A confirmed
+numeric conflict prevents solver use; a reproduced first-visible direct triple
+can supply the number for an exactly joined raw SQLite state. Canonical actor,
+seat, epoch and complete actual forced-post bindings remain mandatory.
+FULL reconciles a complete actor forced-post set across an observed callback
+offset only after reproducing the complete roster/prefix and first-visible number
+proof. The forced snapshot must precede that number in both frame and PTS order;
+all raw prefix rows and posts must agree on source identity/time. The roster
+mapping and unchanged participant epoch must cover numeric confirmation. A late
+snapshot is not allowed merely because its CHAT text says BEFORE_DEAL. The original
+vision fact stays intact and the separate chronology proof is retained. OFF keeps
+its existing frame-order behavior. Native evidence: deal257, forced snapshot258,
+first-number284; this is observation order, not backdated action time.
 Literal CHAT wraps use consecutive rows in the same source frame/session/epoch.
 Opaque SHOW card rows require the existing native pixel proof. Physically ordered
 forced prefixes retain their original row order. The first numbered context is
@@ -64,6 +132,7 @@ denominator. This is an integration candidate, not a golden freeze or HH95 proof
 
 Baseline: runs/full_hh_production_20261006/before. Regression/review receipts,
 short acceptance and subsequent source audits live in that task directory.
+Visibility sources and timing audits: runs/full_hh_production_20261006/stack_overlay_timing/.
 Full Smoke19 is gated by a successful short official profile run. Frozen/vendor,
 STACK digit gate/exact recurrence/batched storage and PNG policy remain unchanged.
 Older OFF-candidate descriptions below document the pre-profile routes; the

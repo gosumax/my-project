@@ -1,0 +1,1738 @@
+{
+  "schema": "forced-stack-overlay-native-patterns-v1",
+  "source_capture_sha256": "cd2fe377ccc98bdd18a4ca442683337f7fec474d5865a9933a415d9cd3e616c2",
+  "purpose": "LABEL_VISIBILITY_ONLY; NOT_STACK_NUMBERS_OR_FORCED_AMOUNTS",
+  "templates": [
+    {
+      "label": "SB",
+      "source_table": 5,
+      "source_frame": 258,
+      "source_seat": "seat1",
+      "source_rgb_sha256": "5b87380b1459207ede038ec275c27d06f59ee6ca554923afd98a9e410db91dd2",
+      "source_roi": [
+        286,
+        74,
+        368,
+        92
+      ],
+      "projected_roi": [
+        286,
+        74,
+        368,
+        87
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISEhIUCilFk7ZbGNT6ekZUlprpZRHyEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAofqKblKGeaTyosp2ZnJtwNSEfISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgIDBshYuGZTUpe4mIiH9lOSIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICYoJiAgICEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgISAfICAhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAhIiAgISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIiIiEgICEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "6a89f28253d6071222c744ee22311252af1fbdf347677cd13a41ce39e2e47f7d",
+      "label_authority": "ROOT_VISUAL_REVIEW_T05_FORCED_OVERLAY_SHEET_20261007"
+    },
+    {
+      "label": "BB",
+      "source_table": 5,
+      "source_frame": 258,
+      "source_seat": "seat2",
+      "source_rgb_sha256": "f1df1a3d4878b056db4967fe14b0fafda430acc8b56a150928dcfb6c18fd4e2f",
+      "source_roi": [
+        438,
+        105,
+        520,
+        123
+      ],
+      "projected_roi": [
+        438,
+        105,
+        520,
+        118
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISEhIS6VqXA/UJqkaY+qdj5NlqdqICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAulLGUgJKji1KOspV/jaKPTiAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhLYKlpKScgU4rf6WkpJuCUCEhIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiEgICIiISEjICAgIyIiICAfISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICEhICAgICAgISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISAgICAgICEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhIiIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "39a1cc2fdea2a0f4801d77fb7c77c6e06546f6b66522c713207f2184452a304a",
+      "label_authority": "ROOT_VISUAL_REVIEW_T05_FORCED_OVERLAY_SHEET_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 5,
+      "source_frame": 258,
+      "source_seat": "seat4",
+      "source_rgb_sha256": "2125b0809b7289bdc22aa2563aca1f63214d079830fdbb3014f6074bb8a26fa4",
+      "source_roi": [
+        439,
+        299,
+        522,
+        317
+      ],
+      "projected_roi": [
+        439,
+        299,
+        522,
+        312
+      ],
+      "shape": [
+        9,
+        71
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhITydmXdzdKKqcZSmaSZjpbuRQyE4kqJiICuIsYNQTk5CJx4gICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhZ6iBMCMmfq6Em6ZnJDOGspFDIDiSomIgLYe5rqSkpYU1HyAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR9HbFAjISFHallhZkIgIUtrWTIgK1lkQCElVXJzc3NzXiogISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICEgISAhISEgIB4fICEgISAfIB4fHyEhISEfHyIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHyAhICEgISAfHyEhIiEgHyAfICEgIyEhICAgICAgHyAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICIhISEgISAgISAeIiEhHyEfISAhISEgIiAgICAgIyEfICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "ab5b15d9dffd3d8a0ca63617ac79b480acc2a153b37ba7644c5266e2e7d25ced",
+      "label_authority": "ROOT_VISUAL_REVIEW_T05_FORCED_OVERLAY_SHEET_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 8,
+      "source_seat": "seat1",
+      "source_frame": 130,
+      "source_hand_id": "2878365523",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "2206bd6c1136b0df864d6568a629531fe06bdce496f0690ea282d5e71d3fa582",
+      "source_roi": [
+        289,
+        72,
+        370,
+        90
+      ],
+      "projected_roi": [
+        289,
+        72,
+        370,
+        85
+      ],
+      "shape": [
+        9,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhIR8gHk21cT82OqyuXaucTSJYr7h9NCA/ppROITGgqnlZWVdBKCEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR8hIIC1WSQfIYSycq6dTSMlj7V6NCA/ppROITGhura0tbZ7MyEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR8fJCw3Jx4hIS40LTkzJiAiMzktJSAoNSwnISE7Ozs7OjotISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIhISQiICAiIB8gIyMjIyMhISEiIiAhIiEgICAgICAgICAgHyEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAhIR8gISAfISAgHiIiIiEhISAgICAhISEhISEhISEhICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR0hIiAkIiEkISEiJCIiISEhHiAiJSEhISEhISEhISEhICAfHSEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgISAhISEhISEhISEhISEgISAhISEhICEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAhISEhISEhISEhISEhISAhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "a563ada7f695ce830a82476db149927342a9f9ad206c500e86ce0d4de5bbe548",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "SB",
+      "source_table": 8,
+      "source_seat": "seat2",
+      "source_frame": 130,
+      "source_hand_id": "2878365523",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "a999cfd6ba4183786b2801a339c8db062c7564a3039845655e67cf47cfc8a2ce",
+      "source_roi": [
+        440,
+        103,
+        523,
+        121
+      ],
+      "projected_roi": [
+        440,
+        103,
+        523,
+        116
+      ],
+      "shape": [
+        9,
+        71
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISIhIDOPp3lHY6KdXIysfU5roqBfHiEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEfJ1+QoqSonnc7j7msoqKceTseISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR8hLE9tdnJiPClZc29xaVw6Ix8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "4bf0877e7a81c5ae256866656e03b30ec3f63f89f02e4b5a3e74fd4ecad96dd5",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "BB",
+      "source_table": 8,
+      "source_seat": "seat4",
+      "source_frame": 130,
+      "source_hand_id": "2878365523",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "756d0f12e0e90a2eea5b07512d8ea5fd7f56b003c09db914319a944048e3e79c",
+      "source_roi": [
+        441,
+        295,
+        522,
+        313
+      ],
+      "projected_roi": [
+        441,
+        295,
+        522,
+        309
+      ],
+      "shape": [
+        10,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISEgLpSlbDE+lKdtjqh0LjyPq2wiHiIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhJCQgL5Svim+GppJSjLSMb4Gjl1MjHyIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHyAgK46vsa+oi1ArhLCuraqOVyUjHyIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgISEhISEmIB0hJCIfHyEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgISEhICAfHyAhIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiIkJCIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "5bac3ed490a5a6a5cd4c69267f55585e9a718aa7d117bea46957c9414ea76f16",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 8,
+      "source_seat": "seat6",
+      "source_frame": 130,
+      "source_hand_id": "2878365523",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "6eb152c3ed0697ae0d600597cd635870880072c2bac67d9e5b496cbba3b02d32",
+      "source_roi": [
+        136,
+        296,
+        218,
+        314
+      ],
+      "projected_roi": [
+        136,
+        296,
+        218,
+        312
+      ],
+      "shape": [
+        12,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhICAhITBrtlUgI0a1rFC5jx4jYLi9XyAfRrmALyAxt6Zya21tOCAhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgIB87h6cxISEziaxes4kgICqXrlkgH0CygC4eMquwqa+vr1clISEgICEhISEhISEhISEhISEhISEhISEhISEfHiEhISEhISEgISEhISAgISEhISEhISEhISEhIiAhISMgIyAjIyMkHR4gICAgISIhISEhISEhISEhISEhISEhISEhISEhICAgICEhICAhISEhISEgICEhISEhISEhISEhISEhISEgICAgICAgICEhICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAiIiIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISIiIiIiIiIiISEhISEhISEhISEhISEhISEhISEhISAgHyAhISIiISEhISAgICAhISEhISEhISEhISEhISEhISEhIiIhISEgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISAfISEdHSAhIB8gISEhISEhISEhISEhISEhISEhISEhICAfICAgHx0eHh0dHh8gISEhISEhISEhISEhISEhISEhISEiISEhISEhICAhIiAhISIhISEhISEhISEhISEhISEhISEiIiEgIiEgISIkJCIhISUkIiEhISEhISEhISEhISEhISEhISEhISAgICAgIB8gISAgICEgICAhISEhISEhISEhISEhISEhISEhISEiISEgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEgICAgICAgICAgICAgICAgISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAhISEhISEhISEhISEh",
+      "pixel_sha256": "bfe9e412c38b6cb1e5b85eebf1867eeb308ea5ca13126a1e296f768454e2206b",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 8,
+      "source_seat": "seat8",
+      "source_frame": 130,
+      "source_hand_id": "2878365523",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "64f5a29696d65aadf2eb04e61310c25f8aa710aa42ce66d3ce47e16cbc000b5d",
+      "source_roi": [
+        136,
+        102,
+        216,
+        120
+      ],
+      "projected_roi": [
+        136,
+        102,
+        216,
+        117
+      ],
+      "shape": [
+        11,
+        68
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISBIrLioqrW2bUq5jyZUsbO4XiMgRruCMyEyuJg5JCEhHx8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgJWCygG9xebecSrqPISx8urheISNFvoYwIDK2oV5OT1QxIyEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHyA3grJAICE9nrBbuZAkJESqu1wgIUi7gi8gNLe2p6Sko1UpICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgISpYbCshISZYbj10Wx8gJV9yQSAeLHRWKiAmb3FxcHJuOiQgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgHyAgICAgISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAgICAgISEhISEhISEhISEhISEhISEhIQ==",
+      "pixel_sha256": "cdd5e1b752c5e5cf606c78ac52694b2e130fc724a155dbf3177e7eda2d482c0a",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 7,
+      "source_seat": "seat1",
+      "source_frame": 150,
+      "source_hand_id": "2878365529",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "e06dc8872b568a3f9e87b9f8357f0b6267f7987be850b32595ea919e0016d114",
+      "source_roi": [
+        284,
+        71,
+        368,
+        89
+      ],
+      "projected_roi": [
+        284,
+        71,
+        368,
+        85
+      ],
+      "shape": [
+        10,
+        72
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhJbC4tbi4uIRDsptMLqC3uXg3IEKpkUohLaKhWyQjISAgHyIiISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhTbdwPjg7qbJXq5pLH1yvvXg3IEKpkUohLaWpd1lZWUEmHiMhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhf7lPJCEhhbdrs5tJICaRtng3IUKpkUohLaO8trW3t3ssHyEfISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhLzokICIhKzkrNjQnHiQxNiwmICA0LyUfJDM/PDpAOzEkISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEkIR8hIh8hICAfHyAhISEgICAhISEhICAgICEhIB4hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEfIR8gISEgICEjIyEgICAgICAfHyEhISEgIB8fICMhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIhHyIhJCIgHiAjISEgICAgICEgICEhICAgICEkIyAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiISEhISEhISEhISEhICAgICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "cca2342895856f58a4db6794c69a9b1b77c4fb51b267652e0a86b0e05e465b26",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 7,
+      "source_seat": "seat2",
+      "source_frame": 150,
+      "source_hand_id": "2878365529",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "f825f60d0a53ef6425f42b1c75ddca096ed41d0a6e7a0f5f77b0d3d86dfcde35",
+      "source_roi": [
+        437,
+        103,
+        518,
+        121
+      ],
+      "projected_roi": [
+        437,
+        103,
+        518,
+        117
+      ],
+      "shape": [
+        10,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISE+n5h1b2+hqXCap2ciYqK7j0UfOY+gXiQqirCBTk5RQicgISIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISFmqX4uJCV9rIWao2gfM4SzkEYjOJWlYCIsj7mtpqSliDUfICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISFIbkwnIR1GZVZhZ0MiH01rXDIgLFxnPyIlWHZxb3BxXCsfICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "51a4974a628439ecc389a036dd6dc9da669e034d8d31fca53d790c3999f396e3",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "SB",
+      "source_table": 7,
+      "source_seat": "seat3",
+      "source_frame": 150,
+      "source_hand_id": "2878365529",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "7649fa36f423596976e049f098af34f46a9e445df30c0b4a9be1e9079220900f",
+      "source_roi": [
+        532,
+        196,
+        616,
+        214
+      ],
+      "projected_roi": [
+        532,
+        196,
+        616,
+        209
+      ],
+      "shape": [
+        9,
+        72
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISEhISExpKtsT3mvhEalqHVdgK+ORyAgICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEfSo6ys7WOTDOlubW3q4tSJiEfHyAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhJDRER0IyJic9QEFAOy8mICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgHx8jIyEgISAhICEgICEgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEjHx8gHyAgHyEgISAgISAjICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgHyAhIyEgHyIhIiAeICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "88814ca948628f0e6955e4872d97ce971d5919344e42a2b17bb341ca61b64789",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "BB",
+      "source_table": 7,
+      "source_seat": "seat4",
+      "source_frame": 150,
+      "source_hand_id": "2878365529",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "026c8acd079baab848d72a0fc54635f491f46c0f4f2441630553ca20d38fb085",
+      "source_roi": [
+        437,
+        296,
+        520,
+        314
+      ],
+      "projected_roi": [
+        437,
+        296,
+        520,
+        308
+      ],
+      "shape": [
+        8,
+        71
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISEhIS2bq4dwhaOPUZSviWyDqJVRICEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhLZCysLKqhlUuirGvsKmKWCUgISEhICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgICAgICEhISEhISEhISAiISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAgICAgISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIQ==",
+      "pixel_sha256": "bad2fefa10bb424f469e8600dd92daa224907e3cdbc528be1789d377242486cb",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 7,
+      "source_seat": "seat7",
+      "source_frame": 150,
+      "source_hand_id": "2878365529",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "7a4b9cf701fde8bc1180b49f491e72f7bf1d616dab8f607e2aca10278a6c4ce9",
+      "source_roi": [
+        38,
+        196,
+        118,
+        214
+      ],
+      "projected_roi": [
+        38,
+        196,
+        118,
+        209
+      ],
+      "shape": [
+        9,
+        68
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhIU20bEA4Oq2rT66bRyFfsbtxNCJErI1DIzCopnNYWlpBJSAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhgLhHIyEkh7dis5tIICeUtHEzIEGtkkkiLqi5r7a3t3ovISEiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEzPCMjICIxOys6OSccIzQ/KiEfIjgzJx4lNz09QUE7MSAgISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISAlISEhISAhIR8gIB8fICAhIyEfISMgIB4iICEgICAeICAhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR8hHyMhIh8gHiEiISEgIR8iICAfIB8hIiEjHyAhICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEfISEgIR4gJCEiISIfISEiIiIhIR8gISQhISEeHyEgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIgISEhISQiISIhIiQiIiEhICEhISAgIiUlJCAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgISUgISEgISAiIiIgIiIhIiIiIiQhICEhICEkISIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEkIiIgISEgJCEgICIiIB8iISIgICEiISAhJSIgHyEhJCEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "df2fa9862cf7de075c7b3a9132ebcf59ef544ccdb3fa795ec2e9211963abfc5d",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 7,
+      "source_seat": "seat8",
+      "source_frame": 150,
+      "source_hand_id": "2878365529",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "26869fd2cbc39c5eede218f8cdf2bf68695b0b823728da9382d36de5edb105e0",
+      "source_roi": [
+        133,
+        103,
+        216,
+        121
+      ],
+      "projected_roi": [
+        133,
+        103,
+        216,
+        118
+      ],
+      "shape": [
+        11,
+        71
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhICtns4Jybny1mVC6kCQxhri2ViMhSb2AJR8wuaBXTU5OLSIhISIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhPYawPSQiRKCtYruPJCNIpbhTISFGv4ImGzS6t6aopqZUJCAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiAvXWklISIsWmxFc1smISpfbz8hITJzUh4eJHR1cWxvbz0jICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiISEhISEhISEhICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIQ==",
+      "pixel_sha256": "5b920fa6bad2cdad0828757c218bec26696fc15562125b70f08311975cd0fe4f",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "SB",
+      "source_table": 5,
+      "source_seat": "seat1",
+      "source_frame": 238,
+      "source_hand_id": "2878365559",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "721c7272589a169c4846b6b8ba6a3f2ebed7abbeac0e39145919e987ba3e25d6",
+      "source_roi": [
+        286,
+        74,
+        368,
+        92
+      ],
+      "projected_roi": [
+        286,
+        74,
+        368,
+        87
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISAgISEhISEhID+lklVCbbCOS6ejaUlqrY9KGiEiISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgICAgICAlfaCZk5yaZjqespyVmpl3Mh0iISAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgIB8gHjBsiIiFZDEvfYWLhYBiNSYiIiEgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAgICAhICIgISooIyAgICAhJykhIB8fISEgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgICAgICEhISEgICAgICAgICAgHx8gICEgHyAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHh4eHh4eHh8fICAgISEgICEhICAgICEhICAgICAgHx8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAfICAgICAgICAhICEhISAgISAhICIjICAgHyAgIB8fISEhISEhISEhISEhISEhISEhISAhISEhISEhISEhISEhISEhISElICEgICAiJyUfISEhISEnICEhIh0hHiAgHyAgICAhISEhISEhISEhISEhISEhISEhISEhISIhISEhISEhISEhISEhISEhICAfICAgISEgICAhISEhIiEhISEhISMhICAhICAgISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "76d5b48105339598ab50c66ea34dd2e7f1e080412de26a0f14205b2535b3307a",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "BB",
+      "source_table": 5,
+      "source_seat": "seat2",
+      "source_frame": 238,
+      "source_hand_id": "2878365559",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "b8bdb804130a19ef7ca7a55acff58737713ea6c4325d35110a6a1a49367ee0bb",
+      "source_roi": [
+        438,
+        105,
+        520,
+        123
+      ],
+      "projected_roi": [
+        438,
+        105,
+        520,
+        118
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISEhISuUp3E7V5qmY46veTtTmqlkICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISItmLGSf4ahjVKRtZWAkKGPSh0gICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiJ3mjqaqdekordaWkp6B9USYgIR8gICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiQhGiEkIiUeIiEdISInISQhICEgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIyEgISAgISEgHyAgIR8fICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgISEhICEhICEhICAgICAgHyAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAfISEhISAgICAhISAgISEgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhICIiISIhIR8fIB8fICEhICAgICEhISEhISEhISEhISEhISEhISEhIiIhISEhISEhISEhISEhISEhISEhISEhISEgIiEiHSAhHiAgISAkJyAcIiEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "6b018dea1c74bac4b5989533fd1d9c7cce0f28a37837bd77572d40fd7f098b53",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 5,
+      "source_seat": "seat3",
+      "source_frame": 238,
+      "source_hand_id": "2878365559",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "3e9ae39afc35612b9787ac193e83358e6bf09e2e65139b184ad28e9d7ded11d2",
+      "source_roi": [
+        534,
+        199,
+        615,
+        217
+      ],
+      "projected_roi": [
+        534,
+        199,
+        615,
+        212
+      ],
+      "shape": [
+        9,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISM9q5aMhImyoFionE8oe7i0fDUgPqmVUR8yn6NrT0dGNx8gISIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIRxqsmotJiuQs22jnFAlQqC0fDUgPqmVUR8vobCemZuYZSQgISIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISBcfUAgICFghFeAcTwiJWaCXjElNn1tPCAvd4iLi4uLXywgICIhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISAdISEiIR8kHR0gHB4gICMhICAhISAeIyAeHx4gICAgIh0gICIhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISElICAgISEhISEfIyUiJCIgISIiISIkHyEiICAfHx8fHyQhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIfISAhISEhISEfIB4iICIkISInISIfIyIfIB0gICAgJB4hIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiAhISEhIB8gICAgICEgICEgICAgICAgICAgICAgICAhISAgISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAgICAgICAgICAgICAgICAgICAhISAgISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAgICAgICAgICAgISEhISEhISEgICEhISEhISEhISEhISAg",
+      "pixel_sha256": "666424f13417de0c75aa06e92081b5fa5d52f8692f58bff210ce32ca1fc36aed",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 5,
+      "source_seat": "seat4",
+      "source_frame": 238,
+      "source_hand_id": "2878365559",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "99669fcd3572c3a3909b7a266a74a36505fdb5935cf24b34441de7803f96ffd2",
+      "source_roi": [
+        439,
+        299,
+        522,
+        317
+      ],
+      "projected_roi": [
+        439,
+        299,
+        522,
+        312
+      ],
+      "shape": [
+        9,
+        71
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhID6fmHdycZ2jbZamZSdiprmTQB81j6JkHiyHsoFST01BJyAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiaKd+MSQnfrGDlqhpIzWHr5FCGzWPomQeLIeyr6Ojp30yHyAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIRtHZ1EfHyJJaF1daEQhI0dtWjUjKFpkOhwmUnV2dnZ2XiwhICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiYgHyAgICUkISEhISAgISAgICEgHx4eHx8fICIhISIjIyUgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEfHCAhICEkHyEhISEgICAgISEhICEhISEhISAfHx8iIiIkHiEgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIRwfISEhIx4kIiEhIiUhISEiISEhISEiISEhISMkIyIiIh8hICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiIiIiIiISEiIiIiIiIiIiIiIiIiIiIhISEhIyMhISAgIB8gICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiIiIiIhISIiIiIiIiIiIiIiIiIiIiEhISEhISEhICAgHyAgISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEiIiIiIiEhIiIiIiIiIiIiIiIiIiEhISEhISEhIiIhISEgICAhISEhISEhISEhISEh",
+      "pixel_sha256": "85c1d06a04252587937fb3cfc28cb94859d24e29704e049eabb0d97cf02b5646",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 5,
+      "source_seat": "seat5",
+      "source_frame": 238,
+      "source_hand_id": "2878365559",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "6c1ab31d55642e6d1750ec057692d4d611b007a52d7028a69e4cffd1c8417cc2",
+      "source_roi": [
+        287,
+        327,
+        368,
+        345
+      ],
+      "projected_roi": [
+        287,
+        327,
+        368,
+        341
+      ],
+      "shape": [
+        10,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhHDupno+OjbCZUa6gTCGAtLV5NCE+qZVRHzKepGhJQkUxIiElISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIGStWjQjMZyqYKiXSh9InbV5NCE+qZVRIy+hs5mNkpZkKiUiISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIWOHPyQgIF2LXIVzNCQhb41YLyAtgHM7Hy57j4yWk5NiKh8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiICAiICEhHh8fHyIfIB4hIR8iIyAfIB4gISEgHyAfICAgHyAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICUfHSIkJCEfIB8hICMfHyEfHyEhHyIhICAfICQfHyQfICEgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIB8jICEiHiEjIyEhHh8hHB4gIiEgIB8kJiEhHiIhISEgHiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIhISEhICEhISEgISEgICEhISEhISEhISEhIiIiIiIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICEhICAgICAgICAfHyAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgIB8gICAfHh4fHx8fICAfHx8fHx8gICEgHx8fHx8fHyAgISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEiJCIiIiEhICEfHx8fICAfHx8fHx8gICEgHyAhISEhISEhISEhISEgICEhISEhISEhISEh",
+      "pixel_sha256": "37ad683d2a57a89b86efcff4fa4af826dcbd9d73e124a0b0d1ceecd829a7ab2d",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 5,
+      "source_seat": "seat6",
+      "source_frame": 238,
+      "source_hand_id": "2878365559",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "d4f098dcb0e4b9d9ec56fa4ca1100d57ca1f9961c47efe6856b0915cdcb24bc3",
+      "source_roi": [
+        134,
+        299,
+        216,
+        317
+      ],
+      "projected_roi": [
+        134,
+        299,
+        216,
+        312
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISZftIJzc36zmVS6jyEnf8C6WyMjQ7yCKyAxt59YUU5OLiAgISEhIiIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISE6grBDICQ/nbBcvI0gH0ukulsjI0O8gisgMraxo6OooUwiHyAgISIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhLVtqJCEgLVdxRnBcHh8nXm87ISEsblUlISlwdHR0dXU8Ix8gICEiIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiIx4dJR8gHyAeIiQgIB0jIyEhISEmJCAgISEhISIiIB0iIiEhIiIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR4hJCEhISAhJB8hIR4gHSEdJB8gHSAhISEhICAgIB0gIh0hISIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiElIB4gISEhIR0jISUlIB4hIx8fICAgISIhIB8fICAhISIkIiIiIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiISEhISEhISEhISEhISEgIiEhICEhISEgIB8fHx8fISEhISIiIiIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICEhISEhISEgICAfHx8gICEhISEiIiIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAhISEhISEhICAgHx8fICAhISEhIiIiIiEhISEhISEhISEh",
+      "pixel_sha256": "e4966dc30f204eb4916710743126d700d0b4c74b2445950c9539eace2956c03d",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 5,
+      "source_seat": "seat7",
+      "source_frame": 238,
+      "source_hand_id": "2878365559",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "2e1a03afd49a9d3e67a3e12678c9e45ff0370a7949a8d43c462fb60c2a29a0bc",
+      "source_roi": [
+        40,
+        199,
+        121,
+        217
+      ],
+      "projected_roi": [
+        40,
+        199,
+        121,
+        213
+      ],
+      "shape": [
+        10,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEjPK6Uh4SOtZtTsplGKYC6tnkyIECtk0seMaGkZUtGRzcjHB8hISIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEga7VcJx4lnbNlrpxBJUWjtnkyIECtk0shLaSznpWVlV8pHyAhISIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhY4g4JR4jY4hThXA/ISNqhlwrITV9bjogLHuGiImLiFgrICAhISEiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEeHx4eHh8fHx4eHh4gHSEhHx8hISAgHx8gICMkISAfIR8eJCAhISEiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiHyAhISAhIiEiISAeIR8gHyAgICAfHx8eHh8fJB8eHxwgHyIhISIiICAhISEhISEhISEhISEhISEhISEhISEhISEhISEeJSAeJiAiIiEkIiEjIR8gHiEkIB0gHx8fIyEkIR8hICEdJCIhIiQiICAhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAhISEhIR8hIR8gICAgHyAhISEhISAgICEgIB8fICAfHyEgIyMhIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAhISEhISAhICAgICAgHyAhISEhICAgICMhIB8hICAgHiAhISEhIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAhISEgICEhICAgICEhHyAgICAgISEhIiIiISAgIB8iHyAgISEhIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEgICEhICAgICEhICAgICAgISEhIiEiIiIjIRoiICEfISEhISEhISEhISEhISEh",
+      "pixel_sha256": "42fb7c8bf80adf231de0d14111a5d3756342fca0c50a2833e78f286a9b4a0f1b",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 5,
+      "source_seat": "seat8",
+      "source_frame": 238,
+      "source_hand_id": "2878365559",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "1ef5002c93d6f9221e3e762174157a2b57a6d81878e08c4519d50de72215c117",
+      "source_roi": [
+        134,
+        105,
+        217,
+        123
+      ],
+      "projected_roi": [
+        134,
+        105,
+        217,
+        119
+      ],
+      "shape": [
+        10,
+        71
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISdbsqegoqi3hE+vhyI2mrS3XiEkRrODLyQ1uJZFODUyJiQiISAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhM3WxUiQkSaerVLmNHyVhtLZaIR9GuYMsIjS5p4d8fn0+IB8gISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISE1f5clHyI0fKFdon4fIDGKo0UhIUCfdCkaMqaiqJ+jokgpICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISMfISMhIhsgHyEmHSEgJh8mIh4dHyQeHh8eISUhJiQhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiJCAhISEjIyMhISAjJCMhICAgICAgIiIeICEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIiICEhISAgICAgICAgICAhISAgICAhISAgISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICIiIiIhIiIiISEgICEhISEhISAgICAhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgIiIiIiIiIiEhIR8gISIiIiEhISAgICEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISIiISEhISEhISEhISEhISEhISEiIiIiISEiIiAfHx8gISEiJx8hICEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhIR8iISEhISEhISEhISEhISEhISIiIiIhISIiICAgICEhISEfICEfICAgICEhICAhISEhISEhISEhISEhISEhISEhISEhISE=",
+      "pixel_sha256": "1e9d02a4520fe76a17ac38cf281d007258fd4491a7cb74f2e929bfbbc80ae0ff",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 6,
+      "source_seat": "seat1",
+      "source_frame": 466,
+      "source_hand_id": "2878365610",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "fb0c993bc1dbb86126ac8148ed5e15f3fff44074b99ab844e5f8ef591db918d6",
+      "source_roi": [
+        289,
+        73,
+        372,
+        91
+      ],
+      "projected_roi": [
+        289,
+        73,
+        372,
+        86
+      ],
+      "shape": [
+        9,
+        71
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISE9rZSEgoaxnFaroVIqerC2fzsgQaSWUCMxoqZuSEZJOCchICQgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIWy2YiwiKJGvbKuhUB8+lbR5OCBBo5ZJJDGit6OZmptpKiAgISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgW4BBIB8hX4RWenM7ICVngVstITN4bToiKnOJh4aIiWApIiAhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAeHh8gIiAfIyAgIRwiIiAgHx4hISAeHiAhICEkJCEfIR8kICQgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISAgICAgICEjISAiJCAgIyMgICAhIyAhIB8hIiIiIiAgISIhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhICAgICEhISEgISEhICAgICAgICAgICEhICAhISEhICAhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEiIiEhISEgICAgICAgISEhISEhISIiIiIhISIiIiIhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICEhISEhIh8fHyAfICAgICAgICAhIiIiIh8fICAgICEhICAhISEhISEhISEhISEhISEhISEhICAgICAgICAgICAgISEhISAgISEfHyEhJCQfICIgISAjICEkISIhJCQkICIiISIhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "a0355a62802324cb77655044d6ba7e79a7d5589c62b5139c43609bccef4b9f57",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 6,
+      "source_seat": "seat3",
+      "source_frame": 466,
+      "source_hand_id": "2878365610",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "628d2a3d63da73971d9780e778213ba1621310f3150c1342b3006c1136bf4c53",
+      "source_roi": [
+        536,
+        197,
+        618,
+        215
+      ],
+      "projected_roi": [
+        536,
+        197,
+        618,
+        211
+      ],
+      "shape": [
+        10,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEfHyA6q5qNiIyxoVenm1Qme668fTccQKKYUSMsm6dvSEVFNyYgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHh4iZK5nLSQokrBqpp1UI0GYt344HkCkklEkLJuzoZeZmmswICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgIViERCAhH16DV4B0PyEhaIddLiEveXE+ISZxioqOiYhgLCEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIh8jJR8gIx4hISEfJSAhISQgICAeIyMhISAgICAlIyEjIB4hISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIQ==",
+      "pixel_sha256": "9198c9dfca29cefdab883c52365edd42fff1b72b4e900d6d9721134eef5d7f5d",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 6,
+      "source_seat": "seat4",
+      "source_frame": 466,
+      "source_hand_id": "2878365610",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "84699f501d3a74ed8958cdf2bff98a1d30a1d17518b8d6e9f345d202eb0e768a",
+      "source_roi": [
+        441,
+        296,
+        522,
+        314
+      ],
+      "projected_roi": [
+        441,
+        296,
+        522,
+        309
+      ],
+      "shape": [
+        9,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhIR8gIDmbmXdscJ+rdJOnayRjo7uTRiE1j6NjICqEr4RTT05BKiAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgHGSofS8hJHqpiJSoaiEugLOVRR02iqZiICqBubGjpaSMOiAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEfHkRmTSQgIEZoVFpjQCAfSWdVMB8qV2VAISROcG5ub3BeLiAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISAjIR8gIB8gISEgHiEhIB8gISEeISIhHx8hIB4hICAiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAhICIgHiEgISAgIR8gHyMjHyEhICAjHyEhICAfHyIgICEhICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAhISAfHiAgICIgHyEhISAkISAgHyAhISAhHyAjISAfISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISAfICEhISAfHx8fICAgIB8fICAhIR8fHx8gICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEiICAgHyAgICAhISEhICAgICAgISEhISEhICAhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICIiHx8eHiAhISEiIiIiISEhISEhISEhISEhICAhISIiISEgICEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "6a157110e168e2d2c5df726dd290b02d1034d1ce0947b4820315bd1d343181c0",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 6,
+      "source_seat": "seat6",
+      "source_frame": 466,
+      "source_hand_id": "2878365610",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "068dd4575895cc8eb2076a762cbe4eadec21be1b77b1f482f4d2870877cbed05",
+      "source_roi": [
+        139,
+        295,
+        221,
+        313
+      ],
+      "projected_roi": [
+        139,
+        296,
+        221,
+        309
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISAgKF2wfmprcrWdQ7qPICV9vbphIyBFuYc2IDOzolxOUE4yIyEiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiHziEsjsgHzGdt1a1kSAfN6W4WSQhRbSGMiA1sriopqijVyYhHiAiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiEoVGkpICAlVms8blUgHiBdazwgIDFsUykjJWVsbHBvbDojICEkICEhISEhISEhISEhISEhISEhISEhISEhISEhISIgICAgIR8hICAiIR4iISIfICEgISEgHyEgJSEfIR0gHyAhIyAkISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAiICAgICEhISAhIiEeIB8fICQgIiEiISAgISEhISAfJCAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiJCIhISIiISEiISEhIyMfHyIgICEgISAgICQkIiQhIB8fHyEiIiIiIiIiIiEhISEhISEhISEhISEhISEhISEhISEhICAgISEiIiEhISEhISEiHiAhHyEhICAhIiAgISEhISIhICEgICAgISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEiISAhICAhISEhICAgISAhISAhISEhISEiJCAgIiIiIR8fISIiIiEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISAgISAfICAgICAgIB8fHx8hHx8gISEhIR8fISEgICEhISAfHx8gISEgICMgHyAhISEhISEhISEh",
+      "pixel_sha256": "9fe023dc540487cd8af10e3b337817f96debb1d6e234ee718c46581b4fb87e5c",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "SB",
+      "source_table": 6,
+      "source_seat": "seat7",
+      "source_frame": 466,
+      "source_hand_id": "2878365610",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "e236cd76434a52a7414d24fb69a6804f91bdfd38e9520fad83f5a57ce7817fa3",
+      "source_roi": [
+        42,
+        196,
+        123,
+        214
+      ],
+      "projected_roi": [
+        42,
+        197,
+        123,
+        210
+      ],
+      "shape": [
+        9,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISAgHz+flFtAYqyNTaijZklmrZhNIx8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgHyt6oJ2WoKFmPqeyoJmdnG86ISAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICQybYeKh2s2LXyKiYqCZTkkICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAfHygrKSEgHyUhJiIiIR8eIR8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgISEhISEhISEgICEhISEhISEh",
+      "pixel_sha256": "3cf7e6090bac76cb6913b267c7f5a1717783ab215e5594378c3dfac467e6b9d3",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "SB",
+      "source_table": 2,
+      "source_seat": "seat1",
+      "source_frame": 567,
+      "source_hand_id": "2878365630",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "cedab94a10058f5927b09725ea2098456aa294aa5045fd250bda08e5f7880194",
+      "source_roi": [
+        287,
+        74,
+        370,
+        92
+      ],
+      "projected_roi": [
+        287,
+        75,
+        370,
+        88
+      ],
+      "shape": [
+        9,
+        71
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISIhIUmhdzsmQamTU6qhWi1DpZ5UIiEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiK5yrfWKEroBFqap+a4qrhkEgISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIfO4iut7KFSC6jtLK1qINJISAhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiIkJCUmJSMgICAhISEhISEhISEhICAhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiISEiIiIiICAgICEhISEhISEhISEgICEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiISIiIiIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "d61e82770c1cb7a9566dafb866fb5fe7c31310be3d88beb172d0811cebcc1977",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "BB",
+      "source_table": 2,
+      "source_seat": "seat2",
+      "source_frame": 567,
+      "source_hand_id": "2878365630",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "5eb369c92a83a600bc01fa83f19e3c1bde5b4534b1054973f21d2e5653c39207",
+      "source_roi": [
+        440,
+        105,
+        521,
+        123
+      ],
+      "projected_roi": [
+        440,
+        107,
+        521,
+        120
+      ],
+      "shape": [
+        9,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISErlq1+W3eknGGOrn9Xc6WkXSMgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIwlrq2saqVZTmPuLKxqphtMiAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIiTFtcXVZNMSRHWVhcVU0xIh8hICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiISQiISEhISEgICEiISIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIhICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiEgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "a2241925be50735939ecb194c3798e55b51ea599e90ff39062db5fbc43ff499d",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 2,
+      "source_seat": "seat3",
+      "source_frame": 567,
+      "source_hand_id": "2878365630",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "7e43d5a1159883fab7edfc186c70e8f3aee3b494867459508b37bc64064bcde5",
+      "source_roi": [
+        535,
+        199,
+        617,
+        217
+      ],
+      "projected_roi": [
+        535,
+        200,
+        617,
+        213
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhHyqqtLa3trqLUKybUSmXu7Z9NSA+pZZSIC6cpl8tKysjIB8fISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISNVsXEzJyylsV+rm1AjUKm6fTUgPqWWUiEvoK5/Y2ZkSiUgISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEferBYJB0fgLN0sJxPHSGLrH01HjmklEkhMZe4ube4s3wyICEgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISQqISEkHy8pIh8mHh4fLiklHR4iJCQgISEiIiYjISMgISEfICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHh8gHR8hICAfISAgICEgIR8eIR8gICEkHR8hHyEhHyAgHiAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAfICMgGB8fJCEhICAhICAhIiEhICEkIB8gICAiIiAhICEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgIiEfISEhISEhISEhISEhISIiISEhISEhISEhISAhISEhISAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICEhICEhISEhISEhISEhISEhIiAhISEhISEhISEhISEhIiEfICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIhISEhISEhISEhISEhISEiISEhISEhISEhISEh",
+      "pixel_sha256": "bd39d8d48cdae593320f18c99ed7922a30409560db134c4acedd36a5781fa8da",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 2,
+      "source_seat": "seat4",
+      "source_frame": 567,
+      "source_hand_id": "2878365630",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "19be9cb3f72660b6f7a08d32317f138ec19cdaab29fb704d9c333a0295e52ca4",
+      "source_roi": [
+        439,
+        299,
+        521,
+        317
+      ],
+      "projected_roi": [
+        439,
+        300,
+        521,
+        313
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhIC+ZqqOjoredZZimZyp6sLmSQyI3kaJkHyyIr3k8OTYwIyAhICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISFRooU7JSuOr3yZp2ckRZS2k0IiN5GiZCEribaWgH57ZTAgISAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgZZZtJCEfaJd7ipNfICRsnoM9IzWClFgjKHmoqaekqIg0HyAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICEgIB8hISIiHx8fICEhHyAfHyEhHyEgHyMiIiMgHyAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISAhISIhISEhISMgISAhISEhISAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAkIiEhISIhIR8kHx8fISIgISAiJCEfICAhIiIhICEiIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhICAgICAgISEhISAgISEhISAgISEhIR8eIh8gICEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISAgICAgICEhISEgICEhISEgICAgICIhICEhICAhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgISEhIiEhIiIiIiIiIiIiIiIiIiIhISAiISAhIiIhISEhISAgISEhISEhISEhISEh",
+      "pixel_sha256": "b2ae33ad1bea0019deced10b72c85322b696af40d6a6da595cf126c5c03d549b",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 2,
+      "source_seat": "seat5",
+      "source_frame": 567,
+      "source_hand_id": "2878365630",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "8eddd73fe6595d4a921b56ce725d1f88f6be37956e18fb39c24d6737b5c2f569",
+      "source_roi": [
+        288,
+        327,
+        370,
+        345
+      ],
+      "projected_roi": [
+        288,
+        327,
+        370,
+        343
+      ],
+      "shape": [
+        12,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEgIiGDtXx3pLNqOLKeUG+znLR5OiBAp5ZOIC6io2ElJiEfICAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHyInqLa8u7i9hUSsnU4pn7a7eDwhQqaVTiEuoqJdJSQjICEgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgTbFqMiMpqrBdqpxOIFupuXc7IUKmlU4hLqKrfF9cXkImISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEaJH6zSiIgIXuycaqUSyEkjLN5NB9ApJZPHjKhu7u6urx/Mx8gICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR8hIyIgICIgJB4jJCEhISAgICAfIB8fHh4fICQkJCQmISAhICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAjHx4gICQhICEgHh8lISEgICAhIiEhISEhICAfICEhISEiIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEeHiEeJSUhICEfHyMhJSIkICYfHx8kHyEhISQfHx8gICAhISAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "b0850c55c9d098abdb299e27bb83e2eed2fb3554ba89f0125e3eae2cd61204ff",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 2,
+      "source_seat": "seat6",
+      "source_frame": 567,
+      "source_hand_id": "2878365630",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "71ee244a99764adb45e16af4077715050c4ae4a5e690f90a946e113e23c2c364",
+      "source_roi": [
+        137,
+        300,
+        216,
+        318
+      ],
+      "projected_roi": [
+        137,
+        300,
+        216,
+        313
+      ],
+      "shape": [
+        9,
+        67
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEjWLWppKSos4RMv5AlM6C8u1kjIEi5gycfMribSzk6NScfIyEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhNHSxUSYmRayrUrqQJiRct7hcJCBIuYMnHzK4qYF7f3xAJCEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhITd9nCceJDF+olikgCAgLYqiUSIgQKR0KR0uo6WlpqalVCQhICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEgIR8fICEjHyEhISAgJCAgIR4fIB8hJB8gHyMjIyMjIiIiICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEiIh8hIyEiIR8hIiAhIiEfISAhICAgJCEgISAhISEhISAgICIgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhJCAfIR4hJCEgHyEfICIgHyQgICMjISEhICMhJCEhISEiIR0gICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICEhICAhISEhISEhISAgICAhISAgISEhISAgISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISAgISEhISEhISEgICAgISEgICEhISEgICEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgISEgICAgISEhISAgICAgICAgICAgICAgISEhISEhISEgICEhISEhISEhISEh",
+      "pixel_sha256": "8b104f468cfd96097c257e253c8990656f60dc5281c30792ef9c576db7e225c5",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 2,
+      "source_seat": "seat8",
+      "source_frame": 567,
+      "source_hand_id": "2878365630",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "a96ab790fff80fa15d044f43f6f446333a78ec25d81e78339995d62783fa3af6",
+      "source_roi": [
+        137,
+        106,
+        217,
+        124
+      ],
+      "projected_roi": [
+        137,
+        107,
+        217,
+        120
+      ],
+      "shape": [
+        9,
+        68
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISAoZbFwWllltJ9MuI4lKXa8uFkjH0a4gycfMruiYFRRVzUfHyAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIzuGsjghHzmbtV24jSMgO6W4WyAeSb6FJyExt7qxr6+vViYhICAfHyEhISEhISEhISEhISEhISEhISEhISEhISEhISEfJ0dXJB8hJUVVNFdIISEjTFowHiErXkIkISNdW1tYWVs0JCEgIB8fISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAg",
+      "pixel_sha256": "0bea72c250332fef5321e2c0ca83f696b4dc5c73eef77a69e244037e54b7485c",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 3,
+      "source_seat": "seat1",
+      "source_frame": 687,
+      "source_hand_id": "2878365655",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "86ed7d651c4d21b65acff22e7c6a0e50f156bc19b5519c028b4eaa50dbe7525d",
+      "source_roi": [
+        290,
+        75,
+        371,
+        93
+      ],
+      "projected_roi": [
+        290,
+        75,
+        371,
+        89
+      ],
+      "shape": [
+        10,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEgICCBs4V4oLZuO62bUWqsobF9OyBApJVPIS6hoGMlIyAeISAhIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICyntbKzsbeLT6yfUCaWtr5+OyBApZZPITGfo2QrKykkJCEgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgIE+vbzQlKaKxXq2dUCBTqbl+OyBApZZPIS6iq4FlZ2RMJSEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIXisVCAhIHqwcKmYUCEhiLB5NB47no5QIS6Yt7S0trOCLyMfICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR8fHx8gICAhISIhICAgICAgICMgISIhIyMhIyMkIyIhISAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICEhISEfISIiISEhIiAgISEhISAhIiEhICAhIiEgISEiHyIgHiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICIfIiAhISEkIiEhIR8gICAiICAgICIiISAfISAiHyEgISIfISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAgICEhICAhISEhISEhISEhICAhISEhISEgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAgICEhICAhISEhISEhISEhICAhISEhISEgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISAgICAgICEhISEhISEhICAgICEhISEgICAgICAhISEhICAhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "98c051125f304c8b3713a453281e70c3a675dfbdfdc388cc29bb9e10ed05a1c2",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "BB",
+      "source_table": 3,
+      "source_seat": "seat3",
+      "source_frame": 687,
+      "source_hand_id": "2878365655",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "b6692c2a23fd07ffdd8a38987b83ef45c43e2ea087283431875d23db13180806",
+      "source_roi": [
+        535,
+        199,
+        618,
+        217
+      ],
+      "projected_roi": [
+        535,
+        199,
+        618,
+        213
+      ],
+      "shape": [
+        10,
+        71
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISEfIi+noVYtQaifWqKhXixCpKNbISIhIB8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiAgLqqoemaMrYdIqK59Z4uph0YgICMhHyEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIB4xobC0uaqCRTCbtbW3rYVJJCAgICAfISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEfICAfHx8mICQgISMeISYhIyAgHx8gIB8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAgIyAgICAgICEhISEgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAeIiIgICEhISEgICAgICAhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgIR4hHyAgISEfISAeICAgICEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISE=",
+      "pixel_sha256": "6435b2cd36f77d494fc942b2980a106842034dc5a8f9b00ee69f339e71e4d782",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 3,
+      "source_seat": "seat5",
+      "source_frame": 687,
+      "source_hand_id": "2878365655",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "881c9fbfbea2f054a22263f58ad7c99262db1504f65df991e3f0be083cadfb22",
+      "source_roi": [
+        290,
+        325,
+        371,
+        343
+      ],
+      "projected_roi": [
+        290,
+        326,
+        371,
+        341
+      ],
+      "shape": [
+        11,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhICAhIiept7W5traLTamfUyqZsrt+OiFBpJZOIjGfo2QnJSYkIyAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhIU6ybjYoLaKxXqubUCFVqLt8Ox8/pJdPITGiq3xfX2NHJh8hHSEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgIHyyViMfIX6yc6mbTCEhiLJ5NyM8pJZOHjCfubm3ubeCLyEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICMjHyEgHyAiIR8jIR0eHyEiIR8hISYfHx8gIyMiIyEiHiAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEfICUiISIhISAgICIiICMjISIhICAhISEhISEgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAhIiIhISEhICAgICEhICAgICEhICAhISEhISEgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAhICMfHx8fHx8fHyAgICAfHyAgISEhISEhISEgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICIhICUgICAgICAgICEhISEgICEhISEhISEhISEgICAgICAgICEhISEhISEhISEhISEhISEgICAhISAgISEhISEhISEhISEgISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHx4fICAhISAgISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHyAhICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "0ee36440f7e0beb33d959b2b4b17766d2359b86906ef9c6a2466523e02aa9569",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 3,
+      "source_seat": "seat6",
+      "source_frame": 687,
+      "source_hand_id": "2878365655",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "d2dffce2f0560cbf49749b8f26f05edd27e008e77384d353e86e3c6b410b1213",
+      "source_roi": [
+        141,
+        299,
+        220,
+        317
+      ],
+      "projected_roi": [
+        141,
+        299,
+        220,
+        312
+      ],
+      "shape": [
+        9,
+        67
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhIiRRsqqhoKe1hkW6kR8qn7y9YCQhRbaGMyA0tZxNODs2KyEkIiEgISEhISEhISEhISEhISEhISEhISEhISEhISEhICAubrRPIB89rq1NvJEfH1WyumAmH0i5iTUgM7Osg358fUYmISAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAhNHybLyQeLYGkUaN+ICMjiahVJCFApXUuIC+iqKempKRWKR8dISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "d7d271befafcf76f1c808a68607a37f2b3fc1156907d167970d7904623b466ae",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 3,
+      "source_seat": "seat7",
+      "source_frame": 687,
+      "source_hand_id": "2878365655",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "ac3d5a412515803b7a59effd046cb514bc089a242722f6d4cafda26fa97daac7",
+      "source_roi": [
+        44,
+        199,
+        124,
+        217
+      ],
+      "projected_roi": [
+        44,
+        199,
+        124,
+        212
+      ],
+      "shape": [
+        9,
+        68
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISAgISIkKq62sK+wuI9JqpxOK5m1uHs1IUGqlFAfMaKjXSwoKiUhISEgISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhIh9UsmksHierrl6rmUwgVK23eTUgQKmUUB8voat+amhoSSgfHyEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhIXqtUCIfH3+vbKqaSSIii693NR48pZJMIC+btbWxt7N7MyAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEgICEhISEiJCQiICAgICAgICAhISEhISEgICAgICAhISAgISEgISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISAgICEhISEhISEgICAgICAgICEhISEhISAgICAgICEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgISEgISEhISEhISAgICAgICEhISEhISAgISEhISEhICAhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISAgISEhISEhICAgICAgISEhISEhICAhISEhISEgICEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIB8hISIkISAhISEhISEhISEhICAiISAhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgIyEhISEgICEhISEhISEhISEgICEhISEgICEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "18d73c3815f9b87caf455df7c99352562d28d30e292d295fac70c4c26784481f",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 3,
+      "source_seat": "seat8",
+      "source_frame": 687,
+      "source_hand_id": "2878365655",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "0adafa004d7fa866b9a444d561af512690c749f2fce9ef72770f443a728278cf",
+      "source_roi": [
+        139,
+        106,
+        219,
+        124
+      ],
+      "projected_roi": [
+        139,
+        107,
+        219,
+        120
+      ],
+      "shape": [
+        9,
+        68
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEiKGSyblZWYLKjRrySIyNwvbtfJSBHuoYxIDK1omBVVFM2JCEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISE3hrI5IB81kbZcu5IgIDKjvl4iJEW6iDEhNLK4srGysV0nICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISNFVSIjHyRFWjZbSCAgIkxdNSIfKVtDJSEnV1xcW1pbNyIgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISAgICAhISEhISEhISEhICAgICAgISEhISEhISEhISEhISEhISAhISEhISEhISEhISEhISEhISEhISEhISEhICAgICEhICAgICEhISEhISEhISEgICAgICAhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "42d589abdbf117bd683afabc2f21a957b3a7db674d66ebfd744320d9db1345fa",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 4,
+      "source_seat": "seat2",
+      "source_frame": 1010,
+      "source_hand_id": "2878365731",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "1c4e7f5c054b7237b2e6f3f31276860e59a76f16b95cb2af04451741043c4692",
+      "source_roi": [
+        433,
+        105,
+        514,
+        123
+      ],
+      "projected_roi": [
+        433,
+        105,
+        514,
+        118
+      ],
+      "shape": [
+        9,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhICAym6qhoZ6ynGCapGIlg7G6jkggOZagYSEvj6h1OjY7NCYhICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICBUpHs6IyaVr32dp2IdR5G4kUUgOJegXyMukLCWf4GAZy0hICQhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICBomGQkISBkmH2MjlcfJmyXejkhNYWITx4re6Sio6Klfy8hICQhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAfISAhIx8gHR4fISEkIR8hJCQlHSAhHR4dHx4hIyIkIhwhICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISAgISMjISEhHyAhISIiISEhIyMlIR8hIyUlJCQkJCAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISAgIR8gICAgICAhISIiISEhISEgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgICAgISEhISEgIB8fICAfHyEhICAgICEhISEgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgICEiISEhISIiJCMjJCQjIyEhISAgICEhISEgICAhICAgICEhISEhISEhISEhISAiISEhISEhISEhISEhISEhISEhISEhISEhISEhISIgIB8lJSUhISAjIR0hJCIdISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "503b734388e3a1e1004e3c3d1f814daafc3f25cf5de71f025f6a3ec4ef3839f6",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 4,
+      "source_seat": "seat3",
+      "source_frame": 1010,
+      "source_hand_id": "2878365731",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "a649837024d51530e863074f73c54b48a5c3e2207a679366fc231c4dc935abf9",
+      "source_roi": [
+        530,
+        198,
+        612,
+        216
+      ],
+      "projected_roi": [
+        530,
+        199,
+        612,
+        212
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhIT6wmYqNjLabT6+cSSSAs7d3NiBBqpJJIi2mpGdGR0YzJyEfICIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISFqt1sqIyeWsWGxmkoiRaC2dzYgQaqSSSIwo7OclZSVZiojHiMhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhYIY6ICAgY4dThXk6ISFpiFgqHzJ/bTsfJ3qNjY2MjWMmICEiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR8fHx8hHx4hICAgIB4gHh8gHyEgICIgICAhIiAhISEgIx8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIiISIhISIhICEfISEkISIgISAeISEhHyAfISEfICEhJCIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR8kICIgISIgISAfISAiISEhJCIhICQhICIhHiEhISIgISIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgISEhISEhICAgICEhISEgICAgISEgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICEhISEhISAgICAhISEhICAgICEhICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "c893962392ab1dba3d9b9ae96b4c0103769a7f83694ed3b5a4a67abfbf9746b4",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 4,
+      "source_seat": "seat4",
+      "source_frame": 1010,
+      "source_hand_id": "2878365731",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "58cfef6354c83a9d11587f291c90ade3514d3d0082b730997295d4179abf332e",
+      "source_roi": [
+        434,
+        299,
+        515,
+        317
+      ],
+      "projected_roi": [
+        434,
+        299,
+        515,
+        312
+      ],
+      "shape": [
+        9,
+        69
+      ],
+      "pixels_base64": "ISEhISEhIiEhISEhISEhICAhITyjlXJzdaOpa5qkZSZlpr6PRCE6lqFeISqRroNRUE5DJh8iHiEhISEhISEhISEhISEhISEhISEhIiEhISEhISEhICAhIWWqeTAiIoGvfpyjZSA2irWPRCE6lqFeISqPt6ulpKOEMiEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhIkZsSiMiJEltUWRpQh8lUW5WLSEsXWBAIyRbc3h1dHZjKCIgICEhISEhISEhISEhISEhISEhISEhIiEhISEhISEhICAhISAfICEgJB8jHx4gHyAfIyEgICAgISEfICIiICEkISIiIiEgICEhISEhISEhISEhISEhISEhISEhISEhICAhISEhICAgICAhISAiIB8hHyAeICAjICEgIx4hHx8hHyAgISEgIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhICAgICQhISIiIB8eIB4gIB0hICEgHx8fHx8kHyQhISIgICQiISEhISEhISEhISEhISEhISEhISEhISEhIiEhICAhISEhISEhISEhISEiISEhISEhICEiISAhISEhISEhISEhICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "9afcd8867100634af1ffa34f98cdea19131a930cbf05b28ac8784e3618c2d4cb",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 4,
+      "source_seat": "seat5",
+      "source_frame": 1010,
+      "source_hand_id": "2878365731",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "d5f77325826150412cf6080ab031cf81243299c7e014bf0875e1d659029a8252",
+      "source_roi": [
+        282,
+        327,
+        364,
+        345
+      ],
+      "projected_roi": [
+        282,
+        327,
+        364,
+        340
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhICAhITqxnI+OkLObSLKcRiqIt7xyNSJBrI9HISympGZDQUQxJSEfISEhISEhISIfISEhISEhISEhISEhISEhISEhISEhISAgISFqu1orIymcsVezmkYhSKK3cjUiQayPRyEwqLCaj5KTYSchHyEhISEhISEiHyEhISEhISEhISEhISEhISEhISEhISEgICEhY404IB8jZo1NhHk0ICRujVcrIDKHbTsgJ36Rk46WkF0jIR4gISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhIR8iHh4gIB4gIB8gHx8hHx8gICAhICAgIB8gISEhICAhISAfICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEgHiEhICAhHx8fICAhJCIiISQhISEhIiEiIB8hICEhICAhISAgICAgICAgICAgICAgICAhISEhISEhISEhISEhISEgICEhHR4fICAgIB8gIB8gJCEiISAhIiIgICAfIh4gHx4hISAeISMgICAgICAgICAgICAgICAgISEhISEhISEhISEhISEhICAgICEhICAgICAgICEgICEhISEhISEhICAhISEhICAgICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISAgICAgICAgICAhISEhISEhISAgISEhISAgICAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISAgISEgICEhICAgICAgICAgICAgISEgICIhISEhISEhICAhISEhISEhISEhISEh",
+      "pixel_sha256": "5f0ee8c51d2dd3f7b08666e1a68701c0c08165b8b168e98fd48af674bc4c4eed",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "SB",
+      "source_table": 4,
+      "source_seat": "seat6",
+      "source_frame": 1010,
+      "source_hand_id": "2878365731",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "9cf1e02dc97c5aa47ea1651acd89b8c496a24d31f268c78583e3aa17ebb10ba9",
+      "source_roi": [
+        130,
+        299,
+        211,
+        317
+      ],
+      "projected_roi": [
+        130,
+        299,
+        211,
+        313
+      ],
+      "shape": [
+        10,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEmICAoWLGRUEl/tnBIupdRU3+3fR8fICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgIyEiN3+go6epkUpIu7KjpqaPTR8fICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEoISEiJjljdXRxTiM0dHJxdXBLISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEeISQfIR8gIyYlJCAfHyIgICAfISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEiISMiIiAhIiQfISAhIiEgHiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhHx8iIB4fISIfISEhISEhISIhISEhISEhISIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhICAhISAgICEgISAgHyAgICEiISEgICAgISAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhICAhISAgICAgICAgICAfICEiISEgISEhISAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgICAhISAgICAgICAfICAfHyAgIB8gISAgHx8gICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEgIB8gISAgICAgICAhISAiIiIiISAhIiEgICEiIiEhISEhISEhISEhISEh",
+      "pixel_sha256": "4783e83d68f097e733d22bcfe69c59606958c36b7e48778aa68c88417b8d9191",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "BB",
+      "source_table": 4,
+      "source_seat": "seat8",
+      "source_frame": 1010,
+      "source_hand_id": "2878365731",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "93352b7617a593ffb6e5372362c33f757ff49d480169ab09a6e880c2911ae95d",
+      "source_roi": [
+        129,
+        105,
+        211,
+        123
+      ],
+      "projected_roi": [
+        129,
+        105,
+        211,
+        119
+      ],
+      "shape": [
+        10,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhJSMhJVa3jTw+a7OHSLeWPjthuYceICIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR8aHyVWu6F8gpykYkm+qH+CmqZiHiIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHx4kT6WhnqGUYiZCoqKjo5ZmJCAhISAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHiEgIB8jIiIiHyIhHSEjIyYjHh8hISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIhHyAkJCQhIB8gISAkJCQjIB4hISAhICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISAgICAgICAgICAgICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISAgISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiEhICAhISEgICIhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEiISIhISEhISEhISEhISEhISEhISEhISEhISEhICAgICEhICAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiISEhISEhISEhISEhISEhISEhISEhISEhISAgICAhISAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIQ==",
+      "pixel_sha256": "2bcf3de3a8a0d86df57683924bf658fda654f3e1e33a06ae7e359d60f0065e6a",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 9,
+      "source_seat": "seat1",
+      "source_frame": 1331,
+      "source_hand_id": "2878365800",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "b306ef97b31d7c8ae2adf4bb40a24f7aa841539b20acd1c93b7f53264586ee4d",
+      "source_roi": [
+        289,
+        71,
+        372,
+        89
+      ],
+      "projected_roi": [
+        289,
+        71,
+        372,
+        85
+      ],
+      "shape": [
+        10,
+        71
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISAgISFKsHJANTumrl2rm08eXau9ejscQKWVTSAsn6h3V1hYQyYfJCAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgIHu0VyUgKIa0cqqcTx4kjbJ6NyE/pZZQIS2fu7m5ubeFMR8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgKzckICAgLDQsNTEqHyAvNSwiHyQ1NCYhIjQ7Ozg8Oi8eHyAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIhJSAfICIgISEgIiEhISEhISEhISEhISEhISEhISEiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHyAhIiIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICEhICAgICAgICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAhISEhISEhISEhISIiIiIiIiIiIiIiIiEhISEhISEhISEhISEhISEhISEhISEgISEhISEhISEhISEhISEhISEhISEiIiIiIiEhISIhISEhIiEhIiIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEfIiAhISEhISEhISEhISEhISEhISEhISEfHyEhIiEhIiAfICEhICAiIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHx0fICEhISEgICAgICAhISEhISEhISEhICMgISEiISEiIR8fISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISE=",
+      "pixel_sha256": "0135f802003305d657824de1be6d5ed0a0dc28df11e6bfe2f2bbc49fcc5b6646",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 9,
+      "source_seat": "seat2",
+      "source_frame": 1331,
+      "source_hand_id": "2878365800",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "8abdf58cd1bb043d1345fada8b8fed362d625fdd613db1373cf64a58dad09e76",
+      "source_roi": [
+        440,
+        102,
+        522,
+        120
+      ],
+      "projected_roi": [
+        440,
+        102,
+        522,
+        115
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISA8lpp5bW2lqXaWp2onY6K7lEUiOI6jZSUqgbGEUU9QQSkgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiISAhXaZ9MSgieayImKRqJDN/r5JFJTSOo2EfKoW4rqOjpYc5ICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR8jHkNqTCceJERkWF1qQh0gTGdcMyMnWGBAHyNPcXRycXJgKSEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIhIR8kICIhISEgIyQkHh8kICEjISAgHyEjHx8dHiMfIR8hICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAgICAgICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAgICAgICAgICAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgICAgICAgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEeICEhISEhISEhISEhISEhISAgICAgICAgICAgICAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "7895895016c6b9e36b982c2196d99892050a65712235ef618e8d3384aa3ec79b",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 9,
+      "source_seat": "seat3",
+      "source_frame": 1331,
+      "source_hand_id": "2878365800",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "7d9ea2689f3b1459c0bfdd7fe46004f9ced7768a4762e05d2a5b089101bec408",
+      "source_roi": [
+        536,
+        195,
+        618,
+        213
+      ],
+      "projected_roi": [
+        536,
+        195,
+        618,
+        208
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEgHyVLr3lDPD+prmCqoFMkV6m3fzkhP6SVUR8xm6p6WVZYRCghISEhISEgICEhISEhISEhISEhISEhISEhISEhISEgICEhIB8xe7JdJiQeg7J0q49UICWOs382HzqRllEfLaG8urKytoQ1ICAgICAgICAhISEhISEhISEhISEhISEhISEhISEhICAhIiEgISw7KSIhIDE+Ljw2JB4hMjwxISEkOTYqICA4Pj89PEAvIiAgICAgICAgISEhISEhISEhISEhISEhISEhISEhISAgISEhISAgICAgICAgICAgICEhISEhISAfICAhISAgICAhISAgISEhISEhICAgICEhISEhISEhISEhISEhISEhISEhISEgICEhISEgICAgICAgICAgICAhISEhISEgICAgISEgICAgISEgICEhISEhISAgICAhISEhISEhISEhISEhISEhISEhISEhICAhIR8fISEgICAgICAhISEhISEhISEhISEgICEhISEgICAgISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISAgISEfHyEhICAgICAgISEhISEhISEhISEhICAhISEhICAgICEhISEhISEhICAhISEhISEhISEhISIgHx8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISAgISEhISEhISEhISEhISEhISEhISEhISEfHx8gHyEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEgICEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "de70ce197d9bc227c928e40c7ed8fbf984405b2f41a55d7fad39fae343544bb0",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "SB",
+      "source_table": 9,
+      "source_seat": "seat4",
+      "source_frame": 1331,
+      "source_hand_id": "2878365800",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "92da9772e40f9c5f1446169be5dadc09619760e512cbac8a07efa4bd57bf81bd",
+      "source_roi": [
+        440,
+        293,
+        523,
+        311
+      ],
+      "projected_roi": [
+        440,
+        293,
+        523,
+        309
+      ],
+      "shape": [
+        12,
+        71
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISAgISEhISEhISEhIR8fIECLjFAsP5akZIyndDNAj6drIyAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISAgKYatjml4o5JRibSJcoOil1IkICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISAgNnSis7CTVS6Cr7Kxq45UJyEfISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISAgISAhIiYyLCEgHiMhISQhIR8gHyAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhICAhISEhICAgHx4hICAgICAgJSAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAjGiEiIhkdICAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIiIyEhICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAfIiAiISAgISEgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIiIiIhISEhICAhISAgICAhISEhISEhISEhISEhISEhISEhISEhIB8iISIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhICAgICEhISEhISEhISEhISEhISEhISEhISE8QSggIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEgICAgISEhISEhISEhISEhISEhISEhISEhIbnMaSEiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHyEhIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "936e38593b80eda382efdd8f0fdb5f4960e55f74a8eadb9f6a5bd20ea20c859e",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "BB",
+      "source_table": 9,
+      "source_seat": "seat5",
+      "source_frame": 1331,
+      "source_hand_id": "2878365800",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "7a90e51e15baab2920a30fbec0c0ba970f2c9986204eb6a128da6c4a3b506fd6",
+      "source_roi": [
+        289,
+        322,
+        371,
+        340
+      ],
+      "projected_roi": [
+        289,
+        322,
+        371,
+        336
+      ],
+      "shape": [
+        10,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISEhJC6spmxYhrOMTqSmc1yBsI9EICAiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgISIwrLixsqyHVDaku7KxrotRJx8gISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiISEhJERISkdGNiEgQUhKSEQ4JyAhHyEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIB4gHyQhHyEgIR8gHiAfISEhISMfISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAfHx8fISEgHyEjISEiIB4fICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEfHx8fICAgICAfHx8hISAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiIiQkJCQiIiIhISEfICEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR8eHyAgISAgICAgISEhHx8gICAgICAfHyEhISEhISEhISEhISEhISEhISEhISEhHyEiISEhISEhISEhISEhISEhISEhISEhISEhISEiICAhISIgICEgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAeISEhISEhISEhISEhISEhISEhISEhICAgICAhISAhISIiICMhICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIQ==",
+      "pixel_sha256": "aea1e4e291d76ee5a3745db308f74aee0c3f6919ee6557cd82de007558d7636b",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 9,
+      "source_seat": "seat6",
+      "source_frame": 1331,
+      "source_hand_id": "2878365800",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "9928cf2623c16a6c9c543e4863c3268d719e4f34b5027eb888219d96b89c1939",
+      "source_roi": [
+        138,
+        294,
+        220,
+        312
+      ],
+      "projected_roi": [
+        138,
+        294,
+        220,
+        307
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhIS5rs1QkITuwq0+7kB8jXLe6XSMfRrSFNiQ0taZycW9tPyYfICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISE1gKkuHiEth6parY0hIymTr1gmHkCqfDQhNKOrsbGwr14sIB4hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEgICEgHiElIiEgIiEiIiIhISIhJiEhIiEgICEhICEiISAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgISIiHSAiJCQgISMhICEhISEhISIiIiEgIyIoISEhISMhIiIdISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhIiEhISEhISEhISEhICAhISEhICIhISEhISEhIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgHyIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "01449692b9c30dab0abe48d8171dc550ede563337f530556336ec5714d056695",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 9,
+      "source_seat": "seat7",
+      "source_frame": 1331,
+      "source_hand_id": "2878365800",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "bd78249826a3432c7e405b2e74eb88dae4bec3f813795035f7c77aeb54406584",
+      "source_roi": [
+        42,
+        195,
+        123,
+        213
+      ],
+      "projected_roi": [
+        42,
+        195,
+        123,
+        208
+      ],
+      "shape": [
+        9,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhICAgICNNsHRDOUCqsVyum0wjWq+8ezYgQKaVUCIuoql2WFhZRiUiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgIB9/t1YjISSHtXGunkohKIu0azQgQaaGSiEvkLq6tre0ejIfICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAvQCkhHyEuPi07NyYhHzI+MiEeJDkzKSAgNj5AQUFALiIfISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhICAhISEhICAhISEiICAgICEhISEhISIhICAiISAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhICAhISEhICAhISEhICAgICEhISEhISEhICAgISAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISAgISEhISAgICAhISAgICAgICAgICAgICAgICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISAgISEhISAgICAhISAgICAgICAgICAhICAgICAhISEhISEhISEhISEhISEhISAfISEhISAgICAgICAgICAhISEhICAhISEhISEhISEhICAgICEhISEgICEhISEgICEhICAgICAgICAgICAgICAgICAgHiAfISEhISAgICAgICAgICAhISEhICAhISEhISEhISEhICAgICEhISEgICEhISEgICEhICAgICAgICAgICAgICAgICAg",
+      "pixel_sha256": "d767bb485474fc437df096bc98bfc6401a5ff86ad2e4b858a16307041bf5f55d",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 9,
+      "source_seat": "seat8",
+      "source_frame": 1331,
+      "source_hand_id": "2878365800",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "846a64172197386149db8b6dc43d718c18369dbd051e989c5aaf6569048d1646",
+      "source_roi": [
+        138,
+        102,
+        220,
+        120
+      ],
+      "projected_roi": [
+        138,
+        102,
+        220,
+        115
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISAgISEhISEhISEhISEhISEgICpcs35ucHi4n0S8kSAne7i8YSQeRbiLNSAxsaFdUk9RMiQfHyEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhICAygrJDISE6mrNZuo8jIDylt2AiIke4hTcgNLGyqKamplYmIR4hISEhISEhISEhISEhISEgISEhISEhISEhISEhISEhISAgKlZsJCEhJldwPHNXIR8hX3M/ISQyblQjIChtdHF0c3M9JiQiISEhISEhISEhISEhISEhICEhISEhISEhISEhISEhISEgICEhHiIiHyAeHyAfHyEhISEhHiEhISAfHiAgIB4iIh8iISAhICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "44c270ea44ae8712365339735a8a48d7925b4fac57aefe4201538d7909a3f3b5",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "BB",
+      "source_table": 1,
+      "source_seat": "seat1",
+      "source_frame": 2085,
+      "source_hand_id": "2878365962",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "a6c78773e8762e381bea2af553c78ffcc4e95310992e99732ae9fa6cdb80861b",
+      "source_roi": [
+        286,
+        74,
+        367,
+        92
+      ],
+      "projected_roi": [
+        286,
+        75,
+        367,
+        89
+      ],
+      "shape": [
+        10,
+        69
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhISEhISEhISEzr51ML0GrlVWroVQuQamaUSAgISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEzsKdva46ze0WmrHRqh7OEQSAgISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEzrLK3s6J5PC+fsrW3qX5DJCAgISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAgICAgISEhISEhISEhISEhISEhISEhIR8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAgICAgISEhISEhISEhISEhISEhISEhIiEiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "ae1ffb71f91406c05fd05592cf29d7c4ce81bc8708d40a7bc6c917d067a7abb9",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 1,
+      "source_seat": "seat2",
+      "source_frame": 2085,
+      "source_hand_id": "2878365962",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "fc203038c4fbcee1686ed81c8dae11dbcba9cfb9db3369a08831729cfc53f450",
+      "source_roi": [
+        436,
+        104,
+        518,
+        122
+      ],
+      "projected_roi": [
+        436,
+        106,
+        518,
+        121
+      ],
+      "shape": [
+        11,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEfICOTtbKwtbmTVZekZzaPs7mMQiE9k6BeIyuKqXEhIB8kICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICBBoo1jVVieqnKco2ElWqK8jUMgOZWhXyMrjayEVFRSRycgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgbK13LyAhea2EnqRlIy2Ds49DHziRpGAiLo+6t7Ktr4w1ISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgIDtWPyMfIDpUSE9QNiEeP1RJKB8mTE8zIiNKXFhZXFtJJyEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEgICEhISEhISAgISEgICAgISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhICAhISEhISEgICEhICAgICEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISAgISEhISEhICAhISAgISEhISEhISEhISEhISEgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEgICEhISEhISAgISEgICEhISEhISEhISEhISEhICAgICEhISEhISEhISEhISEhIiIgJCEhISEhISEhISEhISAgISEhISEhICAhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAiICAhISEhISEhISEhISEgICEhISEhISAgISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIR8hICIiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISE=",
+      "pixel_sha256": "f193a4cdfbe127d422c098fc46bcd0e0950e8a757f944ebce9ad0172d64c71aa",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 1,
+      "source_seat": "seat3",
+      "source_frame": 2085,
+      "source_hand_id": "2878365962",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "252f10020efa1b0f70c88e53e7c5b56762dbc3662a695a7a29073fe80ada0129",
+      "source_roi": [
+        533,
+        199,
+        612,
+        217
+      ],
+      "projected_roi": [
+        533,
+        200,
+        612,
+        214
+      ],
+      "shape": [
+        10,
+        67
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEgIB8eK663s7W3uItIsZtMK562vXc3ID+ok0whLqOkXS0rKiYhICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhH1G1aDMpK6evXLKaTx5Xqbt2NiA/qJNMIS6jrH9nZmlFKCIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICF7skwlISB8sGyrmEogI4qxdDIgP56OSiAtnbe3t7ezejIeISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgICEfIiAiICEgISIhHiAjIyAgISEiIh4gHyAjJCQkIyIhIyEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISAiHx8hISEhICIgISEfIiIlJB4eISQgHyAiISEgICAhISIhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhHx4iICEgHx8hISAgHyAhICEkISEfIyEgISAfIiEhICAiIiQkISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEgICAgICAgICAgICAhISEhICAgICAgICAgICAgISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhICAgICAgICAgICAgISEhISAgICAgICAgICAgICEhIQ==",
+      "pixel_sha256": "da48bdd775618fe1659d9e7fb1d4d64ce57b9eda9d33aba5a2811a9190728537",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 1,
+      "source_seat": "seat4",
+      "source_frame": 2085,
+      "source_hand_id": "2878365962",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "16934a6f0390c43c1b9d5c557b8048a0a77ce509743104db4bb3f908e8b45709",
+      "source_roi": [
+        436,
+        298,
+        518,
+        316
+      ],
+      "projected_roi": [
+        436,
+        300,
+        518,
+        313
+      ],
+      "shape": [
+        9,
+        70
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISAhIiydrqeiprGhXZ2kZCZ+r72PRSA5lKFfJCuNqXY3NzgxJB4hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISRUqYE+IiqRr3icp2UkSZS1jkEgOZShXyQrja+UgXuBYy8hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEfICEgY5xkIyAhY5d9jJNUHyRxnII/ITSCkFchKnumpqWlp4Q1ICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhICAeHx4hICAeIB8hISAgIB4fISEhHyEfISAgIiIiIiIhISAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAhIiEiICEhICEiISAgISAhICIiJCAhIB8hIiAgHx8hIh8gISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISAhISYgHyAiISEgICIgICIkJCIfHyAhISIhISAgIR8eHyEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgICAfICEfHx8gICAgICEhISEgICAhISEhISEhISEhICAgICAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEfHiAgICEgICEhICAhICEhISEhIiAgICEhISEhISEhISAgICAgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHyAgICAgHyAfHyAgHx8gISAgHx8hISEhICAhISEhICAgICAgICAhISEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "66df87dafe05452b56016fcb21d40f25e2e6c5044bb5ff3a3b1425d050fe4146",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 1,
+      "source_seat": "seat5",
+      "source_frame": 2085,
+      "source_hand_id": "2878365962",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "632a026cb7473a1ea21040bb6ecbe9c2702926fe6705ba528c3470733e1efa6e",
+      "source_roi": [
+        286,
+        326,
+        365,
+        344
+      ],
+      "projected_roi": [
+        286,
+        328,
+        365,
+        342
+      ],
+      "shape": [
+        10,
+        67
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISAgIB8kJ664ubq3uoVGsJ1HKp63uno0H0Ktk0sfLqKhVygjHSAeISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIU63aTAkK6mwVaybRiNWsb15NB9CrZNLIC6gqndbXVtCJyEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgISGCskcjISGDtG2vm0ciJY+4dTIdQKqURiAvpbq4s7q5fyshISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICIgISAeISEfIyQhIiYqIB8fKCYfHykgJx0fIyIrISIjIysmISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISQhJCIiHyEhHyAeICAaICIiICEiIB4hICIkICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhHyQgJCQiIiEhJSIeIyAgICQeIh0hISEfICEhICQhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiISIhISEhISEgICEhISIhISEhISEhISAgICEhISEiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiEhISEhISEhICAhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISAgICAhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEgICAgISEhISEhISEhISAgISEhISEhISEhIQ==",
+      "pixel_sha256": "6d718aeadbc6bc9a604d284546b29732e3bc5a76378c361c2520ec7796657f70",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 1,
+      "source_seat": "seat6",
+      "source_frame": 2085,
+      "source_hand_id": "2878365962",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "a57ba14000f3afc230aac8e006020337a6e6661916d703421a786ef92c031da6",
+      "source_roi": [
+        135,
+        300,
+        214,
+        318
+      ],
+      "projected_roi": [
+        135,
+        300,
+        214,
+        313
+      ],
+      "shape": [
+        9,
+        67
+      ],
+      "pixels_base64": "ISEhISEhISEhISAgICAgISVds6ukpKi2g1W4kh88oL22XSEhSr+AJx8zuZtBOTU0JR8hISEhISEhISEhISEhISEhISEhISEhISEhISEgICAgISEyda9QIyZMr6pYt48gJmGzuFogIUq/gCcfM7mqgX1/eUAjISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIgOoKVJx8gOIOeYqiAISEzjp9PIB1CqnAlHi+jpKGnpaNOJiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiEgISAfIB4gICAfICEhICAhIiAgHx8fHyAgISEiIiIjICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISAhHyAhICEkISAiICEiISAhISEhISEhISAgHx8hICEgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiICIhIiAgIyAfISEiISAhIh0fIiAiICIhISAjHyEeISIhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIiIhISAgISEgICAgISEgICEhISEiIiIiISEiIiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIiISEgHyAgHyAhISAgHx8gICAgISEhISAgISEiIiEgISEhISEhISEhISEhISEhISEhISEhISEhISEhICAgICAgICAgICAgISAgIB8gISEhISAgICAhISEhISEhISEhICAgHyEhISEhISEhISEhISEhISEh",
+      "pixel_sha256": "c870d24649a00e122ad2bb3ad4b73ac8af33f8a1dd764c34e745f009cd9fa899",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "ANTE",
+      "source_table": 1,
+      "source_seat": "seat7",
+      "source_frame": 2085,
+      "source_hand_id": "2878365962",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "abf023b2aa0e0a9be63a4968450c6c22f9a9eb17f4d19bba0f5f82d2d0895e8b",
+      "source_roi": [
+        45,
+        199,
+        118,
+        217
+      ],
+      "projected_roi": [
+        45,
+        200,
+        118,
+        213
+      ],
+      "shape": [
+        9,
+        61
+      ],
+      "pixels_base64": "JCQkJCQkJCMkJSYyr7ayt6+4gUS1mkIsmrq5djIiQamVX1BOp6JdNS4mIxwYFxQXGR0eHiAhIyUlJSUmJiUlJCQkJSMhIyQjV7JkMS0xqrBTsphGJ1qruXI1IEKll19NT6qpgGVwY0ElGBcUFxkdHh8gISMlJSUlJiYkJSUlJSQjIyMkJYGsQiUjJYKsZqmZRCYnjbNyNSVGoY5aT1Gptbavs7l0LBkXFhYYHB4fICEjJSUlJSYmJCQkJSQjIyQkJCMlJCQnJSMjJCQmJiYlJSEpJiMjICQtQkxIOzg1MykmIRsZFxYWGBwdHyAhIyUlJSUmJiEkJCQjJCUlJSQhJSMjHyEmIyUkJSUiJiQhIyUkJR8lL0BST0I7MS8sJCAfGhgXFhccHR8gISMlJSUlJiYjIyMjJCUmJiUhJCUlJCAjISckHiElJSUgJCcnJiUlIS47T0lDPTQuKiUhHxsZFxYXHB0gICEjJSUlJSYmJCQkIyMkIyMkJiQmJCEhIyUlJCQkJSQjJCUlJB8kIyQoOUxIQDozMCsnIR0dGBkUFhkdHh8hIyQlJSUmJSEjJCUkJCMjJCQlISYkISUmJCQkJSUkIyUnJSUhJCUlKC9LTkM7NjApJyMfHhsYFxUZHR4fISMkJSUlJSUgIyQmJCEgIyUlJCQlJSUlJSMkJiUjJCUkJCMkJCMhJygnR01EPTkzLSgkISMcGBgTGB0eHyEjJCUlJSUl",
+      "pixel_sha256": "024d8036415f1d20a8c5c268baadb63a25275883fdae30e980da8e65258ce045",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    },
+    {
+      "label": "SB",
+      "source_table": 1,
+      "source_seat": "seat8",
+      "source_frame": 2085,
+      "source_hand_id": "2878365962",
+      "source_run": "runs\\full_hh_production_20261006\\short_v1\\start_stack_capture.jsonl",
+      "source_rgb_sha256": "f813925ea47f30f94ab57047eab8beaac496e78792a04bf135058ba61d7a3154",
+      "source_roi": [
+        135,
+        106,
+        214,
+        124
+      ],
+      "projected_roi": [
+        135,
+        107,
+        214,
+        120
+      ],
+      "shape": [
+        9,
+        67
+      ],
+      "pixels_base64": "ISEhISEhISEhISEhISEhISEhICAgIB8fJ06xnldMhbhvQ7udVliLu3gpISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISIhISEyap6wsq+DOUK9t62xp4Q8HiEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEiISEfIy1OXl5VQB8rWlxcXFQ+IiAiISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISAhISEhISEhISEhISEhISEgICEgISEhISEhISEhISEhISEgICEhISEhISEhISEhISEhICAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhICAhIiEhISEhISEhISEhISEiICAhISEhISEhISEhISEhISAgISEhISEhISEhISEhISEh",
+      "pixel_sha256": "e4f1139810ba2edd2460d39fd95057e56181fa218d4deed6543cc971c3b47030",
+      "label_authority": "ROOT_72_CELL_OVERLAY_REVIEW_20261007"
+    }
+  ],
+  "review_sheet_sha256": "b2bdf8c8f4c60ac590720c7fefedea319cb6622c2e7ebb981517c64354af70f7"
+}

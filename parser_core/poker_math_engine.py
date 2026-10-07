@@ -130,7 +130,7 @@ def audit_observed_ledger(hand):
     return result
 
 
-def calculate_start_stack(facts):
+def calculate_start_stack(facts, *, first_visible_contract=False):
     """Reverse proven debits from an immutable vision snapshot; never repair it."""
     from decimal import InvalidOperation
     result = dict(facts)
@@ -174,10 +174,17 @@ def calculate_start_stack(facts):
                   status='UNKNOWN', blocker='CLEAN_WINDOW_TIMING_UNPROVEN',
                   math_rule='DISPLAYED_PLUS_PROVEN_PRE_SNAPSHOT_FORCED_DEBITS',
                   start_stack_certified=False)
+    if first_visible_contract:
+        from parser_core.start_stack_visibility import CONTRACT, verify_first_visible_fact
+        if verify_first_visible_fact(facts):
+            result.update(START_STACK=result['START_STACK_CANDIDATE'],status='PASS',blocker=None,
+                          initial_stack_contract=CONTRACT,start_stack_certified=True)
+        else:
+            result['blocker']='FIRST_VISIBLE_POST_FORCED_SOURCE_UNPROVEN'
     return result
 
 
-def write_start_stack_math(output, *, eligible_contexts=None):
+def write_start_stack_math(output, *, eligible_contexts=None, first_visible_contract=False):
     """Separate math outputs; input facts and existing hand analysis stay intact."""
     import json
     from pathlib import Path
@@ -188,12 +195,14 @@ def write_start_stack_math(output, *, eligible_contexts=None):
         events=load_jsonl(output/'canonical_forced_events.jsonl')
         summary_path=output/'seat_forced_summary.json'
         snapshots=json.loads(summary_path.read_text('utf-8')).get('forced_snapshots',[]) if summary_path.exists() else []
-        facts=[reconcile_stack_facts(fact,events,forced_snapshots=snapshots) for fact in facts]
+        options={'first_visible_contract':True} if first_visible_contract else {}
+        facts=[reconcile_stack_facts(fact,events,forced_snapshots=snapshots,**options) for fact in facts]
     selected = facts if eligible_contexts is None else [r for r in facts
         if (r['table'],r['session'],r['hand_id']) in eligible_contexts]
     excluded = [] if eligible_contexts is None else [r for r in facts
         if (r['table'],r['session'],r['hand_id']) not in eligible_contexts]
-    results = [calculate_start_stack(r) for r in selected]
+    options={'first_visible_contract':True} if first_visible_contract else {}
+    results = [calculate_start_stack(r,**options) for r in selected]
     summary = dict(start_stack_pass=sum(r['status']=='PASS' for r in results),
                    start_stack_unknown=sum(r['status']!='PASS' for r in results),
                    arithmetic_candidates=sum('forced_bets' in r for r in selected), results=results,

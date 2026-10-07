@@ -31,8 +31,8 @@ def reconstruction_config():
     return config
 
 
-def proven_start_stacks(hand, math_results):
-    """Join arithmetic candidates to exact actors; never grant solver authority."""
+def proven_start_stacks(hand, math_results, *, first_visible_contract=False, stack_provider=None):
+    """Join exact actors; only reproduced first-visible facts grant authority."""
     context = (table_key(hand['table_id']), hand['session_id'], hand['hand_id'])
     events, conflicting_ids = {}, set()
     for message in hand['messages']:
@@ -68,13 +68,18 @@ def proven_start_stacks(hand, math_results):
         elif {r['canonical_provenance']['post']['role']: r['amount'] for r in matched} != fact.get('forced_bets'):
             reason = 'STACK_CANONICAL_FORCED_CONFLICT'
         else:
-            checked = calculate_start_stack(dict(fact, status='PROVEN_FOR_MATH'))
+            checked = calculate_start_stack(dict(fact, status='PROVEN_FOR_MATH'),first_visible_contract=first_visible_contract)
             if checked.get('snapshot_arithmetic_status') != 'PASS' or checked.get('START_STACK_CANDIDATE') != (
                     fact.get('START_STACK_CANDIDATE') or fact.get('START_STACK')):
                 reason = 'STACK_MATH_RECEIPT_NOT_REPRODUCIBLE'
         if reason:
             rejected.append(dict(seat=fact.get('seat'), reason=reason))
             continue
+        if first_visible_contract and stack_provider is not None:
+            snapshot=stack_provider.match_snapshot(fact)
+            if snapshot['status']=='CONFLICT':
+                rejected.append(dict(seat=fact.get('seat'),actor=next(iter(actors)),reason=snapshot['reason']))
+                continue
         actor = next(iter(actors))
         value = fact.get('START_STACK_CANDIDATE') or fact.get('START_STACK')
         if not str(value).isdigit():
@@ -86,17 +91,20 @@ def proven_start_stacks(hand, math_results):
             conflicted.add(actor)
             rejected.append(dict(seat=fact['seat'], reason='STACK_ACTOR_FACT_CONFLICT'))
             continue
+        proven=first_visible_contract and checked.get('status')=='PASS' and checked.get('START_STACK')==value
+        blocker=None if proven else checked.get('blocker') or 'CLEAN_WINDOW_TIMING_UNPROVEN'
         receipts.append(dict(actor=actor, seat=fact['seat'], occupancy_epoch=fact['occupancy_epoch'],
-                             START_STACK_CANDIDATE=value, START_STACK=None,
-                             blocker='CLEAN_WINDOW_TIMING_UNPROVEN', math_fact=copy.deepcopy(fact)))
-        rejected.append(dict(seat=fact['seat'], reason='CLEAN_WINDOW_TIMING_UNPROVEN'))
+                             START_STACK_CANDIDATE=value, START_STACK=value if proven else None,
+                             blocker=blocker, math_fact=copy.deepcopy(fact)))
+        if proven:stacks[actor]=int(value)
+        else:rejected.append(dict(seat=fact['seat'], reason=blocker))
     for actor in conflicted:
         stacks.pop(actor, None)
     receipts = [r for r in receipts if r['actor'] not in conflicted]
     return stacks, receipts, rejected
 
 
-def reconstruct_production_hands(records, *, config=None, start_stack_results=()):
+def reconstruct_production_hands(records, *, config=None, start_stack_results=(), stack_provider=None):
     config = reconstruction_config() if config is None else config
     results = []
     if not config['enabled']:
@@ -134,7 +142,8 @@ def reconstruct_production_hands(records, *, config=None, start_stack_results=()
                 return replace(event,semantics='UNKNOWN') if event.kind=='CALL' and event.semantics=='DELTA' else event
             events=[all_call_interpretations(event) for event in events]
             assemblies=[[all_call_interpretations(event) for event in assembly] for assembly in assemblies]
-        stacks, stack_receipts, stack_rejected = proven_start_stacks(hand, start_stack_results)
+        stacks, stack_receipts, stack_rejected = proven_start_stacks(hand, start_stack_results,
+            first_visible_contract=config.get('first_visible_stack_contract',False),stack_provider=stack_provider)
         # Unknown facts never enter the solver. Actor identity comes only from
         # the same source-bound canonical forced events already in this hand.
         result = reconstruct_hand(events, table=hand['table_id'],
@@ -216,7 +225,7 @@ def write_reconstruction(output, records, *, config=None, stack_provider=None, s
     math_path = output / 'start_stack_math.jsonl'
     math_results = [json.loads(line) for line in math_path.read_text('utf-8').splitlines()
                     if line.strip()] if math_path.exists() else []
-    results, summary = reconstruct_production_hands(records, config=config, start_stack_results=math_results)
+    results, summary = reconstruct_production_hands(records, config=config, start_stack_results=math_results,stack_provider=stack_provider)
     summary['start_stacks_joined'] = sum(len(r.get('joined_start_stacks', {})) for r in results)
     summary['stack_snapshot_candidates_joined'] = sum(len(r.get('joined_stack_snapshot_candidates', {})) for r in results)
     for filename, selected in (

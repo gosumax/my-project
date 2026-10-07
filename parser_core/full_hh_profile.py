@@ -34,7 +34,7 @@ def configure(args):
 
 def reconstruction_settings(config):
     """FULL explores CALL meanings and validates a separate derived candidate."""
-    return dict(config,allow_logic_math_output=True,strict_source_uniqueness=True)
+    return dict(config,allow_logic_math_output=True,strict_source_uniqueness=True,first_visible_stack_contract=True)
 
 
 def connection_matrix(*, stage, ocr, header_lane, sidecar, stack_live, seat_binding,

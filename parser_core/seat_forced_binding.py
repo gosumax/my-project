@@ -1,5 +1,6 @@
 """Source-bound vision facts only; arithmetic belongs to poker_math_engine."""
 import base64
+import copy
 import hashlib
 import json
 import re
@@ -140,15 +141,19 @@ def parse_forced_snapshot(rows, hand_id, occupied_count, confidence=.95):
 
 
 class SeatForcedBinding:
-    def __init__(self, root, output, sidecar, stack_live, config, *, independent_occupancy=False):
+    def __init__(self, root, output, sidecar, stack_live, config, *, independent_occupancy=False,
+                 roster_prefix_binding=False,empty_card_contract=False):
         self.root=Path(root);self.output=Path(output);self.sidecar=sidecar;self.stack_live=stack_live
         self.lock=threading.RLock();self.machine=SeatEpochMachine();self.counts=Counter()
         self.seen_deals=set();self.jobs={};self.snapshots=defaultdict(dict);self.snapshot_sizes={}
         self.seen_prefix_candidates=set();self.prefix_candidates=Counter()
         self.forced={};self.blockers={};self.nick_schedule={};self.snapshot_occupied={}
         self.nick_runs={};self.nick_labels=defaultdict(list);self.state_events=[];self.closed=False
+        self.roster_prefix_binding=roster_prefix_binding
+        self.roster_nick_rows=defaultdict(list);self.roster_forced_rows=defaultdict(dict)
         from parser_core.seat_occupancy import SeatOccupancyEvidence
-        self.occupancy = SeatOccupancyEvidence(sidecar.flags['stack_confidence']) if independent_occupancy else None
+        self.occupancy = SeatOccupancyEvidence(sidecar.flags['stack_confidence'],
+            reject_empty_fragments=empty_card_contract) if independent_occupancy else None
         self.occupancy_expired=set()
         self.log=(self.output/'seat_forced_inputs.jsonl').open('w',encoding='utf-8')
         def factory(worker):
@@ -195,10 +200,10 @@ class SeatForcedBinding:
                     # Existing historical actor binding needs fresh post-deal labels.
                     for route in list(self.nick_schedule):
                         if route[:3] == key:self.nick_schedule.pop(route)
-                    for seat in w.deal.get('occupancy_receipt',{}).get('empty_seats',[]):
-                        evidence=w.deal['occupancy_receipt']['seats'][seat]
-                        self.machine.observe(table,session,seat,'EMPTY',w.deal['source_frame'],
-                            hand_id=key[2],source_ref=evidence['current_pixel_sha256'])
+                for seat in w.deal.get('occupancy_receipt',{}).get('empty_seats',[]):
+                    evidence=w.deal['occupancy_receipt']['seats'][seat]
+                    self.machine.observe(table,session,seat,'EMPTY',w.deal['source_frame'],
+                        hand_id=key[2],source_ref=evidence['current_pixel_sha256'])
                 for seat in w.deal['occupied_seats']:
                     self.machine.observe(table,session,seat,'OCCUPIED',w.deal['source_frame'],
                         hand_id=key[2],source_ref=w.deal['table_pixel_sha256'])
@@ -243,6 +248,10 @@ class SeatForcedBinding:
         with self.lock:
             return self.occupancy.receipt(key,frame,seats) if self.occupancy is not None else None
 
+    def current_occupancy_labels(self,key,frame,seats):
+        with self.lock:
+            return self.occupancy.current_labels(key,frame,seats) if self.occupancy is not None else {}
+
     @staticmethod
     def row(table,session,frame,pts,time_base,index,y,pixels,kind):
         return RamRow(frame,None,table,session,index,y,kind,0,pixels,
@@ -254,10 +263,16 @@ class SeatForcedBinding:
             score=response.get('score');score=score if isinstance(score,(int,float)) else 0
             ok,packed=cv2.imencode('.png',row.pixels)
             if not ok:raise ValueError('SEAT_INPUT_RAM_ENCODING_FAILED')
-            self.write(dict(meta,ocr_response=response,pixel_sha256=row.pixel_sha256,
-                png_base64=base64.b64encode(packed).decode('ascii')))
+            original=dict(meta,ocr_response=dict(response),pixel_sha256=row.pixel_sha256,
+                png_base64=base64.b64encode(packed).decode('ascii'))
+            self.write(original)
             self.counts['OCR_COMPLETED']+=1
             if response.get('status')!='OK':score=0
+            if getattr(self,'roster_prefix_binding',False):
+                if meta['kind']=='CHAT':
+                    self.roster_forced_rows[key][meta['index']]=dict(original,text=text,score=score)
+                elif meta['kind']=='NICK' and not meta.get('pre_deal'):
+                    self.roster_nick_rows[key].append(original)
             if meta['kind']=='CHAT_CANDIDATE':
                 self.prefix_candidates[meta['table_id']]+=1
                 return
@@ -389,17 +404,34 @@ class SeatForcedBinding:
             results=[];bound=[]
             # Forced posts are evidence independently of numeric stack visibility.
             historical_receipts=[];historical_blockers=[]
+            roster_proofs=[]
             for key,snapshot in self.forced.items():
                 w=self.sidecar.windows.get(key)
                 if w is None or w.deal is None:continue
+                roster_proof=None
+                if getattr(self,'roster_prefix_binding',False):
+                    from parser_core.nickname_roster_binding import prove_roster_binding, binding_receipt
+                    roster_proof=prove_roster_binding(dict(context=list(key),snapshot=copy.deepcopy(snapshot),
+                        deal=copy.deepcopy(w.deal),forced_rows=list(self.roster_forced_rows[key].values()),
+                        nick_rows=self.roster_nick_rows[key],
+                        hand_triggers=[t for t in self.sidecar.triggers if (t['table_id'],t['session_id'])==key[:2]],
+                        state_receipts=[e for e in self.machine.audit if (e['table'],e['session'])==key[:2]],
+                        unresolved_events=[e for e in unresolved_events if (e['table'],e['session'])==key[:2]],
+                        capture_frames=self.sidecar.flags['capture_frames'],confidence=self.sidecar.flags['stack_confidence']))
+                    roster_proofs.append(dict(table=key[0],session=key[1],hand_id=key[2],
+                        **{k:v for k,v in roster_proof.items() if k not in {'source_inputs','label_evidence'}}))
                 for actor in snapshot['actors']:
                     posts=[p for p in snapshot['posts'] if p['actor']==actor]
                     receipt,blocker=self.historical_forced_binding(key,actor,posts,unresolved_events)
+                    if receipt is None and roster_proof and roster_proof['status']=='PROVEN':
+                        receipt=binding_receipt(roster_proof,actor,posts)
                     if receipt is None:
                         historical_blockers.append(dict(table=key[0],session=key[1],hand_id=key[2],actor=actor,blocker=blocker))
                         continue
                     historical_receipts.append(receipt)
-                    bound.extend(dict(p,table=key[0],session=key[1],hand_id=key[2],seat=receipt['seat'],epoch=receipt['epoch']) for p in posts)
+                    binding_metadata={'binding_rule':receipt['binding_rule']} if 'roster_proof' in receipt else {}
+                    bound.extend(dict(p,table=key[0],session=key[1],hand_id=key[2],seat=receipt['seat'],epoch=receipt['epoch'],
+                                      **binding_metadata) for p in posts)
 
             for key,state in self.stack_live.states.items():
                 for seat,triple in state.get('canonical_attempts', state['numeric_triples']).items():
@@ -505,6 +537,7 @@ class SeatForcedBinding:
                 forced_snapshot_blockers={str(k):v for k,v in self.blockers.items()},counts=dict(self.counts),errors=self.ocr.errors,
                 candidate_prefix_contexts=len(self.seen_prefix_candidates),
                 candidate_prefix_rows_by_table=dict(self.prefix_candidates),candidate_prefix_authority='CANDIDATE_ONLY')
+            if getattr(self,'roster_prefix_binding',False):summary['roster_binding_proofs']=roster_proofs
             (self.output/'seat_forced_summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),'utf-8')
             with (self.output/'start_stack_facts.jsonl').open('w',encoding='utf-8') as stream:
                 for r in results:stream.write(json.dumps(r,ensure_ascii=False)+'\n')

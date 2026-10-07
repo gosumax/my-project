@@ -9,9 +9,12 @@ from types import SimpleNamespace
 
 import numpy as np
 import pytest
+import cv2
 
 from parser_core.dealing_start_stack import CleanStackWindow
 from parser_core.start_stack_live import StartStackLiveConnection
+
+NATIVE_MATCH_TEMPLATE=cv2.matchTemplate
 
 
 class FakeOCR:
@@ -103,6 +106,123 @@ def test_missing_seat_template_remains_unknown(connection):
     connection.templates.pop((1, 'seat8'))
     deal(connection)
     assert not connection.sidecar.deal_calls and not connection.ocr.batches
+
+
+class PositiveEmptyFixture:
+    """Integration fake; native classifier/receipt pixels have separate tests."""
+    def capture(self,rgb,source,boxes):
+        return {'seat8':dict(source,seat='seat8',status='EMPTY',pixel_sha256='e'*64)}
+    def verify(self,row,source):
+        return all(row.get(k)==source.get(k) for k in source)
+
+
+def enable_empty_fixture(obj):
+    obj.empty_button_model=PositiveEmptyFixture()
+    obj.templates.pop((1,'seat8'))
+
+
+def test_joint_empty_and_cards_confirm_before_numeric_jobs(connection):
+    obj=connection;enable_empty_fixture(obj)
+    deal(obj)
+    receipt=obj.sidecar.deal_calls[0][1]
+    assert receipt['proof']=='COMPLETE_EMPTY_BUTTON_AND_FROZEN_CARDS_V1'
+    assert receipt['occupied_seats']==[f'seat{i}' for i in range(1,8)]
+    assert [r['source_frame'] for r in receipt['joint_seat_frames']]==[10,11,12]
+    assert all(len(r['cards'])==7 and len(r['empty_evidence'])==1 for r in receipt['joint_seat_frames'])
+    assert receipt['occupancy_receipt']['seats']['seat8']['state']=='EMPTY'
+    assert all(r['actor'] is None for r in receipt['occupancy_receipt']['seats'].values())
+    assert not obj.ocr.batches
+    observe(obj,13)
+    assert len(obj.ocr.batches[0])==7
+
+
+@pytest.mark.parametrize('fault',['gap','repeated_pts','time_base','missing_card'])
+def test_joint_sources_cannot_bridge_gap_pts_or_missing_card(connection,fault):
+    obj=connection;enable_empty_fixture(obj)
+    observe(obj,10)
+    if fault=='missing_card':obj.templates.pop((1,'seat7'))
+    for frame in ([12,13] if fault=='gap' else [11,12]):
+        pts=5120 if fault=='repeated_pts' else frame*512
+        tb=[1,10000+frame] if fault=='time_base' else [1,15360]
+        obj.observe_frame(1,'S',frame,pts,tb,np.full((2,2,3),80,np.uint8),None)
+    assert not obj.sidecar.deal_calls and not obj.ocr.batches
+
+
+@pytest.mark.parametrize('route',['all_eight','nickname_mask','pending_replay'])
+def test_empty_conflict_blocks_every_route_including_retained_replay(connection,route):
+    obj=connection;obj.empty_button_model=PositiveEmptyFixture()
+    if route!='all_eight':obj.templates.pop((1,'seat8'))
+    obj.occupancy_labels_provider=lambda key,frame,seats:{'seat8':dict(
+        table_id=key[0],session_id=key[1],hand_id=key[2],source_frame=frame,state='OCCUPIED')}
+    if route=='nickname_mask':
+        obj.occupancy_provider=lambda key,frame,seats:dict(occupied_seats=list(seats[:-1]),
+            seats={s:dict(state='OCCUPIED' if s!='seat8' else 'EMPTY',actor=s,current_pixel_sha256='a'*64) for s in seats})
+    if route=='pending_replay':obj.sidecar.outstanding[(1,'S')].add((10,1000000))
+    deal(obj)
+    if route=='pending_replay':
+        retained=obj.pending_tables[obj.test_key]['sources']
+        assert all(e['occupancy_labels']['seat8']['state']=='OCCUPIED' for _,e in retained)
+        obj.sidecar.outstanding[(1,'S')].clear()
+        obj.occupancy_labels_provider=lambda *args:{}
+        obj._replay_pending(1,'S',12)
+    assert not obj.sidecar.deal_calls and not obj.ocr.batches
+
+
+def test_native_seven_players_and_empty_seat_complete_on_real_three_sources(tmp_path,monkeypatch):
+    root=Path(__file__).resolve().parents[1]
+    folder=root/'tests/fixtures/native_empty_deal'
+    profile=json.loads((root/'configs/layout_847x404.json').read_text('utf-8'))
+    key=(6,'native-source','2878365610')
+    header=dict(session_id=key[1],hand_id=key[2],source_frame=465,source_position=[465,0],source_pts=465*512,time_base=[1,15360])
+    sidecar=SimpleNamespace(lock=threading.RLock(),current={6:header},active_sessions={6:key[1]},
+        windows={key:CleanStackWindow(.95)},hand_state_gate=SimpleNamespace(failed_headers=defaultdict(set)),
+        outstanding=defaultdict(set),header_fences={(6,key[1]):dict(hand_id=key[2],unknown=False)},
+        histories=defaultdict(list,{key[:2]:[header]}),flags=dict(capture_frames=64,stack_confidence=.95),profile=profile)
+    sidecar.confirm_deal_complete=lambda k,r:sidecar.windows[k].confirm_deal(r)
+    monkeypatch.setattr('parser_core.start_stack_live.ParallelRowOCR',FakeOCR)
+    monkeypatch.setattr('parser_core.start_stack_live.cv2.matchTemplate',NATIVE_MATCH_TEMPLATE)
+    obj=StartStackLiveConnection(root,tmp_path,sidecar,{},empty_card_contract=True)
+    receipts=json.loads((folder/'source_receipts.json').read_text('utf-8'))['records']
+    for frame in (483,484,485):
+        record=next(r for r in receipts if r['table']==6 and r['source_frame']==frame)
+        raw=(folder/f'T06_frame{frame}_table.png').read_bytes()
+        assert hashlib.sha256(raw).hexdigest()==record['png_sha256']
+        rgb=cv2.cvtColor(cv2.imdecode(np.frombuffer(raw,np.uint8),cv2.IMREAD_COLOR),cv2.COLOR_BGR2RGB)
+        assert hashlib.sha256(rgb.tobytes()).hexdigest()==record['table_rgb_sha256']
+        obj.observe_frame(6,key[1],frame,record['source_pts'],record['time_base'],rgb,None)
+        assert bool(sidecar.windows[key].deal)==(frame==485)
+    receipt=sidecar.windows[key].deal
+    assert receipt['occupancy_receipt']['empty_seats']==['seat5']
+    assert len(receipt['occupied_seats'])==7
+    assert len(receipt['joint_seat_frames'])==3
+    assert not obj.ocr.batches
+    for joint in receipt['joint_seat_frames']:
+        assert obj.empty_button_model.verify(joint['empty_evidence']['seat5'],joint)
+        for seat,proof in joint['cards'].items():
+            bgr=cv2.imdecode(np.frombuffer(base64.b64decode(proof['png_base64']),np.uint8),cv2.IMREAD_COLOR)
+            rgb=cv2.cvtColor(bgr,cv2.COLOR_BGR2RGB)
+            assert hashlib.sha256(rgb.tobytes()).hexdigest()==proof['pixel_sha256']
+            assert float(NATIVE_MATCH_TEMPLATE(bgr,obj.templates[(6,seat)],cv2.TM_CCOEFF_NORMED)[0,0])==proof['score']
+    obj.finish()
+
+
+@pytest.mark.parametrize('with_mask',[False,True])
+def test_supplemental_cards_keep_three_sources_on_old_routes(connection,with_mask):
+    obj=connection;obj.empty_button_model=PositiveEmptyFixture()
+    obj.empty_button_model.capture=lambda *args:{}
+    obj.templates.pop((1,'seat8'))
+    obj.card_back_supplement=SimpleNamespace(match=lambda table,seat,roi,bgr:
+        dict(score=.99,rule='POSITIVE_NATIVE_CARD_BACK_SUPPLEMENT_V1',template_id='fixture'))
+    if with_mask:
+        obj.occupancy_provider=lambda key,frame,seats:dict(occupied_seats=list(seats),empty_seats=[],
+            seats={s:dict(state='OCCUPIED',actor=s,current_pixel_sha256='a'*64) for s in seats})
+    deal(obj)
+    receipt=obj.sidecar.deal_calls[0][1]
+    assert receipt['proof']=='COMPLETE_MIXED_CARD_EVIDENCE_V1'
+    assert len(receipt['joint_seat_frames'])==3
+    for row in receipt['joint_seat_frames']:
+        assert row['cards']['seat8']['supplemental_match']['template_id']=='fixture'
+        assert bool(row.get('occupancy_receipt'))==with_mask
 
 
 def test_one_unmatched_empty_seat_does_not_supply_complete_mask(connection, monkeypatch):

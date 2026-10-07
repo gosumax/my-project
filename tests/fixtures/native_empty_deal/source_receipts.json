@@ -1,0 +1,122 @@
+{
+  "video_sha256": "6d6acc0a624ce9b6675a8c923383ec6750939ce1f8c32adb8dd29469f3c5021c",
+  "records": [
+    {
+      "table": 8,
+      "source_frame": 170,
+      "source_pts": 87040,
+      "time_base": [
+        1,
+        15360
+      ],
+      "table_roi": [
+        857,
+        956,
+        1704,
+        1360
+      ],
+      "table_rgb_sha256": "de1566a81ab7c5b74ad0c3b37ce27bdae8556f2ed9bc85ea7fa522607c50a8f1",
+      "png_sha256": "b2b22203f91d5d799841d25adeccb9caf4557860f7bf32c96e2c27ef0a0568ac",
+      "shape": [
+        404,
+        847,
+        3
+      ],
+      "path": "runs\\full_hh_production_20261006\\occupancy_source_review\\joint_native\\T08_frame170_table.png"
+    },
+    {
+      "table": 7,
+      "source_frame": 190,
+      "source_pts": 97280,
+      "time_base": [
+        1,
+        15360
+      ],
+      "table_roi": [
+        1,
+        956,
+        848,
+        1360
+      ],
+      "table_rgb_sha256": "d0720028d4441f1ccb6a43ec1c39b11da1b9381ba16aec96270ac15e84619ec5",
+      "png_sha256": "92f0abba466c5914101aba714569a57ec523f3b563c7829f33f47ba00272667e",
+      "shape": [
+        404,
+        847,
+        3
+      ],
+      "path": "runs\\full_hh_production_20261006\\occupancy_source_review\\joint_native\\T07_frame190_table.png"
+    },
+    {
+      "table": 6,
+      "source_frame": 483,
+      "source_pts": 247296,
+      "time_base": [
+        1,
+        15360
+      ],
+      "table_roi": [
+        1713,
+        517,
+        2560,
+        921
+      ],
+      "table_rgb_sha256": "ff70f703b36d98c72bbfc3f6d1f88ff6181a31a605f4481946f8d00fc7e5ca25",
+      "png_sha256": "dcb3d8d64cc5406c549a29ec0fd0c5d4949cec6eb47fc5ea43e2993456cefcc4",
+      "shape": [
+        404,
+        847,
+        3
+      ],
+      "path": "runs\\full_hh_production_20261006\\occupancy_source_review\\joint_native\\T06_frame483_table.png"
+    },
+    {
+      "table": 6,
+      "source_frame": 484,
+      "source_pts": 247808,
+      "time_base": [
+        1,
+        15360
+      ],
+      "table_roi": [
+        1713,
+        517,
+        2560,
+        921
+      ],
+      "table_rgb_sha256": "e72b99a06bf710d30110b01bd7433ca707af30545a21eb05bcc9dbe4741faf30",
+      "png_sha256": "9bbfd8514348e136a2ea71ef15bff7d78f9b7927b39cc321bc618a7a27ee0ecb",
+      "shape": [
+        404,
+        847,
+        3
+      ],
+      "path": "runs\\full_hh_production_20261006\\occupancy_source_review\\joint_native\\T06_frame484_table.png"
+    },
+    {
+      "table": 6,
+      "source_frame": 485,
+      "source_pts": 248320,
+      "time_base": [
+        1,
+        15360
+      ],
+      "table_roi": [
+        1713,
+        517,
+        2560,
+        921
+      ],
+      "table_rgb_sha256": "a4a7d2377405b55616dfcd43713a20f254d95de1f1ab5f0ffc31ff27932389c3",
+      "png_sha256": "a363387087984a6523c53642d78db04d9d3f262a6d6acf2ba06fc170757f8169",
+      "shape": [
+        404,
+        847,
+        3
+      ],
+      "path": "runs\\full_hh_production_20261006\\occupancy_source_review\\joint_native\\T06_frame485_table.png"
+    }
+  ],
+  "seconds": 4.881854899998871,
+  "status": "OFFLINE_DIAGNOSTIC_NOT_PRODUCTION"
+}

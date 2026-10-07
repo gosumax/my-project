@@ -4,6 +4,14 @@ from parser_core.seat_occupancy import SeatOccupancyEvidence
 KEY = (2, 'source-session', '1234567890')
 
 
+def test_truncated_empty_text_remains_unknown_in_full_contract():
+    for fragment in ('PENSEAT','PEN SEAT'):
+        evidence=SeatOccupancyEvidence(reject_empty_fragments=True)
+        for frame in range(3):feed(evidence,frame,dict(seat1='Player1',seat2=fragment))
+        assert evidence.receipt(KEY,2,['seat1','seat2']) is None
+        assert set(evidence.current_labels(KEY,2,['seat1','seat2']))=={'seat1'}
+
+
 def feed(evidence, frame, labels, *, callback=True):
     for seat, label in labels.items():
         digest = (label.encode().hex()+'0'*64)[:64]

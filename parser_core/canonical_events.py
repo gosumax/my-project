@@ -25,6 +25,19 @@ def load_jsonl(path):
     return [json.loads(s) for s in Path(path).read_text('utf-8').splitlines() if s.strip()] if Path(path).exists() else []
 
 
+def _binding_rule_verified(receipt, snapshot, post):
+    if post.get('binding_rule') and post['binding_rule'] != receipt.get('binding_rule'):
+        return False
+    if receipt.get('binding_rule') == 'FIRST_EXACT_LABEL_HISTORICAL_EPOCH':
+        # Legacy source-bound exact receipts retain their original schema. A
+        # prefix constraint cannot be relabelled as exact to bypass replay.
+        return 'roster_proof' not in receipt and all(
+            r.get('actor') == receipt.get('actor') and 'constraint' not in r
+            for r in receipt.get('label_evidence', []))
+    from parser_core.nickname_roster_binding import RULE, verify_binding_receipt
+    return receipt.get('binding_rule') == RULE and verify_binding_receipt(receipt, snapshot)
+
+
 def join_forced_posts(timeline, summary, headers=()):
     """Join only existing historical actor/seat proofs and strict hand prefixes.
 
@@ -101,7 +114,7 @@ def join_forced_posts(timeline, summary, headers=()):
             reason = 'COMPLETE_FORCED_SNAPSHOT_PROOF_UNKNOWN'
         elif len(rs) != 1 or rs[0].get('seat') != post.get('seat') or rs[0].get('epoch') != post.get('epoch'):
             reason = 'ACTOR_SEAT_PROOF_UNKNOWN'
-        elif (rs[0].get('binding_rule') != 'FIRST_EXACT_LABEL_HISTORICAL_EPOCH' or
+        elif (not _binding_rule_verified(rs[0],snapshot,post) or
               rs[0].get('forced_source_frame') != post.get('source_frame') or
               post.get('source_refs') not in rs[0].get('forced_source_refs', [])):
             reason = 'SOURCE_BINDING_PROOF_UNKNOWN'
@@ -283,7 +296,51 @@ def canonical_join(output, timeline):
     return result,report
 
 
-def reconcile_stack_facts(facts, events, *, forced_snapshots=()):
+def _first_number_forced_chronology(facts, snapshot, matched, events):
+    """Reproduce the complete roster and source order across a callback offset."""
+    from fractions import Fraction
+    from parser_core.nickname_roster_binding import RULE, verify_binding_receipt
+    from parser_core.start_stack_visibility import verify_first_visible_fact
+    try:
+        if not verify_first_visible_fact(facts):return None
+        key=(facts['table'],facts['session'],facts['hand_id'])
+        receipts=[r['canonical_provenance']['binding_receipt'] for r in events if context(r)==key
+            and not r.get('canonical_conflict') and not r.get('canonical_duplicate_of')
+            and r.get('canonical_provenance',{}).get('binding_receipt',{}).get('binding_rule')==RULE]
+        if not receipts:return None
+        receipt=receipts[0];proof=receipt['roster_proof']
+        if any(r['roster_proof']!=proof for r in receipts) or not verify_binding_receipt(receipt,snapshot):return None
+        actors={r['player'] for r in matched}
+        if (len(actors)!=1 or proof['context']!=list(key) or
+                proof['matching'].get(facts['seat'])!=next(iter(actors)) or
+                proof['epochs'].get(facts['seat'])!=facts['occupancy_epoch'] or
+                proof['binding_anchor_frame']<facts['frames'][-1]):return None
+        numeric=facts['evidence'][0]
+        first_frame=numeric['source_frame'];first_pts=numeric['source_pts'];tb=numeric['time_base']
+        if type(first_frame) is not int or type(first_pts) is not int:return None
+        first_time=Fraction(first_pts*tb[0],tb[1])
+        source=None
+        for post in snapshot['posts']:
+            current=(post['source_frame'],post['source_pts'],tuple(post['time_base']))
+            if source is not None and current!=source:return None
+            source=current
+            frame,pts,base=current
+            if type(frame) is not int or type(pts) is not int or len(base)!=2 or any(type(v) is not int or v<=0 for v in base):return None
+            stamp=Fraction(pts*base[0],base[1])
+            if post['phase']!='BEFORE_DEAL' or frame>first_frame or stamp>first_time:return None
+            if (frame==first_frame)!=(stamp==first_time):return None
+            for row in post['source_rows']:
+                if ((row['table_id'],row['session_id'],row['hand_id'])!=key or
+                        (row['source_frame'],row['source_pts'],tuple(row['time_base']))!=source):return None
+        if source is None:return None
+        return dict(rule='COMPLETE_FORCED_PREFIX_OBSERVED_BY_FIRST_POSTFORCED_NUMBER_V1',
+            forced_source_frame=source[0],forced_source_pts=source[1],forced_time_base=list(source[2]),
+            first_numeric_source_frame=first_frame,first_numeric_source_pts=first_pts,first_numeric_time_base=list(tb),
+            roster_proof=copy.deepcopy(proof),first_visible_contract=facts['first_visible_proof']['contract'])
+    except (KeyError,TypeError,ValueError,IndexError,ZeroDivisionError):return None
+
+
+def reconcile_stack_facts(facts, events, *, forced_snapshots=(), first_visible_contract=False):
     """Use the same actor/seat money events; retain the original vision object."""
     result=copy.deepcopy(facts)
     key=(facts['table'],facts['session'],facts['hand_id'])
@@ -318,14 +375,20 @@ def reconcile_stack_facts(facts, events, *, forced_snapshots=()):
             bound=[r['canonical_provenance']['post'] for r in matched]
             seats={r.get('seat') for r in events if context(r)==key and r.get('player')==actor
                    and not r.get('canonical_conflict') and not r.get('canonical_duplicate_of')}
-            if (own and signatures(own)==signatures(bound) and seats=={facts['seat']} and
-                    all(p.get('phase')=='BEFORE_DEAL' and p.get('source_frame') is not None and
-                        p['source_frame']<=facts.get('deal_complete_frame',-1) for p in bound)):
+            chronology=None
+            if first_visible_contract:
+                chronology=_first_number_forced_chronology(facts,snapshot,matched,events)
+            prior_order=all(p.get('phase')=='BEFORE_DEAL' and p.get('source_frame') is not None and
+                        p['source_frame']<=facts.get('deal_complete_frame',-1) for p in bound)
+            order_proven=chronology is not None if first_visible_contract else prior_order
+            if (own and signatures(own)==signatures(bound) and seats=={facts['seat']} and order_proven):
                 result.update(status='PROVEN_FOR_MATH',blocker=None,forced_bets=forced,
                     forced_truth='CANONICAL_COMPLETE_ACTOR_POSTS',
                     forced_bets_debited_before_snapshot_proven=True,
                     correction_proof=dict(actor=actor,rule='COMPLETE_PHYSICAL_ACTOR_POST_SET',
                                           posts=copy.deepcopy(own),event_ids=refs))
+                if chronology is not None:
+                    result.update(actor=actor,forced_chronology_proof=chronology)
     else:
         result['forced_bets']=forced
         result['forced_truth']='CANONICAL_EVENTS'

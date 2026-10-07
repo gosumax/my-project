@@ -118,7 +118,7 @@ def test_real_physical_return_and_show_wraps_preserve_every_source():
     for group in fixture['groups']:
         saved=copy.deepcopy(group)
         messages=assemble_messages(group,require_pixel_cards=True,require_adjacency=True,
-                                   pixel_sources={r['stable_row_id']:r for r in group})
+                                   pixel_sources={r['stable_row_id']:r for r in group},join_show_description=True)
         assert len(messages)==1
         assert messages[0]['action'] in {'UNCALLED_RETURN','SHOW'}
         assert messages[0]['source_rows']==saved
@@ -196,3 +196,30 @@ def test_verified_native_card_group_has_no_competing_orphan_interpretation():
         paths,exhausted,_=candidate_assemblies(rows)
         assert not exhausted and len(paths)==1 and len(paths[0])==1
         assert paths[0][0].source['rows']==rows
+
+
+def test_full_show_description_grouping_is_opt_in_and_keeps_every_raw_row():
+    fixture=json.loads((Path(__file__).parent/'fixtures/full_hh_literal_wraps_smoke19.json').read_text('utf-8'))
+    for group in fixture['groups'][2:]:
+        statuses={r['stable_row_id']:'OK' for r in group}
+        original,_=analyze_timeline(group,ocr_status=statuses)
+        full,summary=analyze_timeline(group,ocr_status=statuses,join_show_description=True)
+        assert len(original[0]['observed_hand']['messages'])==3
+        assert len(full[0]['observed_hand']['messages'])==1
+        assert summary['source_rows']==summary['source_rows_covered']==3
+        assert full[0]['observed_hand']['messages'][0]['cards']==original[0]['observed_hand']['messages'][0]['cards']
+
+
+@pytest.mark.parametrize('field',['identity','visual_hash','row_hash','session','frame','recognizer'])
+def test_invalid_card_proof_never_locks_candidate_group(field):
+    from parser_core.poker_reconstruction.assembly import candidate_assemblies
+    fixture=json.loads((Path(__file__).parent/'fixtures/full_hh_literal_wraps_smoke19.json').read_text('utf-8'))
+    group=[dict(r,source_index=i) for i,r in enumerate(copy.deepcopy(fixture['groups'][2]))]
+    if field=='identity':group[0]['identity_status']='UNKNOWN'
+    if field=='visual_hash':group[0]['visual_crop_sha256']='0'*64
+    if field=='row_hash':group[-1]['row_pixel_sha256']='0'*64
+    if field=='session':group[-1]['session_id']='OTHER'
+    if field=='frame':group[-1]['frame_id']+=1
+    if field=='recognizer':group[0]['raw_pixel_response']['recognizer']='OTHER'
+    _,_,graph=candidate_assemblies(group)
+    assert any(edge['next_row_offset']==1 for edge in graph['0'])

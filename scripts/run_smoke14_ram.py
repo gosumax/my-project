@@ -368,11 +368,15 @@ def main(*, production_guard=None):
             header_lane = HandHeaderAdmission(ROOT,output,start_stack_sidecar,header_ocr)
             if sidecar_flags['enable_start_stack_capture']:
                 from parser_core.start_stack_live import StartStackLiveConnection
-                start_stack_live = StartStackLiveConnection(ROOT,output,start_stack_sidecar,config)
+                start_stack_live = StartStackLiveConnection(ROOT,output,start_stack_sidecar,config,
+                    first_visible_contract=full_hh,empty_card_contract=full_hh)
                 from parser_core.seat_forced_binding import SeatForcedBinding
                 seat_binding = SeatForcedBinding(ROOT,output,start_stack_sidecar,start_stack_live,config,
-                                                independent_occupancy=full_hh)
-                if full_hh:start_stack_live.occupancy_provider=seat_binding.current_occupancy
+                                                independent_occupancy=full_hh,roster_prefix_binding=full_hh,
+                                                empty_card_contract=full_hh)
+                if full_hh:
+                    start_stack_live.occupancy_provider=seat_binding.current_occupancy
+                    start_stack_live.occupancy_labels_provider=seat_binding.current_occupancy_labels
             def observe_with_headers(*source):
                 header_lane.observe_frame(*source)
                 start_stack_sidecar.observe_frame(*source)
@@ -580,7 +584,7 @@ def main(*, production_guard=None):
         tick = time.perf_counter()
         hand_records, hand_summary = analyze_timeline(timeline, ocr_status={
             row.stable_row_id: recognized.get(row_key(row), {}).get("status", "ERROR")
-            for row in rows})
+            for row in rows},join_show_description=full_hh)
         telemetry.add("poker_analysis", time.perf_counter() - tick, len(hand_records))
         for name, records in (("hand_analysis.jsonl", hand_records),
                               ("validated_hands.jsonl", [r for r in hand_records if r["fully_validated"]])):
@@ -607,7 +611,8 @@ def main(*, production_guard=None):
         telemetry.add("excel_builder_process", time.perf_counter() - tick, len(timeline))
         if diagnostic:diagnostic.record('Excel_export_subprocess_wait',diagnostic_excel_tick,len(timeline),kind='wait')
         runtime_state["phase"] = "post_excel_lifecycle"
-        logical_records, complete_hands, eligible_contexts, lifecycle_summary = post_excel_contexts(output, hand_records)
+        logical_records, complete_hands, eligible_contexts, lifecycle_summary = post_excel_contexts(
+            output,hand_records,join_show_description=full_hh)
         write_lifecycle(output, logical_records, lifecycle_summary)
         for name, selected in (("logical_hand_analysis.jsonl", logical_records),
                                ("complete_hand_analysis.jsonl", complete_hands),
@@ -617,7 +622,7 @@ def main(*, production_guard=None):
         if seat_binding is not None:
             from parser_core.poker_math_engine import write_start_stack_math
             tick = time.perf_counter()
-            write_start_stack_math(output, eligible_contexts=eligible_contexts)
+            write_start_stack_math(output, eligible_contexts=eligible_contexts,first_visible_contract=full_hh)
             telemetry.add("start_stack_math", time.perf_counter() - tick, 1)
         runtime_state["phase"] = "poker_reconstruction"
         tick = time.perf_counter()

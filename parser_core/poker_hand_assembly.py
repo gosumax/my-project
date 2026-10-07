@@ -199,7 +199,8 @@ def make_message(rows, *, require_pixel_cards=False, pixel_sources=None):
     return message
 
 
-def assemble_messages(rows, *, require_pixel_cards=False, require_adjacency=False, pixel_sources=None):
+def assemble_messages(rows, *, require_pixel_cards=False, require_adjacency=False, pixel_sources=None,
+                      join_show_description=False):
     groups = []
     for row in rows:
         text = str(row.get('raw_text') or row.get('raw_ocr_text') or row.get('text') or '')
@@ -210,7 +211,9 @@ def assemble_messages(rows, *, require_pixel_cards=False, require_adjacency=Fals
             visual_link = (str(row.get('row_id', row.get('stable_row_id'))) == str(groups[-1][0].get('card_row_id')) and
                            bool(groups[-1][0].get('card_evidence_id')))
             continuation = visual_link or no_prefix and (
-                observed_wrapped_continuation(groups[-1],row) or
+                (observed_wrapped_continuation(groups[-1],row) and
+                 (join_show_description or prior['action']!='SHOW' or
+                  not re.fullmatch(RANK_DESCRIPTION,text.strip(),re.I))) or
                 (len(groups[-1]) == 1 and split_small_blind(groups[-1][0], row)) or
                 (prior['action'] == 'TABLE_INFO' and
                  bool(re.fullmatch(r'Waiting for .+ to', prior['normalized_text'], re.I)) and
@@ -251,7 +254,8 @@ def assemble_messages(rows, *, require_pixel_cards=False, require_adjacency=Fals
     return [make_message(group, require_pixel_cards=require_pixel_cards, pixel_sources=pixel_sources) for group in groups]
 
 
-def assemble_hands(rows, *, require_pixel_cards=False, require_adjacency=False, pixel_sources=None):
+def assemble_hands(rows, *, require_pixel_cards=False, require_adjacency=False, pixel_sources=None,
+                   join_show_description=False):
     """Preserve source order per table/session. New numbered marker wins."""
     tables = defaultdict(list)
     for row in rows:
@@ -260,7 +264,8 @@ def assemble_hands(rows, *, require_pixel_cards=False, require_adjacency=False, 
     for (table, session), source in tables.items():
         current = None
         for message in assemble_messages(source, require_pixel_cards=require_pixel_cards,
-                                         require_adjacency=require_adjacency, pixel_sources=pixel_sources):
+                                         require_adjacency=require_adjacency, pixel_sources=pixel_sources,
+                                         join_show_description=join_show_description):
             number = message['hand_number']
             marker = message['action'] in {'HAND_HEADER', 'HAND_ID', 'NEW_HAND'}
             new = current is None or (marker and number and number != current['hand_id'])

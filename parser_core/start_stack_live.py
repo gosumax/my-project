@@ -21,7 +21,7 @@ from parser_core.ram_first_stage import RamRow, png_compatible_gray
 from parser_core.tiny_chat_client import TinyChatClient
 
 
-def first_visible_stack_triple(readings, confidence, final=False, start_frame=None):
+def first_visible_stack_triple(readings, confidence, final=False, start_frame=None, *, allow_scaled=False):
     """First numeric source fixes the only attempt; pending earlier jobs fence it."""
     ordered = sorted(readings.items())
     first = None
@@ -34,8 +34,11 @@ def first_visible_stack_triple(readings, confidence, final=False, start_frame=No
         if r is None:
             return None
         text = (r.get('raw_text') or '').strip()
-        if (r.get('ocr_status') == 'OK' and NUMERIC.fullmatch(text)
-                and r.get('confidence') is not None and r['confidence'] >= confidence):
+        if allow_scaled:
+            from parser_core.first_stack_ocr import effective_numeric
+            number=effective_numeric(r,confidence,allow_scaled=True)
+        else:number=text.replace(' ','').replace('\u00a0','') if (r.get('ocr_status')=='OK' and NUMERIC.fullmatch(text) and r.get('confidence') is not None and r['confidence']>=confidence) else None
+        if number is not None:
             first = frame
             break
     if first is None:
@@ -49,6 +52,9 @@ def first_visible_stack_triple(readings, confidence, final=False, start_frame=No
     values = [(r.get('raw_text') or '').strip().replace(' ', '').replace('\u00a0', '') for r in evidence]
     valid = all(r.get('ocr_status') == 'OK' and NUMERIC.fullmatch((r.get('raw_text') or '').strip())
                 and r.get('confidence') is not None and r['confidence'] >= confidence for r in evidence)
+    if allow_scaled:
+        values=[effective_numeric(r,confidence,allow_scaled=True) for r in evidence]
+        valid=all(v is not None for v in values)
     stable = valid and len(set(values)) == 1
     return dict(first_numeric_visible_frame=first, frames=frames, ocr_values=values,
                 displayed_stack=values[0] if stable else None,
@@ -58,7 +64,8 @@ def first_visible_stack_triple(readings, confidence, final=False, start_frame=No
 
 
 class StartStackLiveConnection:
-    def __init__(self, root, output, sidecar, ocr_config):
+    def __init__(self, root, output, sidecar, ocr_config, *, first_visible_contract=False,
+                 empty_card_contract=False):
         self.root = Path(root)
         self.sidecar = sidecar
         self.output = Path(output)
@@ -66,6 +73,20 @@ class StartStackLiveConnection:
         self.counts = Counter()
         self.states = {}
         self.occupancy_provider = None
+        self.occupancy_labels_provider = None
+        self.empty_button_model = None
+        self.card_back_supplement = None
+        self.empty_button_sources = {}
+        if empty_card_contract:
+            from parser_core.empty_seat_evidence import EmptySeatButtonModel
+            from parser_core.table_card_back_evidence import CardBackSupplement
+            self.empty_button_model=EmptySeatButtonModel(self.root)
+            self.card_back_supplement=CardBackSupplement(self.root)
+        self.visibility_source = None
+        self.visibility_sources = {}
+        if first_visible_contract:
+            from parser_core.start_stack_visibility import VisibilitySource
+            self.visibility_source = VisibilitySource()
         self.pending_tables = {}
         self.pending_stacks = {}
         # Saved Smoke17/19: max consecutive pending chain 34 sources, not
@@ -85,9 +106,14 @@ class StartStackLiveConnection:
             self.templates[(r['slot'], r['seat'])] = p
         self.log = (self.output / 'start_stack_live_receipts.jsonl').open('w', encoding='utf-8')
         def factory(worker):
-            return TinyChatClient(Path(ocr_config['python']), Path(ocr_config['model_dir']),
+            client=TinyChatClient(Path(ocr_config['python']), Path(ocr_config['model_dir']),
                 ocr_config['model_name'], ocr_config['weights_sha256'], ocr_config['device'],
                 self.output / f'tiny_start_stack_{worker}.stderr.log')
+            if first_visible_contract:
+                from parser_core.first_stack_ocr import FirstStackOCR
+                return FirstStackOCR(client,model_name=ocr_config['model_name'],weights_sha256=ocr_config['weights_sha256'],
+                    confidence=self.sidecar.flags['stack_confidence'],worker=worker)
+            return client
         self.ocr = ParallelRowOCR(factory, workers=1, queue_size=32, batch_size=8,
                                   result_observer=self.completed)
 
@@ -102,6 +128,35 @@ class StartStackLiveConnection:
         # Bounded pending-header buffers retain only fixed TABLE-card or
         # stack ROIs. OCR waits for identity proof; source time stays immutable.
         with self.sidecar.lock, self.lock:
+            if getattr(self,'empty_button_model',None) is not None:
+                h=self.sidecar.current.get(table)
+                key=(table,session,h['hand_id']) if h and h['session_id']==session else None
+                state=self.states.get(key,{})
+                if (key in self.sidecar.windows and state.get('deal_frame') is None and
+                        h['source_frame']<=frame<=h['source_frame']+self.sidecar.flags['capture_frames']):
+                    boxes=self.sidecar.profile['slots'][f'slot_{table:02d}']['seats']
+                    self.empty_button_sources[(key,frame)]=self.empty_button_model.capture(rgb,
+                        dict(table_id=table,session_id=session,hand_id=key[2],source_frame=frame,
+                             source_pts=pts,time_base=list(time_base)),boxes)
+                self.empty_button_sources={k:v for k,v in self.empty_button_sources.items()
+                    if k[0][0]!=table or k[0]==key and k[1]>frame-self.pending_buffer_frames}
+                self.counts['PEAK_EMPTY_SOURCE_FRAMES_PER_TABLE']=max(
+                    self.counts['PEAK_EMPTY_SOURCE_FRAMES_PER_TABLE'],
+                    sum(k[0][0]==table for k in self.empty_button_sources))
+                encoded=sum(len(r.get('png_base64','')) for rows in self.empty_button_sources.values() for r in rows.values())
+                self.counts['PEAK_EMPTY_SOURCE_ENCODED_BYTES']=max(self.counts['PEAK_EMPTY_SOURCE_ENCODED_BYTES'],encoded)
+            if self.visibility_source is not None:
+                h = self.sidecar.current.get(table)
+                key = (table,session,h['hand_id']) if h and h['session_id']==session else None
+                state=self.states.get(key,{})
+                capture_start=state.get('deal_frame') or (h or {}).get('source_frame',-1)
+                if key in self.sidecar.windows and frame<=capture_start+self.sidecar.flags['capture_frames']:
+                    boxes=self.sidecar.profile['slots'][f'slot_{table:02d}']['seats']
+                    for seat,b in boxes.items():
+                        if seat in state.get('stop',set()):continue
+                        self.visibility_sources[(key,frame,seat)]=self.visibility_source.capture(rgb,table,seat,b['stack'])
+                self.visibility_sources={k:v for k,v in self.visibility_sources.items()
+                    if k[0][0]!=table or k[0]==key and k[1]>=frame-self.pending_buffer_frames}
             batch = self._replay_pending(table, session, frame)
             batch.extend(self._observe_frame(table, session, frame, pts, time_base, rgb, chat) or [])
         if batch:
@@ -217,6 +272,10 @@ class StartStackLiveConnection:
                     pending = self.pending_tables.setdefault(key, dict(
                         checkpoint=(state['card_run'], state['last']), sources=[]))
                     evidence = dict(table_pixel_sha256=hashlib.sha256(rgb.tobytes()).hexdigest(), cards={}, stacks={})
+                    if getattr(self,'empty_button_model',None) is not None:
+                        evidence['empty_button_observations']=self.empty_button_sources.get((key,frame))
+                        provider=getattr(self,'occupancy_labels_provider',None)
+                        evidence['occupancy_labels']=(provider(key,frame,list(boxes)) if provider else {})
                     for seat,b in boxes.items():
                         x,y,X,Y=b['shown_cards']
                         evidence['cards'][seat]=np.ascontiguousarray(rgb[y:Y,x:X]).copy()
@@ -268,6 +327,7 @@ class StartStackLiveConnection:
             boxes = self.sidecar.profile['slots'][f'slot_{table:02d}']['seats']
             if state['deal_frame'] is None:
                 scores = {}
+                supplemental_cards = {}
                 for seat, b in boxes.items():
                     x,y,X,Y = b['shown_cards']
                     card_rgb = table_evidence['cards'][seat] if table_evidence is not None else np.ascontiguousarray(rgb[y:Y,x:X])
@@ -275,31 +335,95 @@ class StartStackLiveConnection:
                     template = self.templates.get((table, seat))
                     scores[seat] = (float(cv2.matchTemplate(crop, template, cv2.TM_CCOEFF_NORMED)[0,0])
                                     if template is not None else None)
+                    supplement=getattr(self,'card_back_supplement',None)
+                    if template is None and supplement is not None:
+                        matched=supplement.match(table,seat,b['shown_cards'],crop)
+                        if matched is not None:
+                            scores[seat]=matched['score']
+                            supplemental_cards[seat]=matched
                 provider=getattr(self,'occupancy_provider',None)
                 occupancy=provider(key,frame,list(boxes)) if provider is not None and table_evidence is None else None
+                native_partition=None
+                empty_model=getattr(self,'empty_button_model',None)
+                if empty_model is not None:
+                    from parser_core.empty_seat_evidence import frame_partition,RULE
+                    empty_source=dict(source,time_base=list(time_base))
+                    observed=(table_evidence.get('empty_button_observations') if table_evidence is not None
+                              else self.empty_button_sources.get((key,frame)))
+                    label_provider=getattr(self,'occupancy_labels_provider',None)
+                    labels=(table_evidence.get('occupancy_labels') if table_evidence is not None else
+                            label_provider(key,frame,list(boxes)) if label_provider is not None else {})
+                    invalid=any(r.get('status')=='EMPTY' and not empty_model.verify(r,empty_source)
+                                for r in (observed or {}).values())
+                    invalid |= labels is None
+                    partition=frame_partition(empty_source,list(boxes),scores,self.threshold,observed,labels or {})
+                    if invalid or partition['status']=='CONFLICT':
+                        state.update(card_run=0,last=frame,card_support=('EMPTY_BUTTON_CONFLICT',),joint_seat_frames=[])
+                        self.counts['TABLE_FRAMES_CHECKED']+=1
+                        self.write(dict(source,stage='TABLE_CARD_NCC',scores=scores,consecutive_matches=0,
+                            status='UNKNOWN',occupancy_mask_source=RULE,occupied_seats=[],
+                            blocker='EMPTY_BUTTON_SOURCE_PROOF_INVALID' if invalid else partition['reason']))
+                        return
+                    if partition['status']=='PROVEN_FRAME':native_partition=partition
                 occupied=occupancy['occupied_seats'] if occupancy is not None else list(boxes)
                 support=(tuple((s,occupancy['seats'][s]['state'],occupancy['seats'][s]['actor'],
                                 occupancy['seats'][s]['current_pixel_sha256']) for s in boxes)
                          if occupancy is not None else ('ALL_CONFIGURED_SEATS',))
+                if native_partition is not None:
+                    occupied=native_partition['occupied_seats']
+                    support=(RULE,tuple(native_partition['empty_seats']),tuple(occupied))
                 all_present = bool(occupied) and all(scores[s] is not None and scores[s] >= self.threshold for s in occupied)
+                joint_required=native_partition is not None or bool(supplemental_cards)
                 same_support=state.get('card_support',support)==support
                 state['card_run'] = ((state['card_run'] + 1) if state['last'] == frame - 1 and same_support else 1) if all_present else 0
+                if joint_required and all_present:
+                    joint=dict(empty_source,empty_seats=[s for s in boxes if s not in occupied],occupied_seats=occupied,
+                               empty_evidence=native_partition['empty_evidence'] if native_partition else {},cards={})
+                    if occupancy is not None:joint['occupancy_receipt']=occupancy
+                    for seat in occupied:
+                        x,y,X,Y=boxes[seat]['shown_cards']
+                        pixels=table_evidence['cards'][seat] if table_evidence is not None else np.ascontiguousarray(rgb[y:Y,x:X])
+                        ok,packed=cv2.imencode('.png',cv2.cvtColor(pixels,cv2.COLOR_RGB2BGR))
+                        if not ok:raise ValueError('JOINT_CARD_RAM_ENCODING_FAILED')
+                        joint['cards'][seat]=dict(roi=boxes[seat]['shown_cards'],score=scores[seat],
+                            pixel_sha256=hashlib.sha256(pixels.tobytes()).hexdigest(),
+                            png_base64=base64.b64encode(packed).decode('ascii'))
+                        if seat in supplemental_cards:joint['cards'][seat]['supplemental_match']=supplemental_cards[seat]
+                    prior=state.get('joint_seat_frames',[])
+                    continuous=(bool(prior) and state['last']==frame-1 and same_support and
+                        prior[-1]['source_frame']==frame-1 and prior[-1]['time_base']==list(time_base) and
+                        type(pts) is int and type(prior[-1]['source_pts']) is int and prior[-1]['source_pts']<pts)
+                    state['joint_seat_frames']=(prior+[joint])[-3:] if continuous else [joint]
+                    state['card_run']=len(state['joint_seat_frames']) if type(pts) is int else 0
+                else:
+                    state.pop('joint_seat_frames',None)
+                    if joint_required:state['card_run']=0
                 state['card_support']=support
                 state['last'] = frame
                 self.counts['TABLE_FRAMES_CHECKED'] += 1
                 self.write(dict(source, stage='TABLE_CARD_NCC', scores=scores,
                     consecutive_matches=state['card_run'], status='CANDIDATE' if all_present else 'UNKNOWN',
-                    occupancy_mask_source='EXACT_LABEL_CONTINUITY' if occupancy is not None else 'ALL_CONFIGURED_SEATS',
+                    occupancy_mask_source=RULE if native_partition is not None else 'EXACT_LABEL_CONTINUITY' if occupancy is not None else 'ALL_CONFIGURED_SEATS',
                     occupied_seats=occupied,
                     blocker=None if all_present else 'COMPLETE_OCCUPANCY_MASK_UNPROVEN'))
                 if state['card_run'] < self.consecutive:
                     return
+                if native_partition is not None:
+                    latest=state['joint_seat_frames'][-1]
+                    occupancy=dict(empty_source,occupied_seats=occupied,empty_seats=native_partition['empty_seats'],
+                        evidence_status='PROVEN',proof=RULE,authority='CURRENT_EMPTY_OR_DEALT_CARDS_ONLY; NO_ACTOR_AUTHORITY',
+                        seats={s:dict(state='OCCUPIED' if s in occupied else 'EMPTY',actor=None,
+                            current_source_frame=frame,current_pixel_sha256=(latest['cards'][s] if s in occupied
+                            else latest['empty_evidence'][s])['pixel_sha256']) for s in boxes})
                 receipt = dict(source, evidence_status='PROVEN',
                     table_pixel_sha256=table_evidence['table_pixel_sha256'] if table_evidence is not None else hashlib.sha256(rgb.tobytes()).hexdigest(),
                     occupied_seats=occupied, card_stable_frames=list(range(frame-2,frame+1)),
-                    proof=('COMPLETE_INDEPENDENT_OCCUPANCY_AND_POSITIVE_FROZEN_CARD_NCC' if occupancy is not None
+                    proof=(RULE if native_partition is not None else 'COMPLETE_MIXED_CARD_EVIDENCE_V1' if supplemental_cards
+                           else 'COMPLETE_INDEPENDENT_OCCUPANCY_AND_POSITIVE_FROZEN_CARD_NCC' if occupancy is not None
                            else 'ALL_CONFIGURED_SEATS_POSITIVE_FROZEN_CARD_NCC'))
                 if occupancy is not None:receipt['occupancy_receipt']=occupancy
+                if supplemental_cards:receipt['supplemental_card_matches']=supplemental_cards
+                if joint_required:receipt['joint_seat_frames']=state['joint_seat_frames']
                 card_pixels = {}
                 for seat,b in boxes.items():
                     x,y,X,Y = b['shown_cards']
@@ -339,6 +463,8 @@ class StartStackLiveConnection:
                 self.jobs[row_key(row)] = (key, seat, dict(source, seat=seat, pixel_sha256=sha,
                     roi=b['stack'], occupancy_epoch=None, occupancy_proven=False,
                     forced_bets=None, forced_bets_proven=False))
+                projection=self.visibility_sources.get((key,frame,seat))
+                if projection is not None:self.jobs[row_key(row)][2]['visibility_source']=projection
                 batch.append(row)
             if batch:
                 # Existing bounded OCR queue. It is a separate lane and cannot
@@ -373,7 +499,8 @@ class StartStackLiveConnection:
             self.counts['STACK_OCR_COMPLETED'] += 1
             state = self.states[key]
             state['source_readings'][seat][row.frame_id] = dict(receipt)
-            attempt = first_visible_stack_triple(state['source_readings'][seat], self.sidecar.flags['stack_confidence'], start_frame=state['deal_frame']+1)
+            attempt = first_visible_stack_triple(state['source_readings'][seat], self.sidecar.flags['stack_confidence'], start_frame=state['deal_frame']+1,
+                allow_scaled=self.visibility_source is not None)
             if attempt is not None:
                 state['canonical_attempts'][seat] = attempt
                 state['stop'].add(seat)
@@ -413,8 +540,13 @@ class StartStackLiveConnection:
                     if h['hand_id'] != key[2] and h['source_frame'] > start]
                 boundary = min(next_headers, default=None)
                 for seat, readings in state['source_readings'].items():
-                    attempt = first_visible_stack_triple(readings, self.sidecar.flags['stack_confidence'], final=True, start_frame=state['deal_frame']+1) if state['deal_frame'] is not None else None
+                    attempt = first_visible_stack_triple(readings, self.sidecar.flags['stack_confidence'], final=True, start_frame=state['deal_frame']+1,
+                        allow_scaled=self.visibility_source is not None) if state['deal_frame'] is not None else None
                     if attempt is not None:
+                        if self.visibility_source is not None:
+                            from parser_core.start_stack_visibility import first_visible_proof
+                            attempt['first_visible_proof']=first_visible_proof(readings,attempt['frames'],
+                                start_frame=state['deal_frame']+1,confidence=self.sidecar.flags['stack_confidence'])
                         state['canonical_attempts'][seat] = attempt
                 if boundary is not None:
                     for attempt in state['canonical_attempts'].values():

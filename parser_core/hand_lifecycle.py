@@ -146,7 +146,7 @@ def source_bound_headers(output):
     return _source_bound_headers(output, state_path, header_path)
 
 
-def post_excel_contexts(output, observed_records):
+def post_excel_contexts(output, observed_records, *, join_show_description=False):
     """Read real confirmed sidecar source rows into a separate logical view.
 
     Nothing is added to the original timeline or Excel. Source frame/position,
@@ -184,7 +184,8 @@ def post_excel_contexts(output, observed_records):
         summary.update(header_receipt_source='UNAVAILABLE',sidecar_source_rows=0)
         return logical,complete,eligible,summary
     headers,anchors,invalid=source_bound_headers(output)
-    return _logical_contexts(raw_rows, headers, anchors, invalid, observed_records, frozen)
+    return _logical_contexts(raw_rows, headers, anchors, invalid, observed_records, frozen,
+                             join_show_description=join_show_description)
 
 
 def _source_bound_headers(output, state_path, header_path):
@@ -246,11 +247,12 @@ def _source_bound_headers(output, state_path, header_path):
     return headers,anchors,invalid
 
 
-def _logical_contexts(raw_rows, headers, anchors, invalid, observed_records, frozen):
+def _logical_contexts(raw_rows, headers, anchors, invalid, observed_records, frozen, *, join_show_description=False):
     # Keep source order within each table/session, independent of callback order.
     logical_rows=raw_rows+headers
     logical_rows.sort(key=lambda r:(str(table_key(r['table_id'])),r['session_id'],r['frame_id'],r['row_index'],r['stable_row_id']))
-    logical,analysis=analyze_timeline(logical_rows,ocr_status={r['stable_row_id']:r.get('ocr_status','ERROR') for r in logical_rows})
+    logical,analysis=analyze_timeline(logical_rows,ocr_status={r['stable_row_id']:r.get('ocr_status','ERROR') for r in logical_rows},
+                                    join_show_description=join_show_description)
     complete,eligible,summary=classify_lifecycle(logical)
     first_frames={}
     for (table,session,number),anchor in anchors.items():

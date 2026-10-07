@@ -12,7 +12,7 @@ from parser_core.poker_logic_engine import validate_hand
 from parser_core.poker_diagnostics import diagnose_hand
 
 
-def analyze_timeline(timeline, *, ocr_status):
+def analyze_timeline(timeline, *, ocr_status, join_show_description=False):
     started = time.perf_counter()
     rows = []
     for original in timeline:
@@ -25,7 +25,8 @@ def analyze_timeline(timeline, *, ocr_status):
             row.get('ocr_status', 'ERROR') if row.get('canonical_stream_version') else 'ERROR')
         rows.append(row)
     hands = assemble_hands(rows, require_pixel_cards=True, require_adjacency=True,
-                           pixel_sources={row['row_id']: row for row in rows})
+                           pixel_sources={row['row_id']: row for row in rows},
+                           join_show_description=join_show_description)
     observed_ids = [row['row_id'] for row in rows]
     covered_ids = [rid for hand in hands for msg in hand['messages'] for rid in msg['source_row_ids']]
     if Counter(covered_ids) != Counter(observed_ids) or len(set(observed_ids)) != len(observed_ids):

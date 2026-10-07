@@ -12,8 +12,9 @@ OVERLAY_PATTERN = re.compile(r'(?:(?:ANTE|SB|BB|FOLD|CHECK|CALL|BET|RAISE)(?:\s+
 
 
 class SeatOccupancyEvidence:
-    def __init__(self, confidence=.95):
+    def __init__(self, confidence=.95, *, reject_empty_fragments=False):
         self.confidence = confidence
+        self.reject_empty_fragments = reject_empty_fragments
         self.sources = {}
         self.readings = {}
         self.proofs = {}
@@ -38,6 +39,7 @@ class SeatOccupancyEvidence:
         score = response.get('score')
         empty = text.upper() == 'OPEN SEAT'
         literal = bool(text and text.upper() not in OVERLAYS and not OVERLAY_PATTERN.fullmatch(text)
+                       and not (self.reject_empty_fragments and text.upper() in {'PENSEAT','PEN SEAT'})
                        and '...' not in text and '…' not in text
                        and not any(s in text for s in ('\ufffd', '?'))
                        and re.search(r'[A-Za-zА-Яа-я]', text))
@@ -83,3 +85,14 @@ class SeatOccupancyEvidence:
                     seats=evidence, evidence_status='PROVEN',
                     proof='ALL_FIXED_SEATS_EXACT_LABEL_TRIPLES_AND_CONTINUOUS_IDENTICAL_PIXELS',
                     authority='CURRENT_OCCUPANCY_ONLY; NO_HISTORICAL_IDENTITY_OR_STACK_AUTHORITY')
+
+    def current_labels(self, key, frame, seats):
+        """Only currently continuous label proofs, including partial seat sets."""
+        result={}
+        for seat in seats:
+            route=(*key,seat);latest=self.sources.get(route);proof=self.proofs.get(route)
+            if (latest and proof and latest['frame']==frame and
+                    latest['first']<=proof['observations'][0]['frame']):
+                result[seat]=dict(proof,table_id=key[0],session_id=key[1],hand_id=key[2],
+                    source_frame=frame,current_pixel_sha256=latest['sha256'])
+        return result
