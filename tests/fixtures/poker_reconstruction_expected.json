@@ -1,0 +1,17 @@
+{
+  "numbered_hands": 189,
+  "fully_recovered": 181,
+  "truncated_start": 7,
+  "truncated_end": 8,
+  "controls": [
+    {"table": "T05", "hand_id": "2876720900", "pot": 2933000, "winner": "murmosenok"},
+    {"table": "T05", "hand_id": "2876724645", "pot": 2217600, "winner": "kurastar"},
+    {"table": "T09", "hand_id": "2876720864", "pot": 1328344, "winner": "bagzik"},
+    {"table": "T09", "hand_id": "2876726210", "pot": 1030200, "winner": "brodyga856"},
+    {"table": "T09", "hand_id": "2876728620", "pot": 4538374, "winner": "kisunya777"}
+  ],
+  "truncated_hands": [
+    "2876729234", "2876729386", "2876729418", "2876729188",
+    "2876728919", "2876729176", "2876729478", "2876729498"
+  ]
+}

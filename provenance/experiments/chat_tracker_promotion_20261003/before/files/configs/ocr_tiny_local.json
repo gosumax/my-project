@@ -1,0 +1,12 @@
+{
+  "schema": "pokerdom.chat-ocr.ppocrv6-tiny.local.v1",
+  "enabled": true,
+  "python": "C:\\ParserData\\runtimes\\ppocr_tiny\\venv\\Scripts\\python.exe",
+  "model_dir": "C:\\Users\\Admin\\.paddlex\\official_models\\PP-OCRv6_tiny_rec",
+  "model_name": "PP-OCRv6_tiny_rec",
+  "model_version": "PP-OCRv6_tiny_rec_bb2f8f54d1e25f28",
+  "weights_sha256": "bb2f8f54d1e25f28c71b6fa4fe23f5940e159cae27fbee96155c99f822156e57",
+  "batch_size": 8,
+  "device": "cpu",
+  "retry_policy": "NONE_SINGLE_PASS"
+}

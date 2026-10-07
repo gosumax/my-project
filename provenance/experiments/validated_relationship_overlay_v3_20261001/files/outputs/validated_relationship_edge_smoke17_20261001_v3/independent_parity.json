@@ -1,0 +1,103 @@
+{
+  "schema": "independent.validated.relationship.parity.v1",
+  "scope": "Independent bounded postrun verification, not certification",
+  "source_rows": 8146,
+  "modes": {
+    "CORE_280": {
+      "rows_after": 8146,
+      "all_original_fields_nested_evidence_order_equal": true,
+      "statuses_OCR_table_session_epoch_ids_pixel_hashes_equal": true,
+      "reclassified_session_boundary_start_end_metadata_equal": true,
+      "changed_row_count": 22,
+      "changed_window_start_ids": [
+        "table_6f37cc14274a733e7ed2ad35:R000085"
+      ],
+      "exact_changed_window_relationships": [
+        {
+          "pair_id": "table_6f37cc14274a733e7ed2ad35:R000081->table_6f37cc14274a733e7ed2ad35:R000092",
+          "case_id": "V122",
+          "cohort": "CORE_280",
+          "visual_label": "VISUALLY_SAME",
+          "relationship": "VALIDATED_SAME_PHYSICAL_OCCURRENCE",
+          "relationship_source": "TEXT_FIRST_VISUAL_VALIDATION",
+          "old_track_id": "table_6f37cc14274a733e7ed2ad35:R000081",
+          "new_track_id": "table_6f37cc14274a733e7ed2ad35:R000092",
+          "table_id": "T06",
+          "session_id": "table_6f37cc14274a733e7ed2ad35",
+          "old_first_frame": 3699,
+          "new_first_frame": 3800,
+          "old_last_frame": 3799,
+          "new_last_frame": 3800,
+          "old_pixel_hash": "2bc52435ce97718dbe31b8f3cc036767583c12341aca2ae0e60b6236c9c3f75d",
+          "new_pixel_hash": "29c38bcefc9df5ed5b5008e984bc2ebe4d5727d7284a5a218039db05a8c97d43",
+          "old_source_pixel_hash": "3f949ab668b4bda7ba28c384d9a20e38df38051569ce5c131a08f4fba2de1ef7",
+          "new_source_pixel_hash": "29c38bcefc9df5ed5b5008e984bc2ebe4d5727d7284a5a218039db05a8c97d43",
+          "old_source_ocr_ok": true,
+          "new_source_ocr_ok": true,
+          "boundary_frames": []
+        }
+      ],
+      "changed_row_ownership_labels": {
+        "NO_VALIDATED_CONTINUITY": 20,
+        "UNRESOLVED_BOUNDARY_OWNERSHIP": 2
+      },
+      "ownership_caveat": "ownership_evidence is pre-discharge baseline attribution; 2 admitted rows still label UNRESOLVED_BOUNDARY_OWNERSHIP. Effective window resolution is separately proved by window_continuity_proofs and effective_end_reason. Label alone must not be interpreted as final ownership verdict."
+    },
+    "EXTENDED_313_SAMPLE": {
+      "rows_after": 8146,
+      "all_original_fields_nested_evidence_order_equal": true,
+      "statuses_OCR_table_session_epoch_ids_pixel_hashes_equal": true,
+      "reclassified_session_boundary_start_end_metadata_equal": true,
+      "changed_row_count": 22,
+      "changed_window_start_ids": [
+        "table_6f37cc14274a733e7ed2ad35:R000085"
+      ],
+      "exact_changed_window_relationships": [
+        {
+          "pair_id": "table_6f37cc14274a733e7ed2ad35:R000081->table_6f37cc14274a733e7ed2ad35:R000092",
+          "case_id": "V122",
+          "cohort": "CORE_280",
+          "visual_label": "VISUALLY_SAME",
+          "relationship": "VALIDATED_SAME_PHYSICAL_OCCURRENCE",
+          "relationship_source": "TEXT_FIRST_VISUAL_VALIDATION",
+          "old_track_id": "table_6f37cc14274a733e7ed2ad35:R000081",
+          "new_track_id": "table_6f37cc14274a733e7ed2ad35:R000092",
+          "table_id": "T06",
+          "session_id": "table_6f37cc14274a733e7ed2ad35",
+          "old_first_frame": 3699,
+          "new_first_frame": 3800,
+          "old_last_frame": 3799,
+          "new_last_frame": 3800,
+          "old_pixel_hash": "2bc52435ce97718dbe31b8f3cc036767583c12341aca2ae0e60b6236c9c3f75d",
+          "new_pixel_hash": "29c38bcefc9df5ed5b5008e984bc2ebe4d5727d7284a5a218039db05a8c97d43",
+          "old_source_pixel_hash": "3f949ab668b4bda7ba28c384d9a20e38df38051569ce5c131a08f4fba2de1ef7",
+          "new_source_pixel_hash": "29c38bcefc9df5ed5b5008e984bc2ebe4d5727d7284a5a218039db05a8c97d43",
+          "old_source_ocr_ok": true,
+          "new_source_ocr_ok": true,
+          "boundary_frames": []
+        }
+      ],
+      "changed_row_ownership_labels": {
+        "NO_VALIDATED_CONTINUITY": 20,
+        "UNRESOLVED_BOUNDARY_OWNERSHIP": 2
+      },
+      "ownership_caveat": "ownership_evidence is pre-discharge baseline attribution; 2 admitted rows still label UNRESOLVED_BOUNDARY_OWNERSHIP. Effective window resolution is separately proved by window_continuity_proofs and effective_end_reason. Label alone must not be interpreted as final ownership verdict."
+    }
+  },
+  "input_hashes": {
+    "checked": 94,
+    "mismatches": []
+  },
+  "image_files": {
+    "count": 0,
+    "paths": []
+  },
+  "postrun_fingerprint": {
+    "scope": "Current postrun implementation/test hashes; explicitly not a runner-recorded start fingerprint",
+    "sha256": {
+      "experiments/run_validated_relationship_edge_simulation.py": "95b13ce361b4d8eea5d0d3089b09c077db4be6574ba32436b64666af6b5195ad",
+      "experiments/validated_relationship_edge_simulation.py": "6ad2669f08f9f4a83ae42f982160423abaf4d76627b9d28ca904a2767f7db2df",
+      "tests/test_validated_relationship_edge_simulation.py": "7c04a3739c42618cd39b0d3b1079bda2db7b5c52139bd679fe6ada316954b1f6"
+    }
+  }
+}

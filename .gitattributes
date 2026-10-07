@@ -1,0 +1,2 @@
+# Production integrity pins exact file bytes, including existing line endings.
+* -text

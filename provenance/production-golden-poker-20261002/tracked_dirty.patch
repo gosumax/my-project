@@ -1,0 +1,1449 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index 6c31874..03d75ec 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -1,10 +1,12 @@
+ # Новый парсер: работа Codex
+ 
++Before modifying, running, benchmarking, debugging, or extending the production pipeline, EVERY root agent and subagent MUST read `PRODUCTION.md` and `production_manifest.json`. These define the ONLY production pipeline. Do not infer production from filenames, timestamps, experiments, old runners, reports or search results. Explorer/Luna may inspect historical code as evidence but must never declare it production. Root/Sol must verify the manifest and use `run_production.py`; promotion requires the documented procedure.
++
+ Use the current code in this directory as the source of truth. Do not import architecture or paths from older PokerDom projects without verifying them here. This folder is the current project root even when it has no `.git` directory.
+ 
+ ## Main agent
+ 
+-Use `gpt-6-sol` with `medium` reasoning by default. The main agent owns the task interpretation, architecture, shared production-code changes, integration, evidence sufficiency, and final verdict. Increase reasoning only for a real root-cause or architecture deadlock. Prove the common cause through `FILE -> FUNCTION -> CALLER -> DATA` before changing shared logic. Preserve raw pixels/OCR, provenance, and explicit `UNKNOWN`, `UNRESOLVED`, and partial outcomes.
++Use `gpt-6.1-sol` with `medium` reasoning by default. The main agent owns the task interpretation, architecture, shared production-code changes, integration, evidence sufficiency, and final verdict. Increase reasoning only for a real root-cause or architecture deadlock. Prove the common cause through `FILE -> FUNCTION -> CALLER -> DATA` before changing shared logic. Preserve raw pixels/OCR, provenance, and explicit `UNKNOWN`, `UNRESOLVED`, and partial outcomes.
+ 
+ ## Routing
+ 
+diff --git a/README.md b/README.md
+index c88da75..553844d 100644
+--- a/README.md
++++ b/README.md
+@@ -1,5 +1,7 @@
+ # Новый парсер PokerDom
+ 
++**Единственный production pipeline определён в [PRODUCTION.md](PRODUCTION.md) и [production_manifest.json](production_manifest.json). Официальный запуск: `python run_production.py ...`. Описанные ниже исторические пилоты не являются альтернативными production entrypoints. Перед работой с pipeline читать оба файла.**
++
+ Рабочая реализация ТЗ от 27.09.2026. Текущее состояние: **этап 0 частично выполнен; этап 1 начат только как сбор исходных доказательств**. Полных историй рук и новых обученных моделей пока нет.
+ 
+ ## Уже работает
+@@ -51,6 +53,15 @@ python scripts/run_one_table.py --video 'D:\Проэкты\Парсер пд v1.
+ 
+ ## Девять столов: ограниченный пилот
+ 
++Для Smoke14 RAM-варианта с ограниченными OCR/VL очередями, сохранением
++визуального evidence и проверкой детерминированного порядка см.
++[docs/PARALLEL_OCR_VL_SMOKE14_20260929.md](docs/PARALLEL_OCR_VL_SMOKE14_20260929.md).
++
++Для ограниченно доказанных START STACK и полного обзора seat ROI Smoke14 см.
++[docs/START_STACK_20260929.md](docs/START_STACK_20260929.md). Визуально
++проверены 13 START STACK в двух руках; остальные остаются частичными или
++неразрешёнными до отдельного доказательства.
++
+ ```powershell
+ python scripts/run_nine_tables.py --video 'D:\Проэкты\V2.0 PD\video\smoke_11.mp4' `
+   --output runs\smoke11_new_pilot --max-frames 5
+diff --git a/parser_core/board_tiles.py b/parser_core/board_tiles.py
+index 839115e..70795e3 100644
+--- a/parser_core/board_tiles.py
++++ b/parser_core/board_tiles.py
+@@ -46,13 +46,86 @@ def _runs(values: np.ndarray) -> list[tuple[int, int]]:
+     return spans
+ 
+ 
+-def _glyphs(gray: np.ndarray, start: int, end: int) -> tuple[np.ndarray, np.ndarray] | None:
++def card_spans(gray: np.ndarray, *, recover_split: bool = False) -> tuple[list[tuple[int, int]], list[dict]]:
++    """Keep native row-3 boxes; join only ink-split card backgrounds.
++
++    A second, uninterrupted background scanline must independently support the
++    entire joined interval. Never widen an already admissible native span.
++    """
++    runs = _runs(np.flatnonzero(gray[3, :min(150, gray.shape[1])] > 150))
++    spans, recovered = [], []
++    index = 0
++    while index < len(runs):
++        start, end = runs[index]
++        width = end-start+1
++        if 18 <= width <= 22:
++            spans.append((start, end))
++        elif recover_split and width < 18 and index+1 < len(runs):
++            right_start, right_end = runs[index+1]
++            if (right_end-right_start+1 < 18 and 1 <= right_start-end-1 <= 2 and
++                    18 <= right_end-start+1 <= 22 and
++                    bool(np.all(gray[2, start:right_end+1] > 150))):
++                spans.append((start, right_end))
++                recovered.append({"box_inclusive": [start, right_end],
++                                  "fragment_boxes_inclusive": [[start, end], [right_start, right_end]],
++                                  "support_scanline_y": 2, "source": "NATIVE_BACKGROUND_BRIDGED_INK"})
++                index += 1
++        index += 1
++    return spans, recovered
++
++
++def secondary_card_spans(gray: np.ndarray) -> tuple[list[tuple[int, int]], list[dict]]:
++    """Conservative native y2 fallback for a rejected y3 row geometry.
++
++    Only complete fixed-render backgrounds with independent rank/suit glyphs
++    qualify. Caller must retain any already-admissible primary geometry.
++    """
++    if gray.ndim != 2 or gray.shape[0] != 16:
++        return [], []
++    spans = [(start, end) for start, end in _runs(
++        np.flatnonzero(gray[2, :min(150, gray.shape[1])] > 150))
++        if 20 <= end-start+1 <= 21]
++    if not (2 <= len(spans) <= 5 and all(
++            2 <= spans[i+1][0]-spans[i][1]-1 <= 5 for i in range(len(spans)-1))):
++        return [], []
++    for start, end in spans:
++        boxes = _glyph_boxes(gray, start, end)
++        if boxes is None:
++            return [], []
++        (rx, ry, rw, rh), (sx, sy, sw, sh) = boxes
++        if not (1 <= rw <= 9 and 5 <= rh <= 9 and rx+rw < sx and
++                sw <= 9 and 2 <= sy and sy+sh <= 13 and sx+sw <= end+1):
++            return [], []
++    return spans, [{"source": "SECONDARY_NATIVE_BACKGROUND_Y2",
++                    "support_scanline_y": 2,
++                    "box_inclusive": [start, end]}
++                   for start, end in spans]
++
++
++def _glyph_components(gray: np.ndarray, start: int, end: int):
+     ink = (gray[3:12, start + 1:end] < 190).astype(np.uint8)
+     count, labels, stats, _ = cv2.connectedComponentsWithStats(ink, 8)
+     components = sorted((index for index in range(1, count) if stats[index, 4] >= 5),
+                         key=lambda index: stats[index, 0])
+     if len(components) != 2:
+         return None
++    return labels, stats, components
++
++
++def _glyph_boxes(gray: np.ndarray, start: int, end: int):
++    data = _glyph_components(gray, start, end)
++    if data is None:
++        return None
++    _, stats, components = data
++    return [(start+1+int(stats[index, 0]), 3+int(stats[index, 1]),
++             int(stats[index, 2]), int(stats[index, 3])) for index in components]
++
++
++def _glyphs(gray: np.ndarray, start: int, end: int) -> tuple[np.ndarray, np.ndarray] | None:
++    data = _glyph_components(gray, start, end)
++    if data is None:
++        return None
++    labels, stats, components = data
+     glyphs = []
+     for index in components:
+         x, y, width, height, _ = map(int, stats[index])
+@@ -75,9 +148,13 @@ def _scores(glyph: np.ndarray, templates: list[dict]) -> list[tuple[str, int]]:
+ def read_board_tiles(path: Path, source_sha256: str,
+                      vl_text: str, template_path: Path = TEMPLATE_PATH) -> BoardTileReading | None:
+     """Use VL ranks and tile glyphs; abstain if segmentation or suits are unclear."""
+-    source = path.read_bytes()
++    return read_board_tiles_bytes(path.read_bytes(), source_sha256, vl_text, template_path)
++
++
++def read_board_tiles_bytes(source: bytes, source_sha256: str,
++                           vl_text: str, template_path: Path = TEMPLATE_PATH) -> BoardTileReading | None:
+     if hashlib.sha256(source).hexdigest() != source_sha256:
+-        raise ValueError(f"Crop hash mismatch: {path}")
++        raise ValueError("Crop hash mismatch")
+     with Image.open(io.BytesIO(source)) as opened:
+         gray = np.asarray(opened.convert("L"))
+     if gray.shape[0] != 16 or gray.shape[1] < 100:
+@@ -85,7 +162,7 @@ def read_board_tiles(path: Path, source_sha256: str,
+     spans = [(start, end) for start, end in _runs(
+         np.flatnonzero(gray[3, :min(150, gray.shape[1])] > 150))
+         if 18 <= end - start + 1 <= 22]
+-    if not 3 <= len(spans) <= 5 or any(
++    if not 2 <= len(spans) <= 5 or any(
+             not 2 <= spans[index + 1][0] - spans[index][1] - 1 <= 5
+             for index in range(len(spans) - 1)):
+         return None
+@@ -126,10 +203,12 @@ def read_board_tiles(path: Path, source_sha256: str,
+     rank_distances = []
+     for rank, scores in zip(ranks, rank_scores):
+         distance = next((score for label, score in scores if label == rank), None)
+-        if distance is not None:
+-            if distance > 20 or (scores[0][0] != rank and scores[0][1] <= 8 and
+-                                 distance - scores[0][1] >= 8):
+-                return None
++        if distance is None:
++            # A VL-only rank without a pixel template is not visual agreement.
++            return None
++        if distance > 20 or (scores[0][0] != rank and scores[0][1] <= 8 and
++                             distance - scores[0][1] >= 8):
++            return None
+         rank_distances.append(distance)
+     cards = tuple(rank + suit for rank, suit in zip(ranks, suits))
+     if len(set(cards)) != len(cards):
+diff --git a/parser_core/chat_rows.py b/parser_core/chat_rows.py
+index 078073d..ba0999f 100644
+--- a/parser_core/chat_rows.py
++++ b/parser_core/chat_rows.py
+@@ -253,3 +253,18 @@ def match_row_blocks(old_rows: list[np.ndarray], current_rows: list[np.ndarray],
+         used_new.update(mapping)
+         used_old.update(mapping.values())
+     return output
++
++
++def match_rows_overlap(previous: np.ndarray, old_spans: list[tuple[int, int]],
++                       current: np.ndarray, new_spans: list[tuple[int, int]]) -> dict[int, int]:
++    """Compatibility helper for conservative visual overlap diagnostics.
++
++    The production tracker calls ``match_row_blocks`` directly; this wrapper
++    exposes the same contiguous-block rule for full chat images in tests.
++    """
++    old_rows = [canonical_row(previous, span) for span in old_spans]
++    new_rows = [canonical_row(current, span) for span in new_spans]
++    return {new: old for block in match_row_blocks(old_rows, new_rows,
++                                                   max_distance=0.0,
++                                                   two_row_max_average=0.0)
++            for new, old in block.mapping.items()}
+diff --git a/parser_core/ram_first_stage.py b/parser_core/ram_first_stage.py
+index 49dd694..016e1aa 100644
+--- a/parser_core/ram_first_stage.py
++++ b/parser_core/ram_first_stage.py
+@@ -3,6 +3,7 @@
+ from __future__ import annotations
+ 
+ import hashlib
++import json
+ import time
+ from collections import Counter, deque
+ from dataclasses import dataclass
+@@ -16,11 +17,20 @@ from parser_core.chat_rows import (Alignment, align_upward, canonical_row,
+                                    exclude_first_visible_span, match_row_blocks,
+                                    match_rows, padded_row_span, physical_spans)
+ from parser_core.layout import load_fixed_layout
++from parser_core.visual_crops import snapshot_ram_board
+ 
+ 
+ HISTORY_STATES = 12
+ 
+ 
++def png_compatible_gray(rgb: np.ndarray) -> np.ndarray:
++    """Exact integer grayscale used by this pipeline's PNG decoder."""
++    if rgb.dtype != np.uint8 or rgb.ndim != 3 or rgb.shape[2] != 3:
++        raise ValueError("Expected native uint8 RGB pixels")
++    wide = rgb.astype(np.uint32)
++    return ((wide[:, :, 0]*9797 + wide[:, :, 1]*19234 + wide[:, :, 2]*3737) >> 15).astype(np.uint8)
++
++
+ @dataclass(frozen=True)
+ class RamRow:
+     frame_id: int
+@@ -34,11 +44,15 @@ class RamRow:
+     pixels: np.ndarray
+     pixel_sha256: str
+     stable_row_id: str
++    source_pts: int | None = None
++    time_base_num: int | None = None
++    time_base_den: int | None = None
+ 
+ 
+ class FirstStage:
+     def __init__(self, video: Path, sessions: dict[str, str], frames: int, *,
+-                 root: Path, telemetry=None):
++                 root: Path, telemetry=None, retain_board: bool = False,
++                 board_profile: Path | None = None, identity_observer=None):
+         self.video = video
+         self.sessions = sessions
+         self.frames = frames
+@@ -49,6 +63,10 @@ class FirstStage:
+         self.detected: dict[tuple[int, str, int], tuple[str, str]] = {}
+         self.seen_frames = 0
+         self.last_video_time = None
++        self.retain_board = retain_board
++        self.board_profile = board_profile or root / "configs/layout_847x404.json"
++        self.board_snapshots = {}
++        self.identity_observer = identity_observer
+ 
+     def _measure(self, name: str, started: float, objects: int = 1):
+         elapsed = time.perf_counter() - started
+@@ -68,6 +86,7 @@ class FirstStage:
+         previous_rgb = {}
+         chat_history: dict[str, deque] = {}
+         stable_counters = Counter()
++        profile = json.loads(self.board_profile.read_text("utf-8")) if self.retain_board else None
+         with av.open(str(self.video)) as source:
+             stream = source.streams.video[0]
+             iterator = enumerate(source.decode(stream))
+@@ -80,6 +99,8 @@ class FirstStage:
+                 self._measure("decode", tick)
+                 tick = time.perf_counter()
+                 rgb = frame.to_ndarray(format="rgb24")
++                if (frame.width, frame.height) != (layout.source_width, layout.source_height):
++                    raise ValueError("Source frame dimensions differ from fixed layout")
+                 self._measure("frame_to_ndarray", tick)
+                 video_time = float(frame.pts * (frame.time_base or stream.time_base)) if frame.pts is not None else None
+                 self.last_video_time = video_time
+@@ -104,15 +125,7 @@ class FirstStage:
+                             continue
+ 
+                         tick = time.perf_counter()
+-                        # Pixel-compatible with PIL RGB PNG -> OpenCV grayscale,
+-                        # encoded and decoded entirely in process memory.
+-                        ok, packed = cv2.imencode(".png", cv2.cvtColor(crop, cv2.COLOR_RGB2BGR),
+-                                                  [cv2.IMWRITE_PNG_COMPRESSION, 0])
+-                        if not ok:
+-                            raise ValueError("RAM chat conversion failed")
+-                        gray = cv2.imdecode(packed, cv2.IMREAD_GRAYSCALE)
+-                        if gray is None:
+-                            raise ValueError("RAM chat grayscale decode failed")
++                        gray = png_compatible_gray(crop)
+                         self._measure("ram_gray_conversion", tick)
+ 
+                         tick = time.perf_counter()
+@@ -218,6 +231,15 @@ class FirstStage:
+                             source_index = index + len(suppressed)
+                             if index in identity:
+                                 stable_id, inherited_origin = identity[index]
++                                if self.identity_observer is not None:
++                                    view_span = padded_row_span(all_spans, source_index, gray.shape[0])
++                                    view_pixels = np.array(gray[view_span[0]:view_span[1]], copy=True, order="C")
++                                    self.identity_observer({
++                                        "frame_id": fid, "table_id": slot.slot_id,
++                                        "session_id": sid, "source_span_index": source_index,
++                                        "stable_row_id": stable_id, "origin": inherited_origin,
++                                        "epoch": epoch, "source_pts": frame.pts,
++                                        "y1": view_span[0], "view_type": "INHERITED_STABLE_ROW"}, view_pixels)
+                                 current_spans.append(span)
+                                 current_origins.append(inherited_origin)
+                                 current_stable_ids.append(stable_id)
+@@ -255,8 +277,19 @@ class FirstStage:
+                             current_spans.append(span)
+                             current_origins.append(origin)
+                             current_stable_ids.append(stable_id)
++                            base = frame.time_base or stream.time_base
++                            if self.retain_board and (sid, fid) not in self.board_snapshots:
++                                tick = time.perf_counter()
++                                tx1, ty1, tx2, ty2 = slot.table_box
++                                self.board_snapshots[(sid, fid)] = snapshot_ram_board(
++                                    rgb[ty1:ty2, tx1:tx2], profile["slots"][f"slot_{slot.slot_id:02d}"],
++                                    table_id=slot.slot_id, table_session_id=sid, frame_id=fid,
++                                    source_pts=frame.pts, time_base_num=base.numerator,
++                                    time_base_den=base.denominator, source_table_box=list(slot.table_box))
++                                self._measure("ram_board_snapshot", tick)
+                             yield RamRow(fid, video_time, slot.slot_id, sid, source_index,
+-                                         row_span[0], origin, epoch, pixels, digest, stable_id)
++                                         row_span[0], origin, epoch, pixels, digest, stable_id,
++                                         frame.pts, base.numerator, base.denominator)
+ 
+                         history.append({"gray": gray,
+                                         "spans": current_spans,
+diff --git a/parser_core/vl_chat_client.py b/parser_core/vl_chat_client.py
+index d543b1f..8e2efff 100644
+--- a/parser_core/vl_chat_client.py
++++ b/parser_core/vl_chat_client.py
+@@ -3,6 +3,8 @@
+ from __future__ import annotations
+ 
+ import json
++import base64
++import hashlib
+ import queue
+ import subprocess
+ import sys
+@@ -66,20 +68,77 @@ class VLChatClient:
+         if ready.get("type") != "ready":
+             raise RuntimeError(f"Unexpected PaddleOCR-VL worker response: {ready}")
+ 
+-    def read(self, path: Path, source_sha256: str, right_trim_px: int) -> dict:
++    def read(self, path: Path, source_sha256: str, right_trim_px: int,
++             prompt: str = "OCR:", board_sha: str | None = None,
++             board_evidence_id: str | None = None) -> dict:
++        return self._request({"path": str(path)}, source_sha256, right_trim_px,
++                             prompt, board_sha, board_evidence_id)
++
++    def read_bytes(self, source: bytes, source_sha256: str, right_trim_px: int,
++                   prompt: str = "OCR:", board_sha: str | None = None,
++                   board_evidence_id: str | None = None) -> dict:
++        if hashlib.sha256(source).hexdigest() != source_sha256:
++            raise ValueError("VL RAM crop SHA mismatch")
++        return self._request({"png_base64": base64.b64encode(source).decode("ascii")},
++                             source_sha256, right_trim_px, prompt, board_sha, board_evidence_id)
++
++    def read_batch_bytes(self, items: list[dict]) -> list[dict]:
++        if not 1 <= len(items) <= 8:
++            raise ValueError("VL batch must contain 1..8 CHAT crops")
++        requests = []
++        for item in items:
++            source = item["source"]
++            sha = item["source_sha256"]
++            if hashlib.sha256(source).hexdigest() != sha:
++                raise ValueError("VL RAM crop SHA mismatch")
++            self.sequence += 1
++            requests.append({"request_id": str(self.sequence),
++                "png_base64": base64.b64encode(source).decode("ascii"), "source_sha256": sha,
++                "right_trim_px": int(item.get("right_trim_px", 12)), "prompt": "OCR:"})
++        self._start()
++        assert self.process is not None and self.process.stdin is not None
++        batch_id = ":".join(r["request_id"] for r in requests)
++        self.process.stdin.write(json.dumps({"type": "batch", "batch_id": batch_id,
++                                            "requests": requests}) + "\n")
++        self.process.stdin.flush()
++        response = json.loads(self._next_line(130))
++        if response.get("type") != "batch_result" or response.get("batch_id") != batch_id:
++            raise RuntimeError("Foreign VL batch response")
++        returned = response.get("results", [])
++        if len(returned) != len(requests) or len({r.get("request_id") for r in returned}) != len(requests):
++            raise RuntimeError("VL batch result count or identity mismatch")
++        by_id = {r.get("request_id"): r for r in returned}
++        ordered = []
++        for request in requests:
++            result = by_id.get(request["request_id"])
++            if result is None or result.get("source_sha256") != request["source_sha256"]:
++                raise RuntimeError("VL batch response SHA mismatch")
++            ordered.append(result)
++        return ordered
++
++    def _request(self, transport: dict, source_sha256: str, right_trim_px: int,
++                 prompt: str, board_sha: str | None, board_evidence_id: str | None) -> dict:
+         self._start()
+         assert self.process is not None
+         assert self.process.stdin is not None and self.process.stdout is not None
+         self.sequence += 1
+         request_id = str(self.sequence)
+         self.process.stdin.write(json.dumps({"request_id": request_id,
+-            "path": str(path), "source_sha256": source_sha256,
+-            "right_trim_px": right_trim_px}, ensure_ascii=False) + "\n")
++            **transport, "source_sha256": source_sha256,
++            "right_trim_px": right_trim_px, "prompt": prompt,
++            "board_sha": board_sha, "board_evidence_id": board_evidence_id},
++            ensure_ascii=False) + "\n")
+         self.process.stdin.flush()
+         response_line = self._next_line(130)
+         response = json.loads(response_line)
+         if response.get("type") != "result" or response.get("request_id") != request_id:
+             raise RuntimeError(f"Unexpected PaddleOCR-VL worker response: {response}")
++        if "png_base64" in transport and response.get("source_sha256") != source_sha256:
++            raise RuntimeError("VL RAM response SHA does not match its request")
++        if board_sha is not None and (response.get("board_sha") != board_sha or
++                                      response.get("source_sha256") != source_sha256 or
++                                      response.get("board_evidence_id") != board_evidence_id):
++            raise RuntimeError("BOARD VL response SHA does not match its request")
+         return response
+ 
+     def close(self) -> None:
+diff --git a/scripts/build_smoke14_ram_workbook.mjs b/scripts/build_smoke14_ram_workbook.mjs
+index 6e1355c..d46f534 100644
+--- a/scripts/build_smoke14_ram_workbook.mjs
++++ b/scripts/build_smoke14_ram_workbook.mjs
+@@ -1,14 +1,21 @@
+ import fs from "node:fs/promises";
+ import { SpreadsheetFile, Workbook } from "@oai/artifact-tool";
+ 
+-const [jsonlPath, outputPath] = process.argv.slice(2);
++const [jsonlPath, outputPath, evidencePath, handAnalysisPath] = process.argv.slice(2);
+ if (!jsonlPath || !outputPath) throw new Error("Usage: build_smoke14_ram_workbook.mjs INPUT.jsonl OUTPUT.xlsx");
+ const records = (await fs.readFile(jsonlPath, "utf8")).split(/\r?\n/u)
+   .filter(Boolean).map((line) => JSON.parse(line));
+ const columns = ["table_id", "sequence_id", "frame_id", "video_time",
+   "source_roi_change_id", "row_index", "raw_ocr_text", "normalized_text",
+   "event_type", "confidence", "status", "notes_error", "session_id",
+-  "origin", "epoch", "row_pixel_sha256"];
++  "origin", "epoch", "row_pixel_sha256", "hand_id", "street", "cards",
++  "raw_vl_response", "evidence_status", "continuity_status",
++  "visual_crop_path", "visual_crop_sha256", "trigger_row_key", "ocr_event_type",
++  "board_evidence_id", "board_sha", "visual_crop_type", "identity_status",
++  "card_evidence_id", "card_row_key", "card_row_id", "card_crop_pixel_sha256",
++  "evidence_context_status", "player"];
++const columnName = (n) => { let s = ""; for (++n; n; n = Math.floor((n - 1) / 26)) s = String.fromCharCode(65 + (n - 1) % 26) + s; return s; };
++const eventLast = columnName(columns.length-1);
+ const workbook = Workbook.create();
+ const sheets = ["ALL_EVENTS", ...Array.from({ length: 9 }, (_, i) => `T${String(i + 1).padStart(2, "0")}`)];
+ for (const name of sheets) {
+@@ -16,16 +23,18 @@ for (const name of sheets) {
+   const rows = name === "ALL_EVENTS" ? records : records.filter((item) => item.table_id === name);
+   sheet.showGridLines = false;
+   sheet.freezePanes.freezeRows(1);
+-  sheet.getRange("A1:P1").values = [columns];
+-  sheet.getRange("A1:P1").format = { fill: "#26384D", font: { name: "Arial", size: 10, bold: true, color: "#FFFFFF" }, horizontalAlignment: "center" };
+-  sheet.getRange("A:P").format.font = { name: "Arial", size: 10 };
++  sheet.getRange(`A1:${eventLast}1`).values = [columns];
++  sheet.getRange(`A1:${eventLast}1`).format = { fill: "#26384D", font: { name: "Arial", size: 10, bold: true, color: "#FFFFFF" }, horizontalAlignment: "center" };
++  sheet.getRange(`A:${eventLast}`).format.font = { name: "Arial", size: 10 };
+   for (let start = 0; start < rows.length; start += 400) {
+-    const block = rows.slice(start, start + 400).map((item) => columns.map((key) => item[key] ?? null));
++    const block = rows.slice(start, start + 400).map((item) => columns.map((key) =>
++      key === "cards" ? (item.cards?.join(" ") ?? null) : (item[key] ?? null)));
+     sheet.getRangeByIndexes(start + 1, 0, block.length, columns.length).values = block;
+   }
+   for (const [column, width] of Object.entries({ A: 75, B: 95, C: 85, D: 105, E: 265,
+       F: 75, G: 380, H: 380, I: 150, J: 100, K: 120, L: 280, M: 260,
+-      N: 150, O: 75, P: 370 })) {
++      N: 150, O: 75, P: 370, Q: 150, R: 100, S: 150, T: 300,
++      U: 170, V: 190, W: 390, X: 370, Y: 150, Z: 150, AA: 300, AB: 370 })) {
+     sheet.getRange(`${column}:${column}`).format.columnWidthPx = width;
+   }
+   if (rows.length) {
+@@ -33,6 +42,86 @@ for (const name of sheets) {
+     sheet.getRange(`J2:J${rows.length + 1}`).format.numberFormat = "0.000";
+   }
+ }
++if (evidencePath) {
++  const evidence = (await fs.readFile(evidencePath, "utf8")).split(/\r?\n/u)
++    .filter(Boolean).map((line) => JSON.parse(line));
++  const columns = ["table_id", "table_session_id", "frame_id", "source_span_index",
++    "row_key", "trigger_row_key", "hand_id", "type", "street", "player",
++    "crop_path", "crop_sha256", "row_pixel_sha256", "vl_status", "vl_raw_text",
++    "card_reader", "status", "reason", "card_index", "tile_png", "tile_sha256",
++    "tile_pixel_sha256", "vl_rank", "primary_suit", "primary_confidence",
++    "raw_suit2_suit", "template_suit", "template_best_score",
++    "template_second_score", "template_margin", "template_confident",
++    "suit_source", "suit_status", "suit", "card", "nearest_train_card",
++    "best_distance", "runner_up_other_card_distance", "row_id", "epoch", "image_transport",
++    "box_xyxy_exclusive", "detected_bright_box_xyxy_exclusive", "tile_geometry_source", "native_card_pitch",
++    "template_manifest_sha256", "template_selection_sha256", "template_config_sha256",
++    "suit_backup_config_sha256", "suit_backup_mode", "rank_alignment_status",
++    "vl_rank_count", "card_tile_count", "hybrid_card_count", "published_card_count",
++    "evidence_jsonl", "evidence_record_number", "identity_status", "response_source_sha256",
++    "card_evidence_id", "context_reason", "ncc_geometry_source", "suit_glyph_box_xywh",
++    "ncc_query_box_xyxy_exclusive", "ncc_suit_roi_box_xyxy_exclusive", "ncc_query_sha256",
++    "ncc_query_pixel_sha256"];
++  const audit = [];
++  for (const [recordIndex, item] of evidence.entries()) {
++    const tiles = item.hybrid?.tiles;
++    const shared = { ...item, ...item.hybrid, evidence_jsonl: evidencePath,
++      evidence_record_number: recordIndex + 1,
++      vl_rank_count: item.hybrid?.vl_rank_tokens?.length ?? null,
++      card_tile_count: tiles?.length ?? 0, hybrid_card_count: item.hybrid?.cards?.length ?? 0,
++      published_card_count: item.projected_card_count ?? 0 };
++    if (tiles?.length) {
++      for (const tile of tiles) audit.push({ ...shared, ...tile, reason: item.hybrid?.reason ?? item.reason });
++    } else if (item.crop_type === "CHAT_ROW_CARDS") {
++      audit.push(shared);
++    }
++  }
++  const sheet = workbook.worksheets.add("CARD_AUDIT");
++  sheet.showGridLines = false;
++  sheet.freezePanes.freezeRows(1);
++  const columnName = (n) => { let s = ""; for (++n; n; n = Math.floor((n - 1) / 26)) s = String.fromCharCode(65 + (n - 1) % 26) + s; return s; };
++  const last = columnName(columns.length - 1);
++  sheet.getRange(`A1:${last}1`).values = [columns];
++  sheet.getRange(`A1:${last}1`).format = { fill: "#26384D", font: { name: "Arial", size: 10, bold: true, color: "#FFFFFF" } };
++  sheet.getRange(`A:${last}`).format.font = { name: "Arial", size: 10 };
++  for (let start = 0; start < audit.length; start += 400) {
++    const block = audit.slice(start, start + 400).map((item) => columns.map((key) =>
++      Array.isArray(item[key]) ? JSON.stringify(item[key]) : (item[key] ?? null)));
++    sheet.getRangeByIndexes(start + 1, 0, block.length, columns.length).values = block;
++  }
++  sheet.getRange(`A:${last}`).format.columnWidthPx = 130;
++  for (const col of ["K", "T"]) sheet.getRange(`${col}:${col}`).format.columnWidthPx = 360;
++  sheet.getRange("O:O").format.columnWidthPx = 280;
++  sheets.push("CARD_AUDIT");
++}
++if (handAnalysisPath) {
++  const hands = (await fs.readFile(handAnalysisPath, "utf8")).split(/\r?\n/u)
++    .filter(Boolean).map((line) => JSON.parse(line));
++  const rows = hands.map((r) => {
++    const h = r.observed_hand, v = r.validation, d = r.diagnostics;
++    return [r.segment_id, h.table_id, h.session_id, h.hand_id, h.messages.length,
++      h.start_observed, h.end_observed, v.complete_candidate, r.fully_validated,
++      r.certified_hh, v.status, d.logic_status, d.math_status, d.card_status,
++      v.side_pot_status, v.identity_status, d.math.net_total, d.math.payout_total,
++      d.math.delta, d.math.conservation_test_applicable, d.math.ledger_certainty,
++      d.first_break?.code ?? null, JSON.stringify(v.certification_blockers),
++      JSON.stringify(h.messages.flatMap((m) => m.source_row_ids))];
++  });
++  const headings = ["segment_id", "table_id", "session_id", "hand_id", "messages",
++    "start_observed", "end_observed", "complete_candidate", "fully_validated",
++    "certified_hh", "validation_status", "logic_status", "math_status", "card_status",
++    "side_pot_status", "identity_status", "net_total", "payout_total", "delta",
++    "conservation_test_applicable", "ledger_certainty", "first_break",
++    "blocking_issues", "source_row_ids"];
++  const sheet = workbook.worksheets.add("HAND_SUMMARY");
++  sheet.showGridLines = false;
++  sheet.freezePanes.freezeRows(1);
++  sheet.getRangeByIndexes(0, 0, 1, headings.length).values = [headings];
++  sheet.getRange("A1:X1").format = { fill: "#26384D", font: { bold: true, color: "#FFFFFF" } };
++  sheet.getRange("A:X").format.columnWidthPx = 160;
++  if (rows.length) sheet.getRangeByIndexes(1, 0, rows.length, headings.length).values = rows;
++  sheets.push("HAND_SUMMARY");
++}
+ workbook.recalculate();
+ await workbook.inspect({ kind: "region", sheetId: "T01", range: "A1:L6", maxChars: 2000 });
+ if (workbook.worksheets.getItem("T01").getRange("G1").values[0][0] !== "raw_ocr_text") {
+diff --git a/scripts/run_nine_tables_streaming.py b/scripts/run_nine_tables_streaming.py
+index 1c5af75..edf232f 100644
+--- a/scripts/run_nine_tables_streaming.py
++++ b/scripts/run_nine_tables_streaming.py
+@@ -31,12 +31,14 @@ def main():
+     parser.add_argument("--capture-workers", type=int, default=4)
+     parser.add_argument("--ocr-batch-size", type=int, default=8)
+     parser.add_argument("--db-batch-frames", type=int, default=25)
++    parser.add_argument("--stack-queue-size", type=int, default=256)
++    parser.add_argument("--skip-stack-observer", action="store_true")
+     parser.add_argument("--resume", action="store_true")
+     parser.add_argument("--tiny-config", type=Path,
+                         default=ROOT / "configs/ocr_tiny_local.json")
+     args = parser.parse_args()
+     if min(args.max_frames, args.capture_workers, args.ocr_batch_size,
+-           args.db_batch_frames) < 1:
++           args.db_batch_frames, args.stack_queue_size) < 1:
+         parser.error("worker, batch and frame counts must be positive")
+     if args.output is None:
+         storage = json.loads((ROOT / "configs/run_storage_local.json").read_text("utf-8"))
+@@ -98,6 +100,8 @@ def main():
+                               "resumed_after_frame": next_frame - 1 if args.resume else None,
+                               "capture_workers": args.capture_workers,
+                               "ocr_batch_size": args.ocr_batch_size,
++                              "stack_queue_size": args.stack_queue_size,
++                              "stack_observer": not args.skip_stack_observer,
+                               "db_batch_frames": args.db_batch_frames},
+                       versions={"ocr_policy": OCR_POLICY,
+                                 "ocr_retry_policy": ROW_OCR_RETRY_POLICY,
+@@ -143,6 +147,12 @@ def main():
+             if running["capture"][0].poll() is not None:
+                 raise RuntimeError("Capture failed before journal initialization")
+             time.sleep(0.1)
++        if not args.skip_stack_observer:
++            launch("observe_stacks", "observe_start_stacks.py", [output,
++                   "--watch-until", capture_done, "--tiny-config", args.tiny_config,
++                   "--queue-size", args.stack_queue_size,
++                   *(["--output", output / f"start_stack_resume_{next_frame}"]
++                     if args.resume else [])])
+         launch("track_rows", "track_chat_rows.py", [output, "--watch-until", capture_done,
+                                                       *(["--resume"] if args.resume else [])])
+         launch("ocr_rows", "ocr_chat_pilot.py", [output, "--roi-type", "CHAT_ROW",
+@@ -166,7 +176,7 @@ def main():
+                     completed_names.add(name)
+                     stages.append({"stage": name, "wall_seconds": round(time.perf_counter() - tick, 3),
+                                    "exit_code": code})
+-                    if code != 0:
++                    if code != 0 and name != "observe_stacks":
+                         raise RuntimeError(f"{name} failed with exit code {code}; see {name}.stderr.log")
+                     if name == "capture":
+                         capture_done.write_text("OK", encoding="ascii")
+diff --git a/scripts/run_smoke14_ram.py b/scripts/run_smoke14_ram.py
+index a5af5a6..9091990 100644
+--- a/scripts/run_smoke14_ram.py
++++ b/scripts/run_smoke14_ram.py
+@@ -1,39 +1,55 @@
+-"""RAM first stage -> Tiny OCR -> ordered raw timeline -> Excel. No HH stage."""
++"""INTERNAL ONLY: registered RAM-first implementation; launch with run_production.py."""
+ 
+ from __future__ import annotations
+ 
+ import argparse
+ import base64
++import csv
+ import json
+ import math
+ import os
++import shutil
+ import statistics
+ import subprocess
+ import sys
++import threading
+ import time
+ from collections import Counter, defaultdict
+ from datetime import datetime, timezone
+ from pathlib import Path
+ 
+-import cv2
++import hashlib
+ import psutil
++import sqlite3
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ sys.path.insert(0, str(ROOT))
+ from parser_core.message_assembly import RowFact, group_rows
+ from parser_core.normalize_chat import normalize
++from parser_core.parallel_ocr import ParallelRowOCR, row_key
+ from parser_core.ram_first_stage import FirstStage
++from parser_core.temporal_overlap import TemporalObservations
++from parser_core.poker_pipeline import analyze_timeline
+ from parser_core.tiny_chat_client import TinyChatClient
++from parser_core.visual_cards import associate_visual_evidence, project_chat_card_events
++from parser_core.layout import load_fixed_layout
++from parser_core.journal import stable_id
++from parser_core.visual_tile_queue import VisualTileQueue
+ 
+ 
+ class Telemetry:
+-    def __init__(self):
++    def __init__(self, production_guard=None):
+         self.values = defaultdict(list)
+         self.objects = Counter()
++        self.production_guard = production_guard
++        self.capture_started = None
+ 
+     def add(self, name, seconds, objects=1):
+         self.values[name].append(seconds)
+         self.objects[name] += objects
++        if (name == "frame_to_ndarray" and self.production_guard is not None
++                and self.capture_started is not None):
++            self.production_guard.check_early(self.objects[name], time.perf_counter()-self.capture_started)
+ 
+     def report(self, wall):
+         output = []
+@@ -52,97 +68,304 @@ class Telemetry:
+         return output
+ 
+ 
+-def main():
++def source_identity(video: Path, root: Path) -> tuple[dict, dict[str, str]]:
++    layout_path = root / "configs/nine_table_layout.json"
++    profile_path = root / "configs/layout_847x404.json"
++    calibration_path = root / "configs/chat_log_bottom_rois.json"
++    layout = load_fixed_layout(layout_path, profile_path, calibration_path)
++    with video.open("rb") as stream:
++        video_sha = hashlib.file_digest(stream, "sha256").hexdigest()
++    hashes = [hashlib.sha256(p.read_bytes()).hexdigest() for p in
++              (layout_path, profile_path, calibration_path)]
++    source_id = stable_id("source", video_sha, video.stat().st_size)
++    sessions = {str(slot.slot_id): stable_id("table", source_id, layout.layout_id,
++                *hashes, slot.slot_id, slot.table_box, slot.chat_box) for slot in layout.slots}
++    return {"source_id": source_id, "source_video_sha256": video_sha,
++            "layout_id": layout.layout_id, "layout_sha256": hashes[0],
++            "profile_sha256": hashes[1], "calibration_sha256": hashes[2]}, sessions
++
++
++def main(*, production_guard=None):
++    if production_guard is None:
++        raise RuntimeError("INTERNAL ONLY / LEGACY DIRECT LAUNCH: use python run_production.py")
+     p = argparse.ArgumentParser(description=__doc__)
+     p.add_argument("--video", type=Path, required=True)
+-    p.add_argument("--baseline", type=Path, required=True,
+-                   help="Read-only historical run for stable slot identifiers")
++    p.add_argument("--baseline", type=Path,
++                   help="Optional read-only identity comparison; images are never read from it")
+     p.add_argument("--frames", type=int, required=True)
+     p.add_argument("--output", type=Path, required=True)
+     p.add_argument("--tiny-config", type=Path, default=ROOT / "configs/ocr_tiny_local.json")
++    p.add_argument("--ocr-workers", type=int, default=2)
++    p.add_argument("--ocr-queue-size", type=int, default=32)
++    p.add_argument("--vl-config", type=Path, default=ROOT / "configs/ocr_vl15_local.json")
++    p.add_argument("--vl-workers", type=int, default=1)
++    p.add_argument("--vl-batch-size", type=int, default=8)
++    p.add_argument("--visual-workers", type=int, default=8)
++    p.add_argument("--card-workers", type=int, default=2)
++    p.add_argument("--vl-queue-size", type=int, default=256)
++    p.add_argument("--skip-cards", "--skip-vl", dest="skip_vl", action="store_true",
++                   help="Skip pixel card recognition; --skip-vl is a legacy alias")
++    p.add_argument("--card-hybrid-config", type=Path,
++                   default=ROOT / "configs/card_hybrid_local.json")
++    p.add_argument("--suit-backup-config", type=Path,
++                   default=ROOT / "configs/suit_backup_local.json")
++    p.add_argument("--rank-ncc-config", type=Path,
++                   default=ROOT / "configs/rank_ncc_production.json")
++    p.add_argument("--layout-profile", type=Path,
++                   default=ROOT / "configs/layout_847x404.json")
+     p.add_argument("--node", type=Path, required=True)
+     args = p.parse_args()
+-    if args.frames < 1 or args.output.exists():
+-        p.error("Frames must be positive and output directory must be fresh")
++    production_guard.configure(args)
++    if min(args.frames, args.ocr_workers, args.ocr_queue_size,
++           args.vl_workers, args.vl_queue_size, args.vl_batch_size,
++           args.visual_workers, args.card_workers) < 1 or args.output.exists():
++        p.error("Frames and worker/queue counts must be positive; output must be fresh")
++    if args.vl_workers != 1 or args.vl_batch_size > 8:
++        p.error("This GPU profile requires one persistent VL worker and batch <= 8")
+     config = json.loads(args.tiny_config.read_text("utf-8"))
+     if config.get("retry_policy") != "NONE_SINGLE_PASS":
+         p.error("OCR retry policy must be NONE_SINGLE_PASS")
+-    sessions = json.loads((args.baseline / "summary.json").read_text("utf-8"))["table_sessions"]
+-    output = args.output.resolve()
+-    output.mkdir(parents=True)
++    launch_started = time.perf_counter()
+     started_utc = datetime.now(timezone.utc).isoformat()
+     process = psutil.Process()
+     io_start = process.io_counters()
+     cpu_start = time.process_time()
+-    wall_start = time.perf_counter()
++    source_metadata, sessions = source_identity(args.video, ROOT)
++    if args.baseline is not None:
++        old_sessions = json.loads((args.baseline / "summary.json").read_text("utf-8"))["table_sessions"]
++        if old_sessions != sessions:
++            p.error("Baseline slot identity does not match current source/layout")
++        with sqlite3.connect(args.baseline / "journal.sqlite3") as db:
++            source_hashes = {row[0] for row in db.execute("SELECT DISTINCT sha256 FROM sources")}
++        if source_hashes != {source_metadata["source_video_sha256"]}:
++            p.error("Baseline source does not match the requested video")
++    output = args.output.resolve()
++    output.mkdir(parents=True)
++    wall_start = launch_started
+     ram_peak = process.memory_info().rss
++    pipeline_rss_peak = ram_peak
++    resource_peak = {"rss_bytes": ram_peak, "cpu_percent": 0.0}
++    resource_samples = []
++    runtime_state = {"phase": "startup"}
++    gpu_command = shutil.which("nvidia-smi")
++    resource_stop = threading.Event()
++
++    def sample_resources():
++        sample_index = 0
++        last_gpu = (None, None, None)
++        member_cache, lifetime_io = {}, {}
++        while not resource_stop.is_set():
++            members = [process] + process.children(recursive=True)
++            rss = cpu = 0.0
++            read_bytes = write_bytes = 0
++            for member in members:
++                try:
++                    key = (member.pid, member.create_time())
++                    member = member_cache.setdefault(key, member)
++                    rss += member.memory_info().rss
++                    cpu += member.cpu_percent(interval=None)
++                    io = member.io_counters()
++                    lifetime_io[key] = (max(0, io.read_bytes-(io_start.read_bytes if member.pid == process.pid else 0)),
++                                        max(0, io.write_bytes-(io_start.write_bytes if member.pid == process.pid else 0)))
++                except psutil.Error:
++                    pass
++            read_bytes = sum(x[0] for x in lifetime_io.values())
++            write_bytes = sum(x[1] for x in lifetime_io.values())
++            if gpu_command and sample_index % 4 == 0:
++                try:
++                    sampled = subprocess.run([gpu_command,
++                        "--query-gpu=utilization.gpu,memory.used,memory.total",
++                        "--format=csv,noheader,nounits"], capture_output=True, text=True,
++                        timeout=2, check=True)
++                    values = sampled.stdout.splitlines()[0].split(",")
++                    last_gpu = tuple(float(value.strip()) for value in values[:3])
++                except (OSError, subprocess.SubprocessError, ValueError, IndexError):
++                    last_gpu = (None, None, None)
++            resource_peak["rss_bytes"] = max(resource_peak["rss_bytes"], rss)
++            resource_peak["cpu_percent"] = max(resource_peak["cpu_percent"], cpu)
++            resource_samples.append({"elapsed_seconds": time.perf_counter()-wall_start,
++                "pipeline_rss_mb": rss/1048576, "cpu_percent_sum": cpu,
++                "read_bytes_sum": read_bytes, "write_bytes_sum": write_bytes,
++                "gpu_util_percent": last_gpu[0], "gpu_memory_used_mb": last_gpu[1],
++                "gpu_memory_total_mb": last_gpu[2]})
++            if sample_index % 60 == 0:
++                capture = runtime_state.get("stage")
++                tiny = runtime_state.get("ocr")
++                visual = runtime_state.get("vl")
++                progress = {"phase": runtime_state["phase"], "wall_seconds": time.perf_counter()-wall_start,
++                    "frames": capture.seen_frames if capture is not None else 0,
++                    "physical_rows": len(runtime_state.get("rows", [])),
++                    "tiny_results": len(tiny.results) if tiny is not None else 0,
++                    "vl_results": len(visual.results) if visual is not None else 0,
++                    "tiny_queue": tiny.jobs.qsize() if tiny is not None else 0,
++                    "vl_queue": visual.jobs.qsize() if visual is not None else 0,
++                    "rss_mb": rss/1048576, "gpu_util_percent": last_gpu[0], "gpu_vram_mb": last_gpu[1]}
++                (output / "progress.json").write_text(json.dumps(progress, indent=2), "utf-8")
++            sample_index += 1
++            resource_stop.wait(.5)
++
++    resource_thread = threading.Thread(target=sample_resources, daemon=True)
++    resource_thread.start()
+     rss_samples = []
+-    telemetry = Telemetry()
++    telemetry = Telemetry(production_guard)
+     status = "FAILED"
+     errors = []
+     rows = []
+     timeline = []
+-    stage = FirstStage(args.video, sessions, args.frames, root=ROOT, telemetry=telemetry)
+-    client = TinyChatClient(Path(config["python"]), Path(config["model_dir"]),
+-                            config["model_name"], config["weights_sha256"],
+-                            config["device"], output / "tiny_worker.stderr.log")
++    rank_policy = json.loads(args.rank_ncc_config.read_text("utf-8"))
++    if rank_policy.get("mode") != "PIXEL_ONLY":
++        p.error("Production CHAT card recognition requires PIXEL_ONLY")
++    vl_enabled = False
++    cards_enabled = not args.skip_vl
++    temporal = TemporalObservations()
++    stage = FirstStage(args.video, sessions, args.frames, root=ROOT, telemetry=telemetry,
++                       retain_board=False, identity_observer=temporal.observe)
++    runtime_state.update(stage=stage, rows=rows)
++    def client_factory(worker_id):
++        return TinyChatClient(Path(config["python"]), Path(config["model_dir"]),
++                              config["model_name"], config["weights_sha256"],
++                              config["device"], output / f"tiny_worker_{worker_id}.stderr.log")
+     metadata = {"entrypoint": str(Path(__file__).resolve()), "command": sys.argv,
++                "official_entrypoint": production_guard.manifest["entrypoint"],
++                "production_version": production_guard.manifest["production_version"],
++                "production_manifest_sha256": hashlib.sha256((ROOT/"production_manifest.json").read_bytes()).hexdigest(),
++                "production_modified_files": production_guard.modified,
++                **source_metadata, "table_sessions": sessions,
++                "board_profile": str(args.layout_profile.resolve()),
++                "board_profile_sha256": hashlib.sha256(args.layout_profile.read_bytes()).hexdigest(),
+                 "started_utc": started_utc, "video": str(args.video.resolve()),
+                 "frames_requested": args.frames, "first_stage": str((ROOT / "parser_core/ram_first_stage.py").resolve()),
+                 "ocr_transport": "base64 PNG bytes in RAM; worker decodes to numpy; no image files",
+                 "legacy_imports": [], "row_identity": "short_history_contiguous_pixel_blocks_v1",
+-                "history_states": 12, "status": "RUNNING"}
++                "history_states": 12, "ocr_workers": args.ocr_workers,
++                "ocr_queue_size": args.ocr_queue_size,
++                "vl_enabled": vl_enabled, "visual_transport": "RAM PNG bytes over IPC; evidence in JSONL",
++                "cards_enabled": cards_enabled, "card_recognition_mode": "PIXEL_ONLY",
++                "rank_ncc_config": str(args.rank_ncc_config.resolve()),
++                "rank_ncc_config_sha256": hashlib.sha256(args.rank_ncc_config.read_bytes()).hexdigest(),
++                "vl_input_scope": "DISABLED", "board_roi_vl_enabled": False,
++                "vl_workers": args.vl_workers, "vl_queue_size": args.vl_queue_size,
++                "vl_batch_size": args.vl_batch_size, "visual_workers": args.visual_workers,
++                "card_workers": args.card_workers,
++                "card_hybrid_config": str(args.card_hybrid_config.resolve()),
++                "suit_backup_config": str(args.suit_backup_config.resolve()),
++                "production_code_sha256": {relative: hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
++                    for relative in ("scripts/run_smoke14_ram.py", "parser_core/ram_first_stage.py",
++                        "parser_core/parallel_ocr.py", "parser_core/visual_tile_queue.py",
++                        "parser_core/temporal_overlap.py",
++                        "parser_core/poker_pipeline.py", "parser_core/poker_hand_assembly.py",
++                        "parser_core/poker_logic_engine.py", "parser_core/poker_math_engine.py",
++                        "parser_core/poker_card_engine.py", "parser_core/poker_diagnostics.py",
++                        "parser_core/rank_ncc.py", "parser_core/component_suit.py",
++                        "parser_core/card_hybrid.py",
++                        "parser_core/board_tiles.py", "parser_core/suit_backup.py",
++                        "parser_core/visual_cards.py", "scripts/build_smoke14_ram_workbook.mjs")},
++                "ncc_config_sha256": hashlib.sha256(args.suit_backup_config.read_bytes()).hexdigest(),
++                "timeline_dedup": "NATIVE_GLYPH_NCC_IMMUTABLE_HAND_CONTEXT",
++                "poker_analysis": "STRICT_SOURCE_ASSEMBLY_LOGIC_MATH_PIXEL_CARDS",
++                "status": "RUNNING"}
+     (output / "run_metadata.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2), "utf-8")
+     try:
++        ocr = ParallelRowOCR(client_factory, workers=args.ocr_workers,
++                             queue_size=args.ocr_queue_size,
++                             batch_size=int(config["batch_size"]))
++        gpu_dispatcher = None
++        vl = (VisualTileQueue(None, output, workers=args.visual_workers,
++                              queue_size=args.vl_queue_size,
++                              card_hybrid_config=args.card_hybrid_config,
++                              suit_backup_config=args.suit_backup_config,
++                              rank_ncc_config=args.rank_ncc_config,
++                              image_transport="ram", card_workers=args.card_workers)
++              if cards_enabled else None)
++        runtime_state.update(ocr=ocr, vl=vl, phase="capture")
++        batch_size = int(config["batch_size"])
++        first_table_batch = []
++        submitted_first_table = []
+         tick = time.perf_counter()
++        capture_started = tick
++        telemetry.capture_started = capture_started
+         for row in stage.rows():
+             rows.append(row)
++            temporal.emitted(row)
++            if vl is not None:
++                vl.submit(row)
++            if row.table_id == 1:
++                first_table_batch.append(row)
++                if len(first_table_batch) == batch_size:
++                    ocr.submit_batch(first_table_batch)
++                    submitted_first_table.extend(first_table_batch)
++                    first_table_batch = []
+             if len(rows) % 100 == 0:
+                 rss = process.memory_info().rss
+                 ram_peak = max(ram_peak, rss)
++                child_rss = 0
++                for child in process.children(recursive=True):
++                    try:
++                        child_rss += child.memory_info().rss
++                    except psutil.Error:
++                        pass
++                pipeline_rss_peak = max(pipeline_rss_peak, rss + child_rss)
+                 rss_samples.append(rss)
+         first_stage_wall = time.perf_counter() - tick
++        capture_finished = time.perf_counter()
++        runtime_state["phase"] = "tiny_drain"
+         telemetry.add("first_stage_total", first_stage_wall, stage.seen_frames)
++        if stage.seen_frames != args.frames:
++            raise ValueError(f"Source ended after {stage.seen_frames}, expected {args.frames} frames")
+         ram_peak = max(ram_peak, process.memory_info().rss)
+         # Row order is fixed before OCR. The worker's completion order cannot
+         # alter chronology because outputs are mapped back to stable row keys.
+         tick = time.perf_counter()
+         rows.sort(key=lambda r: (r.table_id, r.frame_id, r.source_span_index))
+         telemetry.add("ordering_rows", time.perf_counter() - tick, len(rows))
+-        batch_size = int(config["batch_size"])
+-        recognized = {}
+-        for offset in range(0, len(rows), batch_size):
+-            batch = rows[offset:offset + batch_size]
+-            prepared = []
+-            for row in batch:
+-                tick = time.perf_counter()
+-                ok, packed = cv2.imencode(".png", row.pixels)
+-                if not ok:
+-                    raise ValueError("RAM row PNG encode failed")
+-                prepared.append({"item_id": f"{row.table_id}:{row.frame_id}:{row.source_span_index}",
+-                                 "png_base64": base64.b64encode(packed).decode("ascii"),
+-                                 "source_sha256": row.pixel_sha256})
+-                telemetry.add("ocr_ram_input_encode", time.perf_counter() - tick)
+-            tick = time.perf_counter()
+-            try:
+-                response = client.read_batch(prepared, batch_size)
+-                telemetry.add("ocr_worker_roundtrip", time.perf_counter() - tick, len(batch))
+-                telemetry.add("ocr_inference_worker_reported", response["inference_seconds"], len(batch))
+-                by_id = {item["item_id"]: item for item in response["results"]}
+-            except Exception as exc:
+-                errors.append({"batch_offset": offset, "error": repr(exc)})
+-                by_id = {}
+-            tick = time.perf_counter()
+-            for item in prepared:
+-                recognized[item["item_id"]] = by_id.get(item["item_id"], {
+-                    "status": "ERROR", "raw_text": "", "score": None,
+-                    "error": "WORKER_BATCH_FAILED_OR_RESULT_MISSING"})
+-            telemetry.add("ocr_response_map", time.perf_counter() - tick, len(batch))
+-            ram_peak = max(ram_peak, process.memory_info().rss)
+-        client.close()
++        # The established model saw globally sorted batches of eight. Dispatch
++        # complete first-table batches during capture, then preserve every
++        # remaining batch boundary (including the table 1/2 boundary).
++        offset = len(submitted_first_table)
++        if [row_key(row) for row in rows[:offset]] != [row_key(row) for row in submitted_first_table]:
++            raise ValueError("First-table OCR batch order differs from stable row order")
++        for start in range(offset, len(rows), batch_size):
++            ocr.submit_batch(rows[start:start + batch_size])
++        ocr.finish()
++        ocr_finished = max((end for _, end, _ in ocr.spans), default=time.perf_counter())
++        recognized = ocr.results
++        runtime_state["phase"] = "event_assembly"
++        errors.extend(ocr.errors)
++        with (output / "physical_rows.jsonl").open("w", encoding="utf-8") as stream:
++            for row in rows:
++                stream.write(json.dumps({"row_key": row_key(row), "row_id": row.stable_row_id,
++                    "table_id": row.table_id, "table_session_id": row.session_id,
++                    "frame_id": row.frame_id, "source_span_index": row.source_span_index,
++                    "y1": row.y1, "epoch": row.epoch, "origin": row.origin,
++                    "source_pts": row.source_pts, "time_base_num": row.time_base_num,
++                    "time_base_den": row.time_base_den, "row_pixel_sha256": row.pixel_sha256,
++                    "pixel_shape": list(row.pixels.shape), "pixel_dtype": str(row.pixels.dtype),
++                    "row_pixels_base64": base64.b64encode(row.pixels.tobytes()).decode("ascii")},
++                    ensure_ascii=False) + "\n")
++        with (output / "raw_ocr_results.jsonl").open("w", encoding="utf-8") as stream:
++            for row in rows:
++                stream.write(json.dumps({"row_key": row_key(row),
++                    "row_id": row.stable_row_id, "table_id": row.table_id, "epoch": row.epoch,
++                    "table_session_id": row.session_id, "frame_id": row.frame_id,
++                    "source_span_index": row.source_span_index,
++                    "source_pts": row.source_pts, "time_base_num": row.time_base_num,
++                    "time_base_den": row.time_base_den,
++                    "row_pixel_sha256": row.pixel_sha256,
++                    "raw_ocr_response": recognized.get(row_key(row))}, ensure_ascii=False) + "\n")
++        ocr_overlap = sum(max(0, min(end, capture_finished) - start)
++                          for start, end, _ in ocr.spans)
++        overlap_intervals = sorted((max(start, capture_started), min(end, capture_finished))
++                                   for start, end, _ in ocr.spans if start < capture_finished)
++        overlap_wall = 0.0
++        merged_end = capture_started
++        for start, end in overlap_intervals:
++            if end > merged_end:
++                overlap_wall += end - max(start, merged_end)
++                merged_end = end
+         for row in rows:
+-            key = f"{row.table_id}:{row.frame_id}:{row.source_span_index}"
+-            result = recognized[key]
++            key = row_key(row)
++            result = recognized.get(key, {"status": "ERROR", "raw_text": "", "score": None,
++                                          "error": "OCR_WORKER_DID_NOT_RETURN"})
+             raw = result.get("raw_text") or ""
+             tick = time.perf_counter()
+             candidate = normalize([raw])
+@@ -163,11 +386,22 @@ def main():
+                              "stable_row_id": row.stable_row_id})
+         tick = time.perf_counter()
+         timeline.sort(key=lambda x: (x["table_id"], x["frame_id"], x["row_index"]))
++        timeline_before_dedup = len(timeline)
++        dedup_started = time.perf_counter()
++        timeline, dedup = temporal.reduce(timeline, sessions, ocr_status={
++            row.stable_row_id: recognized.get(row_key(row), {}).get("status", "ERROR")
++            for row in rows})
++        telemetry.add("temporal_overlap_dedup", time.perf_counter() - dedup_started,
++                      timeline_before_dedup)
++        for name, evidence in (("removed_duplicates.jsonl", dedup.removals),
++                               ("context_decisions.jsonl", dedup.decisions)):
++            with (output / name).open("w", encoding="utf-8") as stream:
++                for decision in evidence:
++                    stream.write(json.dumps(decision, ensure_ascii=False) + "\n")
+         for index, item in enumerate(timeline, 1):
+             item["sequence_id"] = index
+         telemetry.add("timeline_sort_and_sequence", time.perf_counter() - tick, len(timeline))
+-        # Message grouping is diagnostic; every physical row remains in the
+-        # primary timeline even when grouping or classification is uncertain.
++        # Group and project only the retained timeline; all raw evidence remains.
+         tick = time.perf_counter()
+         message_counts = {}
+         for table_id in sorted({x["table_id"] for x in timeline}):
+@@ -190,23 +424,77 @@ def main():
+                     item["message_status"] = message.completeness
+                     item["message_reason"] = message.reason or ""
+         telemetry.add("message_grouping", time.perf_counter() - tick, len(timeline))
++        if vl is not None:
++            runtime_state["phase"] = "vl_drain"
++            vl.finish()
++            if gpu_dispatcher is not None:
++                gpu_dispatcher.close()
++            associate_visual_evidence(timeline, vl.results)
++            project_chat_card_events(timeline, vl.results)
++            vl.write_evidence(output / "visual_evidence.jsonl")
++        runtime_state["phase"] = "poker_analysis"
++        tick = time.perf_counter()
++        hand_records, hand_summary = analyze_timeline(timeline, ocr_status={
++            row.stable_row_id: recognized.get(row_key(row), {}).get("status", "ERROR")
++            for row in rows})
++        telemetry.add("poker_analysis", time.perf_counter() - tick, len(hand_records))
++        for name, records in (("hand_analysis.jsonl", hand_records),
++                              ("validated_hands.jsonl", [r for r in hand_records if r["fully_validated"]])):
++            with (output / name).open("w", encoding="utf-8") as stream:
++                for record in records:
++                    stream.write(json.dumps(record, ensure_ascii=False, allow_nan=False) + "\n")
++        (output / "hand_summary.json").write_text(
++            json.dumps(hand_summary, ensure_ascii=False, indent=2, allow_nan=False), "utf-8")
+         tick = time.perf_counter()
+         with (output / "ordered_timeline.jsonl").open("w", encoding="utf-8") as stream:
+             for item in timeline:
+                 stream.write(json.dumps(item, ensure_ascii=False) + "\n")
+         telemetry.add("jsonl_write", time.perf_counter() - tick, len(timeline))
+         tick = time.perf_counter()
++        runtime_state["phase"] = "excel_export"
+         subprocess.run([str(args.node), str(ROOT / "scripts/build_smoke14_ram_workbook.mjs"),
+-                        str(output / "ordered_timeline.jsonl"), str(output / "ordered_timeline.xlsx")],
++                        str(output / "ordered_timeline.jsonl"), str(output / "ordered_timeline.xlsx"),
++                        str(output / "visual_evidence.jsonl") if vl is not None else "",
++                        str(output / "hand_analysis.jsonl")],
+                        cwd=ROOT, check=True)
+         telemetry.add("excel_builder_process", time.perf_counter() - tick, len(timeline))
+-        status = "COMPLETE"
++        if errors or any(item["status"] == "ERROR" for item in recognized.values()):
++            status = "PARTIAL_OCR_ERROR"
++        elif vl is not None and any(item.get("status") != "RAW_UNREVIEWED"
++                                      for item in vl.results.values()):
++            status = "PARTIAL_VISUAL"
++        else:
++            status = "COMPLETE"
+     except BaseException as exc:
+         errors.append({"fatal": repr(exc)})
+         raise
+     finally:
+-        client.close()
++        original_exception = sys.exc_info()[1]
++        final_guard_failure = None
++        if "ocr" in locals() and any(thread.is_alive() for thread in ocr._threads):
++            ocr.finish()
++        if "vl" in locals() and vl is not None and any(thread.is_alive() for thread in vl._threads):
++            vl.finish()
++        if "gpu_dispatcher" in locals() and gpu_dispatcher is not None:
++            gpu_dispatcher.close()
++        runtime_state["phase"] = status
++        resource_stop.set()
++        resource_thread.join()
++        with (output / "resource_samples.csv").open("w", encoding="utf-8", newline="") as stream:
++            writer = csv.DictWriter(stream, fieldnames=["elapsed_seconds", "pipeline_rss_mb",
++                "cpu_percent_sum", "read_bytes_sum", "write_bytes_sum", "gpu_util_percent",
++                "gpu_memory_used_mb", "gpu_memory_total_mb"])
++            writer.writeheader()
++            writer.writerows(resource_samples)
+         wall = time.perf_counter() - wall_start
++        try:
++            production_guard.finish(stage.seen_frames, locals().get("first_stage_wall", wall), wall,
++                                    process.io_counters().write_bytes-io_start.write_bytes)
++        except RuntimeError as guard_error:
++            # Preserve the original abort and still write FAILED/fatal artifacts.
++            errors.append({"production_guard": str(guard_error)})
++            status = "FAILED"
++            final_guard_failure = guard_error
+         io_end = process.io_counters()
+         files = [p for p in output.rglob("*") if p.is_file()]
+         png_files = [p for p in files if p.suffix.lower() == ".png"]
+@@ -220,25 +508,115 @@ def main():
+                    "process_cpu_seconds": time.process_time() - cpu_start,
+                    "average_rss_mb": statistics.fmean(rss_samples) / 1048576 if rss_samples else None,
+                    "peak_rss_mb": ram_peak / 1048576,
++                   "peak_pipeline_rss_mb_sampled": pipeline_rss_peak / 1048576,
++                   "peak_pipeline_rss_mb": resource_peak["rss_bytes"] / 1048576,
++                   "peak_pipeline_cpu_percent_sampled": resource_peak["cpu_percent"],
++                   "pipeline_cpu_percent_mean_sampled": statistics.fmean(x["cpu_percent_sum"] for x in resource_samples) if resource_samples else None,
++                   "peak_gpu_util_percent_sampled": max((x["gpu_util_percent"] for x in resource_samples
++                       if x["gpu_util_percent"] is not None), default=None),
++                   "peak_gpu_memory_used_mb_sampled": max((x["gpu_memory_used_mb"] for x in resource_samples
++                       if x["gpu_memory_used_mb"] is not None), default=None),
++                   "gpu_sample_count": sum(x["gpu_util_percent"] is not None for x in resource_samples),
+                    "disk_read_bytes": io_end.read_bytes - io_start.read_bytes,
+                    "disk_write_bytes": io_end.write_bytes - io_start.write_bytes,
++                   "pipeline_disk_read_bytes_sampled": max((x["read_bytes_sum"] for x in resource_samples), default=0),
++                   "pipeline_disk_write_bytes_sampled": max((x["write_bytes_sum"] for x in resource_samples), default=0),
+                    "files_created": len(files), "png_files": len(png_files),
+                    "png_bytes": sum(p.stat().st_size for p in png_files),
+                    "table_count": len(sessions), "table_changes": stage.metrics["changed_table_rois"],
+                    "chat_changes": stage.metrics["changed_chat_rois"],
+                    "physical_rows": len(rows), "ocr_calls": len(rows),
+                    "timeline_rows": len(timeline), "message_counts": locals().get("message_counts", {}),
++                   "timeline_rows_before_dedup": locals().get("timeline_before_dedup", len(timeline)),
++                   "dedup_removed_rows": len(dedup.removals) if "dedup" in locals() else 0,
++                   "dedup_visible_blocks": dedup.block_count if "dedup" in locals() else 0,
++                   "dedup_compressed_ram_bytes": temporal.compressed_bytes,
++                   "poker_analysis": locals().get("hand_summary"),
+                    "unknown_rows": sum(x["event_type"] == "UNKNOWN_EVENT" for x in timeline),
+                    "unresolved_rows": sum(x["status"] == "UNRESOLVED" for x in timeline),
+                    "error_rows": sum(x["status"] == "ERROR" for x in timeline),
+-                   "retry_count": 0, "queue_wait_seconds": 0.0,
+-                   "queue_wait_note": "single synchronous OCR worker; no application queue",
++                   "retry_count": 0, "ocr_workers": args.ocr_workers,
++                   "ocr_queue_size": args.ocr_queue_size,
++                   "max_ocr_queue": ocr.max_queue if "ocr" in locals() else None,
++                   "max_ocr_queue_unit": "batches",
++                   "ocr_wall_seconds": (ocr_finished - ocr.first_started if "ocr_finished" in locals()
++                                        and ocr.first_started is not None else None),
++                   "ocr_throughput_rows_per_second": (len(rows) / (ocr_finished - ocr.first_started)
++                                                      if "ocr_finished" in locals() and
++                                                      ocr.first_started is not None and
++                                                      ocr_finished > ocr.first_started else None),
++                   "ocr_capture_overlap_worker_seconds": locals().get("ocr_overlap"),
++                   "ocr_capture_overlap_wall_seconds": locals().get("overlap_wall"),
++                   "ocr_started_during_capture": ("capture_finished" in locals() and
++                                                  ocr.first_started is not None and
++                                                  ocr.first_started < capture_finished),
++                   "vl_workers": args.vl_workers, "vl_batch_size": args.vl_batch_size,
++                   "visual_workers": args.visual_workers, "card_workers": args.card_workers,
++                   "vl_gpu_startup_seconds": gpu_dispatcher.startup_seconds if "gpu_dispatcher" in locals() and gpu_dispatcher is not None else None,
++                   "vl_gpu_batch_sizes": gpu_dispatcher.batch_sizes if "gpu_dispatcher" in locals() and gpu_dispatcher is not None else [],
++                   "vl_gpu_batch_worker_seconds": sum(end-start for start, end in gpu_dispatcher.spans) if "gpu_dispatcher" in locals() and gpu_dispatcher is not None else 0,
++                   "max_gpu_request_queue": gpu_dispatcher.max_queue if "gpu_dispatcher" in locals() and gpu_dispatcher is not None else 0,
++                   "vl_jobs": (sum(not key.startswith("MISSING:") for key in vl.results)
++                               if "vl" in locals() and vl is not None else 0),
++                   "vl_model_responses": (sum(isinstance(item.get("raw_vl_response"), dict)
++                                              for item in vl.results.values())
++                                          if "vl" in locals() and vl is not None else 0),
++                   "vl_missing_event_evidence": (sum(key.startswith("MISSING:") for key in vl.results)
++                                                 if "vl" in locals() and vl is not None else 0),
++                   "vl_board_jobs": (sum(item.get("type") == "BOARD" and
++                                         not key.startswith("MISSING:")
++                                         for key, item in vl.results.items())
++                                     if "vl" in locals() and vl is not None else 0),
++                   "vl_showdown_jobs": (sum(item.get("type") == "SHOWDOWN" and
++                                            not key.startswith("MISSING:")
++                                            for key, item in vl.results.items())
++                                        if "vl" in locals() and vl is not None else 0),
++                   "vl_unresolved_jobs": (sum(item.get("status") == "UNRESOLVED" and
++                                               not key.startswith("MISSING:")
++                                               for key, item in vl.results.items())
++                                          if "vl" in locals() and vl is not None else 0),
++                   "max_vl_queue": vl.max_queue if "vl" in locals() and vl is not None else 0,
++                   "vl_wall_seconds": (max(end for _, end in vl.spans) - min(start for start, _ in vl.spans)
++                                       if "vl" in locals() and vl is not None and vl.spans else None),
++                   "vl_requests_per_second": (len(vl.spans) /
++                                              (max(end for _, end in vl.spans) - min(start for start, _ in vl.spans))
++                                              if "vl" in locals() and vl is not None and len(vl.spans) > 1 else None),
++                   "vl_errors": vl.errors if "vl" in locals() and vl is not None else [],
++                   "board_crop_worker_seconds": (sum(x.get("board_crop_elapsed_seconds", 0)
++                       for x in vl.results.values() if x.get("crop_type") == "BOARD")
++                       if "vl" in locals() and vl is not None else 0),
++                   "board_vl_worker_seconds": (sum(x.get("board_vl_elapsed_seconds", 0)
++                       for x in vl.results.values() if x.get("crop_type") == "BOARD")
++                       if "vl" in locals() and vl is not None else 0),
++                   "card_hybrid_rows": (sum(bool(x.get("hybrid")) for x in vl.results.values())
++                                        if "vl" in locals() and vl is not None else 0),
++                   "card_hybrid_proposed_rows": (sum(bool(x.get("hybrid", {}).get("cards"))
++                                                 for x in vl.results.values())
++                                                 if "vl" in locals() and vl is not None else 0),
++                   "card_published_rows": (sum(x.get("card_reader") in {"vl_rank_template_suit_v1", "pixel_rank_ncc_template_suit_v1"}
++                       and x.get("status") == "RAW_UNREVIEWED" for x in vl.results.values())
++                       if "vl" in locals() and vl is not None else 0),
++                   "card_hybrid_unresolved_reasons": (dict(Counter(x["hybrid"].get("reason")
++                       for x in vl.results.values() if x.get("hybrid") and x["hybrid"].get("reason")))
++                       if "vl" in locals() and vl is not None else {}),
++                   "suit_backup_decisions": (dict(Counter(t.get("suit_source")
++                       for x in vl.results.values() for t in x.get("hybrid", {}).get("tiles", [])))
++                       if "vl" in locals() and vl is not None else {}),
++                   "card_tile_count": (sum(len(x.get("hybrid", {}).get("tiles", []))
++                       for x in vl.results.values()) if "vl" in locals() and vl is not None else 0),
++                   "card_hybrid_worker_seconds": (sum(end-start for start, end in vl.hybrid_spans)
++                       if "vl" in locals() and vl is not None else 0),
++                   "card_hybrid_rows_per_worker_second": (
++                       len(vl.hybrid_spans) / sum(end-start for start, end in vl.hybrid_spans)
++                       if "vl" in locals() and vl is not None and vl.hybrid_spans else None),
+                    "errors": errors, "first_stage_counts": dict(stage.metrics)}
+         (output / "module_timings.json").write_text(json.dumps(telemetry.report(wall), indent=2), "utf-8")
+         (output / "final_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), "utf-8")
+         (output / "errors_retries.json").write_text(json.dumps({"errors": errors, "retries": 0}, ensure_ascii=False, indent=2), "utf-8")
+         metadata["status"] = status
+         (output / "run_metadata.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2), "utf-8")
++        if final_guard_failure is not None and original_exception is None:
++            raise final_guard_failure
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/scripts/vl_chat_worker.py b/scripts/vl_chat_worker.py
+index 8f8b116..93a022f 100644
+--- a/scripts/vl_chat_worker.py
++++ b/scripts/vl_chat_worker.py
+@@ -3,6 +3,7 @@
+ from __future__ import annotations
+ 
+ import argparse
++import base64
+ import hashlib
+ import io
+ import json
+@@ -21,6 +22,18 @@ def emit(value: dict) -> None:
+     print(json.dumps(value, ensure_ascii=False), flush=True)
+ 
+ 
++def request_image_bytes(request: dict) -> bytes:
++    if ("path" in request) == ("png_base64" in request):
++        raise ValueError("VL request must contain exactly one image transport")
++    if "png_base64" in request:
++        source = base64.b64decode(request["png_base64"], validate=True)
++    else:
++        source = Path(request["path"]).resolve(strict=True).read_bytes()
++    if hashlib.sha256(source).hexdigest() != request["source_sha256"]:
++        raise ValueError("Source crop SHA256 mismatch")
++    return source
++
++
+ def main() -> None:
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--model-dir", type=Path, required=True)
+@@ -46,10 +59,14 @@ def main() -> None:
+         def __init__(self, seconds: int):
+             self.end = time.perf_counter() + seconds
+             self.hit = False
++            self.memory_hit = False
++            self.free_min = torch.cuda.mem_get_info()[0]
+ 
+         def __call__(self, input_ids, scores, **kwargs):
+             self.hit = time.perf_counter() > self.end
+-            return self.hit
++            self.free_min = min(self.free_min, torch.cuda.mem_get_info()[0])
++            self.memory_hit = self.free_min < 768*1048576
++            return self.hit or self.memory_hit
+ 
+     if not torch.cuda.is_available():
+         raise RuntimeError("CUDA unavailable for PaddleOCR-VL")
+@@ -63,53 +80,90 @@ def main() -> None:
+           file=sys.stderr, flush=True)
+     sys.stdout.reconfigure(encoding="utf-8")
+     sys.stdin.reconfigure(encoding="utf-8")
+-    emit({"type": "ready", "model_dir": str(model_dir)})
+-    for line in sys.stdin:
+-        request = {}
+-        try:
+-            request = json.loads(line)
+-            path = Path(request["path"]).resolve(strict=True)
+-            source = path.read_bytes()
+-            if hashlib.sha256(source).hexdigest() != request["source_sha256"]:
+-                raise ValueError("Source crop SHA256 mismatch")
++    emit({"type": "ready", "model_dir": str(model_dir),
++          "startup_s": time.perf_counter()-startup_started})
++
++    def infer(requests):
++        if not 1 <= len(requests) <= 8:
++            raise ValueError("VL batch must contain 1..8 images")
++        messages = []
++        for request in requests:
++            source = request_image_bytes(request)
+             with Image.open(io.BytesIO(source)) as opened:
+                 image = opened.convert("RGB")
++            board_sha = request.get("board_sha")
++            if board_sha is not None and hashlib.sha256(image.tobytes()).hexdigest() != board_sha:
++                raise ValueError("BOARD pixel SHA256 mismatch")
+             trim = int(request.get("right_trim_px", 12))
+             if not 0 <= trim < image.width:
+                 raise ValueError("Invalid right-edge trim")
+-            image = image.crop((0, 0, image.width - trim, image.height))
+-            start = time.perf_counter()
+-            messages = [{"role": "user", "content": [
+-                {"type": "image", "image": image}, {"type": "text", "text": "OCR:"},
+-            ]}]
+-            inputs = processor.apply_chat_template(
+-                messages, add_generation_prompt=True, tokenize=True,
+-                return_dict=True, return_tensors="pt",
+-                images_kwargs={"size": {
+-                    "shortest_edge": processor.image_processor.min_pixels,
+-                    "longest_edge": 1280 * 28 * 28,
+-                }},
+-            ).to(model.device)
+-            deadline = Deadline(120)
+-            with torch.inference_mode():
+-                outputs = model.generate(
+-                    **inputs, max_new_tokens=args.max_new_tokens,
+-                    do_sample=False, use_cache=True,
+-                    stopping_criteria=StoppingCriteriaList([deadline]),
+-                )
+-            generated = outputs[0][inputs["input_ids"].shape[-1]:]
+-            text = processor.decode(generated, skip_special_tokens=True).strip()
+-            status = ("TIME_LIMIT" if deadline.hit else
+-                      "TOKEN_LIMIT" if len(generated) >= args.max_new_tokens else
+-                      "OK" if text else "EMPTY")
+-            emit({"type": "result", "request_id": request["request_id"],
+-                  "status": status, "raw_text": text,
+-                  "elapsed_s": time.perf_counter() - start,
+-                  "new_tokens": len(generated)})
+-            del inputs, outputs, generated
++            image = image.crop((0, 0, image.width-trim, image.height))
++            prompt = request.get("prompt", "OCR:")
++            if not isinstance(prompt, str) or not prompt or len(prompt) > 500:
++                raise ValueError("Invalid VL prompt")
++            messages.append([{"role": "user", "content": [
++                {"type": "image", "image": image}, {"type": "text", "text": prompt}]}])
++        start = time.perf_counter()
++        kwargs = {"add_generation_prompt": True, "tokenize": True,
++            "return_dict": True, "return_tensors": "pt", "images_kwargs": {"size": {
++                "shortest_edge": processor.image_processor.min_pixels,
++                "longest_edge": 1280*28*28}}}
++        if len(requests) > 1:
++            kwargs["padding"] = True
++        inputs = processor.apply_chat_template(
++            messages[0] if len(requests) == 1 else messages, **kwargs).to(model.device)
++        deadline = Deadline(120)
++        with torch.inference_mode():
++            outputs = model.generate(**inputs, max_new_tokens=args.max_new_tokens,
++                do_sample=False, use_cache=True,
++                stopping_criteria=StoppingCriteriaList([deadline]))
++        generated = outputs[:, inputs["input_ids"].shape[-1]:]
++        eos = model.generation_config.eos_token_id
++        eos = [eos] if isinstance(eos, int) else (eos or [])
++        duration = time.perf_counter()-start
++        results = []
++        for request, sequence in zip(requests, generated):
++            tokens = sequence.tolist()
++            if len(requests) > 1:
++                end = next((i+1 for i, token in enumerate(tokens) if token in eos), len(tokens))
++                tokens = tokens[:end]
++            text = processor.decode(tokens, skip_special_tokens=True).strip()
++            status = ("MEMORY_GUARD" if deadline.memory_hit else "TIME_LIMIT" if deadline.hit else
++                      "TOKEN_LIMIT" if len(tokens) >= args.max_new_tokens else "OK" if text else "EMPTY")
++            results.append({"type": "result", "request_id": request["request_id"],
++                "status": status, "raw_text": text, "source_sha256": request["source_sha256"],
++                "board_sha": request.get("board_sha"), "board_evidence_id": request.get("board_evidence_id"),
++                "elapsed_s": duration/len(requests), "batch_elapsed_s": duration,
++                "batch_size": len(requests), "new_tokens": len(tokens),
++                "stop_reason": "EOS" if tokens and tokens[-1] in eos else status,
++                "cuda_free_min_MiB": deadline.free_min/1048576})
++        del inputs, outputs, generated
++        return results
++
++    for line in sys.stdin:
++        request = {}
++        try:
++            request = json.loads(line)
++            if request.get("type") == "batch":
++                emit({"type": "batch_result", "batch_id": request["batch_id"],
++                      "results": infer(request["requests"])})
++            else:
++                emit(infer([request])[0])
+         except Exception:
++            error = traceback.format_exc()[-4000:]
++            if request.get("type") == "batch":
++                emit({"type": "batch_result", "batch_id": request.get("batch_id"),
++                    "results": [{"type": "result", "request_id": item.get("request_id"),
++                        "status": "ERROR", "raw_text": "", "error": error,
++                        "source_sha256": item.get("source_sha256")}
++                        for item in request.get("requests", [])]})
++                torch.cuda.empty_cache()
++                continue
+             emit({"type": "result", "request_id": request.get("request_id"),
+-                  "status": "ERROR", "raw_text": "", "error": traceback.format_exc()[-4000:]})
++                  "status": "ERROR", "raw_text": "", "error": error,
++                  "source_sha256": request.get("source_sha256"),
++                  "board_sha": request.get("board_sha"),
++                  "board_evidence_id": request.get("board_evidence_id")})
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/tests/test_board_tiles.py b/tests/test_board_tiles.py
+index 9e152b4..756d2ac 100644
+--- a/tests/test_board_tiles.py
++++ b/tests/test_board_tiles.py
+@@ -31,6 +31,7 @@ class BoardTilesTests(unittest.TestCase):
+         digest = hashlib.sha256(path.read_bytes()).hexdigest()
+         raw = "8 ♥ 9 ♣ 10 ♣ J ♠ Q ♣"
+         self.assertEqual(read_board_tiles(path, digest, raw).text, raw)
++        self.assertIsNone(read_board_tiles(path, digest, "8 ♥ 9 ♣ 2 ♣ J ♠ Q ♣"))
+         self.assertIsNone(read_board_tiles(path, digest, "8 ♥ 9 ♣"))
+         with self.assertRaises(ValueError):
+             read_board_tiles(path, "incorrect hash", raw)

@@ -1,0 +1,77 @@
+{
+  "scope": "OFFLINE_SHORT_AUTHORIZED_PREJOIN_REPROJECTION_NO_STACK_PROVIDER_NOT_OFFICIAL_RUN",
+  "projection_rows": 496,
+  "joined_rows": 520,
+  "projection_sha256": "123d283e89a82bbba44f5f266ceb9b7ca01a89597613c6c2285e907e5eac18ab",
+  "complete_contexts": 5,
+  "eligible_contexts": 5,
+  "reconstruction": {
+    "enabled": true,
+    "allow_logic_math_output": true,
+    "strict_source_uniqueness": true,
+    "engine_verdict": "NOT_PROVEN",
+    "hands_seen": 5,
+    "statuses": {
+      "RECOVERED_BY_LOGIC_MATH": 2,
+      "AUTO_RECOVERED": 2,
+      "AMBIGUOUS": 1
+    },
+    "output_eligible": 4,
+    "logic_math_candidates": 2,
+    "source_rows": 182,
+    "old_output_changed": false,
+    "start_stacks_joined": 0,
+    "stack_snapshot_candidates_joined": 0
+  },
+  "unknown_message_count": 11,
+  "blockers": {
+    "NO_UNIQUE_COMPLETE_EXACT_SOLUTION": 1,
+    "KEPT_SOURCE_COVERAGE_NOT_EXACT": 1,
+    "EXISTING_PRODUCTION_VALIDATION_UNRESOLVED": 1,
+    "EXACT_ELIGIBLE_ACCOUNTING_NOT_PROVEN": 1
+  },
+  "per_hand": [
+    {
+      "hand_id": "2878365559",
+      "reconstruction_status": "RECOVERED_BY_LOGIC_MATH",
+      "output_eligible": true,
+      "output_blockers": [],
+      "reconstruction_reason": "Unique maximal retained source sequence with legal state and exact eligible payouts"
+    },
+    {
+      "hand_id": "2878365610",
+      "reconstruction_status": "AUTO_RECOVERED",
+      "output_eligible": true,
+      "output_blockers": [],
+      "reconstruction_reason": "Unique maximal retained source sequence with legal state and exact eligible payouts"
+    },
+    {
+      "hand_id": "2878365755",
+      "reconstruction_status": "AUTO_RECOVERED",
+      "output_eligible": true,
+      "output_blockers": [],
+      "reconstruction_reason": "Unique maximal retained source sequence with legal state and exact eligible payouts"
+    },
+    {
+      "hand_id": "2878365529",
+      "reconstruction_status": "RECOVERED_BY_LOGIC_MATH",
+      "output_eligible": true,
+      "output_blockers": [],
+      "reconstruction_reason": "Unique maximal retained source sequence with legal state and exact eligible payouts"
+    },
+    {
+      "hand_id": "2878365523",
+      "reconstruction_status": "AMBIGUOUS",
+      "output_eligible": false,
+      "output_blockers": [
+        "NO_UNIQUE_COMPLETE_EXACT_SOLUTION",
+        "KEPT_SOURCE_COVERAGE_NOT_EXACT",
+        "EXISTING_PRODUCTION_VALIDATION_UNRESOLVED",
+        "EXACT_ELIGIBLE_ACCOUNTING_NOT_PROVEN"
+      ],
+      "reconstruction_reason": "Unparsed source or missing observed amount prevents exhaustive legal interpretation"
+    }
+  ],
+  "source_hashes_equal": true,
+  "wall_seconds": 2.0239497000002302
+}

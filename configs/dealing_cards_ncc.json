@@ -1,0 +1,96 @@
+{
+  "schema": "experimental.dealing-two-stage.v2",
+  "prefix_threshold": 0.9,
+  "margin_threshold": 0.2,
+  "absolute_word_threshold_diagnostic": 0.95,
+  "row_continuity_threshold": 0.985,
+  "minimum_overlap_rows": 3,
+  "consecutive_confirmations": 3,
+  "prefix_search_x": [
+    1,
+    97
+  ],
+  "word_search_x": [
+    88,
+    134
+  ],
+  "gate_rule": "Dealer_part AND Dealing_part >=same0.90; common shift derived from Dealer. Full prefix score remains diagnostic.",
+  "templates": {
+    "Dealer_Dealing": {
+      "path": "models/dealing_cards_ncc/Dealer_Dealing.png",
+      "file_sha256": "786f47ce10f8fad5580ea40416f4950bd65f977dc6d3fc0dc0e159e087555f3d",
+      "gray_sha256": "3785a7054de99d3f74398f02ab3978f6af2fff9e6549df2272e354be44cb5a68",
+      "shape": [
+        16,
+        87
+      ]
+    },
+    "Dealer_part": {
+      "path": "models/dealing_cards_ncc/Dealer_part.png",
+      "file_sha256": "f6d9644b9b4622e364faf7ce79241de84b68aed5cbcd800f07dda82731dba8ce",
+      "gray_sha256": "c6a1673869374104d93c9ca7eb0aa41503e5f5d3083a82c1183de89e9dd0c5bf",
+      "shape": [
+        16,
+        43
+      ]
+    },
+    "Dealing_part": {
+      "path": "models/dealing_cards_ncc/Dealing_part.png",
+      "file_sha256": "3622371fadd016a24d2629e27268e284e0270e216198b3c6a41184be2b7907ff",
+      "gray_sha256": "87c0440e4346f05444c25ae1c3506630a815ed39e605aa5849b61de5b96fea0c",
+      "shape": [
+        16,
+        44
+      ]
+    },
+    "cards": {
+      "path": "models/dealing_cards_ncc/cards.png",
+      "file_sha256": "37387bc37ed77e735fcfdf21ef831735116654f3d0151d6ee69245fa4b238193",
+      "gray_sha256": "265d19a0cc6afddac3ac41f0a6977f1b3034e2c7f92783dba889a4d3a6a699da",
+      "shape": [
+        16,
+        40
+      ]
+    },
+    "Turn": {
+      "path": "models/dealing_cards_ncc/Turn.png",
+      "file_sha256": "2fc0490783286cb3a8fddb83fee55da16e4efe945dafc6222b4c49be3b94ecdf",
+      "gray_sha256": "ebe3d14c29a140a4873f055b30f3e91b5de216c94b8812b6051401c9c4900f9e",
+      "shape": [
+        16,
+        40
+      ]
+    },
+    "Flop": {
+      "path": "models/dealing_cards_ncc/Flop.png",
+      "file_sha256": "316bccf0755963f71ea6e5b814a5f97693769c3eb09827ede2f400e325d3292c",
+      "gray_sha256": "ef2ca8f727801f980c1a55bffbbe276a91fff34ab8b7eefc00175af63c6c81da",
+      "shape": [
+        16,
+        40
+      ]
+    },
+    "River": {
+      "path": "models/dealing_cards_ncc/River.png",
+      "file_sha256": "8cad0a3abc5907b217354254655e002afae3348eee44b4215f0bf19325e61b1d",
+      "gray_sha256": "d8106a053e1198d2830d778c84b2258a8dfeff29ace93db0d249528cfc356f3a",
+      "shape": [
+        16,
+        40
+      ]
+    }
+  },
+  "source_prefix": {
+    "path": "C:\\ParserData\\runs\\smoke14_full_tiny_ssd_20260929_v3\\crops\\rows\\table_95984db438dc55f85dee9067\\000000681_018.png",
+    "file_sha256": "28502519c124e2ba697f3d4ecf213fed5217ce3891f75001a568855edb00993c",
+    "rect": [
+      4,
+      0,
+      91,
+      16
+    ]
+  },
+  "margin_policy": "Retain prior0.20diagnostic value; no selection of0.213..0.251separating interval from old20hands.",
+  "freeze_policy": "No tuning on regression or newheldout. Structural gate conjunction fixes known v1 Dealer dominance; v1 evidence retained. No template bank, scale normalization or intensity correction.",
+  "production_modified": false
+}

@@ -1,0 +1,234 @@
+{
+  "source_run": "runs\\smoke19_full_metrics_20261004",
+  "source_sha256": {
+    "start_stack_math.jsonl": "674d2c97f325322d48dbb8583dd9f3aee87fab3609e825d9ae94672592355076",
+    "canonical_forced_events.jsonl": "916bb7c430f1d4ef7436500f92d84689a175eda1f47ab69741a79b7a40cfe4a1"
+  },
+  "fact": {
+    "table": 9,
+    "session": "table_50cef80afeaffb41fd8d0e8f",
+    "hand_id": "2878366014",
+    "seat": "seat6",
+    "first_numeric_visible_frame": 2380,
+    "frames": [
+      2380,
+      2381,
+      2382
+    ],
+    "ocr_values": [
+      "58460",
+      "58460",
+      "58460"
+    ],
+    "displayed_stack": "58460",
+    "clean_window_rule": "FIRST_VISIBLE_STABLE_STACK_TRIPLE_AFTER_DEAL_COMPLETE",
+    "status": "PASS",
+    "blocker": null,
+    "displayed_stack_status": "VALID_FIXED_SEAT_ROI",
+    "deal_complete_frame": 2341,
+    "occupancy_epoch": "T09_SEAT6_EPOCH_1",
+    "participant_proven": true,
+    "standard_ante": 80,
+    "special_forced_seats_proven": true,
+    "auto_all_in_observed": false,
+    "sb_seat": "seat5",
+    "bb_seat": "seat6",
+    "sb_amount": 300,
+    "bb_amount": 600,
+    "binding_rule": "FIXED_SEAT_STANDARD_ANTE_WITH_PROVEN_SPECIAL_SEATS",
+    "forced_bets": {
+      "ANTE": 80,
+      "BB": 600
+    },
+    "forced_bets_debited_before_snapshot_proven": true,
+    "canonical_forced_event_ids": [
+      "CANONICAL_FORCED:b98d75c7b26647fa15d190b28cf56bf22c90b70eb61609c48cd77f735508e8a1",
+      "CANONICAL_FORCED:12f5e79a5108a2be8897fc0872ece61f4218a249e8ecfcce13568d5485501aec"
+    ],
+    "forced_truth": "CANONICAL_EVENTS",
+    "START_STACK": "59140",
+    "math_rule": "DISPLAYED_PLUS_PROVEN_PRE_SNAPSHOT_FORCED_DEBITS"
+  },
+  "events": [
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "hand_id": "2878366014",
+      "stable_row_id": "CANONICAL_FORCED:b98d75c7b26647fa15d190b28cf56bf22c90b70eb61609c48cd77f735508e8a1",
+      "frame_id": 2341,
+      "source_pts": 1198592,
+      "time_base": [
+        1,
+        15360
+      ],
+      "video_time": 78.03333333333333,
+      "row_index": 12,
+      "epoch": "T09_SEAT6_EPOCH_1",
+      "seat": "seat6",
+      "player": "u4itel88",
+      "amount": 80,
+      "action_type": "ANTE",
+      "raw_ocr_text": "Dealer: u4itel88 posts Ante 80",
+      "normalized_text": "Dealer: u4itel88 posts Ante 80",
+      "event_type": "ANTE",
+      "confidence": 0.9834514856338501,
+      "status": "BOUND_SOURCE",
+      "ocr_status": "OK",
+      "origin": "FORCED_SNAPSHOT",
+      "source_lane": "FORCED_SNAPSHOT",
+      "row_pixel_sha256": "6b2313bba9db1a780b86cf9b4e415e859187847bd46367063ac27c9ea58c569b",
+      "source_roi_change_id": "table_50cef80afeaffb41fd8d0e8f:2341:forced",
+      "notes_error": "SOURCE_OBSERVATION_TIME; PROVEN_BEFORE_DEAL_PREFIX",
+      "canonical_event_id": "CANONICAL_FORCED:b98d75c7b26647fa15d190b28cf56bf22c90b70eb61609c48cd77f735508e8a1",
+      "canonical_provenance": {
+        "post": {
+          "actor": "u4itel88",
+          "role": "ANTE",
+          "amount": 80,
+          "source_refs": [
+            "6b2313bba9db1a780b86cf9b4e415e859187847bd46367063ac27c9ea58c569b"
+          ],
+          "source_index": 12,
+          "phase": "BEFORE_DEAL",
+          "source_frame": 2341,
+          "source_pts": 1198592,
+          "time_base": [
+            1,
+            15360
+          ],
+          "table": 9,
+          "session": "table_50cef80afeaffb41fd8d0e8f",
+          "hand_id": "2878366014",
+          "seat": "seat6",
+          "epoch": "T09_SEAT6_EPOCH_1"
+        },
+        "binding_receipt": {
+          "table": 9,
+          "session": "table_50cef80afeaffb41fd8d0e8f",
+          "hand_id": "2878366014",
+          "actor": "u4itel88",
+          "seat": "seat6",
+          "epoch": "T09_SEAT6_EPOCH_1",
+          "binding_rule": "FIRST_EXACT_LABEL_HISTORICAL_EPOCH",
+          "forced_source_frame": 2341,
+          "label_confirmation_frame": 2373,
+          "binding_anchor_frame": 2373,
+          "label_evidence": [
+            {
+              "actor": "u4itel88",
+              "frames": [
+                2371,
+                2372,
+                2373
+              ],
+              "source_ref": "46c3e4363d206af956d749b5f72f19bfd200512748de549086479589b2e9f516"
+            }
+          ],
+          "forced_source_refs": [
+            [
+              "6b2313bba9db1a780b86cf9b4e415e859187847bd46367063ac27c9ea58c569b"
+            ],
+            [
+              "d03b69d4e0e9fc1d6a2ed77086984d8a3741269a2bae02e5a4b0cceea1f8d8ab"
+            ]
+          ],
+          "later_literal_conflicts": []
+        }
+      },
+      "canonical_stream_version": "canonical-source-join-v1",
+      "binding_status": "PROVEN_ACTOR_SEAT_HAND",
+      "action_onset_timestamp": null,
+      "sequence_id": 1536
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "hand_id": "2878366014",
+      "stable_row_id": "CANONICAL_FORCED:12f5e79a5108a2be8897fc0872ece61f4218a249e8ecfcce13568d5485501aec",
+      "frame_id": 2341,
+      "source_pts": 1198592,
+      "time_base": [
+        1,
+        15360
+      ],
+      "video_time": 78.03333333333333,
+      "row_index": 16,
+      "epoch": "T09_SEAT6_EPOCH_1",
+      "seat": "seat6",
+      "player": "u4itel88",
+      "amount": 600,
+      "action_type": "BIG_BLIND",
+      "raw_ocr_text": "Dealer: u4itel88 posts Big Blind 600",
+      "normalized_text": "Dealer: u4itel88 posts Big Blind 600",
+      "event_type": "BIG_BLIND",
+      "confidence": 0.9910335540771484,
+      "status": "BOUND_SOURCE",
+      "ocr_status": "OK",
+      "origin": "FORCED_SNAPSHOT",
+      "source_lane": "FORCED_SNAPSHOT",
+      "row_pixel_sha256": "d03b69d4e0e9fc1d6a2ed77086984d8a3741269a2bae02e5a4b0cceea1f8d8ab",
+      "source_roi_change_id": "table_50cef80afeaffb41fd8d0e8f:2341:forced",
+      "notes_error": "SOURCE_OBSERVATION_TIME; PROVEN_BEFORE_DEAL_PREFIX",
+      "canonical_event_id": "CANONICAL_FORCED:12f5e79a5108a2be8897fc0872ece61f4218a249e8ecfcce13568d5485501aec",
+      "canonical_provenance": {
+        "post": {
+          "actor": "u4itel88",
+          "role": "BB",
+          "amount": 600,
+          "source_refs": [
+            "d03b69d4e0e9fc1d6a2ed77086984d8a3741269a2bae02e5a4b0cceea1f8d8ab"
+          ],
+          "source_index": 16,
+          "phase": "BEFORE_DEAL",
+          "source_frame": 2341,
+          "source_pts": 1198592,
+          "time_base": [
+            1,
+            15360
+          ],
+          "table": 9,
+          "session": "table_50cef80afeaffb41fd8d0e8f",
+          "hand_id": "2878366014",
+          "seat": "seat6",
+          "epoch": "T09_SEAT6_EPOCH_1"
+        },
+        "binding_receipt": {
+          "table": 9,
+          "session": "table_50cef80afeaffb41fd8d0e8f",
+          "hand_id": "2878366014",
+          "actor": "u4itel88",
+          "seat": "seat6",
+          "epoch": "T09_SEAT6_EPOCH_1",
+          "binding_rule": "FIRST_EXACT_LABEL_HISTORICAL_EPOCH",
+          "forced_source_frame": 2341,
+          "label_confirmation_frame": 2373,
+          "binding_anchor_frame": 2373,
+          "label_evidence": [
+            {
+              "actor": "u4itel88",
+              "frames": [
+                2371,
+                2372,
+                2373
+              ],
+              "source_ref": "46c3e4363d206af956d749b5f72f19bfd200512748de549086479589b2e9f516"
+            }
+          ],
+          "forced_source_refs": [
+            [
+              "6b2313bba9db1a780b86cf9b4e415e859187847bd46367063ac27c9ea58c569b"
+            ],
+            [
+              "d03b69d4e0e9fc1d6a2ed77086984d8a3741269a2bae02e5a4b0cceea1f8d8ab"
+            ]
+          ],
+          "later_literal_conflicts": []
+        }
+      },
+      "canonical_stream_version": "canonical-source-join-v1",
+      "binding_status": "PROVEN_ACTOR_SEAT_HAND",
+      "action_onset_timestamp": null,
+      "sequence_id": 1540
+    }
+  ]
+}

@@ -6,6 +6,52 @@ from parser_core.normalize_chat import normalize
 
 
 class NormalizeChatTests(unittest.TestCase):
+    def test_smoke19_english_actions_preserve_literal_actor_and_amount(self):
+        for text, kind, actor, amount, role in [
+            ('Dealer: olpro folds', 'FOLD', 'olpro', None, None),
+            ('Dealer: alhevsk_dom calls 1 200', 'CALL', 'alhevsk_dom', '1200', 'CALL'),
+            ('Dealer: olpro checks', 'CHECK', 'olpro', None, None),
+            ('Dealer: alhevsk_dom raises to 1 200', 'RAISE', 'alhevsk_dom', '1200', 'RAISE_TO'),
+            ('Dealer: bop_bets 1 930', 'BET', 'bop_', '1930', 'BET'),
+            ("Dealer: bop_doesn't show cards", 'NO_SHOW', 'bop_', None, None),
+            ('Dealer: A posts Small Blind 300', 'SMALL_BLIND', 'A', '300', 'SMALL_BLIND'),
+            ('Dealer: A posts Big Blind 600', 'BIG_BLIND', 'A', '600', 'BIG_BLIND'),
+            ('Dealer: A posts ante 70', 'ANTE', 'A', '70', 'ANTE'),
+            ('Dealer: A wins 2 060 from the main pot', 'WIN', 'A', '2060', 'WIN_PAYOUT'),
+            ('Dealer: A gets uncalled bet 600 back', 'UNCALLED_RETURN', 'A', '600', 'UNCALLED_RETURN'),
+            ('Dealer: A shows [As Kd]', 'SHOW', 'A', None, None),
+        ]:
+            with self.subTest(text=text):
+                c = normalize([text])
+                self.assertEqual((c.event_type, c.actor, c.amount_decimal, c.amount_role),
+                                 (kind, actor, amount, role))
+
+    def test_english_bad_amount_and_nickname_verb_substrings_are_not_repaired(self):
+        for text in ['Dealer: A calls 100 20', 'Dealer: A bets ???', 'Dealer: A raises to 200 extra']:
+            self.assertIsNone(normalize([text]).amount_decimal)
+        self.assertEqual(normalize(['Dealer: callsign hello']).event_type, 'UNKNOWN_EVENT')
+        self.assertEqual(normalize(['Dealer: A posts Small', 'Blind 300']).event_type, 'SMALL_BLIND')
+        self.assertEqual(normalize(['Dealer: A calls 300 and is All-in']).amount_decimal, '300')
+        for nickname in ['folds', 'bets', 'calls']:
+            c = normalize([f'Дилер: {nickname} ставит 100'])
+            self.assertEqual((c.event_type, c.actor, c.amount_decimal), ('BET', nickname, '100'))
+        self.assertEqual(normalize(['Dealer: A folds and B calls 300']).event_type, 'UNKNOWN_EVENT')
+
+    def test_english_numbered_start_does_not_extract_money(self):
+        for text, kind in [('Hand #2878365444', 'HAND_HEADER'),
+                           ('Dealer: Starting a new hand #2878365444', 'NEW_HAND')]:
+            c = normalize([text])
+            self.assertEqual((c.event_type, c.hand_number), (kind, '2878365444'))
+            self.assertIsNone(c.amount_decimal)
+
+    def test_english_server_notice_is_not_a_player_action(self):
+        for text,kind in [('Dealer: olpro uses Time Bank','TABLE_INFO'),
+                          ('Dealer: Waiting for A to reconnect...','TABLE_INFO'),
+                          ('Dealer: Limits going up: stakes 300/600 ante 70','BLIND_LEVEL')]:
+            c=normalize([text])
+            self.assertEqual(c.event_type,kind)
+            self.assertIsNone(c.actor)
+            self.assertIsNone(c.amount_decimal)
     def test_raise_to_keeps_total_role(self):
         result = normalize(["[1:44] @ buddist1 повышает до 600"])
         self.assertEqual((result.event_type, result.actor, result.amount_decimal,

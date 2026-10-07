@@ -1,0 +1,672 @@
+Работаем в `D:\Новый парсер`.
+
+Цель: довести текущий production pipeline до полноценного HH на Smoke19.
+
+Не делать отдельные экспериментальные куски, которые потом не подключены.
+Не оставлять нужные модули выключенными.
+Все найденные баги исправить, все необходимые модули подключить в официальный production path, затем доказать качество на Smoke19.
+
+Главная цель:
+>=95% физически полных рук должны собираться в корректный HH.
+
+START_PARTIAL в начале видео и END_PARTIAL в конце видео:
+- не восстанавливать насильно;
+- не считать ошибкой;
+- не включать в denominator качества.
+
+==================================================
+1. ДОКАЗАННЫЙ ГЛАВНЫЙ БАГ
+==================================================
+
+На Smoke19 независимо подтверждено минимум 704 semantic omissions в CHAT.
+
+Из них:
+
+687 событий начала раздач:
+- 64 начала рук
+- 432 ANTE
+- 63 SB
+- 64 BB
+- 64 `Dealing cards`
+
+Ещё 17 других событий:
+- 7 выходов игроков со стола
+- 2 FOLD
+- 2 RETURN
+- 1 NO-SHOW / отказ показать карты
+- 3 SHOW
+- 2 WIN
+
+704 — подтверждённая нижняя граница.
+Полное число пропусков ещё не доказано.
+
+Ключевой доказанный пример:
+
+T01, frame 2085
+
+В source CHAT физически появился новый блок:
+- новый hand
+- ante
+- SB
+- BB
+- Dealing cards
+
+Но текущий tracker дал:
+
+classification = UNRESOLVED
+reason = INSUFFICIENT_CONFIDENT_ZONES
+OCR_queue_row_ids = []
+
+То есть реальные новые строки вообще не были отправлены в OCR.
+
+После admission потерь нет:
+
+1461 admitted rows
+→ 1461 OCR
+→ 1461 timeline
+
+Следовательно, главный root cause находится ДО OCR:
+CHAT admission / physical-row capture.
+
+==================================================
+2. ЧИНИТЬ НЕ ОТДЕЛЬНЫЕ ТИПЫ СОБЫТИЙ
+==================================================
+
+НЕ делать отдельные костыли под:
+- HEADER
+- ANTE
+- SB
+- BB
+- Dealing cards
+- FOLD
+- SHOW
+- WIN
+- RETURN
+
+До OCR система не знает текст строки.
+
+Нужно исправить общий принцип:
+
+ЕСЛИ ФИЗИЧЕСКИ ПОЯВИЛАСЬ НОВАЯ CHAT-СТРОКА,
+ОНА НЕ ДОЛЖНА МОЛЧА ИСЧЕЗАТЬ ТОЛЬКО ПОТОМУ,
+ЧТО transition не прошёл GLOBAL_SCROLL.
+
+==================================================
+3. GLOBAL_SCROLL НЕ ЛОМАТЬ
+==================================================
+
+GLOBAL_SCROLL:
+- не переписывать;
+- не ослаблять;
+- не менять thresholds;
+- не менять NCC;
+- не менять zonal checks;
+- не менять symmetry;
+- не менять старый admission path.
+
+Существующие proven GLOBAL cases должны остаться полностью идентичными.
+
+==================================================
+4. НОВЫЙ ОБЩИЙ FALLBACK ДЛЯ PHYSICALLY-NEW ROWS
+==================================================
+
+Если GLOBAL_SCROLL не доказан и transition классифицирован как:
+- LOCAL_CHANGE
+или
+- UNRESOLVED
+
+нужно отдельно проверить:
+появились ли физически новые row spans.
+
+Если новые строки доказаны пикселями/геометрией:
+- создать new row candidate;
+- отправить его в OCR;
+- не делать вид, что identity полностью доказана;
+- сохранить uncertainty/provenance;
+- не переиспользовать old ID, если связь не доказана;
+- не делать повторный OCR старых строк.
+
+Принцип:
+
+fail closed для identity,
+но НЕ fail silent для физически новой строки.
+
+==================================================
+5. PROVENANCE
+==================================================
+
+Для каждого fallback admission сохранять:
+
+- table
+- frame_before
+- frame_after
+- old classification
+- old reason
+- old spans
+- new spans
+- source pixel hashes
+- geometry
+- shift
+- retained-row evidence
+- generated row_id
+- OCR admission
+- uncertainty status
+- exact admission reason
+
+==================================================
+6. ОБЯЗАТЕЛЬНО РАЗОБРАТЬ ВСЕ 704 ДОКАЗАННЫХ OMISSIONS
+==================================================
+
+Использовать существующий аудит:
+
+`runs/chat_sequence_audit_20261006/`
+
+Особенно:
+- `verified_omissions.json`
+- `AUDIT_REPORT.md`
+- `audit.html`
+- `hand_review/`
+- `stitched_sequence/`
+- `recognized_sequence/`
+- `source_reconstruction/`
+
+Для 704 подтверждённых событий определить:
+
+- table
+- frame
+- event type
+- source pixels
+- был ли span физически новый
+- current tracker classification
+- current reason
+- был ли OCR admission
+- можно ли безопасно восстановить общим fallback
+
+Не форсировать неоднозначные случаи.
+
+==================================================
+7. PHYSICAL CHAT RECALL ПОСЛЕ FIX
+==================================================
+
+После реализации повторно пройти весь Smoke19.
+
+Считать не только admitted rows.
+
+Нужно измерить реальный physical recall.
+
+Отдельно:
+
+HAND_START:
+physical / admitted / OCR / timeline
+
+ANTE:
+physical / admitted / OCR / timeline
+
+SB:
+physical / admitted / OCR / timeline
+
+BB:
+physical / admitted / OCR / timeline
+
+DEALING_CARDS:
+physical / admitted / OCR / timeline
+
+FOLD
+RETURN
+SHOW
+WIN
+LEAVE
+и остальные найденные semantic events.
+
+Главная метрика:
+
+PHYSICAL_CHAT_RECALL =
+physical semantic events дошедшие до timeline
+/
+physical semantic events
+
+Цель:
+максимально близко к 100%.
+
+==================================================
+8. ПОДКЛЮЧИТЬ ВСЁ В PRODUCTION
+==================================================
+
+После исправления CHAT admission собрать единый официальный production path.
+
+Все необходимые модули для HH должны быть подключены одновременно.
+
+Обязательно ON:
+
+- CHAT capture
+- CHAT tracker
+- CHAT OCR
+- hand header evidence
+- hand number
+- hand-state trigger
+- forced-post evidence
+- ANTE
+- SB
+- BB
+- Dealing cards
+- nickname/player binding
+- seat binding
+- cards
+- board
+- showdown
+- STACK ROI
+- STACK visual tracker
+- digit gate
+- STACK OCR
+- batched SQLite stack timeline
+- STACK evidence provider
+- START_STACK
+- hand segmentation
+- streets
+- action reconstruction
+- poker logic
+- math validation
+- pot/stack consistency
+- final validator
+- HH export
+- performance diagnostics
+
+Не должно больше быть ситуации:
+“этот модуль был OFF”.
+
+==================================================
+9. СДЕЛАТЬ ОДИН ОФИЦИАЛЬНЫЙ РЕЖИМ
+==================================================
+
+Сделать единый production profile:
+
+`FULL_HH_PRODUCTION`
+
+Пользователь не должен помнить набор отдельных flags.
+
+Перед запуском выводить:
+
+CHAT: ON
+CHAT_OCR: ON
+HAND_HEADER: ON
+HAND_NUMBER: ON
+HAND_STATE_TRIGGER: ON
+FORCED_POSTS: ON
+DEALING_CARDS: ON
+CARDS: ON
+STACK: ON
+DIGIT_GATE: ON
+STACK_SQLITE: ON
+STACK_EVIDENCE: ON
+START_STACK: ON
+HAND_SEGMENTATION: ON
+POKER_LOGIC: ON
+MATH_VALIDATION: ON
+HH_EXPORT: ON
+PERFORMANCE_DIAGNOSTICS: ON
+
+Если обязательный модуль OFF:
+не запускать acceptance.
+
+Ошибка:
+`FULL_HH_PRODUCTION_INCOMPLETE`
+
+==================================================
+10. START_STACK
+==================================================
+
+Для каждой полной руки хочу START_STACK игроков.
+
+PokerDom displayed stack уже после списания ante/blinds.
+
+Поэтому если первое чистое наблюдение показывает X,
+и до него доказаны forced debits:
+
+START_STACK =
+displayed stack
++ proven ANTE
++ proven SB/BB
++ другие точно доказанные списания до snapshot
+
+Добровольные действия добавлять обратно только если:
+- actor доказан;
+- amount доказан;
+- порядок доказан.
+
+Если нет однозначности:
+UNKNOWN.
+
+Статусы:
+- PROVEN
+- SUPPORTED
+- UNKNOWN
+- CONFLICT
+
+Никаких догадок.
+
+==================================================
+11. ЧТО ДОЛЖНО БЫТЬ В HH
+==================================================
+
+Для каждой физически полной руки:
+
+- hand number
+- table
+- seats
+- nicknames
+- START_STACK каждого игрока
+- ANTE
+- SB
+- BB
+- PREFLOP actions
+- FLOP actions
+- TURN actions
+- RIVER actions
+- FOLD
+- CHECK
+- CALL
+- BET
+- RAISE
+- ALL-IN
+- RETURN
+- SHOW
+- MUCK
+- WIN
+- board
+- showdown
+- final pot
+
+Полная последовательность действий игроков.
+
+==================================================
+12. МАТЕМАТИКА И ЛОГИКА
+==================================================
+
+Каждое восстановленное действие должно иметь proof.
+
+Использовать:
+- CHAT evidence
+- STACK delta
+- board/street
+- pot math
+- player state
+- poker rules
+
+Проверять:
+
+- forced bets
+- call amounts
+- raise-to
+- bet sizes
+- all-in
+- returned chips
+- pot growth
+- street transitions
+- showdown
+- winner payout
+- final balance
+
+Если решение единственное:
+восстановить.
+
+Если возможны два и более варианта:
+UNKNOWN.
+
+Не придумывать действия ради COMPLETE.
+
+==================================================
+13. PARTIAL HANDS
+==================================================
+
+Если видео начинается внутри руки:
+START_PARTIAL.
+
+Если видео заканчивается внутри руки:
+END_PARTIAL.
+
+Их:
+- не пытаться сделать COMPLETE;
+- не считать ошибкой;
+- не включать в HH quality denominator.
+
+==================================================
+14. PHYSICAL HAND DENOMINATOR
+==================================================
+
+Независимо определить:
+
+PHYSICAL_COMPLETE_HANDS
+
+Не использовать количество parser segments как ground truth denominator.
+
+Главная метрика:
+
+HH_COMPLETE_RATE =
+correct HH complete hands
+/
+PHYSICAL_COMPLETE_HANDS
+
+Цель:
+>=95%.
+
+==================================================
+15. РАБОТАТЬ ИТЕРАЦИЯМИ ДО РЕЗУЛЬТАТА
+==================================================
+
+Цикл:
+
+RUN
+→ AUDIT
+→ ROOT CAUSE
+→ FIX
+→ TEST
+→ RUN AGAIN
+
+Не останавливаться после одного исправления.
+
+Продолжать, пока:
+- HH_COMPLETE_RATE >=95%
+
+или
+- останется blocker, который объективно нельзя безопасно исправить.
+
+==================================================
+16. TESTS
+==================================================
+
+Добавить regression минимум для:
+
+- T01 2084→2085
+- UNRESOLVED physically-new block
+- LOCAL_CHANGE physically-new row
+- multiple new rows
+- old row no re-OCR
+- no duplicate row IDs
+- no duplicate OCR
+- GLOBAL_SCROLL parity
+- hand header admission
+- ANTE admission
+- SB admission
+- BB admission
+- Dealing cards admission
+- FOLD omission case
+- RETURN omission case
+- SHOW omission case
+- WIN omission case
+- top-edge fragment
+- continuation row
+- uncertain identity preserved
+- FULL_HH_PRODUCTION matrix
+- START_PARTIAL
+- END_PARTIAL
+- START_STACK PROVEN
+- START_STACK UNKNOWN
+- unique math reconstruction
+- ambiguous math remains UNKNOWN
+
+==================================================
+17. НЕ ЛОМАТЬ УЖЕ ДОКАЗАННОЕ
+==================================================
+
+Не ломать:
+
+- GLOBAL_SCROLL
+- post-admission 1461→1461→1461 parity
+- row IDs
+- STACK digit gate
+- STACK exact recurrence
+- batched SQLite
+- bounded diagnostics memory
+- cards
+- STACK provenance
+- START_STACK proof gates
+- PNG=0
+
+Не трогать frozen/vendor.
+Не использовать legacy.
+
+==================================================
+18. QUALITY FIRST
+==================================================
+
+Сначала качество.
+
+Не оптимизировать скорость, пока HH quality не доказано.
+
+Performance diagnostics оставить включённым,
+но не менять качество ради FPS.
+
+==================================================
+19. SHORT ACCEPTANCE
+==================================================
+
+Перед full Smoke19 сделать короткий официальный FULL_HH_PRODUCTION smoke.
+
+Доказать:
+
+- matrix полностью ON
+- headers доходят
+- forced posts доходят
+- dealing cards доходят
+- ordinary actions доходят
+- hand_id создаются
+- segmentation работает
+- STACK работает
+- START_STACK consumer работает
+- HH формируется
+- PNG=0
+- errors=0
+
+Если FAIL:
+full run не запускать.
+
+==================================================
+20. FULL SMOKE19
+==================================================
+
+После short PASS:
+полный Smoke19 — 10100 кадров.
+
+Fresh output.
+
+После завершения сделать независимый quality audit.
+
+==================================================
+21. ФИНАЛЬНЫЙ ОТЧЁТ
+==================================================
+
+FILES CHANGED
+
+ROOT CAUSES
+
+CHAT ADMISSION FIX
+
+704 VERIFIED OMISSIONS BEFORE → AFTER
+
+PHYSICAL CHAT RECALL
+
+HAND START RECALL
+
+ANTE RECALL
+
+SB RECALL
+
+BB RECALL
+
+DEALING CARDS RECALL
+
+OTHER ACTION RECALL
+
+FULL_HH_PRODUCTION MATRIX
+
+PHYSICAL COMPLETE HANDS
+
+START_PARTIAL
+
+END_PARTIAL
+
+HH COMPLETE
+
+HH PARTIAL
+
+HH INVALID
+
+HH COMPLETE RATE
+
+START_STACK PROVEN
+
+START_STACK SUPPORTED
+
+START_STACK UNKNOWN
+
+START_STACK CONFLICT
+
+MATH VALID
+
+LOGIC VALID
+
+UNKNOWN ACTIONS
+
+UNKNOWN AMOUNTS
+
+REMAINING BLOCKERS
+
+TARGETED TESTS
+
+FULL PYTEST
+
+PERFORMANCE
+
+PNG COUNT
+
+PRODUCTION CODE CHANGED
+
+VERDICT
+
+==================================================
+22. VERDICT
+==================================================
+
+Один из:
+
+HH_PIPELINE_95_PROVEN
+HH_PIPELINE_PARTIAL
+HH_PIPELINE_NOT_PROVEN
+
+`HH_PIPELINE_95_PROVEN` только если:
+
+- >=95% PHYSICAL COMPLETE HANDS собраны в корректный HH;
+- START_PARTIAL/END_PARTIAL исключены;
+- physically-new CHAT rows больше не молча теряются;
+- 704 известных omissions проверены после фикса;
+- headers/forced posts работают;
+- hand segmentation работает;
+- START_STACK доказан там, где хватает evidence;
+- действия математически и логически согласованы;
+- нет выдуманных действий;
+- весь HH-контур подключён в один официальный production profile;
+- full Smoke19 завершён;
+- regressions PASS.
+
+Не останавливайся на промежуточном результате.
+Доведи именно до полноценного HH production.

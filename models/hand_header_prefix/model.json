@@ -1,0 +1,29 @@
+{
+  "threshold": 0.9,
+  "search_x": {
+    "Hand_hash": [
+      8,
+      49
+    ],
+    "hash": [
+      8,
+      20
+    ]
+  },
+  "provenance": {
+    "video": "video/smoke_17.mp4",
+    "frame": 181,
+    "table": 1,
+    "purpose": "prefix only; no hand digits; fixed before regression"
+  },
+  "templates": {
+    "Hand_hash": {
+      "path": "models/hand_header_prefix/Hand_hash.png",
+      "sha256": "74c0dbf2edb370542442bebfab82bb43e09b355c0fb8040669771a6b93021a10"
+    },
+    "hash": {
+      "path": "models/hand_header_prefix/hash.png",
+      "sha256": "276ef0c4c87ead47a5e32325e6bf309b9c95db42f22c8307e8a9f6e75f0b72de"
+    }
+  }
+}

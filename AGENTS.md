@@ -1,10 +1,12 @@
 # Новый парсер: работа Codex
 
+Before modifying, running, benchmarking, debugging, or extending the production pipeline, EVERY root agent and subagent MUST read `PRODUCTION.md` and `production_manifest.json`. These define the ONLY production pipeline. Do not infer production from filenames, timestamps, experiments, old runners, reports or search results. Explorer/Luna may inspect historical code as evidence but must never declare it production. Root/Sol must verify the manifest and use `run_production.py`; promotion requires the documented procedure.
+
 Use the current code in this directory as the source of truth. Do not import architecture or paths from older PokerDom projects without verifying them here. This folder is the current project root even when it has no `.git` directory.
 
 ## Main agent
 
-Use `gpt-6-sol` with `medium` reasoning by default. The main agent owns the task interpretation, architecture, shared production-code changes, integration, evidence sufficiency, and final verdict. Increase reasoning only for a real root-cause or architecture deadlock. Prove the common cause through `FILE -> FUNCTION -> CALLER -> DATA` before changing shared logic. Preserve raw pixels/OCR, provenance, and explicit `UNKNOWN`, `UNRESOLVED`, and partial outcomes.
+The user selects the MAIN model and reasoning before starting a task, using the Codex app selector or `python scripts/start_codex.py --main-model MODEL --main-reasoning LEVEL`. For Desktop, do not pin top-level `model` or `model_reasoning_effort` in the project `.codex/config.toml`: that workspace layer overrides the user config written by the Desktop selector. Select MAIN in Desktop before sending the first message. For the optional CLI launcher, pass both `--main-model` and `--main-reasoning` explicitly; project MAIN defaults are intentionally absent. Honor the user's selection; do not automatically change it based on task difficulty. MAIN selection applies only to the root agent: keep existing subagent models, reasoning, roles, prompts, limits, routing, parallelism, permissions and task contracts unchanged. The main agent owns the task interpretation, architecture, shared production-code changes, integration, evidence sufficiency, and final verdict. Prove the common cause through `FILE -> FUNCTION -> CALLER -> DATA` before changing shared logic. Preserve raw pixels/OCR, provenance, and explicit `UNKNOWN`, `UNRESOLVED`, and partial outcomes.
 
 ## Routing
 

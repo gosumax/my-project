@@ -1,0 +1,15 @@
+{
+  "status": "PARTIAL_INTERRUPTED_USER_PAUSE",
+  "acceptance": false,
+  "exit_code": 1,
+  "owned_session_id": 45841,
+  "last_complete_receipt": {
+    "table": 7,
+    "frame_before": 8011,
+    "frame_after": 8012,
+    "old_classification": "LOCAL_CHANGE"
+  },
+  "full_704_coverage": "NOT_MEASURED",
+  "full_legacy_parity": "NOT_MEASURED",
+  "reason": "User explicitly paused pipeline; preserve evidence for GitHub backup"
+}

@@ -8,12 +8,12 @@ from dataclasses import dataclass, field
 
 ASSEMBLER_VERSION = "message_assembly_v13_tiny_only"
 TIMESTAMP = re.compile(r"^\s*\[\d{1,2}:\d{2}\]")
-HAND_HEADER = re.compile(r"^\s*(?:Рука\s*#|#)\s*\d", re.IGNORECASE)
-DEALER_PREFIX = re.compile(r"^\s*Дилер\s*:", re.IGNORECASE)
+HAND_HEADER = re.compile(r"^\s*(?:(?:Рука|Hand)\s*#|#)\s*\d", re.IGNORECASE)
+DEALER_PREFIX = re.compile(r"^\s*(?:Дилер|Dealer)\s*:", re.IGNORECASE)
 BARE_HAND_NUMBER = re.compile(r"^\s*#\s*\d+\s*$")
 NEW_HAND_WRAP_START = re.compile(
-    r"^\s*(?:Дилер\s*:\s*|\[\d{1,2}:\d{2}\]\s*)"
-    r"Начинается\s+новая\s+рука[.!]?\s*$", re.IGNORECASE)
+    r"^\s*(?:(?:Дилер|Dealer)\s*:\s*|\[\d{1,2}:\d{2}\]\s*)"
+    r"(?:Начинается\s+новая\s+рука|Starting\s+a\s+new\s+hand)[.!]?\s*$", re.IGNORECASE)
 
 
 def has_text(text: str | None) -> bool:

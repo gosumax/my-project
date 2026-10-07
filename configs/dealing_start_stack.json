@@ -1,0 +1,13 @@
+{
+  "enable_dealing_cards_hand_state_trigger": false,
+  "enable_start_stack_capture": false,
+  "ncc_config": "configs/dealing_cards_ncc.json",
+  "candidate_buffer_frames": 256,
+  "capture_frames": 64,
+  "stack_confidence": 0.95,
+  "stable_readings": 3,
+  "deal_complete_provider": "UNAVAILABLE_NOT_PROVEN",
+  "occupied_seat_provider": "UNAVAILABLE_NOT_PROVEN",
+  "roi_profile": "configs/layout_847x404.json",
+  "authority": "CAPTURE_SIDECAR_ONLY"
+}

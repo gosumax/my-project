@@ -76,8 +76,13 @@ def main() -> None:
                         raise ValueError(f"Source crop SHA256 mismatch: {path}")
                     paths.append(str(path))
             inference_started = time.perf_counter()
+            diagnostic_cpu=time.process_time() if request.get('performance_diagnostics') else None
             predictions = list(model.predict(images if ram_mode else paths, batch_size=batch_size))
             inference_seconds = time.perf_counter() - inference_started
+            diagnostic_detail=(dict(inference_wall_seconds=inference_seconds,
+                inference_process_cpu_seconds=time.process_time()-diagnostic_cpu,
+                compute_start_monotonic_seconds=inference_started,compute_end_monotonic_seconds=time.perf_counter(),worker_pid=os.getpid())
+                if diagnostic_cpu is not None else None)
             by_path = ({str(Path(result["input_path"]).resolve()).lower(): result
                         for result in predictions} if not ram_mode else {})
             results = []
@@ -93,8 +98,11 @@ def main() -> None:
                                 "status": "OK" if raw_text else "EMPTY",
                                 "raw_text": raw_text,
                                 "score": float(prediction.get("rec_score", 0.0))})
-            emit({"type": "result", "request_id": request["request_id"],
-                  "results": results, "inference_seconds": inference_seconds})
+            reply={"type": "result", "request_id": request["request_id"],
+                  "results": results, "inference_seconds": inference_seconds}
+            if diagnostic_cpu is not None:
+                reply['performance_diagnostic']=diagnostic_detail
+            emit(reply)
         except Exception:
             emit({"type": "result", "request_id": request.get("request_id"),
                   "status": "ERROR", "results": [],

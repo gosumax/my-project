@@ -1,0 +1,58 @@
+{
+  "scope": "Comparable current-code baseline dry-run, no repair/certification",
+  "baseline": {
+    "admitted_rows": 954,
+    "hands_assembled": 27,
+    "complete_candidates": 22,
+    "logic_pass": 0,
+    "math_pass": 6,
+    "fully_valid": 0,
+    "semantics_status": "UNPROVEN",
+    "live_calls": 0,
+    "source_copy_unchanged": true,
+    "decisive_issues": {
+      "ROW_IDENTITY_UNRESOLVED": 120,
+      "ACTION_AFTER_FOLD": 25,
+      "MISSING_ACTION": 33,
+      "AMOUNT_SEMANTICS_UNPROVEN": 32,
+      "INVALID_CALL": 2,
+      "INVALID_RAISE": 16,
+      "BETTING_ROUND_INCOMPLETE": 8,
+      "OLD_WIN": 23,
+      "UNCALLED_RETURN_NOT_VERIFIABLE": 16,
+      "SIDE_POT_NOT_VERIFIABLE": 21,
+      "CARD_EVIDENCE_MISSING": 24,
+      "MATH_DELTA": 21,
+      "ACTION_AFTER_HAND_END": 200,
+      "CHAT_OVERLAP_DUPLICATE": 20,
+      "STALE_BLIND_OR_ANTE": 12,
+      "INCOMPLETE_START": 5,
+      "INELIGIBLE_PAYOUT": 3,
+      "MISSING_AMOUNT": 19,
+      "BROKEN_STREET_ORDER": 14,
+      "CALL_WITH_NOTHING_TO_CALL": 1,
+      "INVALID_UNCALLED_RETURN": 3,
+      "RETURN_EXCEEDS_CONTRIBUTION": 3,
+      "ACTION_AFTER_ALLIN": 1
+    }
+  },
+  "simulation_core": {
+    "admitted_rows": 976,
+    "hands_assembled": 27,
+    "complete_candidates": 22,
+    "logic_pass": 0,
+    "math_pass": 5,
+    "fully_valid": 0,
+    "live_calls": 0
+  },
+  "simulation_minus_baseline": {
+    "admitted_rows": 22,
+    "hands_assembled": 0,
+    "complete_candidates": 0,
+    "logic_pass": 0,
+    "math_pass": -1,
+    "fully_valid": 0,
+    "live_calls": 0
+  },
+  "baseline_gate_and_dry_run_seconds": 2.5257524999324232
+}

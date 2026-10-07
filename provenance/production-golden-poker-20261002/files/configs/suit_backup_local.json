@@ -1,0 +1,13 @@
+{
+  "mode": "BACKUP",
+  "method": "grayscale_ncc",
+  "size": 16,
+  "roi_xyxy_exclusive": [10, 2, 19, 13],
+  "implementation_sha256": "2e400c8627b8a7fcded7897cf5b2495862187e4898e985a372aaab3d21897e92",
+  "best_score_threshold": 0.98,
+  "margin_threshold": 0.03,
+  "train_manifest": "D:/Новый парсер/runs/card_train_smoke16_test_20260930/split_v2/train_manifest.jsonl",
+  "train_manifest_sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43",
+  "validation_results": "D:/Новый парсер/runs/suit_template_experiment_20260930/results.csv",
+  "validation_results_sha256": "3c1b03bba7e4b4af4dde0655480063dced5229f563a1c2dffe9b080593d9215a"
+}

@@ -3,6 +3,8 @@
 /runs/
 /outputs/
 /video/
+/reports/
+*.log
 /experiments/*
 !/experiments/*.py
 

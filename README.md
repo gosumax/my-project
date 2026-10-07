@@ -1,5 +1,7 @@
 # Новый парсер PokerDom
 
+**Единственный production pipeline определён в [PRODUCTION.md](PRODUCTION.md) и [production_manifest.json](production_manifest.json). Официальный запуск: `python run_production.py ...`. Описанные ниже исторические пилоты не являются альтернативными production entrypoints. Перед работой с pipeline читать оба файла.**
+
 Рабочая реализация ТЗ от 27.09.2026. Текущее состояние: **этап 0 частично выполнен; этап 1 начат только как сбор исходных доказательств**. Полных историй рук и новых обученных моделей пока нет.
 
 ## Уже работает
@@ -50,6 +52,15 @@ python scripts/run_one_table.py --video 'D:\Проэкты\Парсер пд v1.
 Очередь разметки из существующих каталогов: [docs/ANNOTATION_QUEUE.md](docs/ANNOTATION_QUEUE.md). Она содержит 300 сообщений, 30 переходов и 12 окон рук для визуальной проверки; независимым тестом не является.
 
 ## Девять столов: ограниченный пилот
+
+Для Smoke14 RAM-варианта с ограниченными OCR/VL очередями, сохранением
+визуального evidence и проверкой детерминированного порядка см.
+[docs/PARALLEL_OCR_VL_SMOKE14_20260929.md](docs/PARALLEL_OCR_VL_SMOKE14_20260929.md).
+
+Для ограниченно доказанных START STACK и полного обзора seat ROI Smoke14 см.
+[docs/START_STACK_20260929.md](docs/START_STACK_20260929.md). Визуально
+проверены 13 START STACK в двух руках; остальные остаются частичными или
+неразрешёнными до отдельного доказательства.
 
 ```powershell
 python scripts/run_nine_tables.py --video 'D:\Проэкты\V2.0 PD\video\smoke_11.mp4' `

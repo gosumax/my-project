@@ -1,0 +1,7 @@
+{
+  "poker_reconstruction": {
+    "enabled": true,
+    "allow_logic_math_output": false,
+    "max_nodes": 20000
+  }
+}

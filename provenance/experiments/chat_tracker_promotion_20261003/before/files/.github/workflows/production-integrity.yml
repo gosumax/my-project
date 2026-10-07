@@ -1,0 +1,28 @@
+name: Production integrity
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      full_production_checks:
+        type: boolean
+        default: false
+        description: Run full pytest on the equipped local Windows parser runner
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install pytest -r requirements.txt
+      - run: python scripts/check_production_integrity.py
+      - run: python -m pytest tests/test_production_integrity.py -q
+  equipped-production-tests:
+    if: github.event_name == 'workflow_dispatch' && inputs.full_production_checks
+    runs-on: [self-hosted, Windows, poker-parser]
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/check_production_integrity.py
+      - run: python -m pytest -q

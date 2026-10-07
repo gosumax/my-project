@@ -1,0 +1,17 @@
+{
+  "mode": "PIXEL_ONLY",
+  "production_enabled": true,
+  "method": "component_ncc",
+  "best_score_threshold": 0.8,
+  "margin_threshold": 0.01,
+  "train_manifest": "D:\\Новый парсер\\runs\\card_train_smoke16_test_20260930\\split_v2\\train_manifest.jsonl",
+  "train_manifest_sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43",
+  "implementation_sha256": "2aea293bddc07d316d7af9893de1b5b51518ef4217379d6b0e4206fe895f4b24",
+  "native_domain": "CHAT/CHAT-visible BOARD and SHOWDOWN cards: RGB height16,width18..22; unverified scales/domain fail closed",
+  "normalization": "native component grayscale; cv2.INTER_LINEAR 16x16; mean subtraction; L2 normalization",
+  "selection": "CAL318 plus video-source-out TRAIN431; frozen before historical16",
+  "promotion": "USER_AUTHORIZED_PRODUCTION_PIXEL_ONLY; 999_ACCURACY_NOT_CERTIFIED",
+  "development_only": false,
+  "production_authorized": true,
+  "accuracy_certification": "NOT_PROVEN_999; USER_AUTHORIZED_PIXEL_ONLY"
+}

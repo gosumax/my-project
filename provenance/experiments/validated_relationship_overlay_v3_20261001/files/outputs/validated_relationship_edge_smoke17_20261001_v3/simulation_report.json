@@ -1,0 +1,265 @@
+{
+  "source_timeline": "D:\\Новый парсер\\runs\\production_smoke17_20261001_013909\\ordered_timeline.jsonl",
+  "baseline_edge": {
+    "PARTIAL_START": 441,
+    "UNRESOLVED_EDGE": 6685,
+    "KEEP": 954,
+    "PARTIAL_END": 66
+  },
+  "total_rows": 8146,
+  "modes": {
+    "CORE_280": {
+      "relationships_loaded": 280,
+      "relationships_used": 280,
+      "edge_counts": {
+        "PARTIAL_START": 441,
+        "UNRESOLVED_EDGE": 6663,
+        "KEEP": 976,
+        "PARTIAL_END": 66
+      },
+      "status_changes": 22,
+      "identity_only_resolutions": 22,
+      "unresolved_reasons": {
+        "total": 6663,
+        "missing_end_among_unresolved": 1555,
+        "exclusive_combinations": {
+          "CONFLICTING_HAND_NUMBERS|EPOCH_DISCONTINUITY|MULTIPLE_NEW_HAND_MESSAGES|UNSAFE_NEW_HAND_BOUNDARY": 5302,
+          "MULTIPLE_NEW_HAND_MESSAGES|UNSAFE_NEW_HAND_BOUNDARY": 954,
+          "CONFLICTING_HAND_NUMBERS|MULTIPLE_NEW_HAND_MESSAGES|UNSAFE_NEW_HAND_BOUNDARY": 271,
+          "PREVIOUS_HAND_TAIL|CONFLICTING_HAND_NUMBERS|MULTIPLE_NEW_HAND_MESSAGES|UNSAFE_NEW_HAND_BOUNDARY": 1,
+          "EPOCH_DISCONTINUITY|UNSAFE_NEW_HAND_BOUNDARY": 135
+        },
+        "overlapping_predicates": {
+          "CONFLICTING_HAND_NUMBERS": 5574,
+          "EPOCH_DISCONTINUITY": 5437,
+          "MULTIPLE_NEW_HAND_MESSAGES": 6528,
+          "UNSAFE_NEW_HAND_BOUNDARY": 6663,
+          "PREVIOUS_HAND_TAIL": 1
+        }
+      },
+      "unresolved_rows_touching_relationship": 483,
+      "ownership_evidence": {
+        "NO_VALIDATED_CONTINUITY": 7586,
+        "MISSING_CONFIRMED_HAND_START": 36,
+        "UNRESOLVED_BOUNDARY_OWNERSHIP": 483,
+        "CURRENT_WINDOW_CONTINUITY_SUPPORTED": 39,
+        "PREVIOUS_HAND_TAIL_SUPPORTED": 2
+      },
+      "components": 280,
+      "multi_link_components": 0,
+      "chain_conflicts": {},
+      "downstream": {
+        "new_keep_rows": 22,
+        "dry_run": {
+          "admitted_rows": 976,
+          "hands_assembled": 27,
+          "complete_candidates": 22,
+          "logic_pass": 0,
+          "math_pass": 5,
+          "fully_valid": 0,
+          "semantics_status": "UNPROVEN",
+          "live_calls": 0,
+          "source_copy_unchanged": true,
+          "decisive_issues": {
+            "ROW_IDENTITY_UNRESOLVED": 124,
+            "ACTION_AFTER_FOLD": 31,
+            "MISSING_ACTION": 33,
+            "AMOUNT_SEMANTICS_UNPROVEN": 32,
+            "INVALID_CALL": 2,
+            "INVALID_RAISE": 16,
+            "BETTING_ROUND_INCOMPLETE": 8,
+            "OLD_WIN": 23,
+            "UNCALLED_RETURN_NOT_VERIFIABLE": 17,
+            "SIDE_POT_NOT_VERIFIABLE": 21,
+            "CARD_EVIDENCE_MISSING": 24,
+            "MATH_DELTA": 22,
+            "ACTION_AFTER_HAND_END": 208,
+            "CHAT_OVERLAP_DUPLICATE": 22,
+            "STALE_BLIND_OR_ANTE": 14,
+            "INCOMPLETE_START": 5,
+            "MISSING_AMOUNT": 20,
+            "INELIGIBLE_PAYOUT": 4,
+            "BROKEN_STREET_ORDER": 14,
+            "CALL_WITH_NOTHING_TO_CALL": 1,
+            "INVALID_UNCALLED_RETURN": 3,
+            "RETURN_EXCEEDS_CONTRIBUTION": 3,
+            "ACTION_AFTER_ALLIN": 1
+          }
+        }
+      },
+      "performance": {
+        "baseline_seconds": [
+          1.913372699986212,
+          2.000835799961351,
+          2.2687983999494463,
+          1.9616403999971226,
+          1.8717445000074804
+        ],
+        "simulation_seconds": [
+          4.2012137999990955,
+          4.1174239999381825,
+          4.534843500005081,
+          4.139287199941464,
+          4.064686199999414
+        ],
+        "baseline_median": 1.9616403999971226,
+        "simulation_median": 4.139287199941464,
+        "overhead_percent": 111.01151872420326,
+        "overlay_attribution_median": 0.28065490000881255,
+        "relationship_metadata_deep_bytes": 435644,
+        "continuity_components_deep_bytes": 221282,
+        "scope": "End-to-end offline gate plus overlay/attribution; separate overlay cost includes deepcopy, not lookup alone"
+      }
+    },
+    "EXTENDED_313_SAMPLE": {
+      "relationships_loaded": 313,
+      "relationships_used": 313,
+      "edge_counts": {
+        "PARTIAL_START": 441,
+        "UNRESOLVED_EDGE": 6663,
+        "KEEP": 976,
+        "PARTIAL_END": 66
+      },
+      "status_changes": 22,
+      "identity_only_resolutions": 22,
+      "unresolved_reasons": {
+        "total": 6663,
+        "missing_end_among_unresolved": 1555,
+        "exclusive_combinations": {
+          "CONFLICTING_HAND_NUMBERS|EPOCH_DISCONTINUITY|MULTIPLE_NEW_HAND_MESSAGES|UNSAFE_NEW_HAND_BOUNDARY": 5302,
+          "MULTIPLE_NEW_HAND_MESSAGES|UNSAFE_NEW_HAND_BOUNDARY": 954,
+          "CONFLICTING_HAND_NUMBERS|MULTIPLE_NEW_HAND_MESSAGES|UNSAFE_NEW_HAND_BOUNDARY": 271,
+          "PREVIOUS_HAND_TAIL|CONFLICTING_HAND_NUMBERS|MULTIPLE_NEW_HAND_MESSAGES|UNSAFE_NEW_HAND_BOUNDARY": 1,
+          "EPOCH_DISCONTINUITY|UNSAFE_NEW_HAND_BOUNDARY": 135
+        },
+        "overlapping_predicates": {
+          "CONFLICTING_HAND_NUMBERS": 5574,
+          "EPOCH_DISCONTINUITY": 5437,
+          "MULTIPLE_NEW_HAND_MESSAGES": 6528,
+          "UNSAFE_NEW_HAND_BOUNDARY": 6663,
+          "PREVIOUS_HAND_TAIL": 1
+        }
+      },
+      "unresolved_rows_touching_relationship": 541,
+      "ownership_evidence": {
+        "NO_VALIDATED_CONTINUITY": 7522,
+        "MISSING_CONFIRMED_HAND_START": 38,
+        "UNRESOLVED_BOUNDARY_OWNERSHIP": 535,
+        "CURRENT_WINDOW_CONTINUITY_SUPPORTED": 43,
+        "PREVIOUS_HAND_TAIL_SUPPORTED": 2,
+        "UNRESOLVED_CHAIN_CONFLICT": 6
+      },
+      "components": 311,
+      "multi_link_components": 2,
+      "chain_conflicts": {
+        "BRANCH_OR_CYCLE": 2
+      },
+      "downstream": {
+        "new_keep_rows": 22,
+        "dry_run": {
+          "admitted_rows": 976,
+          "hands_assembled": 27,
+          "complete_candidates": 22,
+          "logic_pass": 0,
+          "math_pass": 5,
+          "fully_valid": 0,
+          "semantics_status": "UNPROVEN",
+          "live_calls": 0,
+          "source_copy_unchanged": true,
+          "decisive_issues": {
+            "ROW_IDENTITY_UNRESOLVED": 124,
+            "ACTION_AFTER_FOLD": 31,
+            "MISSING_ACTION": 33,
+            "AMOUNT_SEMANTICS_UNPROVEN": 32,
+            "INVALID_CALL": 2,
+            "INVALID_RAISE": 16,
+            "BETTING_ROUND_INCOMPLETE": 8,
+            "OLD_WIN": 23,
+            "UNCALLED_RETURN_NOT_VERIFIABLE": 17,
+            "SIDE_POT_NOT_VERIFIABLE": 21,
+            "CARD_EVIDENCE_MISSING": 24,
+            "MATH_DELTA": 22,
+            "ACTION_AFTER_HAND_END": 208,
+            "CHAT_OVERLAP_DUPLICATE": 22,
+            "STALE_BLIND_OR_ANTE": 14,
+            "INCOMPLETE_START": 5,
+            "MISSING_AMOUNT": 20,
+            "INELIGIBLE_PAYOUT": 4,
+            "BROKEN_STREET_ORDER": 14,
+            "CALL_WITH_NOTHING_TO_CALL": 1,
+            "INVALID_UNCALLED_RETURN": 3,
+            "RETURN_EXCEEDS_CONTRIBUTION": 3,
+            "ACTION_AFTER_ALLIN": 1
+          }
+        }
+      },
+      "performance": {
+        "baseline_seconds": [
+          1.8669246999779716,
+          1.9238614999921992,
+          1.8896262999624014,
+          2.2177602000301704,
+          1.9973803999600932
+        ],
+        "simulation_seconds": [
+          4.353461000020616,
+          4.211708199931309,
+          4.5459214999573305,
+          4.890765400021337,
+          5.29489260003902
+        ],
+        "baseline_median": 1.9238614999921992,
+        "simulation_median": 4.5459214999573305,
+        "overhead_percent": 136.29151578612925,
+        "overlay_attribution_median": 0.3149413999635726,
+        "relationship_metadata_deep_bytes": 486919,
+        "continuity_components_deep_bytes": 246397,
+        "scope": "End-to-end offline gate plus overlay/attribution; separate overlay cost includes deepcopy, not lookup alone"
+      }
+    }
+  },
+  "production_code_changed": false,
+  "baseline_unresolved_reasons": {
+    "total": 6685,
+    "missing_end_among_unresolved": 1555,
+    "exclusive_combinations": {
+      "CONFLICTING_HAND_NUMBERS|EPOCH_DISCONTINUITY|MULTIPLE_NEW_HAND_MESSAGES|UNSAFE_NEW_HAND_BOUNDARY": 5302,
+      "MULTIPLE_NEW_HAND_MESSAGES|UNSAFE_NEW_HAND_BOUNDARY": 954,
+      "CONFLICTING_HAND_NUMBERS|MULTIPLE_NEW_HAND_MESSAGES|UNSAFE_NEW_HAND_BOUNDARY": 271,
+      "UNSAFE_NEW_HAND_BOUNDARY": 23,
+      "EPOCH_DISCONTINUITY|UNSAFE_NEW_HAND_BOUNDARY": 135
+    },
+    "overlapping_predicates": {
+      "CONFLICTING_HAND_NUMBERS": 5573,
+      "EPOCH_DISCONTINUITY": 5437,
+      "MULTIPLE_NEW_HAND_MESSAGES": 6527,
+      "UNSAFE_NEW_HAND_BOUNDARY": 6685
+    }
+  },
+  "negative_controls": {
+    "visual": {
+      "VISUALLY_UNCERTAIN": 9,
+      "VISUALLY_DIFFERENT": 8
+    },
+    "duplicate_text_blocked_count": 217,
+    "core_admitted": 0,
+    "extended_validated_exceptions": 9,
+    "boundary_conflicts_retained": "All exact baseline window vetoes preserved; targeted regression required"
+  },
+  "source_parity": {
+    "rows_before": 8146,
+    "rows_after": 8146,
+    "all_fields_and_order_equal": true,
+    "frozen_baseline_classification_equal": true,
+    "input_file_hashes_unchanged": true,
+    "pixels": "No decode or pixel operation; pixel evidence hashes and source artifact bytes preserved",
+    "image_writes": 0,
+    "production_registered_file_bytes_unchanged": true
+  },
+  "verdict": "VALIDATED_RELATIONSHIPS_HELP_PARTIALLY",
+  "limitations": [
+    "Only proved previous-hand-tail observations can discharge unsafe marker veto in a fixed window.",
+    "Conflicting numbers, multiple NEW_HAND, epoch discontinuity and unproven boundaries remain vetoes.",
+    "No new hand boundaries, duplicate event suppression, OCR correction, downstream repair or production promotion."
+  ]
+}

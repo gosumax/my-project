@@ -1,0 +1,3742 @@
+[
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000792",
+      "table_deb776c52437ea38b8ca8db5:R000798"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000792->table_deb776c52437ea38b8ca8db5:R000798"
+    ],
+    "first_seen": 25154,
+    "last_seen": 25460,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000868",
+      "table_16394367f2f8de95f8c71030:R000870"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000868->table_16394367f2f8de95f8c71030:R000870"
+    ],
+    "first_seen": 26944,
+    "last_seen": 28093,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000634",
+      "table_deb776c52437ea38b8ca8db5:R000649"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000634->table_deb776c52437ea38b8ca8db5:R000649"
+    ],
+    "first_seen": 16916,
+    "last_seen": 17259,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000144",
+      "table_abb26b4f0632d61cda00071f:R000148"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000144->table_abb26b4f0632d61cda00071f:R000148"
+    ],
+    "first_seen": 3837,
+    "last_seen": 4135,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000909",
+      "table_a6a5e4d14036587923ec8ded:R000914"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000909->table_a6a5e4d14036587923ec8ded:R000914"
+    ],
+    "first_seen": 19841,
+    "last_seen": 19998,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000375",
+      "table_abb26b4f0632d61cda00071f:R000381"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000375->table_abb26b4f0632d61cda00071f:R000381"
+    ],
+    "first_seen": 12731,
+    "last_seen": 13292,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000942",
+      "table_a6a5e4d14036587923ec8ded:R000946",
+      "table_a6a5e4d14036587923ec8ded:R000948"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000942->table_a6a5e4d14036587923ec8ded:R000946",
+      "table_a6a5e4d14036587923ec8ded:R000942->table_a6a5e4d14036587923ec8ded:R000948"
+    ],
+    "first_seen": 20112,
+    "last_seen": 20300,
+    "conflicts": [
+      "BRANCH_OR_CYCLE"
+    ]
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000432",
+      "table_deb776c52437ea38b8ca8db5:R000446"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000432->table_deb776c52437ea38b8ca8db5:R000446"
+    ],
+    "first_seen": 10637,
+    "last_seen": 11811,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000796",
+      "table_a6a5e4d14036587923ec8ded:R000800"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000796->table_a6a5e4d14036587923ec8ded:R000800"
+    ],
+    "first_seen": 16882,
+    "last_seen": 17100,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000418",
+      "table_deb776c52437ea38b8ca8db5:R000435"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000418->table_deb776c52437ea38b8ca8db5:R000435"
+    ],
+    "first_seen": 10637,
+    "last_seen": 10994,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000058",
+      "table_6f37cc14274a733e7ed2ad35:R000059"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000058->table_6f37cc14274a733e7ed2ad35:R000059"
+    ],
+    "first_seen": 2565,
+    "last_seen": 2705,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000950",
+      "table_a6a5e4d14036587923ec8ded:R000955"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000950->table_a6a5e4d14036587923ec8ded:R000955"
+    ],
+    "first_seen": 20547,
+    "last_seen": 20918,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_af740f0a299356c39b48ce7b:R000157",
+      "table_af740f0a299356c39b48ce7b:R000158"
+    ],
+    "pair_ids": [
+      "table_af740f0a299356c39b48ce7b:R000157->table_af740f0a299356c39b48ce7b:R000158"
+    ],
+    "first_seen": 6006,
+    "last_seen": 6095,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000477",
+      "table_a6a5e4d14036587923ec8ded:R000487"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000477->table_a6a5e4d14036587923ec8ded:R000487"
+    ],
+    "first_seen": 8578,
+    "last_seen": 9016,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000057",
+      "table_a6a5e4d14036587923ec8ded:R000070"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000057->table_a6a5e4d14036587923ec8ded:R000070"
+    ],
+    "first_seen": 730,
+    "last_seen": 956,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000520",
+      "table_16394367f2f8de95f8c71030:R000522"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000520->table_16394367f2f8de95f8c71030:R000522"
+    ],
+    "first_seen": 14101,
+    "last_seen": 14578,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_af740f0a299356c39b48ce7b:R000595",
+      "table_af740f0a299356c39b48ce7b:R000608"
+    ],
+    "pair_ids": [
+      "table_af740f0a299356c39b48ce7b:R000595->table_af740f0a299356c39b48ce7b:R000608"
+    ],
+    "first_seen": 26421,
+    "last_seen": 26505,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000891",
+      "table_a6a5e4d14036587923ec8ded:R000898"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000891->table_a6a5e4d14036587923ec8ded:R000898"
+    ],
+    "first_seen": 19027,
+    "last_seen": 19280,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_af740f0a299356c39b48ce7b:R000115",
+      "table_af740f0a299356c39b48ce7b:R000116"
+    ],
+    "pair_ids": [
+      "table_af740f0a299356c39b48ce7b:R000115->table_af740f0a299356c39b48ce7b:R000116"
+    ],
+    "first_seen": 3960,
+    "last_seen": 4078,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000755",
+      "table_a6a5e4d14036587923ec8ded:R000765"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000755->table_a6a5e4d14036587923ec8ded:R000765"
+    ],
+    "first_seen": 16074,
+    "last_seen": 16385,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_af740f0a299356c39b48ce7b:R000191",
+      "table_af740f0a299356c39b48ce7b:R000193"
+    ],
+    "pair_ids": [
+      "table_af740f0a299356c39b48ce7b:R000191->table_af740f0a299356c39b48ce7b:R000193"
+    ],
+    "first_seen": 7450,
+    "last_seen": 7615,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_af740f0a299356c39b48ce7b:R000039",
+      "table_af740f0a299356c39b48ce7b:R000040"
+    ],
+    "pair_ids": [
+      "table_af740f0a299356c39b48ce7b:R000039->table_af740f0a299356c39b48ce7b:R000040"
+    ],
+    "first_seen": 903,
+    "last_seen": 920,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000330",
+      "table_16394367f2f8de95f8c71030:R000343"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000330->table_16394367f2f8de95f8c71030:R000343"
+    ],
+    "first_seen": 9269,
+    "last_seen": 9350,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000917",
+      "table_faf65838d7ecd2013cbda547:R000934"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000917->table_faf65838d7ecd2013cbda547:R000934"
+    ],
+    "first_seen": 24354,
+    "last_seen": 24576,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_af740f0a299356c39b48ce7b:R000607",
+      "table_af740f0a299356c39b48ce7b:R000610"
+    ],
+    "pair_ids": [
+      "table_af740f0a299356c39b48ce7b:R000607->table_af740f0a299356c39b48ce7b:R000610"
+    ],
+    "first_seen": 26421,
+    "last_seen": 26520,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000699",
+      "table_a6a5e4d14036587923ec8ded:R000706"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000699->table_a6a5e4d14036587923ec8ded:R000706"
+    ],
+    "first_seen": 14894,
+    "last_seen": 15100,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_52e614af084d53270e598a72:R000784",
+      "table_52e614af084d53270e598a72:R000789"
+    ],
+    "pair_ids": [
+      "table_52e614af084d53270e598a72:R000784->table_52e614af084d53270e598a72:R000789"
+    ],
+    "first_seen": 24035,
+    "last_seen": 24796,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000700",
+      "table_faf65838d7ecd2013cbda547:R000716"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000700->table_faf65838d7ecd2013cbda547:R000716"
+    ],
+    "first_seen": 19558,
+    "last_seen": 19985,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000455",
+      "table_deb776c52437ea38b8ca8db5:R000466"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000455->table_deb776c52437ea38b8ca8db5:R000466"
+    ],
+    "first_seen": 12212,
+    "last_seen": 12279,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000365",
+      "table_abb26b4f0632d61cda00071f:R000372"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000365->table_abb26b4f0632d61cda00071f:R000372"
+    ],
+    "first_seen": 11527,
+    "last_seen": 12446,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000015",
+      "table_6f37cc14274a733e7ed2ad35:R000022"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000015->table_6f37cc14274a733e7ed2ad35:R000022"
+    ],
+    "first_seen": 0,
+    "last_seen": 729,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000801",
+      "table_16394367f2f8de95f8c71030:R000804"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000801->table_16394367f2f8de95f8c71030:R000804"
+    ],
+    "first_seen": 23277,
+    "last_seen": 23431,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000287",
+      "table_faf65838d7ecd2013cbda547:R000303"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000287->table_faf65838d7ecd2013cbda547:R000303"
+    ],
+    "first_seen": 6958,
+    "last_seen": 7341,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000167",
+      "table_16394367f2f8de95f8c71030:R000182"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000167->table_16394367f2f8de95f8c71030:R000182"
+    ],
+    "first_seen": 4823,
+    "last_seen": 5140,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000601",
+      "table_deb776c52437ea38b8ca8db5:R000619"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000601->table_deb776c52437ea38b8ca8db5:R000619"
+    ],
+    "first_seen": 16336,
+    "last_seen": 16538,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000202",
+      "table_16394367f2f8de95f8c71030:R000208"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000202->table_16394367f2f8de95f8c71030:R000208"
+    ],
+    "first_seen": 5285,
+    "last_seen": 5318,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000547",
+      "table_abb26b4f0632d61cda00071f:R000564"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000547->table_abb26b4f0632d61cda00071f:R000564"
+    ],
+    "first_seen": 19806,
+    "last_seen": 19820,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000019",
+      "table_abb26b4f0632d61cda00071f:R000023"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000019->table_abb26b4f0632d61cda00071f:R000023"
+    ],
+    "first_seen": 246,
+    "last_seen": 269,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000293",
+      "table_faf65838d7ecd2013cbda547:R000310"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000293->table_faf65838d7ecd2013cbda547:R000310"
+    ],
+    "first_seen": 6958,
+    "last_seen": 7540,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_af740f0a299356c39b48ce7b:R000518",
+      "table_af740f0a299356c39b48ce7b:R000521"
+    ],
+    "pair_ids": [
+      "table_af740f0a299356c39b48ce7b:R000518->table_af740f0a299356c39b48ce7b:R000521"
+    ],
+    "first_seen": 23591,
+    "last_seen": 23600,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000970",
+      "table_faf65838d7ecd2013cbda547:R000974"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000970->table_faf65838d7ecd2013cbda547:R000974"
+    ],
+    "first_seen": 25048,
+    "last_seen": 25344,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000261",
+      "table_6f37cc14274a733e7ed2ad35:R000277"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000261->table_6f37cc14274a733e7ed2ad35:R000277"
+    ],
+    "first_seen": 10006,
+    "last_seen": 10100,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000148",
+      "table_16394367f2f8de95f8c71030:R000161"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000148->table_16394367f2f8de95f8c71030:R000161"
+    ],
+    "first_seen": 4525,
+    "last_seen": 4635,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000146",
+      "table_abb26b4f0632d61cda00071f:R000152"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000146->table_abb26b4f0632d61cda00071f:R000152"
+    ],
+    "first_seen": 3837,
+    "last_seen": 4172,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000808",
+      "table_a6a5e4d14036587923ec8ded:R000819"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000808->table_a6a5e4d14036587923ec8ded:R000819"
+    ],
+    "first_seen": 17507,
+    "last_seen": 18000,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000012",
+      "table_fee1721aabe467d7bb7db090:R000018"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000012->table_fee1721aabe467d7bb7db090:R000018"
+    ],
+    "first_seen": 0,
+    "last_seen": 20,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000761",
+      "table_fee1721aabe467d7bb7db090:R000774"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000761->table_fee1721aabe467d7bb7db090:R000774"
+    ],
+    "first_seen": 21636,
+    "last_seen": 22100,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000246",
+      "table_a6a5e4d14036587923ec8ded:R000257"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000246->table_a6a5e4d14036587923ec8ded:R000257"
+    ],
+    "first_seen": 4359,
+    "last_seen": 4696,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000637",
+      "table_abb26b4f0632d61cda00071f:R000647"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000637->table_abb26b4f0632d61cda00071f:R000647"
+    ],
+    "first_seen": 22215,
+    "last_seen": 22780,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000099",
+      "table_abb26b4f0632d61cda00071f:R000116"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000099->table_abb26b4f0632d61cda00071f:R000116"
+    ],
+    "first_seen": 2516,
+    "last_seen": 3425,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000195",
+      "table_abb26b4f0632d61cda00071f:R000200"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000195->table_abb26b4f0632d61cda00071f:R000200"
+    ],
+    "first_seen": 6381,
+    "last_seen": 6655,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_52e614af084d53270e598a72:R000853",
+      "table_52e614af084d53270e598a72:R000863"
+    ],
+    "pair_ids": [
+      "table_52e614af084d53270e598a72:R000853->table_52e614af084d53270e598a72:R000863"
+    ],
+    "first_seen": 27056,
+    "last_seen": 27123,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000204",
+      "table_6f37cc14274a733e7ed2ad35:R000207"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000204->table_6f37cc14274a733e7ed2ad35:R000207"
+    ],
+    "first_seen": 8165,
+    "last_seen": 8631,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000157",
+      "table_faf65838d7ecd2013cbda547:R000166"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000157->table_faf65838d7ecd2013cbda547:R000166"
+    ],
+    "first_seen": 2326,
+    "last_seen": 2395,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000153",
+      "table_abb26b4f0632d61cda00071f:R000158"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000153->table_abb26b4f0632d61cda00071f:R000158"
+    ],
+    "first_seen": 4172,
+    "last_seen": 4910,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000587",
+      "table_6f37cc14274a733e7ed2ad35:R000588"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000587->table_6f37cc14274a733e7ed2ad35:R000588"
+    ],
+    "first_seen": 23168,
+    "last_seen": 23193,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000570",
+      "table_abb26b4f0632d61cda00071f:R000575"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000570->table_abb26b4f0632d61cda00071f:R000575"
+    ],
+    "first_seen": 20397,
+    "last_seen": 20420,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000140",
+      "table_6f37cc14274a733e7ed2ad35:R000142"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000140->table_6f37cc14274a733e7ed2ad35:R000142"
+    ],
+    "first_seen": 6508,
+    "last_seen": 6606,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000565",
+      "table_abb26b4f0632d61cda00071f:R000569"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000565->table_abb26b4f0632d61cda00071f:R000569"
+    ],
+    "first_seen": 19975,
+    "last_seen": 20397,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000338",
+      "table_6f37cc14274a733e7ed2ad35:R000347"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000338->table_6f37cc14274a733e7ed2ad35:R000347"
+    ],
+    "first_seen": 12933,
+    "last_seen": 12989,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000055",
+      "table_abb26b4f0632d61cda00071f:R000060"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000055->table_abb26b4f0632d61cda00071f:R000060"
+    ],
+    "first_seen": 864,
+    "last_seen": 1864,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000694",
+      "table_a6a5e4d14036587923ec8ded:R000700"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000694->table_a6a5e4d14036587923ec8ded:R000700"
+    ],
+    "first_seen": 14674,
+    "last_seen": 14900,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000089",
+      "table_6f37cc14274a733e7ed2ad35:R000090"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000089->table_6f37cc14274a733e7ed2ad35:R000090"
+    ],
+    "first_seen": 3699,
+    "last_seen": 3794,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000158",
+      "table_a6a5e4d14036587923ec8ded:R000163"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000158->table_a6a5e4d14036587923ec8ded:R000163"
+    ],
+    "first_seen": 2389,
+    "last_seen": 2660,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000063",
+      "table_deb776c52437ea38b8ca8db5:R000085"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000063->table_deb776c52437ea38b8ca8db5:R000085"
+    ],
+    "first_seen": 1179,
+    "last_seen": 1989,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000935",
+      "table_fee1721aabe467d7bb7db090:R000946"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000935->table_fee1721aabe467d7bb7db090:R000946"
+    ],
+    "first_seen": 27695,
+    "last_seen": 27965,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000101",
+      "table_fee1721aabe467d7bb7db090:R000112"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000101->table_fee1721aabe467d7bb7db090:R000112"
+    ],
+    "first_seen": 2215,
+    "last_seen": 2384,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000336",
+      "table_deb776c52437ea38b8ca8db5:R000357"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000336->table_deb776c52437ea38b8ca8db5:R000357"
+    ],
+    "first_seen": 8268,
+    "last_seen": 9015,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R001021",
+      "table_faf65838d7ecd2013cbda547:R001030"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R001021->table_faf65838d7ecd2013cbda547:R001030"
+    ],
+    "first_seen": 27025,
+    "last_seen": 27123,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000191",
+      "table_6f37cc14274a733e7ed2ad35:R000205"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000191->table_6f37cc14274a733e7ed2ad35:R000205"
+    ],
+    "first_seen": 8165,
+    "last_seen": 8620,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001167",
+      "table_a6a5e4d14036587923ec8ded:R001170"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001167->table_a6a5e4d14036587923ec8ded:R001170"
+    ],
+    "first_seen": 25563,
+    "last_seen": 25721,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000241",
+      "table_deb776c52437ea38b8ca8db5:R000249"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000241->table_deb776c52437ea38b8ca8db5:R000249"
+    ],
+    "first_seen": 5517,
+    "last_seen": 5910,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000342",
+      "table_16394367f2f8de95f8c71030:R000345"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000342->table_16394367f2f8de95f8c71030:R000345"
+    ],
+    "first_seen": 9269,
+    "last_seen": 9367,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001112",
+      "table_a6a5e4d14036587923ec8ded:R001118"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001112->table_a6a5e4d14036587923ec8ded:R001118"
+    ],
+    "first_seen": 23580,
+    "last_seen": 23900,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000121",
+      "table_6f37cc14274a733e7ed2ad35:R000123"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000121->table_6f37cc14274a733e7ed2ad35:R000123"
+    ],
+    "first_seen": 4542,
+    "last_seen": 4695,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000053",
+      "table_deb776c52437ea38b8ca8db5:R000072"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000053->table_deb776c52437ea38b8ca8db5:R000072"
+    ],
+    "first_seen": 490,
+    "last_seen": 1507,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000236",
+      "table_16394367f2f8de95f8c71030:R000247"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000236->table_16394367f2f8de95f8c71030:R000247"
+    ],
+    "first_seen": 7375,
+    "last_seen": 7649,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000787",
+      "table_abb26b4f0632d61cda00071f:R000789"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000787->table_abb26b4f0632d61cda00071f:R000789"
+    ],
+    "first_seen": 27057,
+    "last_seen": 27230,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000253",
+      "table_a6a5e4d14036587923ec8ded:R000259"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000253->table_a6a5e4d14036587923ec8ded:R000259"
+    ],
+    "first_seen": 4570,
+    "last_seen": 4696,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000329",
+      "table_a6a5e4d14036587923ec8ded:R000336"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000329->table_a6a5e4d14036587923ec8ded:R000336"
+    ],
+    "first_seen": 5196,
+    "last_seen": 5320,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000544",
+      "table_6f37cc14274a733e7ed2ad35:R000545",
+      "table_6f37cc14274a733e7ed2ad35:R000548"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000544->table_6f37cc14274a733e7ed2ad35:R000545",
+      "table_6f37cc14274a733e7ed2ad35:R000544->table_6f37cc14274a733e7ed2ad35:R000548"
+    ],
+    "first_seen": 21291,
+    "last_seen": 21420,
+    "conflicts": [
+      "BRANCH_OR_CYCLE"
+    ]
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000294",
+      "table_faf65838d7ecd2013cbda547:R000304"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000294->table_faf65838d7ecd2013cbda547:R000304"
+    ],
+    "first_seen": 6958,
+    "last_seen": 7341,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000444",
+      "table_6f37cc14274a733e7ed2ad35:R000459"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000444->table_6f37cc14274a733e7ed2ad35:R000459"
+    ],
+    "first_seen": 16789,
+    "last_seen": 16970,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000705",
+      "table_faf65838d7ecd2013cbda547:R000721"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000705->table_faf65838d7ecd2013cbda547:R000721"
+    ],
+    "first_seen": 19558,
+    "last_seen": 20283,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000353",
+      "table_faf65838d7ecd2013cbda547:R000364"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000353->table_faf65838d7ecd2013cbda547:R000364"
+    ],
+    "first_seen": 8455,
+    "last_seen": 8490,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_af740f0a299356c39b48ce7b:R000437",
+      "table_af740f0a299356c39b48ce7b:R000450"
+    ],
+    "pair_ids": [
+      "table_af740f0a299356c39b48ce7b:R000437->table_af740f0a299356c39b48ce7b:R000450"
+    ],
+    "first_seen": 18545,
+    "last_seen": 18672,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000611",
+      "table_faf65838d7ecd2013cbda547:R000620"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000611->table_faf65838d7ecd2013cbda547:R000620"
+    ],
+    "first_seen": 16905,
+    "last_seen": 17211,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000441",
+      "table_faf65838d7ecd2013cbda547:R000458"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000441->table_faf65838d7ecd2013cbda547:R000458"
+    ],
+    "first_seen": 12841,
+    "last_seen": 13536,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000359",
+      "table_faf65838d7ecd2013cbda547:R000371"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000359->table_faf65838d7ecd2013cbda547:R000371"
+    ],
+    "first_seen": 8455,
+    "last_seen": 9788,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000602",
+      "table_16394367f2f8de95f8c71030:R000615"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000602->table_16394367f2f8de95f8c71030:R000615"
+    ],
+    "first_seen": 18610,
+    "last_seen": 18637,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001180",
+      "table_a6a5e4d14036587923ec8ded:R001188"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001180->table_a6a5e4d14036587923ec8ded:R001188"
+    ],
+    "first_seen": 25995,
+    "last_seen": 26380,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000493",
+      "table_deb776c52437ea38b8ca8db5:R000511"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000493->table_deb776c52437ea38b8ca8db5:R000511"
+    ],
+    "first_seen": 12463,
+    "last_seen": 12765,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000229",
+      "table_deb776c52437ea38b8ca8db5:R000247"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000229->table_deb776c52437ea38b8ca8db5:R000247"
+    ],
+    "first_seen": 5517,
+    "last_seen": 5910,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000327",
+      "table_6f37cc14274a733e7ed2ad35:R000329"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000327->table_6f37cc14274a733e7ed2ad35:R000329"
+    ],
+    "first_seen": 12419,
+    "last_seen": 12490,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000023",
+      "table_6f37cc14274a733e7ed2ad35:R000025"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000023->table_6f37cc14274a733e7ed2ad35:R000025"
+    ],
+    "first_seen": 729,
+    "last_seen": 1783,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000294",
+      "table_deb776c52437ea38b8ca8db5:R000301"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000294->table_deb776c52437ea38b8ca8db5:R000301"
+    ],
+    "first_seen": 6716,
+    "last_seen": 7121,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000174",
+      "table_a6a5e4d14036587923ec8ded:R000179"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000174->table_a6a5e4d14036587923ec8ded:R000179"
+    ],
+    "first_seen": 3005,
+    "last_seen": 3180,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000531",
+      "table_6f37cc14274a733e7ed2ad35:R000547"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000531->table_6f37cc14274a733e7ed2ad35:R000547"
+    ],
+    "first_seen": 21291,
+    "last_seen": 21420,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000762",
+      "table_faf65838d7ecd2013cbda547:R000779"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000762->table_faf65838d7ecd2013cbda547:R000779"
+    ],
+    "first_seen": 20915,
+    "last_seen": 21225,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_af740f0a299356c39b48ce7b:R000506",
+      "table_af740f0a299356c39b48ce7b:R000519"
+    ],
+    "pair_ids": [
+      "table_af740f0a299356c39b48ce7b:R000506->table_af740f0a299356c39b48ce7b:R000519"
+    ],
+    "first_seen": 23591,
+    "last_seen": 23598,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000873",
+      "table_deb776c52437ea38b8ca8db5:R000891"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000873->table_deb776c52437ea38b8ca8db5:R000891"
+    ],
+    "first_seen": 27411,
+    "last_seen": 28221,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000375",
+      "table_a6a5e4d14036587923ec8ded:R000380"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000375->table_a6a5e4d14036587923ec8ded:R000380"
+    ],
+    "first_seen": 6507,
+    "last_seen": 6640,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000060",
+      "table_16394367f2f8de95f8c71030:R000063"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000060->table_16394367f2f8de95f8c71030:R000063"
+    ],
+    "first_seen": 444,
+    "last_seen": 566,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000667",
+      "table_faf65838d7ecd2013cbda547:R000672"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000667->table_faf65838d7ecd2013cbda547:R000672"
+    ],
+    "first_seen": 18013,
+    "last_seen": 18591,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001007",
+      "table_a6a5e4d14036587923ec8ded:R001010"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001007->table_a6a5e4d14036587923ec8ded:R001010"
+    ],
+    "first_seen": 22164,
+    "last_seen": 22208,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000513",
+      "table_abb26b4f0632d61cda00071f:R000521"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000513->table_abb26b4f0632d61cda00071f:R000521"
+    ],
+    "first_seen": 18138,
+    "last_seen": 18140,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000081",
+      "table_6f37cc14274a733e7ed2ad35:R000092"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000081->table_6f37cc14274a733e7ed2ad35:R000092"
+    ],
+    "first_seen": 3699,
+    "last_seen": 3800,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000828",
+      "table_deb776c52437ea38b8ca8db5:R000845"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000828->table_deb776c52437ea38b8ca8db5:R000845"
+    ],
+    "first_seen": 26041,
+    "last_seen": 26171,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000047",
+      "table_16394367f2f8de95f8c71030:R000062"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000047->table_16394367f2f8de95f8c71030:R000062"
+    ],
+    "first_seen": 444,
+    "last_seen": 540,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000393",
+      "table_16394367f2f8de95f8c71030:R000403"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000393->table_16394367f2f8de95f8c71030:R000403"
+    ],
+    "first_seen": 10060,
+    "last_seen": 11008,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000042",
+      "table_faf65838d7ecd2013cbda547:R000051"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000042->table_faf65838d7ecd2013cbda547:R000051"
+    ],
+    "first_seen": 181,
+    "last_seen": 570,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000169",
+      "table_6f37cc14274a733e7ed2ad35:R000170"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000169->table_6f37cc14274a733e7ed2ad35:R000170"
+    ],
+    "first_seen": 7096,
+    "last_seen": 7224,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000492",
+      "table_6f37cc14274a733e7ed2ad35:R000494"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000492->table_6f37cc14274a733e7ed2ad35:R000494"
+    ],
+    "first_seen": 18151,
+    "last_seen": 18237,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_52e614af084d53270e598a72:R000041",
+      "table_52e614af084d53270e598a72:R000046"
+    ],
+    "pair_ids": [
+      "table_52e614af084d53270e598a72:R000041->table_52e614af084d53270e598a72:R000046"
+    ],
+    "first_seen": 232,
+    "last_seen": 607,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000620",
+      "table_6f37cc14274a733e7ed2ad35:R000621"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000620->table_6f37cc14274a733e7ed2ad35:R000621"
+    ],
+    "first_seen": 24192,
+    "last_seen": 24227,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000314",
+      "table_abb26b4f0632d61cda00071f:R000320"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000314->table_abb26b4f0632d61cda00071f:R000320"
+    ],
+    "first_seen": 10059,
+    "last_seen": 10520,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000676",
+      "table_abb26b4f0632d61cda00071f:R000680"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000676->table_abb26b4f0632d61cda00071f:R000680"
+    ],
+    "first_seen": 23454,
+    "last_seen": 23989,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000036",
+      "table_faf65838d7ecd2013cbda547:R000054"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000036->table_faf65838d7ecd2013cbda547:R000054"
+    ],
+    "first_seen": 181,
+    "last_seen": 580,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000684",
+      "table_abb26b4f0632d61cda00071f:R000693"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000684->table_abb26b4f0632d61cda00071f:R000693"
+    ],
+    "first_seen": 24006,
+    "last_seen": 24364,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001196",
+      "table_a6a5e4d14036587923ec8ded:R001199"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001196->table_a6a5e4d14036587923ec8ded:R001199"
+    ],
+    "first_seen": 26691,
+    "last_seen": 26728,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000070",
+      "table_fee1721aabe467d7bb7db090:R000074"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000070->table_fee1721aabe467d7bb7db090:R000074"
+    ],
+    "first_seen": 1288,
+    "last_seen": 1327,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000189",
+      "table_abb26b4f0632d61cda00071f:R000194"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000189->table_abb26b4f0632d61cda00071f:R000194"
+    ],
+    "first_seen": 5875,
+    "last_seen": 6381,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000884",
+      "table_a6a5e4d14036587923ec8ded:R000894"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000884->table_a6a5e4d14036587923ec8ded:R000894"
+    ],
+    "first_seen": 19027,
+    "last_seen": 19157,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000994",
+      "table_a6a5e4d14036587923ec8ded:R000999"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000994->table_a6a5e4d14036587923ec8ded:R000999"
+    ],
+    "first_seen": 21758,
+    "last_seen": 22101,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000853",
+      "table_16394367f2f8de95f8c71030:R000867"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000853->table_16394367f2f8de95f8c71030:R000867"
+    ],
+    "first_seen": 26201,
+    "last_seen": 26944,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000524",
+      "table_a6a5e4d14036587923ec8ded:R000534"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000524->table_a6a5e4d14036587923ec8ded:R000534"
+    ],
+    "first_seen": 10191,
+    "last_seen": 10367,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000586",
+      "table_abb26b4f0632d61cda00071f:R000600"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000586->table_abb26b4f0632d61cda00071f:R000600"
+    ],
+    "first_seen": 20651,
+    "last_seen": 20957,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000505",
+      "table_deb776c52437ea38b8ca8db5:R000512"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000505->table_deb776c52437ea38b8ca8db5:R000512"
+    ],
+    "first_seen": 12463,
+    "last_seen": 12765,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000293",
+      "table_fee1721aabe467d7bb7db090:R000297"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000293->table_fee1721aabe467d7bb7db090:R000297"
+    ],
+    "first_seen": 7670,
+    "last_seen": 7705,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000573",
+      "table_deb776c52437ea38b8ca8db5:R000579"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000573->table_deb776c52437ea38b8ca8db5:R000579"
+    ],
+    "first_seen": 15575,
+    "last_seen": 15970,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000711",
+      "table_abb26b4f0632d61cda00071f:R000726"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000711->table_abb26b4f0632d61cda00071f:R000726"
+    ],
+    "first_seen": 24607,
+    "last_seen": 24955,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000605",
+      "table_faf65838d7ecd2013cbda547:R000623"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000605->table_faf65838d7ecd2013cbda547:R000623"
+    ],
+    "first_seen": 16905,
+    "last_seen": 17356,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000683",
+      "table_6f37cc14274a733e7ed2ad35:R000699"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000683->table_6f37cc14274a733e7ed2ad35:R000699"
+    ],
+    "first_seen": 26875,
+    "last_seen": 27096,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000092",
+      "table_deb776c52437ea38b8ca8db5:R000096"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000092->table_deb776c52437ea38b8ca8db5:R000096"
+    ],
+    "first_seen": 2444,
+    "last_seen": 2616,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000795",
+      "table_fee1721aabe467d7bb7db090:R000801"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000795->table_fee1721aabe467d7bb7db090:R000801"
+    ],
+    "first_seen": 22189,
+    "last_seen": 22420,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000700",
+      "table_deb776c52437ea38b8ca8db5:R000707"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000700->table_deb776c52437ea38b8ca8db5:R000707"
+    ],
+    "first_seen": 19099,
+    "last_seen": 20373,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000388",
+      "table_16394367f2f8de95f8c71030:R000391"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000388->table_16394367f2f8de95f8c71030:R000391"
+    ],
+    "first_seen": 9850,
+    "last_seen": 10004,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000901",
+      "table_a6a5e4d14036587923ec8ded:R000906"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000901->table_a6a5e4d14036587923ec8ded:R000906"
+    ],
+    "first_seen": 19479,
+    "last_seen": 19747,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000159",
+      "table_faf65838d7ecd2013cbda547:R000176"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000159->table_faf65838d7ecd2013cbda547:R000176"
+    ],
+    "first_seen": 2326,
+    "last_seen": 2864,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000816",
+      "table_faf65838d7ecd2013cbda547:R000834"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000816->table_faf65838d7ecd2013cbda547:R000834"
+    ],
+    "first_seen": 22415,
+    "last_seen": 22758,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000119",
+      "table_deb776c52437ea38b8ca8db5:R000129"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000119->table_deb776c52437ea38b8ca8db5:R000129"
+    ],
+    "first_seen": 2742,
+    "last_seen": 3189,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000337",
+      "table_16394367f2f8de95f8c71030:R000348"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000337->table_16394367f2f8de95f8c71030:R000348"
+    ],
+    "first_seen": 9269,
+    "last_seen": 9593,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000800",
+      "table_deb776c52437ea38b8ca8db5:R000815"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000800->table_deb776c52437ea38b8ca8db5:R000815"
+    ],
+    "first_seen": 25512,
+    "last_seen": 25952,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000610",
+      "table_16394367f2f8de95f8c71030:R000619"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000610->table_16394367f2f8de95f8c71030:R000619"
+    ],
+    "first_seen": 18610,
+    "last_seen": 18640,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000376",
+      "table_16394367f2f8de95f8c71030:R000389"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000376->table_16394367f2f8de95f8c71030:R000389"
+    ],
+    "first_seen": 9850,
+    "last_seen": 9920,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R001017",
+      "table_faf65838d7ecd2013cbda547:R001036"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R001017->table_faf65838d7ecd2013cbda547:R001036"
+    ],
+    "first_seen": 27025,
+    "last_seen": 27415,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000574",
+      "table_6f37cc14274a733e7ed2ad35:R000590"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000574->table_6f37cc14274a733e7ed2ad35:R000590"
+    ],
+    "first_seen": 23168,
+    "last_seen": 23200,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000406",
+      "table_faf65838d7ecd2013cbda547:R000415"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000406->table_faf65838d7ecd2013cbda547:R000415"
+    ],
+    "first_seen": 11649,
+    "last_seen": 12324,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000608",
+      "table_6f37cc14274a733e7ed2ad35:R000624"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000608->table_6f37cc14274a733e7ed2ad35:R000624"
+    ],
+    "first_seen": 24192,
+    "last_seen": 24500,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000166",
+      "table_a6a5e4d14036587923ec8ded:R000181"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000166->table_a6a5e4d14036587923ec8ded:R000181"
+    ],
+    "first_seen": 2712,
+    "last_seen": 3201,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000236",
+      "table_deb776c52437ea38b8ca8db5:R000248"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000236->table_deb776c52437ea38b8ca8db5:R000248"
+    ],
+    "first_seen": 5517,
+    "last_seen": 5910,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000188",
+      "table_abb26b4f0632d61cda00071f:R000199"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000188->table_abb26b4f0632d61cda00071f:R000199"
+    ],
+    "first_seen": 5875,
+    "last_seen": 6655,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000582",
+      "table_deb776c52437ea38b8ca8db5:R000587"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000582->table_deb776c52437ea38b8ca8db5:R000587"
+    ],
+    "first_seen": 15988,
+    "last_seen": 16193,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000636",
+      "table_16394367f2f8de95f8c71030:R000643"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000636->table_16394367f2f8de95f8c71030:R000643"
+    ],
+    "first_seen": 19447,
+    "last_seen": 20080,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R001028",
+      "table_faf65838d7ecd2013cbda547:R001033"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R001028->table_faf65838d7ecd2013cbda547:R001033"
+    ],
+    "first_seen": 27025,
+    "last_seen": 27361,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000159",
+      "table_16394367f2f8de95f8c71030:R000162"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000159->table_16394367f2f8de95f8c71030:R000162"
+    ],
+    "first_seen": 4525,
+    "last_seen": 4635,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000311",
+      "table_abb26b4f0632d61cda00071f:R000316"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000311->table_abb26b4f0632d61cda00071f:R000316"
+    ],
+    "first_seen": 9964,
+    "last_seen": 10266,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000400",
+      "table_6f37cc14274a733e7ed2ad35:R000416"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000400->table_6f37cc14274a733e7ed2ad35:R000416"
+    ],
+    "first_seen": 14865,
+    "last_seen": 15262,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001183",
+      "table_a6a5e4d14036587923ec8ded:R001189"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001183->table_a6a5e4d14036587923ec8ded:R001189"
+    ],
+    "first_seen": 26228,
+    "last_seen": 26380,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000803",
+      "table_abb26b4f0632d61cda00071f:R000823"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000803->table_abb26b4f0632d61cda00071f:R000823"
+    ],
+    "first_seen": 27528,
+    "last_seen": 27770,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000661",
+      "table_faf65838d7ecd2013cbda547:R000671"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000661->table_faf65838d7ecd2013cbda547:R000671"
+    ],
+    "first_seen": 18013,
+    "last_seen": 18591,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000839",
+      "table_a6a5e4d14036587923ec8ded:R000849"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000839->table_a6a5e4d14036587923ec8ded:R000849"
+    ],
+    "first_seen": 18187,
+    "last_seen": 18452,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000485",
+      "table_a6a5e4d14036587923ec8ded:R000491"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000485->table_a6a5e4d14036587923ec8ded:R000491"
+    ],
+    "first_seen": 8987,
+    "last_seen": 9104,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000128",
+      "table_6f37cc14274a733e7ed2ad35:R000145"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000128->table_6f37cc14274a733e7ed2ad35:R000145"
+    ],
+    "first_seen": 5285,
+    "last_seen": 6733,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000455",
+      "table_abb26b4f0632d61cda00071f:R000459"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000455->table_abb26b4f0632d61cda00071f:R000459"
+    ],
+    "first_seen": 15414,
+    "last_seen": 15709,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000531",
+      "table_a6a5e4d14036587923ec8ded:R000537"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000531->table_a6a5e4d14036587923ec8ded:R000537"
+    ],
+    "first_seen": 10191,
+    "last_seen": 10409,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000450",
+      "table_deb776c52437ea38b8ca8db5:R000465"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000450->table_deb776c52437ea38b8ca8db5:R000465"
+    ],
+    "first_seen": 12025,
+    "last_seen": 12279,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_52e614af084d53270e598a72:R000074",
+      "table_52e614af084d53270e598a72:R000079"
+    ],
+    "pair_ids": [
+      "table_52e614af084d53270e598a72:R000074->table_52e614af084d53270e598a72:R000079"
+    ],
+    "first_seen": 2021,
+    "last_seen": 2383,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000439",
+      "table_deb776c52437ea38b8ca8db5:R000442"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000439->table_deb776c52437ea38b8ca8db5:R000442"
+    ],
+    "first_seen": 11155,
+    "last_seen": 11601,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000368",
+      "table_6f37cc14274a733e7ed2ad35:R000370"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000368->table_6f37cc14274a733e7ed2ad35:R000370"
+    ],
+    "first_seen": 13149,
+    "last_seen": 13237,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000778",
+      "table_deb776c52437ea38b8ca8db5:R000796"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000778->table_deb776c52437ea38b8ca8db5:R000796"
+    ],
+    "first_seen": 25154,
+    "last_seen": 25440,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000852",
+      "table_fee1721aabe467d7bb7db090:R000865"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000852->table_fee1721aabe467d7bb7db090:R000865"
+    ],
+    "first_seen": 24617,
+    "last_seen": 24619,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000640",
+      "table_fee1721aabe467d7bb7db090:R000645"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000640->table_fee1721aabe467d7bb7db090:R000645"
+    ],
+    "first_seen": 18079,
+    "last_seen": 18355,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000947",
+      "table_a6a5e4d14036587923ec8ded:R000952"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000947->table_a6a5e4d14036587923ec8ded:R000952"
+    ],
+    "first_seen": 20299,
+    "last_seen": 20733,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000296",
+      "table_fee1721aabe467d7bb7db090:R000302"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000296->table_fee1721aabe467d7bb7db090:R000302"
+    ],
+    "first_seen": 7670,
+    "last_seen": 7920,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000287",
+      "table_a6a5e4d14036587923ec8ded:R000297"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000287->table_a6a5e4d14036587923ec8ded:R000297"
+    ],
+    "first_seen": 4855,
+    "last_seen": 5040,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000959",
+      "table_faf65838d7ecd2013cbda547:R000976"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000959->table_faf65838d7ecd2013cbda547:R000976"
+    ],
+    "first_seen": 25048,
+    "last_seen": 25352,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000532",
+      "table_a6a5e4d14036587923ec8ded:R000538"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000532->table_a6a5e4d14036587923ec8ded:R000538"
+    ],
+    "first_seen": 10331,
+    "last_seen": 10409,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000696",
+      "table_deb776c52437ea38b8ca8db5:R000706"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000696->table_deb776c52437ea38b8ca8db5:R000706"
+    ],
+    "first_seen": 19099,
+    "last_seen": 20373,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000400",
+      "table_faf65838d7ecd2013cbda547:R000418"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000400->table_faf65838d7ecd2013cbda547:R000418"
+    ],
+    "first_seen": 11649,
+    "last_seen": 12340,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000093",
+      "table_faf65838d7ecd2013cbda547:R000110"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000093->table_faf65838d7ecd2013cbda547:R000110"
+    ],
+    "first_seen": 905,
+    "last_seen": 1335,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000425",
+      "table_abb26b4f0632d61cda00071f:R000430"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000425->table_abb26b4f0632d61cda00071f:R000430"
+    ],
+    "first_seen": 14893,
+    "last_seen": 15161,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000050",
+      "table_16394367f2f8de95f8c71030:R000065"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000050->table_16394367f2f8de95f8c71030:R000065"
+    ],
+    "first_seen": 444,
+    "last_seen": 577,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000436",
+      "table_faf65838d7ecd2013cbda547:R000453"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000436->table_faf65838d7ecd2013cbda547:R000453"
+    ],
+    "first_seen": 12841,
+    "last_seen": 13226,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000207",
+      "table_16394367f2f8de95f8c71030:R000217"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000207->table_16394367f2f8de95f8c71030:R000217"
+    ],
+    "first_seen": 5285,
+    "last_seen": 5932,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000073",
+      "table_fee1721aabe467d7bb7db090:R000080"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000073->table_fee1721aabe467d7bb7db090:R000080"
+    ],
+    "first_seen": 1288,
+    "last_seen": 1786,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000012",
+      "table_16394367f2f8de95f8c71030:R000019"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000012->table_16394367f2f8de95f8c71030:R000019"
+    ],
+    "first_seen": 0,
+    "last_seen": 100,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000268",
+      "table_16394367f2f8de95f8c71030:R000276"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000268->table_16394367f2f8de95f8c71030:R000276"
+    ],
+    "first_seen": 7732,
+    "last_seen": 7820,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000643",
+      "table_abb26b4f0632d61cda00071f:R000648"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000643->table_abb26b4f0632d61cda00071f:R000648"
+    ],
+    "first_seen": 22563,
+    "last_seen": 22780,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000473",
+      "table_16394367f2f8de95f8c71030:R000476"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000473->table_16394367f2f8de95f8c71030:R000476"
+    ],
+    "first_seen": 12355,
+    "last_seen": 12561,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000214",
+      "table_16394367f2f8de95f8c71030:R000223"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000214->table_16394367f2f8de95f8c71030:R000223"
+    ],
+    "first_seen": 5522,
+    "last_seen": 6040,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000922",
+      "table_faf65838d7ecd2013cbda547:R000931"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000922->table_faf65838d7ecd2013cbda547:R000931"
+    ],
+    "first_seen": 24354,
+    "last_seen": 24566,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000695",
+      "table_6f37cc14274a733e7ed2ad35:R000696"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000695->table_6f37cc14274a733e7ed2ad35:R000696"
+    ],
+    "first_seen": 26875,
+    "last_seen": 27055,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000232",
+      "table_16394367f2f8de95f8c71030:R000234"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000232->table_16394367f2f8de95f8c71030:R000234"
+    ],
+    "first_seen": 7093,
+    "last_seen": 7232,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000545",
+      "table_deb776c52437ea38b8ca8db5:R000564"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000545->table_deb776c52437ea38b8ca8db5:R000564"
+    ],
+    "first_seen": 14545,
+    "last_seen": 15080,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000231",
+      "table_fee1721aabe467d7bb7db090:R000242"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000231->table_fee1721aabe467d7bb7db090:R000242"
+    ],
+    "first_seen": 6565,
+    "last_seen": 6717,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000235",
+      "table_abb26b4f0632d61cda00071f:R000240"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000235->table_abb26b4f0632d61cda00071f:R000240"
+    ],
+    "first_seen": 7544,
+    "last_seen": 8080,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000349",
+      "table_16394367f2f8de95f8c71030:R000363"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000349->table_16394367f2f8de95f8c71030:R000363"
+    ],
+    "first_seen": 9593,
+    "last_seen": 9720,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000011",
+      "table_abb26b4f0632d61cda00071f:R000021"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000011->table_abb26b4f0632d61cda00071f:R000021"
+    ],
+    "first_seen": 0,
+    "last_seen": 269,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000863",
+      "table_16394367f2f8de95f8c71030:R000865"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000863->table_16394367f2f8de95f8c71030:R000865"
+    ],
+    "first_seen": 26640,
+    "last_seen": 26655,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000756",
+      "table_fee1721aabe467d7bb7db090:R000766"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000756->table_fee1721aabe467d7bb7db090:R000766"
+    ],
+    "first_seen": 21636,
+    "last_seen": 21688,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000197",
+      "table_deb776c52437ea38b8ca8db5:R000216"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000197->table_deb776c52437ea38b8ca8db5:R000216"
+    ],
+    "first_seen": 4504,
+    "last_seen": 5070,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000764",
+      "table_a6a5e4d14036587923ec8ded:R000770"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000764->table_a6a5e4d14036587923ec8ded:R000770"
+    ],
+    "first_seen": 16363,
+    "last_seen": 16410,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000761",
+      "table_a6a5e4d14036587923ec8ded:R000766"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000761->table_a6a5e4d14036587923ec8ded:R000766"
+    ],
+    "first_seen": 16074,
+    "last_seen": 16385,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000391",
+      "table_deb776c52437ea38b8ca8db5:R000397"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000391->table_deb776c52437ea38b8ca8db5:R000397"
+    ],
+    "first_seen": 9568,
+    "last_seen": 10020,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000153",
+      "table_faf65838d7ecd2013cbda547:R000171"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000153->table_faf65838d7ecd2013cbda547:R000171"
+    ],
+    "first_seen": 2326,
+    "last_seen": 2537,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000379",
+      "table_deb776c52437ea38b8ca8db5:R000396"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000379->table_deb776c52437ea38b8ca8db5:R000396"
+    ],
+    "first_seen": 9568,
+    "last_seen": 10020,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_af740f0a299356c39b48ce7b:R000247",
+      "table_af740f0a299356c39b48ce7b:R000260"
+    ],
+    "pair_ids": [
+      "table_af740f0a299356c39b48ce7b:R000247->table_af740f0a299356c39b48ce7b:R000260"
+    ],
+    "first_seen": 9546,
+    "last_seen": 9692,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000154",
+      "table_16394367f2f8de95f8c71030:R000169"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000154->table_16394367f2f8de95f8c71030:R000169"
+    ],
+    "first_seen": 4525,
+    "last_seen": 4876,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000208",
+      "table_deb776c52437ea38b8ca8db5:R000213"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000208->table_deb776c52437ea38b8ca8db5:R000213"
+    ],
+    "first_seen": 4504,
+    "last_seen": 4820,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000703",
+      "table_6f37cc14274a733e7ed2ad35:R000710"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000703->table_6f37cc14274a733e7ed2ad35:R000710"
+    ],
+    "first_seen": 27309,
+    "last_seen": 27869,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000518",
+      "table_fee1721aabe467d7bb7db090:R000523"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000518->table_fee1721aabe467d7bb7db090:R000523"
+    ],
+    "first_seen": 14226,
+    "last_seen": 14457,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_52e614af084d53270e598a72:R000129",
+      "table_52e614af084d53270e598a72:R000140"
+    ],
+    "pair_ids": [
+      "table_52e614af084d53270e598a72:R000129->table_52e614af084d53270e598a72:R000140"
+    ],
+    "first_seen": 2929,
+    "last_seen": 3268,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000398",
+      "table_16394367f2f8de95f8c71030:R000410"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000398->table_16394367f2f8de95f8c71030:R000410"
+    ],
+    "first_seen": 10297,
+    "last_seen": 11248,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000782",
+      "table_deb776c52437ea38b8ca8db5:R000799"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000782->table_deb776c52437ea38b8ca8db5:R000799"
+    ],
+    "first_seen": 25154,
+    "last_seen": 25512,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000109",
+      "table_deb776c52437ea38b8ca8db5:R000126"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000109->table_deb776c52437ea38b8ca8db5:R000126"
+    ],
+    "first_seen": 2742,
+    "last_seen": 3055,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000251",
+      "table_faf65838d7ecd2013cbda547:R000269"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000251->table_faf65838d7ecd2013cbda547:R000269"
+    ],
+    "first_seen": 5608,
+    "last_seen": 6360,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000251",
+      "table_a6a5e4d14036587923ec8ded:R000258"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000251->table_a6a5e4d14036587923ec8ded:R000258"
+    ],
+    "first_seen": 4359,
+    "last_seen": 4696,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000481",
+      "table_6f37cc14274a733e7ed2ad35:R000493"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000481->table_6f37cc14274a733e7ed2ad35:R000493"
+    ],
+    "first_seen": 18151,
+    "last_seen": 18237,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000223",
+      "table_faf65838d7ecd2013cbda547:R000227"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000223->table_faf65838d7ecd2013cbda547:R000227"
+    ],
+    "first_seen": 4017,
+    "last_seen": 5253,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000310",
+      "table_6f37cc14274a733e7ed2ad35:R000312"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000310->table_6f37cc14274a733e7ed2ad35:R000312"
+    ],
+    "first_seen": 10896,
+    "last_seen": 11432,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000286",
+      "table_deb776c52437ea38b8ca8db5:R000296"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000286->table_deb776c52437ea38b8ca8db5:R000296"
+    ],
+    "first_seen": 6716,
+    "last_seen": 6780,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000329",
+      "table_fee1721aabe467d7bb7db090:R000337"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000329->table_fee1721aabe467d7bb7db090:R000337"
+    ],
+    "first_seen": 8572,
+    "last_seen": 9305,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000733",
+      "table_16394367f2f8de95f8c71030:R000735"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000733->table_16394367f2f8de95f8c71030:R000735"
+    ],
+    "first_seen": 21889,
+    "last_seen": 21989,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000609",
+      "table_16394367f2f8de95f8c71030:R000630"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000609->table_16394367f2f8de95f8c71030:R000630"
+    ],
+    "first_seen": 18610,
+    "last_seen": 19029,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000048",
+      "table_deb776c52437ea38b8ca8db5:R000067"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000048->table_deb776c52437ea38b8ca8db5:R000067"
+    ],
+    "first_seen": 490,
+    "last_seen": 1436,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000109",
+      "table_6f37cc14274a733e7ed2ad35:R000125"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000109->table_6f37cc14274a733e7ed2ad35:R000125"
+    ],
+    "first_seen": 4542,
+    "last_seen": 4700,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000842",
+      "table_deb776c52437ea38b8ca8db5:R000848"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000842->table_deb776c52437ea38b8ca8db5:R000848"
+    ],
+    "first_seen": 26041,
+    "last_seen": 26823,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000096",
+      "table_faf65838d7ecd2013cbda547:R000106"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000096->table_faf65838d7ecd2013cbda547:R000106"
+    ],
+    "first_seen": 905,
+    "last_seen": 1122,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000293",
+      "table_a6a5e4d14036587923ec8ded:R000298"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000293->table_a6a5e4d14036587923ec8ded:R000298"
+    ],
+    "first_seen": 4855,
+    "last_seen": 5040,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000064",
+      "table_abb26b4f0632d61cda00071f:R000077"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000064->table_abb26b4f0632d61cda00071f:R000077"
+    ],
+    "first_seen": 1955,
+    "last_seen": 2380,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000052",
+      "table_deb776c52437ea38b8ca8db5:R000062"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000052->table_deb776c52437ea38b8ca8db5:R000062"
+    ],
+    "first_seen": 490,
+    "last_seen": 1179,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000497",
+      "table_deb776c52437ea38b8ca8db5:R000506"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000497->table_deb776c52437ea38b8ca8db5:R000506"
+    ],
+    "first_seen": 12463,
+    "last_seen": 12514,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000755",
+      "table_16394367f2f8de95f8c71030:R000765"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000755->table_16394367f2f8de95f8c71030:R000765"
+    ],
+    "first_seen": 22287,
+    "last_seen": 22394,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000673",
+      "table_fee1721aabe467d7bb7db090:R000678"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000673->table_fee1721aabe467d7bb7db090:R000678"
+    ],
+    "first_seen": 18823,
+    "last_seen": 19282,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000150",
+      "table_6f37cc14274a733e7ed2ad35:R000152"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000150->table_6f37cc14274a733e7ed2ad35:R000152"
+    ],
+    "first_seen": 7019,
+    "last_seen": 7035,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000846",
+      "table_a6a5e4d14036587923ec8ded:R000853"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000846->table_a6a5e4d14036587923ec8ded:R000853"
+    ],
+    "first_seen": 18309,
+    "last_seen": 18466,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000870",
+      "table_deb776c52437ea38b8ca8db5:R000887"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000870->table_deb776c52437ea38b8ca8db5:R000887"
+    ],
+    "first_seen": 27411,
+    "last_seen": 27420,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000010",
+      "table_deb776c52437ea38b8ca8db5:R000019"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000010->table_deb776c52437ea38b8ca8db5:R000019"
+    ],
+    "first_seen": 0,
+    "last_seen": 236,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000244",
+      "table_faf65838d7ecd2013cbda547:R000260"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000244->table_faf65838d7ecd2013cbda547:R000260"
+    ],
+    "first_seen": 5608,
+    "last_seen": 6013,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000089",
+      "table_faf65838d7ecd2013cbda547:R000105"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000089->table_faf65838d7ecd2013cbda547:R000105"
+    ],
+    "first_seen": 905,
+    "last_seen": 1122,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000688",
+      "table_a6a5e4d14036587923ec8ded:R000701"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000688->table_a6a5e4d14036587923ec8ded:R000701"
+    ],
+    "first_seen": 14674,
+    "last_seen": 15081,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000690",
+      "table_16394367f2f8de95f8c71030:R000694"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000690->table_16394367f2f8de95f8c71030:R000694"
+    ],
+    "first_seen": 20444,
+    "last_seen": 20632,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000071",
+      "table_6f37cc14274a733e7ed2ad35:R000073"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000071->table_6f37cc14274a733e7ed2ad35:R000073"
+    ],
+    "first_seen": 3614,
+    "last_seen": 3620,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000240",
+      "table_16394367f2f8de95f8c71030:R000242"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000240->table_16394367f2f8de95f8c71030:R000242"
+    ],
+    "first_seen": 7527,
+    "last_seen": 7589,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000515",
+      "table_fee1721aabe467d7bb7db090:R000519"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000515->table_fee1721aabe467d7bb7db090:R000519"
+    ],
+    "first_seen": 14226,
+    "last_seen": 14309,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000213",
+      "table_faf65838d7ecd2013cbda547:R000229"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000213->table_faf65838d7ecd2013cbda547:R000229"
+    ],
+    "first_seen": 3882,
+    "last_seen": 5366,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000571",
+      "table_fee1721aabe467d7bb7db090:R000580"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000571->table_fee1721aabe467d7bb7db090:R000580"
+    ],
+    "first_seen": 16137,
+    "last_seen": 16243,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000218",
+      "table_16394367f2f8de95f8c71030:R000219"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000218->table_16394367f2f8de95f8c71030:R000219"
+    ],
+    "first_seen": 5932,
+    "last_seen": 6013,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000015",
+      "table_faf65838d7ecd2013cbda547:R000018"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000015->table_faf65838d7ecd2013cbda547:R000018"
+    ],
+    "first_seen": 0,
+    "last_seen": 59,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000556",
+      "table_abb26b4f0632d61cda00071f:R000568"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000556->table_abb26b4f0632d61cda00071f:R000568"
+    ],
+    "first_seen": 19806,
+    "last_seen": 20397,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000128",
+      "table_fee1721aabe467d7bb7db090:R000140"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000128->table_fee1721aabe467d7bb7db090:R000140"
+    ],
+    "first_seen": 2979,
+    "last_seen": 3092,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000625",
+      "table_fee1721aabe467d7bb7db090:R000637"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000625->table_fee1721aabe467d7bb7db090:R000637"
+    ],
+    "first_seen": 17634,
+    "last_seen": 17685,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000274",
+      "table_abb26b4f0632d61cda00071f:R000278"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000274->table_abb26b4f0632d61cda00071f:R000278"
+    ],
+    "first_seen": 9084,
+    "last_seen": 9329,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000557",
+      "table_deb776c52437ea38b8ca8db5:R000562"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000557->table_deb776c52437ea38b8ca8db5:R000562"
+    ],
+    "first_seen": 14545,
+    "last_seen": 15071,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000273",
+      "table_6f37cc14274a733e7ed2ad35:R000275"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000273->table_6f37cc14274a733e7ed2ad35:R000275"
+    ],
+    "first_seen": 10006,
+    "last_seen": 10089,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000392",
+      "table_16394367f2f8de95f8c71030:R000401"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000392->table_16394367f2f8de95f8c71030:R000401"
+    ],
+    "first_seen": 10004,
+    "last_seen": 10917,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000576",
+      "table_deb776c52437ea38b8ca8db5:R000581"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000576->table_deb776c52437ea38b8ca8db5:R000581"
+    ],
+    "first_seen": 15882,
+    "last_seen": 15988,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000645",
+      "table_6f37cc14274a733e7ed2ad35:R000661"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000645->table_6f37cc14274a733e7ed2ad35:R000661"
+    ],
+    "first_seen": 25465,
+    "last_seen": 25560,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000047",
+      "table_6f37cc14274a733e7ed2ad35:R000064"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000047->table_6f37cc14274a733e7ed2ad35:R000064"
+    ],
+    "first_seen": 2565,
+    "last_seen": 2814,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000512",
+      "table_16394367f2f8de95f8c71030:R000514"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000512->table_16394367f2f8de95f8c71030:R000514"
+    ],
+    "first_seen": 13145,
+    "last_seen": 13290,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000845",
+      "table_a6a5e4d14036587923ec8ded:R000850"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000845->table_a6a5e4d14036587923ec8ded:R000850"
+    ],
+    "first_seen": 18187,
+    "last_seen": 18452,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000614",
+      "table_16394367f2f8de95f8c71030:R000627"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000614->table_16394367f2f8de95f8c71030:R000627"
+    ],
+    "first_seen": 18610,
+    "last_seen": 18908,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000334",
+      "table_6f37cc14274a733e7ed2ad35:R000340"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000334->table_6f37cc14274a733e7ed2ad35:R000340"
+    ],
+    "first_seen": 12933,
+    "last_seen": 12972,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000356",
+      "table_6f37cc14274a733e7ed2ad35:R000369"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000356->table_6f37cc14274a733e7ed2ad35:R000369"
+    ],
+    "first_seen": 13149,
+    "last_seen": 13237,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000440",
+      "table_a6a5e4d14036587923ec8ded:R000451"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000440->table_a6a5e4d14036587923ec8ded:R000451"
+    ],
+    "first_seen": 7396,
+    "last_seen": 7960,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000158",
+      "table_6f37cc14274a733e7ed2ad35:R000175"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000158->table_6f37cc14274a733e7ed2ad35:R000175"
+    ],
+    "first_seen": 7096,
+    "last_seen": 7513,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000332",
+      "table_deb776c52437ea38b8ca8db5:R000349"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000332->table_deb776c52437ea38b8ca8db5:R000349"
+    ],
+    "first_seen": 8268,
+    "last_seen": 8280,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000862",
+      "table_16394367f2f8de95f8c71030:R000864"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000862->table_16394367f2f8de95f8c71030:R000864"
+    ],
+    "first_seen": 26201,
+    "last_seen": 26655,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000802",
+      "table_abb26b4f0632d61cda00071f:R000822"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000802->table_abb26b4f0632d61cda00071f:R000822"
+    ],
+    "first_seen": 27528,
+    "last_seen": 27770,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000677",
+      "table_abb26b4f0632d61cda00071f:R000683"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000677->table_abb26b4f0632d61cda00071f:R000683"
+    ],
+    "first_seen": 23541,
+    "last_seen": 24000,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000220",
+      "table_16394367f2f8de95f8c71030:R000230"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000220->table_16394367f2f8de95f8c71030:R000230"
+    ],
+    "first_seen": 6013,
+    "last_seen": 7069,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000552",
+      "table_fee1721aabe467d7bb7db090:R000558"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000552->table_fee1721aabe467d7bb7db090:R000558"
+    ],
+    "first_seen": 15473,
+    "last_seen": 15946,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000060",
+      "table_deb776c52437ea38b8ca8db5:R000068"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000060->table_deb776c52437ea38b8ca8db5:R000068"
+    ],
+    "first_seen": 490,
+    "last_seen": 1436,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000582",
+      "table_faf65838d7ecd2013cbda547:R000588"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000582->table_faf65838d7ecd2013cbda547:R000588"
+    ],
+    "first_seen": 16726,
+    "last_seen": 16763,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000107",
+      "table_faf65838d7ecd2013cbda547:R000111"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000107->table_faf65838d7ecd2013cbda547:R000111"
+    ],
+    "first_seen": 1122,
+    "last_seen": 1335,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000483",
+      "table_a6a5e4d14036587923ec8ded:R000490"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000483->table_a6a5e4d14036587923ec8ded:R000490"
+    ],
+    "first_seen": 8578,
+    "last_seen": 9020,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000284",
+      "table_deb776c52437ea38b8ca8db5:R000295"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000284->table_deb776c52437ea38b8ca8db5:R000295"
+    ],
+    "first_seen": 6716,
+    "last_seen": 6780,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000014",
+      "table_16394367f2f8de95f8c71030:R000027"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000014->table_16394367f2f8de95f8c71030:R000027"
+    ],
+    "first_seen": 0,
+    "last_seen": 200,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_52e614af084d53270e598a72:R000309",
+      "table_52e614af084d53270e598a72:R000327"
+    ],
+    "pair_ids": [
+      "table_52e614af084d53270e598a72:R000309->table_52e614af084d53270e598a72:R000327"
+    ],
+    "first_seen": 9086,
+    "last_seen": 9201,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000794",
+      "table_a6a5e4d14036587923ec8ded:R000807"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000794->table_a6a5e4d14036587923ec8ded:R000807"
+    ],
+    "first_seen": 16513,
+    "last_seen": 17507,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000422",
+      "table_deb776c52437ea38b8ca8db5:R000438"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000422->table_deb776c52437ea38b8ca8db5:R000438"
+    ],
+    "first_seen": 10637,
+    "last_seen": 11155,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000658",
+      "table_6f37cc14274a733e7ed2ad35:R000659"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000658->table_6f37cc14274a733e7ed2ad35:R000659"
+    ],
+    "first_seen": 25465,
+    "last_seen": 25551,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000219",
+      "table_a6a5e4d14036587923ec8ded:R000229"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000219->table_a6a5e4d14036587923ec8ded:R000229"
+    ],
+    "first_seen": 4172,
+    "last_seen": 4283,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000455",
+      "table_6f37cc14274a733e7ed2ad35:R000457"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000455->table_6f37cc14274a733e7ed2ad35:R000457"
+    ],
+    "first_seen": 16789,
+    "last_seen": 16967,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000568",
+      "table_a6a5e4d14036587923ec8ded:R000584"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000568->table_a6a5e4d14036587923ec8ded:R000584"
+    ],
+    "first_seen": 11681,
+    "last_seen": 11766,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000045",
+      "table_deb776c52437ea38b8ca8db5:R000061"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000045->table_deb776c52437ea38b8ca8db5:R000061"
+    ],
+    "first_seen": 490,
+    "last_seen": 1179,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000223",
+      "table_6f37cc14274a733e7ed2ad35:R000235"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000223->table_6f37cc14274a733e7ed2ad35:R000235"
+    ],
+    "first_seen": 8916,
+    "last_seen": 8959,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_52e614af084d53270e598a72:R000873",
+      "table_52e614af084d53270e598a72:R000876"
+    ],
+    "pair_ids": [
+      "table_52e614af084d53270e598a72:R000873->table_52e614af084d53270e598a72:R000876"
+    ],
+    "first_seen": 27205,
+    "last_seen": 27220,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000444",
+      "table_fee1721aabe467d7bb7db090:R000455"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000444->table_fee1721aabe467d7bb7db090:R000455"
+    ],
+    "first_seen": 11560,
+    "last_seen": 12123,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000272",
+      "table_abb26b4f0632d61cda00071f:R000284"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000272->table_abb26b4f0632d61cda00071f:R000284"
+    ],
+    "first_seen": 8845,
+    "last_seen": 9808,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000726",
+      "table_faf65838d7ecd2013cbda547:R000734"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000726->table_faf65838d7ecd2013cbda547:R000734"
+    ],
+    "first_seen": 20633,
+    "last_seen": 20699,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000452",
+      "table_faf65838d7ecd2013cbda547:R000456"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000452->table_faf65838d7ecd2013cbda547:R000456"
+    ],
+    "first_seen": 13133,
+    "last_seen": 13512,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000963",
+      "table_faf65838d7ecd2013cbda547:R000982"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000963->table_faf65838d7ecd2013cbda547:R000982"
+    ],
+    "first_seen": 25048,
+    "last_seen": 25549,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000353",
+      "table_fee1721aabe467d7bb7db090:R000365"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000353->table_fee1721aabe467d7bb7db090:R000365"
+    ],
+    "first_seen": 9725,
+    "last_seen": 9817,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000227",
+      "table_16394367f2f8de95f8c71030:R000246"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000227->table_16394367f2f8de95f8c71030:R000246"
+    ],
+    "first_seen": 6580,
+    "last_seen": 7649,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000594",
+      "table_faf65838d7ecd2013cbda547:R000600"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000594->table_faf65838d7ecd2013cbda547:R000600"
+    ],
+    "first_seen": 16825,
+    "last_seen": 16860,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000231",
+      "table_16394367f2f8de95f8c71030:R000239"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000231->table_16394367f2f8de95f8c71030:R000239"
+    ],
+    "first_seen": 7069,
+    "last_seen": 7527,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000664",
+      "table_a6a5e4d14036587923ec8ded:R000670"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R000664->table_a6a5e4d14036587923ec8ded:R000670"
+    ],
+    "first_seen": 13657,
+    "last_seen": 14580,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000821",
+      "table_fee1721aabe467d7bb7db090:R000833"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000821->table_fee1721aabe467d7bb7db090:R000833"
+    ],
+    "first_seen": 23707,
+    "last_seen": 23811,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000661",
+      "table_16394367f2f8de95f8c71030:R000663"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000661->table_16394367f2f8de95f8c71030:R000663"
+    ],
+    "first_seen": 20128,
+    "last_seen": 20213,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000412",
+      "table_6f37cc14274a733e7ed2ad35:R000413"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000412->table_6f37cc14274a733e7ed2ad35:R000413"
+    ],
+    "first_seen": 14865,
+    "last_seen": 15233,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000614",
+      "table_deb776c52437ea38b8ca8db5:R000620"
+    ],
+    "pair_ids": [
+      "table_deb776c52437ea38b8ca8db5:R000614->table_deb776c52437ea38b8ca8db5:R000620"
+    ],
+    "first_seen": 16336,
+    "last_seen": 16609,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000636",
+      "table_fee1721aabe467d7bb7db090:R000641"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000636->table_fee1721aabe467d7bb7db090:R000641"
+    ],
+    "first_seen": 17634,
+    "last_seen": 18295,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001037",
+      "table_a6a5e4d14036587923ec8ded:R001049"
+    ],
+    "pair_ids": [
+      "table_a6a5e4d14036587923ec8ded:R001037->table_a6a5e4d14036587923ec8ded:R001049"
+    ],
+    "first_seen": 22445,
+    "last_seen": 22530,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_fee1721aabe467d7bb7db090:R000317",
+      "table_fee1721aabe467d7bb7db090:R000330"
+    ],
+    "pair_ids": [
+      "table_fee1721aabe467d7bb7db090:R000317->table_fee1721aabe467d7bb7db090:R000330"
+    ],
+    "first_seen": 8572,
+    "last_seen": 8580,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000804",
+      "table_abb26b4f0632d61cda00071f:R000824"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000804->table_abb26b4f0632d61cda00071f:R000824"
+    ],
+    "first_seen": 27528,
+    "last_seen": 27770,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000451",
+      "table_6f37cc14274a733e7ed2ad35:R000467"
+    ],
+    "pair_ids": [
+      "table_6f37cc14274a733e7ed2ad35:R000451->table_6f37cc14274a733e7ed2ad35:R000467"
+    ],
+    "first_seen": 16789,
+    "last_seen": 17505,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_16394367f2f8de95f8c71030:R000151",
+      "table_16394367f2f8de95f8c71030:R000166"
+    ],
+    "pair_ids": [
+      "table_16394367f2f8de95f8c71030:R000151->table_16394367f2f8de95f8c71030:R000166"
+    ],
+    "first_seen": 4525,
+    "last_seen": 4823,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_abb26b4f0632d61cda00071f:R000238",
+      "table_abb26b4f0632d61cda00071f:R000244"
+    ],
+    "pair_ids": [
+      "table_abb26b4f0632d61cda00071f:R000238->table_abb26b4f0632d61cda00071f:R000244"
+    ],
+    "first_seen": 7922,
+    "last_seen": 8320,
+    "conflicts": []
+  },
+  {
+    "track_ids": [
+      "table_faf65838d7ecd2013cbda547:R000872",
+      "table_faf65838d7ecd2013cbda547:R000890"
+    ],
+    "pair_ids": [
+      "table_faf65838d7ecd2013cbda547:R000872->table_faf65838d7ecd2013cbda547:R000890"
+    ],
+    "first_seen": 23579,
+    "last_seen": 23777,
+    "conflicts": []
+  }
+]

@@ -1,0 +1,1033 @@
+{
+  "schema": "independent-unreadable-start-review-v1",
+  "method": "Manually viewed every before/after source BMP with view_image; numbers read from pixels; initial extras crosschecked against SHA-verified source frame0 pixels from readonly SQLite.",
+  "candidates_reviewed": 31,
+  "genuinely_new_starts_at_candidate_frame": 0,
+  "old_repeated_numbered_headers": 31,
+  "false_OCR_without_real_header": 0,
+  "unresolved_candidates": 0,
+  "inventory_matches": 28,
+  "initial_context_candidates": 3,
+  "initial_context_hand_ids": [
+    {
+      "table": 1,
+      "hand": "2878365444"
+    },
+    {
+      "table": 2,
+      "hand": "2878365454"
+    },
+    {
+      "table": 9,
+      "hand": "2878365474"
+    }
+  ],
+  "extra_noninitial_physical_starts": 0,
+  "conclusion": "The 31 candidates add no new noninitial start to the64-source-start inventory. This resolves the candidate set; it does not constitute an exhaustive fresh boundary search over all video pixels.",
+  "rows": [
+    {
+      "audit_event_id": "T01:E00031",
+      "table": 1,
+      "candidate_frame": 120,
+      "visible_hand_number": "2878365444",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 1,
+          "frame": 100,
+          "pts": 51200,
+          "time_base": "[1, 15360]",
+          "sha256": "e75af794e0d1303c4fb47d6c49f32f31f0d5cc40801beecec096d7a3b2939f44",
+          "height": 377,
+          "width": 228
+        },
+        {
+          "table_id": 1,
+          "frame": 120,
+          "pts": 61440,
+          "time_base": "[1, 15360]",
+          "sha256": "24e0200640d296150cf017b7ad3f86df0412045a2bfbdf91ce16d2063bf06e44",
+          "height": 377,
+          "width": 228
+        }
+      ],
+      "contact_sheet": "01_T01_120.bmp",
+      "present_in_64_start_inventory": false,
+      "underlying_hand_scope": "INITIAL_SOURCE_CONTEXT_PRESENT_AT_FRAME_ZERO",
+      "earliest_source": {
+        "table": 1,
+        "frame": 0,
+        "sha256": "d32514b7668d633e83d80968cfc6367fd7878bc86bee2c5e97cdfbbc96dbc7b2"
+      }
+    },
+    {
+      "audit_event_id": "T01:E00886",
+      "table": 1,
+      "candidate_frame": 5240,
+      "visible_hand_number": "2878366598",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 1,
+          "frame": 5236,
+          "pts": 2680832,
+          "time_base": "[1, 15360]",
+          "sha256": "344956f38393b86ccf3d7b6b8c7f785979c9a5137be3a478c2a72934ff2ae819",
+          "height": 377,
+          "width": 228
+        },
+        {
+          "table_id": 1,
+          "frame": 5240,
+          "pts": 2682880,
+          "time_base": "[1, 15360]",
+          "sha256": "6fed6a70298254079fcf831627c2733cba538258f446237ca784f344ff65eaab",
+          "height": 377,
+          "width": 228
+        }
+      ],
+      "contact_sheet": "02_T01_5240.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T01:E01099",
+      "table": 1,
+      "candidate_frame": 6307,
+      "visible_hand_number": "2878366810",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 1,
+          "frame": 6305,
+          "pts": 3228160,
+          "time_base": "[1, 15360]",
+          "sha256": "878b4f41d98793f23580ce3b77e5a61e30d8409c1f32a792e8ce5940c1f6d36a",
+          "height": 377,
+          "width": 228
+        },
+        {
+          "table_id": 1,
+          "frame": 6307,
+          "pts": 3229184,
+          "time_base": "[1, 15360]",
+          "sha256": "af8e227929963aad4ca083de9f898508e784a5a841ed5a2596d3c294c2f97b5f",
+          "height": 377,
+          "width": 228
+        }
+      ],
+      "contact_sheet": "03_T01_6307.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T01:E01473",
+      "table": 1,
+      "candidate_frame": 8323,
+      "visible_hand_number": "2878367220",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 1,
+          "frame": 8322,
+          "pts": 4260864,
+          "time_base": "[1, 15360]",
+          "sha256": "59e982230a50e012ef1de2c5f84760123632a1271e9139b73067245939345563",
+          "height": 377,
+          "width": 228
+        },
+        {
+          "table_id": 1,
+          "frame": 8323,
+          "pts": 4261376,
+          "time_base": "[1, 15360]",
+          "sha256": "0f87d1dd623a5fe5be3e31629bbef1f1d1bdab517befb09b5e9d9ee7dd8e3dfa",
+          "height": 377,
+          "width": 228
+        }
+      ],
+      "contact_sheet": "04_T01_8323.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T02:E00071",
+      "table": 2,
+      "candidate_frame": 416,
+      "visible_hand_number": "2878365454",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 2,
+          "frame": 415,
+          "pts": 212480,
+          "time_base": "[1, 15360]",
+          "sha256": "fd7e0a3b7f1f116eec05f1f8fa6aa5abbb5718986d023aa733edf69aae5e535c",
+          "height": 377,
+          "width": 226
+        },
+        {
+          "table_id": 2,
+          "frame": 416,
+          "pts": 212992,
+          "time_base": "[1, 15360]",
+          "sha256": "c04347f2ed9c5bc53f63f06e45172eb09b941757725cc3bf3cb92172427340c9",
+          "height": 377,
+          "width": 226
+        }
+      ],
+      "contact_sheet": "05_T02_416.bmp",
+      "present_in_64_start_inventory": false,
+      "underlying_hand_scope": "INITIAL_SOURCE_CONTEXT_PRESENT_AT_FRAME_ZERO",
+      "earliest_source": {
+        "table": 2,
+        "frame": 0,
+        "sha256": "4b3b17b54e27c6725bea96eecf39c9546c6b97968fae95eebe2381a7412b1d4f"
+      }
+    },
+    {
+      "audit_event_id": "T02:E00852",
+      "table": 2,
+      "candidate_frame": 6342,
+      "visible_hand_number": "2878366772",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 2,
+          "frame": 6341,
+          "pts": 3246592,
+          "time_base": "[1, 15360]",
+          "sha256": "465b0de2cdbf61fe8745c4934e30ce0e46dadf67cf006fded906932e7c054da6",
+          "height": 377,
+          "width": 226
+        },
+        {
+          "table_id": 2,
+          "frame": 6342,
+          "pts": 3247104,
+          "time_base": "[1, 15360]",
+          "sha256": "a99d1da2846418fbe4deb1fd58cb35cf91880eea37315449aca24bddaeb96fe9",
+          "height": 377,
+          "width": 226
+        }
+      ],
+      "contact_sheet": "06_T02_6342.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T02:E00867",
+      "table": 2,
+      "candidate_frame": 6348,
+      "visible_hand_number": "2878366772",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 2,
+          "frame": 6347,
+          "pts": 3249664,
+          "time_base": "[1, 15360]",
+          "sha256": "8b75547d0cf57553aa0fdc0999a8e30c41c59f2f83262be53494ed599642cbef",
+          "height": 377,
+          "width": 226
+        },
+        {
+          "table_id": 2,
+          "frame": 6348,
+          "pts": 3250176,
+          "time_base": "[1, 15360]",
+          "sha256": "ad27e1b05a8e3ccb31abf1ac01a27b55fea5027342bd38e9db07cbeaa0d9011f",
+          "height": 377,
+          "width": 226
+        }
+      ],
+      "contact_sheet": "07_T02_6348.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T02:E01373",
+      "table": 2,
+      "candidate_frame": 9937,
+      "visible_hand_number": "2878367569",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 2,
+          "frame": 9936,
+          "pts": 5087232,
+          "time_base": "[1, 15360]",
+          "sha256": "c01956e78f5829ed0e52efaf487decea9d99928f388e786322e556e692892828",
+          "height": 377,
+          "width": 226
+        },
+        {
+          "table_id": 2,
+          "frame": 9937,
+          "pts": 5087744,
+          "time_base": "[1, 15360]",
+          "sha256": "c42b19af6a57a4220244e4032696bd5a3e5770af2b461bf4915c693d476b2d3e",
+          "height": 377,
+          "width": 226
+        }
+      ],
+      "contact_sheet": "08_T02_9937.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T03:E00148",
+      "table": 3,
+      "candidate_frame": 927,
+      "visible_hand_number": "2878365655",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 3,
+          "frame": 926,
+          "pts": 474112,
+          "time_base": "[1, 15360]",
+          "sha256": "8f3cd826097e39e551cdfb8639e7697761a2c7bc54003330f7e65abf3feeec4a",
+          "height": 379,
+          "width": 226
+        },
+        {
+          "table_id": 3,
+          "frame": 927,
+          "pts": 474624,
+          "time_base": "[1, 15360]",
+          "sha256": "243a7cdb9b2ca8020caad3576c8abb783662b9c9f8871a08d8708d829f82d336",
+          "height": 379,
+          "width": 226
+        }
+      ],
+      "contact_sheet": "09_T03_927.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T03:E00230",
+      "table": 3,
+      "candidate_frame": 1436,
+      "visible_hand_number": "2878365655",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 3,
+          "frame": 1435,
+          "pts": 734720,
+          "time_base": "[1, 15360]",
+          "sha256": "9506548bde5d7adedb403cbb6c9582254c722c2626066faf24d2bd36e3a44cb6",
+          "height": 379,
+          "width": 226
+        },
+        {
+          "table_id": 3,
+          "frame": 1436,
+          "pts": 735232,
+          "time_base": "[1, 15360]",
+          "sha256": "0832c5b58598a3a8314dbba595fd5a97929dd6cbcd9f78699d7930975dee475b",
+          "height": 379,
+          "width": 226
+        }
+      ],
+      "contact_sheet": "10_T03_1436.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T03:E00848",
+      "table": 3,
+      "candidate_frame": 5635,
+      "visible_hand_number": "2878366511",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 3,
+          "frame": 5632,
+          "pts": 2883584,
+          "time_base": "[1, 15360]",
+          "sha256": "026e867402396236a40aa2f90a9942675fe4654bfcb515495bd8a43b5553b665",
+          "height": 379,
+          "width": 226
+        },
+        {
+          "table_id": 3,
+          "frame": 5635,
+          "pts": 2885120,
+          "time_base": "[1, 15360]",
+          "sha256": "3ed099708f6bde66c13ea01def6fe94365db7c81f600cadf6cb37b82dddabf96",
+          "height": 379,
+          "width": 226
+        }
+      ],
+      "contact_sheet": "11_T03_5635.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T03:E01092",
+      "table": 3,
+      "candidate_frame": 7179,
+      "visible_hand_number": "2878366904",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 3,
+          "frame": 7178,
+          "pts": 3675136,
+          "time_base": "[1, 15360]",
+          "sha256": "cba6a38786470204c50e5847188a830713d401b7d2bcc68250f4f252ee63ec01",
+          "height": 379,
+          "width": 226
+        },
+        {
+          "table_id": 3,
+          "frame": 7179,
+          "pts": 3675648,
+          "time_base": "[1, 15360]",
+          "sha256": "3247dd6ebb81e7b80eb83bc4d30572fd5a76ffc0b6dd41ff991fa5bd452432c0",
+          "height": 379,
+          "width": 226
+        }
+      ],
+      "contact_sheet": "12_T03_7179.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T04:E00773",
+      "table": 4,
+      "candidate_frame": 5149,
+      "visible_hand_number": "2878366543",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 4,
+          "frame": 5140,
+          "pts": 2631680,
+          "time_base": "[1, 15360]",
+          "sha256": "6894bfd4f41ce39d54c7fdd0ebfe1781611ae3cb6481f2ce23dc17366bd20327",
+          "height": 378,
+          "width": 230
+        },
+        {
+          "table_id": 4,
+          "frame": 5149,
+          "pts": 2636288,
+          "time_base": "[1, 15360]",
+          "sha256": "047620549cb0d2f43cc16328de5d4ad769475c5ecb5ead5479044ac63645cba1",
+          "height": 378,
+          "width": 230
+        }
+      ],
+      "contact_sheet": "13_T04_5149.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T05:E00510",
+      "table": 5,
+      "candidate_frame": 2076,
+      "visible_hand_number": "2878365932",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 5,
+          "frame": 2075,
+          "pts": 1062400,
+          "time_base": "[1, 15360]",
+          "sha256": "eb8fd94f88f6234bf485a819712d9a5ba63d6202485cd2291d13c3c93b43df4a",
+          "height": 378,
+          "width": 226
+        },
+        {
+          "table_id": 5,
+          "frame": 2076,
+          "pts": 1062912,
+          "time_base": "[1, 15360]",
+          "sha256": "53cf699f198aed58b28bbb5cba9c0045f32c56e85fa3219051984ebd031b08b7",
+          "height": 378,
+          "width": 226
+        }
+      ],
+      "contact_sheet": "14_T05_2076.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T06:E00801",
+      "table": 6,
+      "candidate_frame": 4437,
+      "visible_hand_number": "2878366442",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 6,
+          "frame": 4420,
+          "pts": 2263040,
+          "time_base": "[1, 15360]",
+          "sha256": "66dfc3c6db95134b4b951e5c7d2b7090dfbcc98d27efb4cf2d8748061ad51dac",
+          "height": 379,
+          "width": 224
+        },
+        {
+          "table_id": 6,
+          "frame": 4437,
+          "pts": 2271744,
+          "time_base": "[1, 15360]",
+          "sha256": "168e6fed962a1090f51073e3a934fa54f7a457e2b2bced05c081c43da56f643f",
+          "height": 379,
+          "width": 224
+        }
+      ],
+      "contact_sheet": "15_T06_4437.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T06:E01274",
+      "table": 6,
+      "candidate_frame": 7938,
+      "visible_hand_number": "2878367184",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 6,
+          "frame": 7937,
+          "pts": 4063744,
+          "time_base": "[1, 15360]",
+          "sha256": "cc9df75a766ff4cb806c90df2111d349b0dfea55e9d9beb9e5eebc7ee5429866",
+          "height": 379,
+          "width": 224
+        },
+        {
+          "table_id": 6,
+          "frame": 7938,
+          "pts": 4064256,
+          "time_base": "[1, 15360]",
+          "sha256": "2d494890d455ac85d43c8c554445ae4749281f3b263b9ea561a9a0f66b7c0685",
+          "height": 379,
+          "width": 224
+        }
+      ],
+      "contact_sheet": "16_T06_7938.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T07:E00113",
+      "table": 7,
+      "candidate_frame": 757,
+      "visible_hand_number": "2878365529",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 7,
+          "frame": 756,
+          "pts": 387072,
+          "time_base": "[1, 15360]",
+          "sha256": "5a92870b44552f2c5b7bdff11577abc8f9a0e1a5bf6483c4e2e30063f5f19908",
+          "height": 376,
+          "width": 228
+        },
+        {
+          "table_id": 7,
+          "frame": 757,
+          "pts": 387584,
+          "time_base": "[1, 15360]",
+          "sha256": "fab605b60d29d19c8a3ed7bc55d8c95cfc8b616429b635a7edc69a479d5b3aeb",
+          "height": 376,
+          "width": 228
+        }
+      ],
+      "contact_sheet": "17_T07_757.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T07:E00609",
+      "table": 7,
+      "candidate_frame": 3351,
+      "visible_hand_number": "2878366136",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 7,
+          "frame": 3350,
+          "pts": 1715200,
+          "time_base": "[1, 15360]",
+          "sha256": "3e7092358947d0b5825f9d91f5f5c46ef3199c03bef8cbe5abfd01780b47c6aa",
+          "height": 376,
+          "width": 228
+        },
+        {
+          "table_id": 7,
+          "frame": 3351,
+          "pts": 1715712,
+          "time_base": "[1, 15360]",
+          "sha256": "eeffcead5b6240dba48c3517575971563039e1c217035d09aa37046bbd6a3a06",
+          "height": 376,
+          "width": 228
+        }
+      ],
+      "contact_sheet": "18_T07_3351.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T07:E00943",
+      "table": 7,
+      "candidate_frame": 4750,
+      "visible_hand_number": "2878366487",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 7,
+          "frame": 4749,
+          "pts": 2431488,
+          "time_base": "[1, 15360]",
+          "sha256": "4c99db49936d46a79d3b5b551acf6d46ae7ec661735cf07b2df0e217f08648f0",
+          "height": 376,
+          "width": 228
+        },
+        {
+          "table_id": 7,
+          "frame": 4750,
+          "pts": 2432000,
+          "time_base": "[1, 15360]",
+          "sha256": "6454b52d06eb81af0dd5cfb292d962d293945071def8c111ea68719577fd5cce",
+          "height": 376,
+          "width": 228
+        }
+      ],
+      "contact_sheet": "19_T07_4750.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T07:E01158",
+      "table": 7,
+      "candidate_frame": 6055,
+      "visible_hand_number": "2878366745",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 7,
+          "frame": 6054,
+          "pts": 3099648,
+          "time_base": "[1, 15360]",
+          "sha256": "0d80916d184d144d2e370c9bf17ae2c8993a1ea76ebd477ec82657913994ad4a",
+          "height": 376,
+          "width": 228
+        },
+        {
+          "table_id": 7,
+          "frame": 6055,
+          "pts": 3100160,
+          "time_base": "[1, 15360]",
+          "sha256": "cd28ac1186bee8dc4c1b21fe44a7b325a2679dab0a79fdab51448a5bf78f3482",
+          "height": 376,
+          "width": 228
+        }
+      ],
+      "contact_sheet": "20_T07_6055.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T07:E01411",
+      "table": 7,
+      "candidate_frame": 7308,
+      "visible_hand_number": "2878367004",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 7,
+          "frame": 7307,
+          "pts": 3741184,
+          "time_base": "[1, 15360]",
+          "sha256": "0b5348d6b4200a270dd72f71e5044756caab60bdbd26df9699ea50debfe1e9f7",
+          "height": 376,
+          "width": 228
+        },
+        {
+          "table_id": 7,
+          "frame": 7308,
+          "pts": 3741696,
+          "time_base": "[1, 15360]",
+          "sha256": "78eba78f93b863dd855ec25187a9011b8bd1e48f3e79b9da20a408bb7191218e",
+          "height": 376,
+          "width": 228
+        }
+      ],
+      "contact_sheet": "21_T07_7308.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T07:E01614",
+      "table": 7,
+      "candidate_frame": 8244,
+      "visible_hand_number": "2878367230",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 7,
+          "frame": 8243,
+          "pts": 4220416,
+          "time_base": "[1, 15360]",
+          "sha256": "13d08a77cebbfbd025c3797a869242b02e964eb5a2adf29b0e557df460425940",
+          "height": 376,
+          "width": 228
+        },
+        {
+          "table_id": 7,
+          "frame": 8244,
+          "pts": 4220928,
+          "time_base": "[1, 15360]",
+          "sha256": "2bbc5a00b22f4810b59a053303fbce159b6fe7e0f15bce37e618a10de56a2752",
+          "height": 376,
+          "width": 228
+        }
+      ],
+      "contact_sheet": "22_T07_8244.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T07:E01864",
+      "table": 7,
+      "candidate_frame": 9264,
+      "visible_hand_number": "2878367433",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 7,
+          "frame": 9263,
+          "pts": 4742656,
+          "time_base": "[1, 15360]",
+          "sha256": "f4af33cc675e131c6f9266666c85c5d60c41eea5fb9535335151578d63f38b95",
+          "height": 376,
+          "width": 228
+        },
+        {
+          "table_id": 7,
+          "frame": 9264,
+          "pts": 4743168,
+          "time_base": "[1, 15360]",
+          "sha256": "25d619a41762b8e0514e9e367f55f69403c45c170c65b4b1a114949129c1a115",
+          "height": 376,
+          "width": 228
+        }
+      ],
+      "contact_sheet": "23_T07_9264.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T08:E00112",
+      "table": 8,
+      "candidate_frame": 785,
+      "visible_hand_number": "2878365523",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 8,
+          "frame": 780,
+          "pts": 399360,
+          "time_base": "[1, 15360]",
+          "sha256": "603c1c4f290e2fc90ae86535790e04ca07a04dd406cddad14f258a1675defd4b",
+          "height": 377,
+          "width": 224
+        },
+        {
+          "table_id": 8,
+          "frame": 785,
+          "pts": 401920,
+          "time_base": "[1, 15360]",
+          "sha256": "f5a48112c9b7d8c934a63b53c0d63f40bd2339f699f7169b9475619ebc40c9e3",
+          "height": 377,
+          "width": 224
+        }
+      ],
+      "contact_sheet": "24_T08_785.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T08:E00319",
+      "table": 8,
+      "candidate_frame": 2124,
+      "visible_hand_number": "2878365873",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 8,
+          "frame": 2123,
+          "pts": 1086976,
+          "time_base": "[1, 15360]",
+          "sha256": "c6bf7af00bc0d92e43e4232b26dfc07cffc2c07a7d9f7e06532fba8c5ff88071",
+          "height": 377,
+          "width": 224
+        },
+        {
+          "table_id": 8,
+          "frame": 2124,
+          "pts": 1087488,
+          "time_base": "[1, 15360]",
+          "sha256": "9b66ea811a20496bce8908d6ff8ab8969874e8e3dbfc14476e08292f7965f9bd",
+          "height": 377,
+          "width": 224
+        }
+      ],
+      "contact_sheet": "25_T08_2124.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T08:E00633",
+      "table": 8,
+      "candidate_frame": 3756,
+      "visible_hand_number": "2878366315",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 8,
+          "frame": 3755,
+          "pts": 1922560,
+          "time_base": "[1, 15360]",
+          "sha256": "2911b310251ee0eb48a3b984a4d9f5bbb42faa15da99247924b948094dd76731",
+          "height": 377,
+          "width": 224
+        },
+        {
+          "table_id": 8,
+          "frame": 3756,
+          "pts": 1923072,
+          "time_base": "[1, 15360]",
+          "sha256": "b71beed3eecfa1118af139875105355ac2068212a3266a82722f50ff1304fa9f",
+          "height": 377,
+          "width": 224
+        }
+      ],
+      "contact_sheet": "26_T08_3756.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T08:E00952",
+      "table": 8,
+      "candidate_frame": 6091,
+      "visible_hand_number": "2878366670",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 8,
+          "frame": 6090,
+          "pts": 3118080,
+          "time_base": "[1, 15360]",
+          "sha256": "514e040799f6653aa4ccf76bcb30d8e6403f9c0ef79275ad4ce4cabb9760a0af",
+          "height": 377,
+          "width": 224
+        },
+        {
+          "table_id": 8,
+          "frame": 6091,
+          "pts": 3118592,
+          "time_base": "[1, 15360]",
+          "sha256": "328c5fe74f8db03dc69c9b8d58748ddb8f3221586da6451163d098b832521982",
+          "height": 377,
+          "width": 224
+        }
+      ],
+      "contact_sheet": "27_T08_6091.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T09:E00057",
+      "table": 9,
+      "candidate_frame": 545,
+      "visible_hand_number": "2878365474",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 9,
+          "frame": 540,
+          "pts": 276480,
+          "time_base": "[1, 15360]",
+          "sha256": "190169d57c6d67e38f6d39c1a426a9e7eaeae4109e196de3f6763bf8c9682048",
+          "height": 374,
+          "width": 224
+        },
+        {
+          "table_id": 9,
+          "frame": 545,
+          "pts": 279040,
+          "time_base": "[1, 15360]",
+          "sha256": "338bf386b1628352af3a748b85cbf2df1a7bf8d4e427e5f497b5f60adde3fcbf",
+          "height": 374,
+          "width": 224
+        }
+      ],
+      "contact_sheet": "28_T09_545.bmp",
+      "present_in_64_start_inventory": false,
+      "underlying_hand_scope": "INITIAL_SOURCE_CONTEXT_PRESENT_AT_FRAME_ZERO",
+      "earliest_source": {
+        "table": 9,
+        "frame": 0,
+        "sha256": "4fa2bcd21da706e23af94336720513cd1acd82ad62245a6729d8070e09c085da"
+      }
+    },
+    {
+      "audit_event_id": "T09:E00218",
+      "table": 9,
+      "candidate_frame": 1828,
+      "visible_hand_number": "2878365800",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 9,
+          "frame": 1827,
+          "pts": 935424,
+          "time_base": "[1, 15360]",
+          "sha256": "432d470fc7952825e825f01576178bb7860b59cbf07c827cacc7b75658d4a136",
+          "height": 374,
+          "width": 224
+        },
+        {
+          "table_id": 9,
+          "frame": 1828,
+          "pts": 935936,
+          "time_base": "[1, 15360]",
+          "sha256": "bd1aa8155296ac08476cce5c3fd7a5101aff97030f9816b583798341affce17b",
+          "height": 374,
+          "width": 224
+        }
+      ],
+      "contact_sheet": "29_T09_1828.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T09:E00662",
+      "table": 9,
+      "candidate_frame": 4486,
+      "visible_hand_number": "2878366331",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 9,
+          "frame": 4485,
+          "pts": 2296320,
+          "time_base": "[1, 15360]",
+          "sha256": "7e29cb95594e98efd1954f251caa4bb83c04befb0e96eff72bae398aca35a368",
+          "height": 374,
+          "width": 224
+        },
+        {
+          "table_id": 9,
+          "frame": 4486,
+          "pts": 2296832,
+          "time_base": "[1, 15360]",
+          "sha256": "7d2de81826c2f65b561fe80aaf678d4566e6f6df7bc24c71864e92d2d41d5a25",
+          "height": 374,
+          "width": 224
+        }
+      ],
+      "contact_sheet": "30_T09_4486.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    },
+    {
+      "audit_event_id": "T09:E00906",
+      "table": 9,
+      "candidate_frame": 6104,
+      "visible_hand_number": "2878366656",
+      "verdict": "OLD_REPEATED_NUMBERED_HEADER",
+      "explanation": "The same complete hand header, Starting a new hand line and forced-post block already appear in the preceding source view; this transition appends an action or shifts existing content.",
+      "source_views": [
+        {
+          "table_id": 9,
+          "frame": 6103,
+          "pts": 3124736,
+          "time_base": "[1, 15360]",
+          "sha256": "0a991be19510c397d98d6996dff3bebbf4e506e09bf41d5339818c16e9a8d389",
+          "height": 374,
+          "width": 224
+        },
+        {
+          "table_id": 9,
+          "frame": 6104,
+          "pts": 3125248,
+          "time_base": "[1, 15360]",
+          "sha256": "34bf26f37cfe2bddcf77f24b3caaf4c46ba9c937029bfab72faddad23a66c371",
+          "height": 374,
+          "width": 224
+        }
+      ],
+      "contact_sheet": "31_T09_6104.bmp",
+      "present_in_64_start_inventory": true,
+      "underlying_hand_scope": "INVENTORIED_HAND",
+      "earliest_source": null
+    }
+  ]
+}

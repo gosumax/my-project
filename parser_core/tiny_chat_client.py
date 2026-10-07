@@ -9,6 +9,7 @@ import sys
 import threading
 import time
 from pathlib import Path
+from parser_core import performance_diagnostics as diagnostics
 
 
 class TinyChatClient:
@@ -84,8 +85,9 @@ class TinyChatClient:
         assert self.process is not None and self.process.stdin is not None
         self.sequence += 1
         request_id = str(self.sequence)
-        self.process.stdin.write(json.dumps({"request_id": request_id,
-            "batch_size": batch_size, "items": items}, ensure_ascii=False) + "\n")
+        request={"request_id": request_id, "batch_size": batch_size, "items": items}
+        if diagnostics.ACTIVE:request['performance_diagnostics']=True
+        self.process.stdin.write(json.dumps(request, ensure_ascii=False) + "\n")
         self.process.stdin.flush()
         response = self._next_json(180)
         if response.get("type") != "result" or response.get("request_id") != request_id:

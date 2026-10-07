@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import base64
+import hashlib
 import queue
 import subprocess
 import sys
@@ -66,20 +68,77 @@ class VLChatClient:
         if ready.get("type") != "ready":
             raise RuntimeError(f"Unexpected PaddleOCR-VL worker response: {ready}")
 
-    def read(self, path: Path, source_sha256: str, right_trim_px: int) -> dict:
+    def read(self, path: Path, source_sha256: str, right_trim_px: int,
+             prompt: str = "OCR:", board_sha: str | None = None,
+             board_evidence_id: str | None = None) -> dict:
+        return self._request({"path": str(path)}, source_sha256, right_trim_px,
+                             prompt, board_sha, board_evidence_id)
+
+    def read_bytes(self, source: bytes, source_sha256: str, right_trim_px: int,
+                   prompt: str = "OCR:", board_sha: str | None = None,
+                   board_evidence_id: str | None = None) -> dict:
+        if hashlib.sha256(source).hexdigest() != source_sha256:
+            raise ValueError("VL RAM crop SHA mismatch")
+        return self._request({"png_base64": base64.b64encode(source).decode("ascii")},
+                             source_sha256, right_trim_px, prompt, board_sha, board_evidence_id)
+
+    def read_batch_bytes(self, items: list[dict]) -> list[dict]:
+        if not 1 <= len(items) <= 8:
+            raise ValueError("VL batch must contain 1..8 CHAT crops")
+        requests = []
+        for item in items:
+            source = item["source"]
+            sha = item["source_sha256"]
+            if hashlib.sha256(source).hexdigest() != sha:
+                raise ValueError("VL RAM crop SHA mismatch")
+            self.sequence += 1
+            requests.append({"request_id": str(self.sequence),
+                "png_base64": base64.b64encode(source).decode("ascii"), "source_sha256": sha,
+                "right_trim_px": int(item.get("right_trim_px", 12)), "prompt": "OCR:"})
+        self._start()
+        assert self.process is not None and self.process.stdin is not None
+        batch_id = ":".join(r["request_id"] for r in requests)
+        self.process.stdin.write(json.dumps({"type": "batch", "batch_id": batch_id,
+                                            "requests": requests}) + "\n")
+        self.process.stdin.flush()
+        response = json.loads(self._next_line(130))
+        if response.get("type") != "batch_result" or response.get("batch_id") != batch_id:
+            raise RuntimeError("Foreign VL batch response")
+        returned = response.get("results", [])
+        if len(returned) != len(requests) or len({r.get("request_id") for r in returned}) != len(requests):
+            raise RuntimeError("VL batch result count or identity mismatch")
+        by_id = {r.get("request_id"): r for r in returned}
+        ordered = []
+        for request in requests:
+            result = by_id.get(request["request_id"])
+            if result is None or result.get("source_sha256") != request["source_sha256"]:
+                raise RuntimeError("VL batch response SHA mismatch")
+            ordered.append(result)
+        return ordered
+
+    def _request(self, transport: dict, source_sha256: str, right_trim_px: int,
+                 prompt: str, board_sha: str | None, board_evidence_id: str | None) -> dict:
         self._start()
         assert self.process is not None
         assert self.process.stdin is not None and self.process.stdout is not None
         self.sequence += 1
         request_id = str(self.sequence)
         self.process.stdin.write(json.dumps({"request_id": request_id,
-            "path": str(path), "source_sha256": source_sha256,
-            "right_trim_px": right_trim_px}, ensure_ascii=False) + "\n")
+            **transport, "source_sha256": source_sha256,
+            "right_trim_px": right_trim_px, "prompt": prompt,
+            "board_sha": board_sha, "board_evidence_id": board_evidence_id},
+            ensure_ascii=False) + "\n")
         self.process.stdin.flush()
         response_line = self._next_line(130)
         response = json.loads(response_line)
         if response.get("type") != "result" or response.get("request_id") != request_id:
             raise RuntimeError(f"Unexpected PaddleOCR-VL worker response: {response}")
+        if "png_base64" in transport and response.get("source_sha256") != source_sha256:
+            raise RuntimeError("VL RAM response SHA does not match its request")
+        if board_sha is not None and (response.get("board_sha") != board_sha or
+                                      response.get("source_sha256") != source_sha256 or
+                                      response.get("board_evidence_id") != board_evidence_id):
+            raise RuntimeError("BOARD VL response SHA does not match its request")
         return response
 
     def close(self) -> None:

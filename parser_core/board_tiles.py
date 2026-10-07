@@ -46,13 +46,86 @@ def _runs(values: np.ndarray) -> list[tuple[int, int]]:
     return spans
 
 
-def _glyphs(gray: np.ndarray, start: int, end: int) -> tuple[np.ndarray, np.ndarray] | None:
+def card_spans(gray: np.ndarray, *, recover_split: bool = False) -> tuple[list[tuple[int, int]], list[dict]]:
+    """Keep native row-3 boxes; join only ink-split card backgrounds.
+
+    A second, uninterrupted background scanline must independently support the
+    entire joined interval. Never widen an already admissible native span.
+    """
+    runs = _runs(np.flatnonzero(gray[3, :min(150, gray.shape[1])] > 150))
+    spans, recovered = [], []
+    index = 0
+    while index < len(runs):
+        start, end = runs[index]
+        width = end-start+1
+        if 18 <= width <= 22:
+            spans.append((start, end))
+        elif recover_split and width < 18 and index+1 < len(runs):
+            right_start, right_end = runs[index+1]
+            if (right_end-right_start+1 < 18 and 1 <= right_start-end-1 <= 2 and
+                    18 <= right_end-start+1 <= 22 and
+                    bool(np.all(gray[2, start:right_end+1] > 150))):
+                spans.append((start, right_end))
+                recovered.append({"box_inclusive": [start, right_end],
+                                  "fragment_boxes_inclusive": [[start, end], [right_start, right_end]],
+                                  "support_scanline_y": 2, "source": "NATIVE_BACKGROUND_BRIDGED_INK"})
+                index += 1
+        index += 1
+    return spans, recovered
+
+
+def secondary_card_spans(gray: np.ndarray) -> tuple[list[tuple[int, int]], list[dict]]:
+    """Conservative native y2 fallback for a rejected y3 row geometry.
+
+    Only complete fixed-render backgrounds with independent rank/suit glyphs
+    qualify. Caller must retain any already-admissible primary geometry.
+    """
+    if gray.ndim != 2 or gray.shape[0] != 16:
+        return [], []
+    spans = [(start, end) for start, end in _runs(
+        np.flatnonzero(gray[2, :min(150, gray.shape[1])] > 150))
+        if 20 <= end-start+1 <= 21]
+    if not (2 <= len(spans) <= 5 and all(
+            2 <= spans[i+1][0]-spans[i][1]-1 <= 5 for i in range(len(spans)-1))):
+        return [], []
+    for start, end in spans:
+        boxes = _glyph_boxes(gray, start, end)
+        if boxes is None:
+            return [], []
+        (rx, ry, rw, rh), (sx, sy, sw, sh) = boxes
+        if not (1 <= rw <= 9 and 5 <= rh <= 9 and rx+rw < sx and
+                sw <= 9 and 2 <= sy and sy+sh <= 13 and sx+sw <= end+1):
+            return [], []
+    return spans, [{"source": "SECONDARY_NATIVE_BACKGROUND_Y2",
+                    "support_scanline_y": 2,
+                    "box_inclusive": [start, end]}
+                   for start, end in spans]
+
+
+def _glyph_components(gray: np.ndarray, start: int, end: int):
     ink = (gray[3:12, start + 1:end] < 190).astype(np.uint8)
     count, labels, stats, _ = cv2.connectedComponentsWithStats(ink, 8)
     components = sorted((index for index in range(1, count) if stats[index, 4] >= 5),
                         key=lambda index: stats[index, 0])
     if len(components) != 2:
         return None
+    return labels, stats, components
+
+
+def _glyph_boxes(gray: np.ndarray, start: int, end: int):
+    data = _glyph_components(gray, start, end)
+    if data is None:
+        return None
+    _, stats, components = data
+    return [(start+1+int(stats[index, 0]), 3+int(stats[index, 1]),
+             int(stats[index, 2]), int(stats[index, 3])) for index in components]
+
+
+def _glyphs(gray: np.ndarray, start: int, end: int) -> tuple[np.ndarray, np.ndarray] | None:
+    data = _glyph_components(gray, start, end)
+    if data is None:
+        return None
+    labels, stats, components = data
     glyphs = []
     for index in components:
         x, y, width, height, _ = map(int, stats[index])
@@ -75,9 +148,13 @@ def _scores(glyph: np.ndarray, templates: list[dict]) -> list[tuple[str, int]]:
 def read_board_tiles(path: Path, source_sha256: str,
                      vl_text: str, template_path: Path = TEMPLATE_PATH) -> BoardTileReading | None:
     """Use VL ranks and tile glyphs; abstain if segmentation or suits are unclear."""
-    source = path.read_bytes()
+    return read_board_tiles_bytes(path.read_bytes(), source_sha256, vl_text, template_path)
+
+
+def read_board_tiles_bytes(source: bytes, source_sha256: str,
+                           vl_text: str, template_path: Path = TEMPLATE_PATH) -> BoardTileReading | None:
     if hashlib.sha256(source).hexdigest() != source_sha256:
-        raise ValueError(f"Crop hash mismatch: {path}")
+        raise ValueError("Crop hash mismatch")
     with Image.open(io.BytesIO(source)) as opened:
         gray = np.asarray(opened.convert("L"))
     if gray.shape[0] != 16 or gray.shape[1] < 100:
@@ -85,7 +162,7 @@ def read_board_tiles(path: Path, source_sha256: str,
     spans = [(start, end) for start, end in _runs(
         np.flatnonzero(gray[3, :min(150, gray.shape[1])] > 150))
         if 18 <= end - start + 1 <= 22]
-    if not 3 <= len(spans) <= 5 or any(
+    if not 2 <= len(spans) <= 5 or any(
             not 2 <= spans[index + 1][0] - spans[index][1] - 1 <= 5
             for index in range(len(spans) - 1)):
         return None
@@ -126,10 +203,12 @@ def read_board_tiles(path: Path, source_sha256: str,
     rank_distances = []
     for rank, scores in zip(ranks, rank_scores):
         distance = next((score for label, score in scores if label == rank), None)
-        if distance is not None:
-            if distance > 20 or (scores[0][0] != rank and scores[0][1] <= 8 and
-                                 distance - scores[0][1] >= 8):
-                return None
+        if distance is None:
+            # A VL-only rank without a pixel template is not visual agreement.
+            return None
+        if distance > 20 or (scores[0][0] != rank and scores[0][1] <= 8 and
+                             distance - scores[0][1] >= 8):
+            return None
         rank_distances.append(distance)
     cards = tuple(rank + suit for rank, suit in zip(ranks, suits))
     if len(set(cards)) != len(cards):

@@ -1,0 +1,142 @@
+[
+  {
+    "png": "002.png",
+    "source_sha256": "744e71554f49d839ef2fd21bbd0fbbb0011a1535bc2f5cd67d87b50dbd7f88d3",
+    "vl_raw": "7 ♥ J ♥ 7 ♣ 4 ♦ ♀ ♦",
+    "gt_cards": [
+      "7h",
+      "Jh",
+      "7c",
+      "4d",
+      "Qs"
+    ]
+  },
+  {
+    "png": "006.png",
+    "source_sha256": "4fe4490ad96d01ea7b03c58cbc80da19d296725d8b084bbd35242a57d11f81de",
+    "vl_raw": "9 ♦ 10 ♦ 9 ♦",
+    "gt_cards": [
+      "9d",
+      "Td",
+      "9s"
+    ]
+  },
+  {
+    "png": "019.png",
+    "source_sha256": "fb95e3e60f8d820b68023cca3e0fdfc45bd089e0a2a4d86d742d7561af85c830",
+    "vl_raw": "6 4 5 4 2",
+    "gt_cards": [
+      "6c",
+      "4h",
+      "5s",
+      "Ac",
+      "2d"
+    ]
+  },
+  {
+    "png": "022.png",
+    "source_sha256": "9561643a120539eeab9fe0ef1f55f0f07aa06d470073d40947cb608c17acbb3f",
+    "vl_raw": "J ♠ J ♦ A ♣ 6 ♣ 5 ♠",
+    "gt_cards": [
+      "Js",
+      "Jd",
+      "Ac",
+      "6c",
+      "5s"
+    ]
+  },
+  {
+    "png": "026.png",
+    "source_sha256": "22e147478405f6d78465771aac2a67c9caf20ad4e4dd876200972f48efec4fb2",
+    "vl_raw": "9 ♥ 9 ♦",
+    "gt_cards": [
+      "9h",
+      "9d"
+    ]
+  },
+  {
+    "png": "112.png",
+    "source_sha256": "9fe4b0bb12b017cb147c4cd94b315da08466d467b2b27653df3efe8ab7ea9160",
+    "vl_raw": "2 ♠ 3 ♦ 10 ♣ 7 ♣ 2 ♥",
+    "gt_cards": [
+      "2s",
+      "3d",
+      "Tc",
+      "7c",
+      "2h"
+    ]
+  },
+  {
+    "png": "116.png",
+    "source_sha256": "aa7e9f1032e1adf4b2ce7acd163655c5dd32e7d7e2141b11dc22a3e5f03a84da",
+    "vl_raw": "a ♠ J ♣",
+    "gt_cards": [
+      "Qs",
+      "Jc"
+    ]
+  },
+  {
+    "png": "137.png",
+    "source_sha256": "1d7a95a969b60ac65c91dfbbb6e9a8681f50c8a109d00ad7d1dd2e22ef6f54bf",
+    "vl_raw": "Q ♠ 5 ♣ 9 ♠ 7 ♠",
+    "gt_cards": [
+      "Qs",
+      "5c",
+      "9s",
+      "7s"
+    ]
+  },
+  {
+    "png": "141.png",
+    "source_sha256": "7101747b0575b3b17cd76be5c94a42f7f5c73b86cf1cca0b6409d04bf8f7392b",
+    "vl_raw": "5 ♠ 6 ♥ 5 ♣",
+    "gt_cards": [
+      "5s",
+      "6h",
+      "5c"
+    ]
+  },
+  {
+    "png": "161.png",
+    "source_sha256": "b38562c1ad4bec7b7d52881ae7c184764014de2fe5c9a0d2445bbf36cb77a36a",
+    "vl_raw": "6 ♠ 2 ♥ ♡ ♠",
+    "gt_cards": [
+      "6s",
+      "2h",
+      "Qs"
+    ]
+  },
+  {
+    "png": "164.png",
+    "source_sha256": "d2a13ec1961e83ab91320b8ed138dfea4f6d88cab2878ad8acb4f16938b7612e",
+    "vl_raw": "A ♣ 5 ♥ 8 ♥ 7 ♠",
+    "gt_cards": [
+      "Ac",
+      "5h",
+      "8h",
+      "7s"
+    ]
+  },
+  {
+    "png": "168.png",
+    "source_sha256": "4e427290667c24ec495a45e5fb535a50a65851a62ab22b2608a5a3f4eaf58bfe",
+    "vl_raw": "A ♦ 4 ♣ 5 ♠",
+    "gt_cards": [
+      "Ad",
+      "4c",
+      "5s"
+    ]
+  },
+  {
+    "png": "171.png",
+    "source_sha256": "bdb4c9273dde06269f5b0602833b91b3055ad623e8227530ea55522e47cb0b92",
+    "vl_raw": "A ♦ 2 ♣ 3 ♣ 4 ♣ 5 ♠",
+    "gt_cards": [
+      "Ad",
+      "2c",
+      "3c",
+      "4c",
+      "5s"
+    ]
+  }
+]

@@ -253,3 +253,18 @@ def match_row_blocks(old_rows: list[np.ndarray], current_rows: list[np.ndarray],
         used_new.update(mapping)
         used_old.update(mapping.values())
     return output
+
+
+def match_rows_overlap(previous: np.ndarray, old_spans: list[tuple[int, int]],
+                       current: np.ndarray, new_spans: list[tuple[int, int]]) -> dict[int, int]:
+    """Compatibility helper for conservative visual overlap diagnostics.
+
+    The production tracker calls ``match_row_blocks`` directly; this wrapper
+    exposes the same contiguous-block rule for full chat images in tests.
+    """
+    old_rows = [canonical_row(previous, span) for span in old_spans]
+    new_rows = [canonical_row(current, span) for span in new_spans]
+    return {new: old for block in match_row_blocks(old_rows, new_rows,
+                                                   max_distance=0.0,
+                                                   two_row_max_average=0.0)
+            for new, old in block.mapping.items()}

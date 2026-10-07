@@ -31,12 +31,14 @@ def main():
     parser.add_argument("--capture-workers", type=int, default=4)
     parser.add_argument("--ocr-batch-size", type=int, default=8)
     parser.add_argument("--db-batch-frames", type=int, default=25)
+    parser.add_argument("--stack-queue-size", type=int, default=256)
+    parser.add_argument("--skip-stack-observer", action="store_true")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--tiny-config", type=Path,
                         default=ROOT / "configs/ocr_tiny_local.json")
     args = parser.parse_args()
     if min(args.max_frames, args.capture_workers, args.ocr_batch_size,
-           args.db_batch_frames) < 1:
+           args.db_batch_frames, args.stack_queue_size) < 1:
         parser.error("worker, batch and frame counts must be positive")
     if args.output is None:
         storage = json.loads((ROOT / "configs/run_storage_local.json").read_text("utf-8"))
@@ -98,6 +100,8 @@ def main():
                               "resumed_after_frame": next_frame - 1 if args.resume else None,
                               "capture_workers": args.capture_workers,
                               "ocr_batch_size": args.ocr_batch_size,
+                              "stack_queue_size": args.stack_queue_size,
+                              "stack_observer": not args.skip_stack_observer,
                               "db_batch_frames": args.db_batch_frames},
                       versions={"ocr_policy": OCR_POLICY,
                                 "ocr_retry_policy": ROW_OCR_RETRY_POLICY,
@@ -143,6 +147,12 @@ def main():
             if running["capture"][0].poll() is not None:
                 raise RuntimeError("Capture failed before journal initialization")
             time.sleep(0.1)
+        if not args.skip_stack_observer:
+            launch("observe_stacks", "observe_start_stacks.py", [output,
+                   "--watch-until", capture_done, "--tiny-config", args.tiny_config,
+                   "--queue-size", args.stack_queue_size,
+                   *(["--output", output / f"start_stack_resume_{next_frame}"]
+                     if args.resume else [])])
         launch("track_rows", "track_chat_rows.py", [output, "--watch-until", capture_done,
                                                       *(["--resume"] if args.resume else [])])
         launch("ocr_rows", "ocr_chat_pilot.py", [output, "--roi-type", "CHAT_ROW",
@@ -166,7 +176,7 @@ def main():
                     completed_names.add(name)
                     stages.append({"stage": name, "wall_seconds": round(time.perf_counter() - tick, 3),
                                    "exit_code": code})
-                    if code != 0:
+                    if code != 0 and name != "observe_stacks":
                         raise RuntimeError(f"{name} failed with exit code {code}; see {name}.stderr.log")
                     if name == "capture":
                         capture_done.write_text("OK", encoding="ascii")

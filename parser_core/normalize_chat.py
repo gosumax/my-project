@@ -1,4 +1,4 @@
-"""Strict candidate extraction from Russian PokerDom chat text."""
+"""Strict candidate extraction from Russian and English PokerDom chat text."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ import re
 from dataclasses import dataclass
 
 
-NORMALIZER_VERSION = "candidate_ru_v7"
+NORMALIZER_VERSION = "candidate_bilingual_v8"
 TIME_PREFIX = re.compile(r"^\s*\[\d{1,2}:\d{2}\]\s*")
 HAND_HEADER = re.compile(r"^\s*Рука\s*#\s*(\d+)", re.IGNORECASE)
 HAND_ID = re.compile(r"^\s*#\s*(\d+)")
@@ -37,6 +37,68 @@ SYSTEM = (
     ("раздаётся терн", "TURN"),
     ("раздаётся ривер", "RIVER"),
 )
+
+ENGLISH_ACTIONS = (
+    (r'posts (?:the )?ante', 'ANTE', 'ANTE'),
+    (r'posts (?:the )?small blind', 'SMALL_BLIND', 'SMALL_BLIND'),
+    (r'posts (?:the )?big blind', 'BIG_BLIND', 'BIG_BLIND'),
+    (r'raises to', 'RAISE', 'RAISE_TO'),
+    (r'calls', 'CALL', 'CALL'), (r'checks', 'CHECK', None),
+    (r'folds', 'FOLD', None), (r'bets', 'BET', 'BET'),
+    (r'wins', 'WIN', 'WIN_PAYOUT'),
+    (r'gets uncalled bet', 'UNCALLED_RETURN', 'UNCALLED_RETURN'),
+    (r'does not show|doesn.t show', 'NO_SHOW', None),
+    (r'shows', 'SHOW', None),
+)
+
+
+def english_candidate(text: str) -> Candidate | None:
+    """Shared literal grammar; amount suffixes cannot supply extra numbers."""
+    header = re.match(r'^Hand\s*#\s*(\d+)', text, re.I)
+    if header:
+        return Candidate('HAND_HEADER', hand_number=header.group(1))
+    new_hand = re.match(r'^Starting a new hand\b', text, re.I)
+    if new_hand:
+        number = NEW_HAND_NUMBER.fullmatch(text[new_hand.end():].strip())
+        return Candidate('NEW_HAND', hand_number=number.group(1) if number else None)
+    for pattern, kind in [(r'Dealing cards[.!●]?', 'DEAL'),
+                          (r'(?:Dealing (?:the )?)?Flop\b.*', 'FLOP'),
+                          (r'(?:Dealing (?:the )?)?Turn\b.*', 'TURN'),
+                          (r'(?:Dealing (?:the )?)?River\b.*', 'RIVER'),
+                          (r'Showdown[.!]?', 'SHOWDOWN'), (r'Hand end[.!]?', 'HAND_END')]:
+        if re.fullmatch(pattern, text, re.I):
+            return Candidate(kind)
+    if re.fullmatch(r'(?:.+[ _](?:uses Time Bank|sits out|sits in|finished the tournament|has joined the table|has left the table)[.!]?|Waiting for .+ to(?: (?:reconnect|rebuy)\.{0,3})?|(?:reconnect|rebuy)\.{0,3}|.+ is reconnected[.!]?)', text, re.I):
+        return Candidate('TABLE_INFO')
+    if re.fullmatch(r'Limits going up: stakes(?:\s+\d+(?:[ \u00a0]\d{3})*/\d+(?:[ \u00a0]\d{3})*\s+ante\s+\d+(?:[ \u00a0]\d{3})*)?[.!]?', text, re.I):
+        return Candidate('BLIND_LEVEL')
+    matches = []
+    for pattern, kind, role in ENGLISH_ACTIONS:
+        boundary=r'(?![^\W\d])' if kind=='UNCALLED_RETURN' else r'(?!\w)'
+        match = re.search(r'(?<![^\W_])(?:' + pattern + r')'+boundary, text, re.I)
+        if match:
+            matches.append((match, kind, role))
+    if len([m for m, _, _ in matches if m.start() > 0]) > 1:
+        return Candidate('UNKNOWN_EVENT', reason='MULTIPLE_ACTION_CLAUSES')
+    for match, kind, role in matches:
+        actor = text[:match.start()].strip(' :') or None
+        reason = ('ACTOR_OCR_MISSING' if actor is None else
+                  'ACTOR_OCR_AMBIGUOUS' if '?' in actor or '\ufffd' in actor else None)
+        if role is None:
+            return Candidate(kind, actor=actor, reason=reason)
+        tail = text[match.end():].strip()
+        number = AMOUNT.match(tail)
+        amount = None
+        if number:
+            suffix = tail[number.end():].strip()
+            if (not suffix or suffix in {'.', '!', '●'} or
+                    re.fullmatch(r'(?:and\s*(?:is All-in)?|is All-in|back)\s*[.!●]?', suffix, re.I) or
+                    kind == 'WIN' and re.match(r'from\b', suffix, re.I)):
+                amount = number.group().replace(' ', '').replace('\u00a0', '')
+        if amount is None:
+            reason = ';'.join(filter(None, (reason, 'AMOUNT_AMBIGUOUS_OR_MISSING')))
+        return Candidate(kind, actor=actor, amount_decimal=amount, amount_role=role, reason=reason)
+    return None
 
 
 @dataclass(frozen=True)
@@ -85,6 +147,7 @@ def normalize(raw_fragments: list[str | None]) -> Candidate:
     text = re.sub(r"^[^\w#]+", "", text, flags=re.UNICODE).strip()
     if text.casefold().startswith("дилер:"):
         text = text[len("дилер:"):].strip()
+    text = re.sub(r'^Dealer\s*:\s*', '', text, flags=re.I)
     lower = text.casefold()
     for phrase, event_type in SYSTEM:
         if phrase in lower:
@@ -114,4 +177,7 @@ def normalize(raw_fragments: list[str | None]) -> Candidate:
             return Candidate("UNKNOWN_EVENT", reason="BLIND_TYPE_UNREADABLE")
         return _player_candidate(text, position, position + len(phrase),
                                  event_type, role)
+    english = english_candidate(text)
+    if english is not None:
+        return english
     return Candidate("UNKNOWN_EVENT", reason="TYPE_NOT_RECOGNIZED")

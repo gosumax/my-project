@@ -1,0 +1,830 @@
+{
+  "schema": "poker.production.manifest.v1",
+  "production_version": "production-candidate-full-hh-20261006",
+  "git_commit": "a887126816f4166395810fd369d2ad0bd0a115ff",
+  "golden_tag": null,
+  "git_state": "DIRTY_WORKTREE_SNAPSHOT; no unrelated changes committed",
+  "pipeline": "RAM_FIRST",
+  "card_path": "PIXEL_ONLY",
+  "ncc_mode": "BACKUP",
+  "entrypoint": "run_production.py",
+  "internal_runner": "scripts/run_smoke14_ram.py",
+  "launch_command": "python run_production.py --profile FULL_HH_PRODUCTION --video video/smoke_17.mp4 --frames 500 --output runs/production_smoke_fresh --ocr-workers 2 --visual-workers 2 --card-workers 2 --node C:/Users/Admin/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+  "modules": [
+    "experiments/suit_template_experiment.py",
+    "parser_core/__init__.py",
+    "parser_core/board_tiles.py",
+    "parser_core/card_hybrid.py",
+    "parser_core/chat_rows.py",
+    "parser_core/chat_tracker.py",
+    "parser_core/component_suit.py",
+    "parser_core/jev_poker_resolver.py",
+    "parser_core/journal.py",
+    "parser_core/layout.py",
+    "parser_core/message_assembly.py",
+    "parser_core/normalize_chat.py",
+    "parser_core/parallel_ocr.py",
+    "parser_core/poker_card_engine.py",
+    "parser_core/poker_diagnostics.py",
+    "parser_core/poker_hand_assembly.py",
+    "parser_core/poker_logic_engine.py",
+    "parser_core/poker_math_engine.py",
+    "parser_core/poker_pipeline.py",
+    "parser_core/poker_reconstruction/__init__.py",
+    "parser_core/poker_reconstruction/accounting.py",
+    "parser_core/poker_reconstruction/assembly.py",
+    "parser_core/poker_reconstruction/identity.py",
+    "parser_core/poker_reconstruction/models.py",
+    "parser_core/poker_reconstruction/reconstruct.py",
+    "parser_core/poker_reconstruction/solver.py",
+    "parser_core/poker_reconstruction/stale_filter.py",
+    "parser_core/poker_reconstruction/state_machine.py",
+    "parser_core/poker_reconstruction/timeline.py",
+    "parser_core/poker_reconstruction_layer.py",
+    "parser_core/production_integrity.py",
+    "parser_core/ram_first_stage.py",
+    "parser_core/rank_ncc.py",
+    "parser_core/suit_backup.py",
+    "parser_core/temporal_overlap.py",
+    "parser_core/tiny_chat_client.py",
+    "parser_core/visual_cards.py",
+    "parser_core/visual_crops.py",
+    "parser_core/visual_tile_queue.py",
+    "run_production.py",
+    "scripts/check_production_integrity.py",
+    "scripts/run_smoke14_ram.py",
+    "scripts/tiny_chat_worker.py",
+    "parser_core/dealing_cards_ncc.py",
+    "parser_core/dealing_start_stack.py",
+    "parser_core/hand_header_admission.py",
+    "parser_core/hand_state_marker_gate.py",
+    "parser_core/start_stack_live.py",
+    "parser_core/seat_epoch_state.py",
+    "parser_core/seat_forced_binding.py",
+    "parser_core/hand_lifecycle.py",
+    "parser_core/canonical_events.py",
+    "parser_core/performance_diagnostics.py",
+    "scripts/replay_saved_quality.py",
+    "parser_core/canonical_semantics.py",
+    "parser_core/stack_evidence.py",
+    "parser_core/stack_timeline_algorithms.py",
+    "parser_core/stack_timeline_live.py",
+    "parser_core/raw_worker.py",
+    "parser_core/bounded_storage.py",
+    "parser_core/physical_chat_admission.py",
+    "parser_core/full_hh_profile.py",
+    "parser_core/hh_export.py",
+    "parser_core/seat_occupancy.py",
+    "parser_core/reconstruction_validation.py"
+  ],
+  "configs": [
+    "configs/ocr_tiny_local.json",
+    "configs/card_hybrid_local.json",
+    "configs/suit_backup_local.json",
+    "configs/rank_ncc_production.json",
+    "configs/nine_table_layout.json",
+    "configs/layout_847x404.json",
+    "configs/chat_log_bottom_rois.json",
+    "configs/poker_reconstruction.json",
+    "configs/dealing_cards_ncc.json",
+    "configs/dealing_start_stack.json",
+    "configs/stack_digit_gate.json",
+    "configs/stack_roi_refined.json",
+    "configs/stack_sitout_mask.json"
+  ],
+  "exporter": "scripts/build_smoke14_ram_workbook.mjs",
+  "tests": [
+    "tests/test_annotation.py",
+    "tests/test_board_roundtrip.py",
+    "tests/test_board_tiles.py",
+    "tests/test_capture_nine_tables.py",
+    "tests/test_capture_ocr_batches.py",
+    "tests/test_capture_predeclared_windows.py",
+    "tests/test_card_hybrid_native_span_recovery.py",
+    "tests/test_card_hybrid_precision_contract.py",
+    "tests/test_chat_card_projection.py",
+    "tests/test_chat_ocr.py",
+    "tests/test_chat_rows.py",
+    "tests/test_cross_track_linker.py",
+    "tests/test_edge_gate.py",
+    "tests/test_fixed_edge_window_simulation.py",
+    "tests/test_hands.py",
+    "tests/test_identity_observer_isolation.py",
+    "tests/test_jev_structured_evidence.py",
+    "tests/test_jev_typesafe.py",
+    "tests/test_journal.py",
+    "tests/test_layout.py",
+    "tests/test_message_assembly.py",
+    "tests/test_normalize_chat.py",
+    "tests/test_ocr_retry.py",
+    "tests/test_parallel_ocr.py",
+    "tests/test_pixel_card_projection_contract.py",
+    "tests/test_pixel_card_secondary_contracts.py",
+    "tests/test_png_compatible_gray.py",
+    "tests/test_poker_first_break.py",
+    "tests/test_poker_logic_layered_verdicts.py",
+    "tests/test_poker_logic_math_jev.py",
+    "tests/test_poker_pipeline.py",
+    "tests/test_poker_reconstruction_accounting.py",
+    "tests/test_poker_reconstruction_assembly.py",
+    "tests/test_poker_reconstruction_layer.py",
+    "tests/test_poker_reconstruction_regression.py",
+    "tests/test_poker_reconstruction_stale_filter.py",
+    "tests/test_poker_reconstruction_state_machine.py",
+    "tests/test_production_integrity.py",
+    "tests/test_production_pixel_policy.py",
+    "tests/test_ram_crop_metadata.py",
+    "tests/test_ram_visual_transport.py",
+    "tests/test_rank_ncc.py",
+    "tests/test_remaining_candidate_receipts.py",
+    "tests/test_report_full_start_stack.py",
+    "tests/test_row_content_evidence.py",
+    "tests/test_row_crop_reuse.py",
+    "tests/test_row_identity_history.py",
+    "tests/test_row_identity_overlap.py",
+    "tests/test_smoke17_amount_materiality.py",
+    "tests/test_stack_temporal.py",
+    "tests/test_start_stack.py",
+    "tests/test_suit_backup.py",
+    "tests/test_temporal_evidence_analysis.py",
+    "tests/test_temporal_overlap.py",
+    "tests/test_temporal_parallel.py",
+    "tests/test_text_first_identity_audit.py",
+    "tests/test_validated_relationship_edge_simulation.py",
+    "tests/test_visual_cards.py",
+    "tests/test_visual_crops.py",
+    "tests/test_visual_review_viewer.py",
+    "tests/test_visual_tile_queue.py",
+    "tests/test_vl_batch_dispatcher.py",
+    "tests/test_dealing_start_stack_sidecar.py",
+    "tests/test_hand_header_admission.py",
+    "tests/test_hand_state_marker_gate.py",
+    "tests/test_start_stack_live.py",
+    "tests/test_seat_epoch_state.py",
+    "tests/test_seat_forced_binding.py",
+    "tests/test_smoke19_bounded_contracts.py",
+    "tests/test_canonical_events.py",
+    "tests/test_performance_diagnostics.py",
+    "tests/test_stack_evidence.py",
+    "tests/test_stack_timeline_live.py",
+    "tests/test_bounded_storage.py",
+    "tests/test_stack_storage_batches.py",
+    "tests/test_physical_chat_admission.py",
+    "tests/test_full_hh_profile.py",
+    "tests/test_chat_tracker_production.py",
+    "tests/test_seat_occupancy.py",
+    "tests/test_full_hh_reconstruction.py"
+  ],
+  "config_arguments": {
+    "tiny_config": "configs/ocr_tiny_local.json",
+    "card_hybrid_config": "configs/card_hybrid_local.json",
+    "suit_backup_config": "configs/suit_backup_local.json",
+    "rank_ncc_config": "configs/rank_ncc_production.json",
+    "layout_profile": "configs/layout_847x404.json",
+    "dealing_start_stack_config": "configs/dealing_start_stack.json"
+  },
+  "allowed_dependencies": [
+    "experiments/suit_template_experiment.py",
+    "models/dealing_cards_ncc/cards.png",
+    "models/dealing_cards_ncc/Dealer_Dealing.png",
+    "models/dealing_cards_ncc/Dealer_part.png",
+    "models/dealing_cards_ncc/Dealing_part.png",
+    "models/dealing_cards_ncc/Flop.png",
+    "models/dealing_cards_ncc/River.png",
+    "models/dealing_cards_ncc/Turn.png",
+    "models/hand_header_prefix/Hand_hash.png",
+    "models/hand_header_prefix/hash.png",
+    "models/hand_header_prefix/model.json",
+    "models/start_stack_table_cards.json"
+  ],
+  "dependency_exception_reason": "Existing frozen features/predict NCC helper only; hash pinned in suit config. Do not replace or add experimental runners.",
+  "forbidden_import_roots": [
+    "experiments",
+    "legacy",
+    "archive",
+    "archived",
+    "runs",
+    "outputs",
+    "old"
+  ],
+  "forbidden_sources": [
+    "experiments/** except exact allowlisted helper",
+    "runs/** (code)",
+    "outputs/** (code)",
+    "legacy/**",
+    "archive/**",
+    "scripts/capture_video.py",
+    "scripts/capture_nine_tables.py",
+    "scripts/run_nine_tables_streaming.py",
+    "scripts/*benchmark*",
+    "tests/fixtures/** (runtime implementation)"
+  ],
+  "png_policy": {
+    "transport": "DISABLED",
+    "golden_intermediate_count": 0,
+    "golden_intermediate_bytes": 0,
+    "max_intermediate_count": 0,
+    "max_intermediate_bytes": 0,
+    "allowed_debug_paths": [],
+    "evidence": "RAM PNG encoding and base64 in final JSONL retained; template PNGs read-only. Explicit future debug paths require manifest update."
+  },
+  "performance": {
+    "early_frames": 500,
+    "golden_frames": 500,
+    "golden_source_fps": 30,
+    "golden_capture_seconds": 21.284028199966997,
+    "golden_wall_seconds": 55.44423070002813,
+    "golden_fps": 9.018070837796769,
+    "golden_rtf": 3.3333204829676233,
+    "expected_rtf_range": [
+      2.5,
+      5.0
+    ],
+    "regression_factor": 4,
+    "policy": "4x capture regression plus changed-path evidence stops; slow clean path warns. RTF is observational range from this workstation, not accuracy/HH gate."
+  },
+  "golden_benchmark": {
+    "run": "runs/production_poker_smoke17_500_candidate_20261002",
+    "source": "video/smoke_17.mp4",
+    "source_sha256": "27c0ba10544e0f6025e2d563baf7693d36c185cdbbfeb4517d3486116e9f8baf",
+    "status": "PARTIAL_VISUAL; no independent card GT",
+    "known_counts": {
+      "physical_rows": 349,
+      "timeline_rows": 348,
+      "dedup_removed_rows": 1,
+      "card_tile_count": 92,
+      "card_published_rows": 19
+    },
+    "code_freeze_note": "Measured candidate run; inspect its manifest and source fingerprints. Final golden smoke verifies final manifest separately."
+  },
+  "quality": {
+    "smoke15_dev_tile_correct": 900,
+    "smoke15_dev_tile_wrong": 0,
+    "smoke15_dev_tile_unresolved": 0,
+    "smoke15_dev_projected_correct": 583,
+    "smoke15_dev_projected_wrong": 0,
+    "smoke15_dev_projected_unresolved": 317,
+    "evidence": "runs/pixel_card_remaining38/replay_WITH_VL_CACHE/summary.json; cached OCR/VL FALLBACK experiment, not current pixel-only acceptance",
+    "production_999": "NOT_PROVEN",
+    "certified_hand_histories": false
+  },
+  "VL": {
+    "enabled": false,
+    "scope": "No CHAT card model/client/dispatcher launched"
+  },
+  "stages": {
+    "orchestration": {
+      "file": "scripts/run_smoke14_ram.py",
+      "symbol": "main"
+    },
+    "integrity": {
+      "file": "parser_core/production_integrity.py",
+      "symbol": "ProductionGuard"
+    },
+    "decode_capture_change_detection": {
+      "file": "parser_core/ram_first_stage.py",
+      "symbol": "FirstStage.rows"
+    },
+    "ROI": {
+      "file": "parser_core/layout.py",
+      "symbol": "load_fixed_layout"
+    },
+    "row_tracking": {
+      "file": "parser_core/chat_rows.py",
+      "symbol": "match_row_blocks"
+    },
+    "row_segmentation": {
+      "file": "parser_core/chat_rows.py",
+      "symbol": "physical_spans"
+    },
+    "temporal_overlap": {
+      "file": "parser_core/temporal_overlap.py",
+      "symbol": "TemporalObservations.reduce"
+    },
+    "hand_assembly": {
+      "file": "parser_core/poker_hand_assembly.py",
+      "symbol": "assemble_hands"
+    },
+    "poker_analysis": {
+      "file": "parser_core/poker_pipeline.py",
+      "symbol": "analyze_timeline"
+    },
+    "poker_logic": {
+      "file": "parser_core/poker_logic_engine.py",
+      "symbol": "validate_hand"
+    },
+    "poker_math": {
+      "file": "parser_core/poker_math_engine.py",
+      "symbol": "audit_observed_ledger"
+    },
+    "poker_cards": {
+      "file": "parser_core/poker_card_engine.py",
+      "symbol": "best_rank"
+    },
+    "poker_diagnostics": {
+      "file": "parser_core/poker_diagnostics.py",
+      "symbol": "diagnose_hand"
+    },
+    "OCR_queue": {
+      "file": "parser_core/parallel_ocr.py",
+      "symbol": "ParallelRowOCR"
+    },
+    "Tiny_client": {
+      "file": "parser_core/tiny_chat_client.py",
+      "symbol": "TinyChatClient"
+    },
+    "Tiny_worker": {
+      "file": "scripts/tiny_chat_worker.py",
+      "symbol": "main"
+    },
+    "card_queue": {
+      "file": "parser_core/visual_tile_queue.py",
+      "symbol": "VisualTileQueue"
+    },
+    "card_geometry": {
+      "file": "parser_core/board_tiles.py",
+      "symbol": "card_spans"
+    },
+    "secondary_geometry": {
+      "file": "parser_core/board_tiles.py",
+      "symbol": "secondary_card_spans"
+    },
+    "CardHybrid": {
+      "file": "parser_core/card_hybrid.py",
+      "symbol": "CardHybrid.read_bytes"
+    },
+    "RankNCC": {
+      "file": "parser_core/rank_ncc.py",
+      "symbol": "RankNCC.read"
+    },
+    "SuitNCC": {
+      "file": "parser_core/suit_backup.py",
+      "symbol": "SuitBackup.read"
+    },
+    "component_suit": {
+      "file": "parser_core/component_suit.py",
+      "symbol": "ComponentSuitBackup.read"
+    },
+    "normalization": {
+      "file": "parser_core/normalize_chat.py",
+      "symbol": "normalize"
+    },
+    "message_grouping": {
+      "file": "parser_core/message_assembly.py",
+      "symbol": "group_rows"
+    },
+    "event_binding": {
+      "file": "parser_core/visual_cards.py",
+      "symbol": "associate_visual_evidence"
+    },
+    "event_projection": {
+      "file": "parser_core/visual_cards.py",
+      "symbol": "project_chat_card_events"
+    },
+    "metrics": {
+      "file": "scripts/run_smoke14_ram.py",
+      "symbol": "Telemetry"
+    },
+    "CI": {
+      "file": "scripts/check_production_integrity.py",
+      "symbol": "main"
+    },
+    "OCR_capture_batches": {
+      "file": "parser_core/parallel_ocr.py",
+      "symbol": "CaptureTableBatches"
+    },
+    "poker_reconstruction": {
+      "file": "parser_core/poker_reconstruction_layer.py",
+      "symbol": "write_reconstruction"
+    },
+    "adjacent_chat_tracker": {
+      "file": "parser_core/chat_tracker.py",
+      "symbol": "AdjacentChatTracker"
+    },
+    "dealing_start_stack_sidecar": {
+      "file": "parser_core/dealing_start_stack.py",
+      "symbol": "DealingStartStackSidecar.observe_frame"
+    },
+    "hand_header_admission": {
+      "file": "parser_core/hand_header_admission.py",
+      "symbol": "HandHeaderAdmission.observe_frame"
+    },
+    "hand_state_marker_gate": {
+      "file": "parser_core/hand_state_marker_gate.py",
+      "symbol": "HandStateMarkerGate.select"
+    },
+    "start_stack_live_connection": {
+      "file": "parser_core/start_stack_live.py",
+      "symbol": "StartStackLiveConnection.observe_frame"
+    },
+    "seat_forced_binding": {
+      "file": "parser_core/seat_forced_binding.py",
+      "symbol": "SeatForcedBinding.observe_frame"
+    },
+    "post_event_hand_lifecycle": {
+      "file": "parser_core/hand_lifecycle.py",
+      "symbol": "post_excel_contexts"
+    },
+    "canonical_event_join": {
+      "file": "parser_core/canonical_events.py",
+      "symbol": "canonical_join"
+    },
+    "stack_timeline_live": {
+      "file": "parser_core/stack_timeline_live.py",
+      "symbol": "StackTimelineLive.observe_frame"
+    },
+    "physical_chat_admission": {
+      "file": "parser_core/physical_chat_admission.py",
+      "symbol": "PhysicalChatAdmission.process"
+    },
+    "full_hh_profile": {
+      "file": "parser_core/full_hh_profile.py",
+      "symbol": "connection_matrix"
+    },
+    "hh_export": {
+      "file": "parser_core/hh_export.py",
+      "symbol": "export_hand_histories"
+    },
+    "independent_seat_occupancy": {
+      "file": "parser_core/seat_occupancy.py",
+      "symbol": "SeatOccupancyEvidence"
+    },
+    "source_unique_revalidation": {
+      "file": "parser_core/reconstruction_validation.py",
+      "symbol": "validate_reconstruction"
+    }
+  },
+  "outputs": [
+    "physical_rows.jsonl",
+    "raw_ocr_results.jsonl",
+    "visual_evidence.jsonl",
+    "removed_duplicates.jsonl",
+    "context_decisions.jsonl",
+    "ordered_timeline.jsonl",
+    "ordered_timeline.xlsx",
+    "hand_analysis.jsonl",
+    "hand_summary.json",
+    "validated_hands.jsonl",
+    "run_metadata.json",
+    "final_summary.json",
+    "module_timings.json",
+    "errors_retries.json",
+    "production_guard.json",
+    "ocr_batches.jsonl",
+    "process_samples.jsonl",
+    "poker_reconstruction.jsonl",
+    "reconstructed_candidates.jsonl",
+    "reconstruction_validated_hands.jsonl",
+    "reconstruction_summary.json",
+    "hand_header_ocr.jsonl",
+    "canonical_forced_events.jsonl",
+    "canonical_join_summary.json",
+    "performance_diagnostics.json",
+    "performance_jobs.jsonl",
+    "performance_resource_samples.jsonl",
+    "performance_progress.jsonl",
+    "PERFORMANCE_REPORT.md",
+    "physical_chat_admission.jsonl",
+    "full_hh_production_matrix.json",
+    "hand_histories.jsonl",
+    "hand_histories.txt",
+    "hh_export_summary.json"
+  ],
+  "promotion_procedure": "PRODUCTION.md#how-to-change-production",
+  "hashes": {
+    ".github/workflows/production-integrity.yml": "e1f9bc7000f9cf2afd318d2e807adc0ad4d7e3ee0a654f9b1c5f2fb43a855d4b",
+    "AGENTS.md": "554d0b7f4d0105a59646ce9d3cd0a2708f6df08bcc4c41f32dec41730e0b2cae",
+    "README.md": "d77f7289b54e49d6bc3a7db3f0733e7416ae55eeb695469254db7bcd2347fe6d",
+    "configs/card_hybrid_local.json": "e67285f74a8251b92ea503f0c3e68aa642fef33bc74d32b221d219358438c20f",
+    "configs/chat_log_bottom_rois.json": "a79427cf111c243cbff288813c85ea54f90864291d4d435b32139f029a5fec01",
+    "configs/layout_847x404.json": "777d1f02e5a927cf7066e89cce53fb5f24e6e241ed2cc87841794037dfd35300",
+    "configs/nine_table_layout.json": "b6722d12f30e872207566272802920b9017d50cd6e521712248e409d9a45acec",
+    "configs/ocr_tiny_local.json": "6208ab8ee6d385399f517540b9e0d96f049967eb9fe582a4aadf4baa764857e6",
+    "configs/rank_ncc_production.json": "c521cab1e4233bca7a59fefa7d9ca8d27e48821893aeaef02395a61581015b5e",
+    "configs/suit_backup_local.json": "3004549d04172cbe6e2e99aec1455c3129c114329c0e7d74050c84a9cda1cecf",
+    "experiments/suit_template_experiment.py": "2e400c8627b8a7fcded7897cf5b2495862187e4898e985a372aaab3d21897e92",
+    "models/board_glyphs_v1.json": "54b260164e512a5d5ddf597ce546885d6a00ab1ee42a5f65abe8ec6a543a3f45",
+    "parser_core/__init__.py": "5868f14ad622bc4f28f762aa1bf84104b943e66dd65f7caab7dea3615f3ea78a",
+    "parser_core/board_tiles.py": "1d7d4ae22672e18883d89d5081a70a0bc6067f1c098c334ef3fe6ccc63f98a47",
+    "parser_core/card_hybrid.py": "c611321a0b874f670b6f09abe9a241453fe12d41f43040c44c86284785985556",
+    "parser_core/chat_rows.py": "5c9ebda463b03f5928edc3b44e90c855b239ad0a7b93ba700023d3e2d713d3fb",
+    "parser_core/component_suit.py": "dd897f2b157ca0d83ba5e01750f5631132ac1b730c0306534103940318922e73",
+    "parser_core/jev_poker_resolver.py": "d9a2245a772db1a403b43a38da3fb1fef2d3ce2bb95072e35e7a43e6812479de",
+    "parser_core/journal.py": "ead6ab294b94215be118b861ae6b3c0aad21eeab5cec658c51ab815e3f1719db",
+    "parser_core/layout.py": "e47d669edd6bee7352ce7f411154681b44f86ba8e6e13253e02db6c9ff42ecd7",
+    "parser_core/message_assembly.py": "b2eabf54911d918a706d1977417d8c1f731288618e0f255eb546aac65ebab0b6",
+    "parser_core/normalize_chat.py": "f0b157597487b9d8fbb639e5a0069bd05e6f797dde42b4425a1d5a94a813302f",
+    "parser_core/parallel_ocr.py": "4c710a4edbaddef4914e0dc14d0b496fac7735173e2180667bc2d1e5c39f1d2b",
+    "parser_core/poker_card_engine.py": "273f67c5ac200caea8b1672f95dd84d42ead4aed2dfd9b08d16c51fce3cc5612",
+    "parser_core/poker_diagnostics.py": "b7ac120ff40fd2f4a81a26e6e06a78c440b6e610ee765d77160d07c50593cf62",
+    "parser_core/poker_logic_engine.py": "782b721a85036b88a9eff9e2c954a98ee6b319d72046dbf5444631f622d51bb0",
+    "parser_core/production_integrity.py": "8b97b3b060fbcd2d2ff7be76ce91776dcfc122be6d731cd74e0b295e31be36fb",
+    "parser_core/ram_first_stage.py": "f11b474205d4c6bfe2558154e2f8cab2de27f3d074813d66814cbd8567b761d6",
+    "parser_core/rank_ncc.py": "2aea293bddc07d316d7af9893de1b5b51518ef4217379d6b0e4206fe895f4b24",
+    "parser_core/suit_backup.py": "03c0a352a059d6739af8457a4f5e9b900a9b4be203fca659c2562e3ac7174fae",
+    "parser_core/temporal_overlap.py": "579662a77e5cec868a88999b43bdcfe28d9e5311270c67443735cad919ea0272",
+    "parser_core/tiny_chat_client.py": "d64cf5953e218ee9560b5aa9789f9081a32a264979f24b6532973d536ada8627",
+    "parser_core/visual_cards.py": "29ce3bfba6e4c562161189d918b60c82f9c5549e319d4bfaefd20ec63e20ade7",
+    "parser_core/visual_crops.py": "7f67f0e654bd2cca333e68066d0ca8e072e97d43182186d44a60e63ee882c131",
+    "parser_core/visual_tile_queue.py": "2c9add5d9ac47f74d259adba68ae09f3c0f397df092129a5d82c029326b42fc0",
+    "pytest.ini": "aa3b070e21719b0376f6f664099c922f0aca0c626e9caeb55b21fdde761603c4",
+    "requirements.txt": "8bced1e3e7bbf2ed9fcd5a46d7e5d50e9afa274e6a5e08d2dc3c009b54f6ee1f",
+    "run_production.py": "a5f5914a57474b3f55071e1bd89e16744648fd8df12d21d6647f9f0ce95b4936",
+    "scripts/check_production_integrity.py": "d7356ecc0cfd2423bb2ac4bb2d05b040d1c69d8b41e7979167a2bcb25e855d69",
+    "scripts/freeze_production_manifest.py": "aaf21a4b6072ebc02397cc0a5f5db0b93c3cc896bfd619862ef3ea921c6ecb8c",
+    "scripts/tiny_chat_worker.py": "82a0c9a87a70095b110fd023946be99e10e06f24c1a0ff447ca47f8fdcdc3f6a",
+    "tests/test_annotation.py": "e247b2e5ee11eb9139395962b87dd7130b087225e1c02565b22e5bb513879c8a",
+    "tests/test_board_roundtrip.py": "c5c6e965d1ebc9485efb41f1c3b74b700d4565f0d9cfca746d254e6681fd222d",
+    "tests/test_board_tiles.py": "d8361cb3718653e92d076428373a579cfec24412b29e095e4e39a6af92e82c62",
+    "tests/test_capture_nine_tables.py": "58c526b56914c064bf6614c3fa0baa2450b7cad71e53804fe55a13328c7ab4bc",
+    "tests/test_capture_predeclared_windows.py": "c635893e1a8df7e78f3d3620a3e60b6a7ddb74ccd5e45b0e124933d9c69e94e3",
+    "tests/test_card_hybrid_native_span_recovery.py": "300b99dd3b569ab46ef5196c1e40ee7ec2eabcd7b252cc91b7c727670d6940f5",
+    "tests/test_card_hybrid_precision_contract.py": "5b422159374db499b9cbecd97b6119fca67c6a8c13d24467b197e82bf00fe29b",
+    "tests/test_chat_card_projection.py": "b5f219f7e8bcf3c7157fe4bee4fdf2a09fbc058778a9de2f0e6735bd646a4a13",
+    "tests/test_chat_ocr.py": "a11dcdbf3ce88d004b8c553f8a433544fa34af5a680a4296d13a515254ca002d",
+    "tests/test_chat_rows.py": "fd306208c71ac581bb5b18614b7bb12f416157ef7cce03081466c5116828aeea",
+    "tests/test_cross_track_linker.py": "12411e74be7097ea2471d5e785179c1a7657b894b923cf67c88a7c2c42aae060",
+    "tests/test_edge_gate.py": "9bbf98c786d876936eca1047dc2d68081d275b9482cc988b82e2dca1db1a9b61",
+    "tests/test_fixed_edge_window_simulation.py": "54cbd2ffbf2a1fc5c5fb3fded6efa3202b6ab04a6a5800d7039ad0514929ca06",
+    "tests/test_hands.py": "1b283293e390e51695d75c1b18117a678bcc0da97895b0903944763759ae5605",
+    "tests/test_identity_observer_isolation.py": "f5cfec451fd57d280018e8e0df27771e9cc66b3547ee175606fcbe12216becc7",
+    "tests/test_jev_structured_evidence.py": "1f9746be35f83415d559699655afd5cb8bde319ad811ca1a1368e5d48326356f",
+    "tests/test_jev_typesafe.py": "4e3115f0cc96d148a0ea97fcde8e87b8f8bcfdd7bd6a04152a938db5ff266bcc",
+    "tests/test_journal.py": "12339bffdf1af20101c6997141da1f49577e25e5b4055413a083cf7b57878a81",
+    "tests/test_layout.py": "c690d01dba4088a327c520552d7ee6f48e96064f91e16bf48280e2bce6e34869",
+    "tests/test_message_assembly.py": "66450db64519abfff48662414a9ed3c4e80111c3b2eac536212acaab251a59f3",
+    "tests/test_normalize_chat.py": "345b8a7c3d61fd9d30b75f8487c6730c88c5bb03350494d18484637821170b04",
+    "tests/test_ocr_retry.py": "923eaaf4bb8fb92972dbcc27575658ce5717b932304ca285e64695dd97e64b46",
+    "tests/test_parallel_ocr.py": "103970bae2960b99b44daaaa3185fbc940c0c797f281bbb0c11ad3c71ddcd7d5",
+    "tests/test_pixel_card_projection_contract.py": "8a2c39972c52a6f7e584e60f9b1e00d58d9e24c5f7fa093a61d5527f50e10d52",
+    "tests/test_pixel_card_secondary_contracts.py": "964cdbe6cdce9b273b7eaa19d5e762f4569a61f7f6e92951ccfd11902d2ec572",
+    "tests/test_png_compatible_gray.py": "d5e9d82ce76bccf102fa11bcfef7a77e7f00ba6a8d78859353303a5bd9bf1760",
+    "tests/test_poker_first_break.py": "bcf621a0745bba8766f4903c7945b9f927068361e0646fd2859e1a422fb28cb5",
+    "tests/test_poker_logic_layered_verdicts.py": "73dce2a2d1c53fa038be4cd940f72a103ee2917b48f065ef0db4c99bd495d786",
+    "tests/test_poker_logic_math_jev.py": "6c32a478c10e63998cee249dfab36ca1ea2121c113b7d8af5f7c66efc0094bea",
+    "tests/test_poker_pipeline.py": "6e958d6e6a53429f284a259d97b6a1437dac37e7eabe0c270fffeaf3b5e0ad9b",
+    "tests/test_production_integrity.py": "d43b92f3436928d89a44a2310cf53b3d1601f4731798f4834db8b885f3ceb3d7",
+    "tests/test_production_pixel_policy.py": "15cc7196e0772fc00401035804f677669adf052bf8ff06a8f679f95d5a396f8e",
+    "tests/test_ram_crop_metadata.py": "0cafc1354d032bd79c5508807bb20d4d12b4eaf9c92d45bc1d9238944ca07725",
+    "tests/test_ram_visual_transport.py": "63f2f1b763ea79867a28b982250be8a834fca1c4caa7081560d182877c46bd02",
+    "tests/test_rank_ncc.py": "f05bd75667e40b2957d1a7ab1ddfe50e2b9fad8c06259b6729e485a808a9d3d8",
+    "tests/test_remaining_candidate_receipts.py": "983c3b875ae2dd82801c1319dba614d336190de5aa493600fc285c7a5058e044",
+    "tests/test_report_full_start_stack.py": "da6d929367f7fe817e0cbb43d66b4310b6dcceb909647300ea281d47a54b720d",
+    "tests/test_row_content_evidence.py": "7520347a3ad59b11f5bce01502b0e576d28ec0a8281b4feab3ee60a6a0ddae06",
+    "tests/test_row_crop_reuse.py": "ae650fdd1598558e9e426ff62576066d912158ad79a2e2b1dd779aba0e49966d",
+    "tests/test_row_identity_history.py": "7802abc39c1ad17c2ef8bfef769ef356bba4289fdfb829718c908db71b0030c6",
+    "tests/test_row_identity_overlap.py": "1589a56909a2423fdef7bc509888d8e37e63b425e21940fbf0757d540da06bf6",
+    "tests/test_smoke17_amount_materiality.py": "f883ba09c93cd0b27109926512871bfe75ff81661ac13ce2682c990aa1988b0a",
+    "tests/test_stack_temporal.py": "f647a62bb3d784a5b48cbcda08ac8f66b0a443e1585b3f918ae8ac00c28473e4",
+    "tests/test_start_stack.py": "b4e6c34e6c32ad20820b5ba60335895b142be0b2121fb35d43ac5e496717117b",
+    "tests/test_suit_backup.py": "e3591b2f7b740063edb8d574a0787553b8e55e100bb24df55a0706723533ef3d",
+    "tests/test_temporal_evidence_analysis.py": "f428197b8710312512028f28e5730efdfbe8917a5e0ff02ecdc59a63d1f791ab",
+    "tests/test_temporal_overlap.py": "5db015edad21cad08f4d6c939bd801e10813f58f3cc0ea62b223b8dda7df4afb",
+    "tests/test_text_first_identity_audit.py": "f0e4845c01fd1a53d667820b16ce53c354850e2d5bade6858a01a09ddfc16bfa",
+    "tests/test_validated_relationship_edge_simulation.py": "7c04a3739c42618cd39b0d3b1079bda2db7b5c52139bd679fe6ada316954b1f6",
+    "tests/test_visual_cards.py": "73c0970a35d47c899ab3c5f91594c2396f48e263c623dd93965568911672bd89",
+    "tests/test_visual_crops.py": "ecb6c604ce2221b0b50a0b6f2b0a54032d1041c5a827169ed1acd29ee97bf09c",
+    "tests/test_visual_review_viewer.py": "8e34a8a4e42b1cb13cd196593648ad69a7d05cb8b23fe64d2e04bc8f25c9908e",
+    "tests/test_visual_tile_queue.py": "aa25c66f0a8eb3a119b83ad60d9f4d434b039073d80133fc30cfbe147a53b111",
+    "tests/test_vl_batch_dispatcher.py": "41f0718cfceea40a0fdc0a6bd096bca204117c814c2e7ae8b50155414cd5a665",
+    "tests/test_capture_ocr_batches.py": "af8bea3786384cb1814e68b5a5a354e4e2f81e2e3b66453d7ec508c973686e1e",
+    "tests/test_temporal_parallel.py": "f47f93d74f249173b6ad7df12e40a963aadbed9605cb910bd1099210043e4887",
+    "parser_core/chat_tracker.py": "d6414b8dbc1054352b3cfbdc2e3df61e8140b7d96d8b68794632dc5e9dc70aca",
+    "parser_core/poker_reconstruction/accounting.py": "a3831a3237b523ba21d63a089e7b57bc1444fb0f089cfce466b2bc0094ff5d69",
+    "parser_core/poker_reconstruction/identity.py": "ed645c7e03fc8d5468b55f2c980554eaac52c165c4babb52d88eae5c7c8c5851",
+    "parser_core/poker_reconstruction/models.py": "c1e75ac99ee2dc699ec6bd39aa8e4f543e626f2594668cb603f61d1ea9a3fa79",
+    "parser_core/poker_reconstruction/reconstruct.py": "87a9204d90bdb4975caa5bcc21c3fe808229d1a90af2b6fa9144c9a66268aa72",
+    "parser_core/poker_reconstruction/solver.py": "9616f2f877fcd8aea9a78a65441948a96dc3dac4a15955ece12d59f44ab751df",
+    "parser_core/poker_reconstruction/stale_filter.py": "ceb93ea082c162f0fc59f8db4725d5ada2ad18ac024b8c055bfb2dd9bc082775",
+    "parser_core/poker_reconstruction/state_machine.py": "0181d92cfcb6288b563a04f5f914191c0854617fff1e2e8acc1ba985ce9c0b5f",
+    "parser_core/poker_reconstruction/__init__.py": "e045ad1c22bda59b657819fba743bd32cc7aa6dfc096d694fb1f44b542e70187",
+    "configs/poker_reconstruction.json": "3f6e8d06bceb33fa303e2db32fb3099dc950b418145c84b4786e09730dd3738a",
+    "tests/test_poker_reconstruction_accounting.py": "df1228a01f9d6aa6ff6139d18284e184e44bb16379e4ad4b132cc3ec2e6a8f03",
+    "tests/test_poker_reconstruction_assembly.py": "db0ca8f5e4744ccd74c261cd28783ac6b15f72b26220d323b42c9ed4f4a7ca77",
+    "tests/test_poker_reconstruction_layer.py": "103a059a1a1693b8d4c4ae637b61a86caabf4ba39003b75f266bdca4abf04bd6",
+    "tests/test_poker_reconstruction_regression.py": "980e31521edb72f7ca4e214cae3f5d74c111b4d324b214c79c37d6833eb5d9f5",
+    "tests/test_poker_reconstruction_stale_filter.py": "4735a7426d7b78eca5fa08535914914afc7d1f1312441a39160adddb2bd84435",
+    "tests/test_poker_reconstruction_state_machine.py": "89b07c929ce9a1a025910634ea2685605f9c54d6b6aa51bdc4209c2ace791549",
+    "parser_core/dealing_cards_ncc.py": "9ec772ccba27154f9c5267d3f468b733cf57229db0ba23512822ced89276268e",
+    "parser_core/dealing_start_stack.py": "9a3a0a52b0d94b8442cd03cec81bd17ae175bbd5e9035a4a9496694cf61b7ce1",
+    "configs/dealing_cards_ncc.json": "432f680e17ad59575866374a3cdccd0c2d197c2a8a2a6fc92994e27a2a2c4919",
+    "configs/dealing_start_stack.json": "9cb6e8d006b5682699fc2cfb4604a2b1be599d82ae799a12cbb02071e2b0645d",
+    "models/dealing_cards_ncc/cards.png": "37387bc37ed77e735fcfdf21ef831735116654f3d0151d6ee69245fa4b238193",
+    "models/dealing_cards_ncc/Dealer_Dealing.png": "786f47ce10f8fad5580ea40416f4950bd65f977dc6d3fc0dc0e159e087555f3d",
+    "models/dealing_cards_ncc/Dealer_part.png": "f6d9644b9b4622e364faf7ce79241de84b68aed5cbcd800f07dda82731dba8ce",
+    "models/dealing_cards_ncc/Dealing_part.png": "3622371fadd016a24d2629e27268e284e0270e216198b3c6a41184be2b7907ff",
+    "models/dealing_cards_ncc/Flop.png": "316bccf0755963f71ea6e5b814a5f97693769c3eb09827ede2f400e325d3292c",
+    "models/dealing_cards_ncc/River.png": "8cad0a3abc5907b217354254655e002afae3348eee44b4215f0bf19325e61b1d",
+    "models/dealing_cards_ncc/Turn.png": "2fc0490783286cb3a8fddb83fee55da16e4efe945dafc6222b4c49be3b94ecdf",
+    "tests/test_dealing_start_stack_sidecar.py": "e6b63c64c8ce53997b0effd7a7773c82c48c41c7963dfca15e9e2c6d548e3d20",
+    "parser_core/hand_header_admission.py": "f7f3a612f96f948002b85315fa4eaa021e24b3b6e74844fd9fee183d009e8ee9",
+    "models/hand_header_prefix/Hand_hash.png": "74c0dbf2edb370542442bebfab82bb43e09b355c0fb8040669771a6b93021a10",
+    "models/hand_header_prefix/hash.png": "276ef0c4c87ead47a5e32325e6bf309b9c95db42f22c8307e8a9f6e75f0b72de",
+    "models/hand_header_prefix/model.json": "e8005a97e056b13b5e64c81098a19676703d378c2c7e6e8161d23cb6f65352b4",
+    "tests/test_hand_header_admission.py": "bafc26bfd3786c921dc80d76a7fb5ff060e3ccb44ecca9faea474a6f5514aefd",
+    "parser_core/hand_state_marker_gate.py": "37ed6920770d21f348d42ccadf7a6d95c1a7de7f7f8895f051d0c250aa07017c",
+    "tests/test_hand_state_marker_gate.py": "31216828ddafb25904081927ad0cb59c0296a95d7d12856e18fa2ab0fd76e82e",
+    "models/start_stack_table_cards.json": "3880c9dd9d9e30323a717ab0a24380ae2d95ad643a68c9e2b67820e811b5380a",
+    "parser_core/seat_epoch_state.py": "46bc24750fcc59d6780da24eed2d8e0ae5ffbf8a8a19c91fb2dc5f5741832dbd",
+    "tests/test_seat_epoch_state.py": "7819f3920d2340e30d7c3dcdba0f8eebddead65c98f8f44b78cbfa4361278dcd",
+    "tests/test_seat_forced_binding.py": "621d01b531430cfb9724ddced38ca7192042c7288862239b408041d7dec2f776",
+    "parser_core/poker_reconstruction/timeline.py": "669e75063e0d4df0985e3648461c3d9a511a4564451f683d6957d180b946e866",
+    "parser_core/poker_reconstruction/assembly.py": "14a6aa97cf69c41d6fdb4b9dee744f35472c17a7085ddfe53cea7a86b59504b8",
+    "parser_core/start_stack_live.py": "85013f1df395df9feb55f32e01dcd4099fe1bb490857e942782a05628d5c63b7",
+    "parser_core/seat_forced_binding.py": "23ff317c732e8359454004f112d458f0e3673b5c51ba7ac27e9b6dbe328c9da0",
+    "tests/test_start_stack_live.py": "fd5f0811c3354307daa6534c94e5d7d04aaed6d96dbdfcc519d5d3805c731355",
+    "parser_core/poker_hand_assembly.py": "b220f1bef06cb435a07f088e165767d68a32ae6354b748c9c410e5e5ff787500",
+    "parser_core/poker_pipeline.py": "564d69ca447c4056cd8f6ed2ecc9cca540b7ae4065a95b4021806ee5cb343bfa",
+    "parser_core/poker_reconstruction_layer.py": "656d2a1e48f4d1a59871545ece739da1e4b5fd05b8a68391842394e8ca06a6e6",
+    "parser_core/poker_math_engine.py": "894d8dbe78bc74ce0195c451a3ed953208f04c87891de828d52e5272864007c9",
+    "PRODUCTION.md": "651dcb2e6f3a99d17957170757d0802642f6d81bfcb6ec9987baf46b671383ca",
+    "parser_core/hand_lifecycle.py": "de3df0688e415a38c70363d9b4245fbb3b29b766bc70daf5ad21237c2e9a8808",
+    "scripts/run_smoke14_ram.py": "43306989cd7dbc7557c9c281472ee823e217ab2cd7369d04780e1822a85115ed",
+    "scripts/build_smoke14_ram_workbook.mjs": "c3ae0b0880079d3ba4e4e1dcc13c2784b205d1fbae1ae8b1254ca1c0a34ec4d9",
+    "tests/test_smoke19_bounded_contracts.py": "43093665dff70b27d0591a7d87451ea6788fd182e87803e5abb6cca6c74b22b5",
+    "tests/test_canonical_events.py": "29e71e91de6a075ed69fa3a499e0bb0c199691866ec7761f7dcf6452186f1777",
+    "parser_core/performance_diagnostics.py": "feb94f3e81c8b31aa7492aac7c0c74593184a84ccc68377498f1521fc45c7539",
+    "tests/test_performance_diagnostics.py": "2422b12608e94b956a447fb8b655897071f3c8ee6c40a08a40c6b13bddb6c6e6",
+    "parser_core/canonical_events.py": "5ba6bedd59f147ec2d8b4f1fe8968725a86d71631e9b8f0ccf984bf81ff29d0f",
+    "scripts/replay_saved_quality.py": "3d598d2b78ad5c47cf3b921abfdcfb9033dfcebd753458984174cd1a681c7652",
+    "parser_core/canonical_semantics.py": "e8956cae4a17c76f26d306ad1fa699df482ae2f5ed85f9794088f3a1531cb510",
+    "parser_core/stack_evidence.py": "a31929ec69689842ad6553e1994c8a6bd1a40c929bc32980f9f9eed77dc15210",
+    "tests/test_stack_evidence.py": "070fb987fdefc8ebbedbc436a7c19e66a44430544e5e34dbf402e615121ca8b3",
+    "parser_core/stack_timeline_algorithms.py": "604e2b74a3c950443c985d1776685f1c6f2b5f4410fd681ba7a61e2fb7f83f87",
+    "parser_core/stack_timeline_live.py": "d1f8761eced52dd7624e7608ef41123bd611661826f4862af61043de050a7334",
+    "parser_core/raw_worker.py": "e01d8ea529d9bed88e4063b4d2020bcb9a6a3e45c950aa3ebc57840ebcc7b73a",
+    "configs/stack_digit_gate.json": "9d8a00b9fcb36782400c9bab85ec676ec7de428d14c68b61fdfa9bac5387609f",
+    "configs/stack_roi_refined.json": "388c6cc79d1f81f0cf87b2ecebde36a2355b0d8f951da3b42cbeaa579de4f2b1",
+    "configs/stack_sitout_mask.json": "0b3e7848c152b65b2d3a460b73852b6c2be792ebe74499b7aeaa96cee056f43e",
+    "tests/test_stack_timeline_live.py": "8270887e53b6de83e64d269d166a2a219a4cc0660db5d974343b19d7f065f7fc",
+    "parser_core/bounded_storage.py": "79423fdb649befa658ff7b9923370de7a9b4832b02140345430a9507ef2d85d1",
+    "tests/test_bounded_storage.py": "0fa979cc67e1d83ba508ee8158c6634ca8a3bbcfecfd51a5a27ae96af6a7eb32",
+    "tests/test_stack_storage_batches.py": "5b3ed1be2ebc8ba2be2318e6a1b53a289e1901d2e1c75592282d07b28f0f9c1d",
+    "parser_core/physical_chat_admission.py": "17907f446e03c6e094abe1c52783b500a6e6200634a908a9641fb0ffb1650a4c",
+    "parser_core/full_hh_profile.py": "5908f845eabab178e776d7e5b1b38ed359e730350dacd535565179712bf400dc",
+    "parser_core/hh_export.py": "0286eba2e2b499d8930e3e6c6d6f8e97f27a0b241844e3ed99f9fc16ca946f7a",
+    "tests/test_physical_chat_admission.py": "267a4c774384bd399a68ee4ffcfcf66290f477236afa99923531425593a97b49",
+    "tests/test_full_hh_profile.py": "b77a820785902813f49bdcd3a6d416b9b1aeecbc2f8abb992c14e438de90025b",
+    "tests/test_chat_tracker_production.py": "f4885dceb467bc8a3393cb2992d57c378470e875b80db7830b87c7eee3879012",
+    "tests/fixtures/physical_chat_admission_smoke19.npz": "fda0eba4f06e9e3cd48dffdb0a7d7ba8b14d20c3174009bb31618c99a6e3fde8",
+    "tests/fixtures/physical_chat_admission_smoke19.json": "e85e4c913a637b5be8c1a10e1d19569bf733ef359da55a19cd9ef4e06ae2f370",
+    "parser_core/seat_occupancy.py": "f18947dfe390841176e2f16462009caa5e8dd440ba044a0e3ce30ef008a76ab8",
+    "parser_core/reconstruction_validation.py": "a942e0cef28a5208c7f930b75c84a09b01b79fcee860f756e0d921d12b9d33c2",
+    "tests/test_seat_occupancy.py": "83ecb9b87ca3252f311db5d969fbcd4e28bc52a7047611aa2f011aeba04f5825",
+    "tests/test_full_hh_reconstruction.py": "384bb3d377aadcad1a11426a849ec2a043398fa1aee0d5d74ad66481ab3b05c3",
+    "tests/fixtures/full_hh_literal_wraps_smoke19.json": "7cc93e9b52d5d0284a52289ecf714b6b6893cc56a7e14dbcfe21a2064d171a82",
+    "tests/fixtures/full_hh_first_physical_starts_smoke19.json": "a9254e5552612a135b0f42f9806509c081132268f4ad02417a3c20e1d1e27ab5"
+  },
+  "data_dependencies": [
+    {
+      "config": "configs/card_hybrid_local.json",
+      "key": "train_manifest",
+      "path": "D:\\Р В Р’В Р РЋРЎС™Р В Р’В Р РЋРІР‚СћР В Р’В Р В РІР‚В Р В Р Р‹Р Р†Р вЂљРІвЂћвЂ“Р В Р’В Р Р†РІР‚С›РІР‚вЂњ Р В Р’В Р РЋРІР‚вЂќР В Р’В Р вЂ™Р’В°Р В Р Р‹Р В РІР‚С™Р В Р Р‹Р В РЎвЂњР В Р’В Р вЂ™Р’ВµР В Р Р‹Р В РІР‚С™\\runs\\card_train_smoke16_test_20260930\\split_v2\\train_manifest.jsonl",
+      "sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43",
+      "read_only": true
+    },
+    {
+      "config": "configs/card_hybrid_local.json",
+      "key": "selection_file",
+      "path": "D:\\Р В Р’В Р РЋРЎС™Р В Р’В Р РЋРІР‚СћР В Р’В Р В РІР‚В Р В Р Р‹Р Р†Р вЂљРІвЂћвЂ“Р В Р’В Р Р†РІР‚С›РІР‚вЂњ Р В Р’В Р РЋРІР‚вЂќР В Р’В Р вЂ™Р’В°Р В Р Р‹Р В РІР‚С™Р В Р Р‹Р В РЎвЂњР В Р’В Р вЂ™Р’ВµР В Р Р‹Р В РІР‚С™\\runs\\card_train_smoke16_test_20260930\\stage2_template\\hybrid_validation_selection.json",
+      "sha256": "d9c0b33eceb26a1ae1809637cf4c6d2ad19872767dd42e6f75b5bc9becfaf51f",
+      "read_only": true
+    },
+    {
+      "config": "configs/suit_backup_local.json",
+      "key": "train_manifest",
+      "path": "D:\\Р В Р’В Р РЋРЎС™Р В Р’В Р РЋРІР‚СћР В Р’В Р В РІР‚В Р В Р Р‹Р Р†Р вЂљРІвЂћвЂ“Р В Р’В Р Р†РІР‚С›РІР‚вЂњ Р В Р’В Р РЋРІР‚вЂќР В Р’В Р вЂ™Р’В°Р В Р Р‹Р В РІР‚С™Р В Р Р‹Р В РЎвЂњР В Р’В Р вЂ™Р’ВµР В Р Р‹Р В РІР‚С™\\runs\\card_train_smoke16_test_20260930\\split_v2\\train_manifest.jsonl",
+      "sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43",
+      "read_only": true
+    },
+    {
+      "config": "configs/suit_backup_local.json",
+      "key": "validation_results",
+      "path": "D:\\Р В Р’В Р РЋРЎС™Р В Р’В Р РЋРІР‚СћР В Р’В Р В РІР‚В Р В Р Р‹Р Р†Р вЂљРІвЂћвЂ“Р В Р’В Р Р†РІР‚С›РІР‚вЂњ Р В Р’В Р РЋРІР‚вЂќР В Р’В Р вЂ™Р’В°Р В Р Р‹Р В РІР‚С™Р В Р Р‹Р В РЎвЂњР В Р’В Р вЂ™Р’ВµР В Р Р‹Р В РІР‚С™\\runs\\suit_template_experiment_20260930\\results.csv",
+      "sha256": "3c1b03bba7e4b4af4dde0655480063dced5229f563a1c2dffe9b080593d9215a",
+      "read_only": true
+    },
+    {
+      "config": "configs/rank_ncc_production.json",
+      "key": "train_manifest",
+      "path": "D:\\Р В Р’В Р РЋРЎС™Р В Р’В Р РЋРІР‚СћР В Р’В Р В РІР‚В Р В Р Р‹Р Р†Р вЂљРІвЂћвЂ“Р В Р’В Р Р†РІР‚С›РІР‚вЂњ Р В Р’В Р РЋРІР‚вЂќР В Р’В Р вЂ™Р’В°Р В Р Р‹Р В РІР‚С™Р В Р Р‹Р В РЎвЂњР В Р’В Р вЂ™Р’ВµР В Р Р‹Р В РІР‚С™\\runs\\card_train_smoke16_test_20260930\\split_v2\\train_manifest.jsonl",
+      "sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43",
+      "read_only": true
+    }
+  ],
+  "external_runtime": {
+    "OCR": {
+      "schema": "pokerdom.chat-ocr.ppocrv6-tiny.local.v1",
+      "enabled": true,
+      "python": "C:\\ParserData\\runtimes\\ppocr_tiny\\venv\\Scripts\\python.exe",
+      "model_dir": "C:\\Users\\Admin\\.paddlex\\official_models\\PP-OCRv6_tiny_rec",
+      "model_name": "PP-OCRv6_tiny_rec",
+      "model_version": "PP-OCRv6_tiny_rec_bb2f8f54d1e25f28",
+      "weights_sha256": "bb2f8f54d1e25f28c71b6fa4fe23f5940e159cae27fbee96155c99f822156e57",
+      "batch_size": 8,
+      "device": "cpu",
+      "retry_policy": "NONE_SINGLE_PASS"
+    },
+    "node": "C:/Users/Admin/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+    "export_library": "@oai/artifact-tool (bundled runtime)"
+  },
+  "runtime_parameters": {
+    "decode_threads": 3,
+    "dedup_workers": 3,
+    "ocr_batch_contract": "PER_TABLE_SESSION_CAPTURE_ORDER_BATCH8_TAIL_AT_EOF"
+  },
+  "reconstruction": {
+    "enabled": true,
+    "allow_logic_math_output": false,
+    "verdict": "NOT_PROVEN",
+    "authority": "ADDITIONAL_VALIDATION_ONLY; existing outputs preserved"
+  },
+  "candidate_baseline": "runs/reconstruction_integration_20261003/before_hashes.json",
+  "concurrent_update_receipt": "runs/reconstruction_integration_20261003/concurrent_update/",
+  "dealing_start_stack": {
+    "enable_dealing_cards_hand_state_trigger": false,
+    "enable_start_stack_capture": false,
+    "authority": "SIDECAR_ONLY",
+    "verdict": "NOT_PROVEN",
+    "baseline": "runs/start_stack_production_connection_20261003/before",
+    "header_admission_baseline": "runs/header_admission_fix_20261003/before",
+    "marker_gate": "HAND_STATE; no CHAT lineage requirement",
+    "seat_forced_binding": "OFF_CANDIDATE; VISION_FACTS_ONLY; fixed seat standard ANTE and source-bound special corrections; FIRST_VISIBLE_STABLE_STACK_TRIPLE_AFTER_DEAL_COMPLETE; separate poker_math_engine arithmetic; no promotion",
+    "pending_header_buffer": "OFF_CANDIDATE; at most48 fixedROI sourceframes; measured max pending chain34 plus14 margin; SAME hand normal admission only; source loss UNKNOWN; no promotion",
+    "historical_forced_binding": "OFF_CANDIDATE; earliest exact label anchor; same epoch and bidirectional uniqueness; late conflict retained without aliases; no promotion"
+  },
+  "smoke19_bounded_candidate": {
+    "baseline": "runs/smoke19_bounded_fixes_20261003/before",
+    "normal_output": "UNCHANGED_FULL_EXCEL_AND_TIMELINE; confirmed sidecar headers ONLY post-Excel logical view; COMPLETE_ONLY downstream; first context partial; source conflicts UNKNOWN",
+    "split_small_blind_tail_confidence": 0.94,
+    "promotion": "NOT_PROMOTED"
+  },
+  "smoke19_order_trace": {
+    "scope": "OPT_IN_DIAGNOSTICS_ONLY; no admission or replay fix",
+    "environment": "START_STACK_ORDER_TRACE",
+    "baseline": "runs/smoke19_order_trace_20261003/before",
+    "promotion": "NOT_PROMOTED"
+  },
+  "same_hand_retained_replay": {
+    "baseline": "runs/smoke19_same_hand_replay_20261003/before",
+    "scope": "EXACT_RETAINED_SOURCE_SAME_CONFIRMED_CONTEXT_ONLY; incoming source floor unchanged",
+    "promotion": "NOT_PROMOTED"
+  },
+  "canonical_event_join": {
+    "baseline": "runs/canonical_join_20261003/before",
+    "authority": "BOUND_SOURCE_ONLY; RAW_RETAINED; UNRESOLVED_WITHHELD",
+    "promotion": "NOT_PROMOTED"
+  },
+  "performance_diagnostics": {
+    "flag": "--performance-diagnostics",
+    "default": false,
+    "authority": "DIAGNOSTICS_ONLY; NO_OPTIMIZATION",
+    "sampling_seconds": 5,
+    "progress_seconds": 30
+  },
+  "quality_recovery": {
+    "baseline": "runs/smoke19_quality_recovery_20261004/before",
+    "authority": "PROOF_GATED_CANDIDATES_ONLY; TRUE_START_STACK_UNKNOWN_WITHOUT_INDEPENDENT_CLEAN_WINDOW",
+    "replay": "scripts/replay_saved_quality.py",
+    "promotion": "NOT_PROMOTED",
+    "performance_code_changed": false,
+    "frozen_vendor_changed": false,
+    "live_grammar_evidence": "runs/smoke19_quality_recovery_20261004/live1500",
+    "variable_occupancy_provider": "UNAVAILABLE; CHAT_COUNT_NOT_OCCUPANCY_PROOF",
+    "all_in_authority": "EXACT_SOURCE_BOUND_PHYSICAL_FLAG; RAW_TEXT_RETAINED; CONFLICT_UNKNOWN"
+  },
+  "stack_evidence": {
+    "default": false,
+    "flag": "--stack-evidence",
+    "start_stack_flag": "--stack-start-stack",
+    "authority": "READ_ONLY_UNBOUND_EVIDENCE; NO_EVENT_OR_CERTIFICATION_AUTHORITY",
+    "baseline": "runs/stack_engine_integration_20261004/before/files",
+    "promotion": "NOT_PROMOTED"
+  },
+  "stack_timeline": {
+    "default": false,
+    "flag": "--stack-timeline",
+    "start_stack_flag": "--stack-start-stack",
+    "baseline": "runs/stack_pipeline_integration_20261005/before",
+    "authority": "PHYSICAL_UNBOUND_EVIDENCE_ONLY",
+    "promotion": "NOT_PROMOTED",
+    "known_quality_limitation": "T06 seat2 frame96 Sit out false admission; gate unchanged"
+  },
+  "storage_optimization": {
+    "baseline": "runs/storage_optimization_20261006/before",
+    "stack_commit": "256 observations OR 120 frames OR 2 wall seconds; initial/final mandatory",
+    "diagnostic_reservoir_capacity": 1024,
+    "critical_path": "EXACT_DISK_SORTED_INTERVAL_UNION",
+    "long_ab": "WAIVED_BY_USER",
+    "recognition_changed": false,
+    "promotion": "NOT_PROMOTED"
+  },
+  "full_hh_production": {
+    "flag": "--profile FULL_HH_PRODUCTION",
+    "baseline": "runs/full_hh_production_20261006/before",
+    "promotion": "NOT_PROMOTED",
+    "quality": "NOT_PROVEN",
+    "identity": "SUPPLEMENTAL_F_IDS; LEGACY_GLOBAL_UNCHANGED; UNKNOWN_RETAINED",
+    "module_status": "CONNECTED_NOT_CERTIFIED"
+  }
+}

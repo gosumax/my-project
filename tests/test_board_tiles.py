@@ -31,6 +31,7 @@ class BoardTilesTests(unittest.TestCase):
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         raw = "8 ♥ 9 ♣ 10 ♣ J ♠ Q ♣"
         self.assertEqual(read_board_tiles(path, digest, raw).text, raw)
+        self.assertIsNone(read_board_tiles(path, digest, "8 ♥ 9 ♣ 2 ♣ J ♠ Q ♣"))
         self.assertIsNone(read_board_tiles(path, digest, "8 ♥ 9 ♣"))
         with self.assertRaises(ValueError):
             read_board_tiles(path, "incorrect hash", raw)

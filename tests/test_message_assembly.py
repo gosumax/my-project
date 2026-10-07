@@ -6,6 +6,13 @@ from parser_core.message_assembly import RowFact, group_rows, visible_start
 
 
 class MessageAssemblyTests(unittest.TestCase):
+    def test_smoke19_english_prefixes_do_not_merge_separate_actions(self):
+        texts = ['Hand #2878365444', 'Dealer: Starting a new hand', '#2878365444',
+                 'Dealer: olpro folds', 'Dealer: A calls', '300', 'Dealer: B checks']
+        rows = [RowFact(str(i), 'table', 'epoch', 1, i, text, None, None)
+                for i, text in enumerate(texts)]
+        self.assertEqual([[r.row_id for r in m.rows] for m in group_rows(rows)],
+                         [['0'], ['1', '2'], ['3'], ['4', '5'], ['6']])
     def test_wrap_and_new_hand_header_remain_distinct(self):
         def row(n, text, margin):
             return RowFact(str(n), "table", "epoch", 0, n * 30, text,

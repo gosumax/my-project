@@ -1,0 +1,7 @@
+{
+  "method": "raw_suit2",
+  "train_manifest": "D:/Новый парсер/runs/card_train_smoke16_test_20260930/split_v2/train_manifest.jsonl",
+  "train_manifest_sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43",
+  "selection_file": "D:/Новый парсер/runs/card_train_smoke16_test_20260930/stage2_template/hybrid_validation_selection.json",
+  "selection_sha256": "d9c0b33eceb26a1ae1809637cf4c6d2ad19872767dd42e6f75b5bc9becfaf51f"
+}

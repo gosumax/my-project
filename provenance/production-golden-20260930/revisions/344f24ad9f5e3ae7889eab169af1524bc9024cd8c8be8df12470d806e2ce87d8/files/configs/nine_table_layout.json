@@ -1,0 +1,297 @@
+{
+  "schema": "pokerdom.nine_table_layout.v1",
+  "experiment_only": true,
+  "production_integration": false,
+  "layout_id": "pokerdom_smoke05_2560x1440_3x3_body_v1",
+  "source": {
+    "path": "D:\\Проэкты\\PARSER PD NEW\\video\\hand_epoch_smoke\\smoke_05.mp4",
+    "sha256": "0d9551bb2fa2a2dc32bb7bb088c9e7a4b0c0aa363c29c8537ced41200ff4f3bc",
+    "bytes": 1910763849,
+    "width": 2560,
+    "height": 1440,
+    "fps": 30.0,
+    "frame_count": 37270,
+    "duration_seconds": 1242.3333333333333
+  },
+  "source_resolution_wh": [
+    2560,
+    1440
+  ],
+  "reference_frame": {
+    "frame_index": 0,
+    "time_seconds": 0.0,
+    "path": "D:\\Проекты\\RSGAN_TEST\\nine_table_splitter_20260901_040746\\reference_frame.png",
+    "sha256": "41e41574d9d9b58ac1e6eb83d2d53382041560275b5b27b3b3e6851a697dab0e"
+  },
+  "table_numbering": "row-major: top row left-to-right, then middle, then bottom",
+  "table_grid": [
+    [
+      1,
+      2,
+      3
+    ],
+    [
+      4,
+      5,
+      6
+    ],
+    [
+      7,
+      8,
+      9
+    ]
+  ],
+  "coordinate_convention": {
+    "source_origin": "full-frame top-left is x=0,y=0",
+    "rectangles": "x,y,width,height with x2/y2 exclusive",
+    "local_table_origin": "each crop top-left is local x=0,y=0"
+  },
+  "crop_policy": "PokerDom client body only; OS title bars, uneven right window borders and bottom-row non-table footer excluded",
+  "expected_table_crop_width": 847,
+  "expected_table_crop_height": 404,
+  "tables": [
+    {
+      "table": 1,
+      "x": 1,
+      "y": 80,
+      "width": 847,
+      "height": 404,
+      "x2_exclusive": 848,
+      "y2_exclusive": 484,
+      "same_crop_dimensions": true,
+      "red_felt_geometry": {
+        "status": "FOUND",
+        "bbox_xywh": [
+          103,
+          94,
+          412,
+          210
+        ],
+        "area": 62904,
+        "centroid_xy": [
+          312.13038916444106,
+          196.62919687142312
+        ]
+      },
+      "crop_path": "D:\\Проекты\\RSGAN_TEST\\nine_table_splitter_20260901_040746\\table_01.png",
+      "crop_sha256": "cb6f9b7dfa306495ebda444978bd17100c5728e5ca465b074b32f2a06c8caa03",
+      "same_geometry": true
+    },
+    {
+      "table": 2,
+      "x": 857,
+      "y": 80,
+      "width": 847,
+      "height": 404,
+      "x2_exclusive": 1704,
+      "y2_exclusive": 484,
+      "same_crop_dimensions": true,
+      "red_felt_geometry": {
+        "status": "FOUND",
+        "bbox_xywh": [
+          107,
+          92,
+          427,
+          212
+        ],
+        "area": 61352,
+        "centroid_xy": [
+          314.4082018516104,
+          194.6234515582214
+        ]
+      },
+      "crop_path": "D:\\Проекты\\RSGAN_TEST\\nine_table_splitter_20260901_040746\\table_02.png",
+      "crop_sha256": "6b342d03c5b1e94799008a352f35808e1a229ae55bcc8d9227a833a135d8b2d6",
+      "same_geometry": true
+    },
+    {
+      "table": 3,
+      "x": 1713,
+      "y": 80,
+      "width": 847,
+      "height": 404,
+      "x2_exclusive": 2560,
+      "y2_exclusive": 484,
+      "same_crop_dimensions": true,
+      "red_felt_geometry": {
+        "status": "FOUND",
+        "bbox_xywh": [
+          111,
+          94,
+          404,
+          209
+        ],
+        "area": 59718,
+        "centroid_xy": [
+          317.01075052747916,
+          197.3316755417127
+        ]
+      },
+      "crop_path": "D:\\Проекты\\RSGAN_TEST\\nine_table_splitter_20260901_040746\\table_03.png",
+      "crop_sha256": "d331ce87e90c32064b0dc990f4c06aa03790e76b5f42729d2bc0b981200dcb2b",
+      "same_geometry": true
+    },
+    {
+      "table": 4,
+      "x": 1,
+      "y": 517,
+      "width": 847,
+      "height": 404,
+      "x2_exclusive": 848,
+      "y2_exclusive": 921,
+      "same_crop_dimensions": true,
+      "red_felt_geometry": {
+        "status": "FOUND",
+        "bbox_xywh": [
+          102,
+          91,
+          407,
+          213
+        ],
+        "area": 63280,
+        "centroid_xy": [
+          308.74701327433627,
+          195.59732932996207
+        ]
+      },
+      "crop_path": "D:\\Проекты\\RSGAN_TEST\\nine_table_splitter_20260901_040746\\table_04.png",
+      "crop_sha256": "f6b267357fdb0e25a76bb54818816dfb96b75b1096bc0dc517b17782d730a87c",
+      "same_geometry": true
+    },
+    {
+      "table": 5,
+      "x": 857,
+      "y": 517,
+      "width": 847,
+      "height": 404,
+      "x2_exclusive": 1704,
+      "y2_exclusive": 921,
+      "same_crop_dimensions": true,
+      "red_felt_geometry": {
+        "status": "FOUND",
+        "bbox_xywh": [
+          107,
+          91,
+          408,
+          213
+        ],
+        "area": 62171,
+        "centroid_xy": [
+          311.7865081790545,
+          195.398385099162
+        ]
+      },
+      "crop_path": "D:\\Проекты\\RSGAN_TEST\\nine_table_splitter_20260901_040746\\table_05.png",
+      "crop_sha256": "03ed3b1b85efdc0505cd425a2e5e3cda16ff61c5203006b202692e030b7a396a",
+      "same_geometry": true
+    },
+    {
+      "table": 6,
+      "x": 1713,
+      "y": 517,
+      "width": 847,
+      "height": 404,
+      "x2_exclusive": 2560,
+      "y2_exclusive": 921,
+      "same_crop_dimensions": true,
+      "red_felt_geometry": {
+        "status": "FOUND",
+        "bbox_xywh": [
+          111,
+          91,
+          406,
+          210
+        ],
+        "area": 59592,
+        "centroid_xy": [
+          312.13060477916497,
+          195.9509162303665
+        ]
+      },
+      "crop_path": "D:\\Проекты\\RSGAN_TEST\\nine_table_splitter_20260901_040746\\table_06.png",
+      "crop_sha256": "3eb42690d0f1b0e1005d50618eb19412103169b4c15d127c10fa6ad466172eb6",
+      "same_geometry": true
+    },
+    {
+      "table": 7,
+      "x": 1,
+      "y": 956,
+      "width": 847,
+      "height": 404,
+      "x2_exclusive": 848,
+      "y2_exclusive": 1360,
+      "same_crop_dimensions": true,
+      "red_felt_geometry": {
+        "status": "FOUND",
+        "bbox_xywh": [
+          103,
+          90,
+          410,
+          210
+        ],
+        "area": 62256,
+        "centroid_xy": [
+          304.2737567463377,
+          192.60932279619635
+        ]
+      },
+      "crop_path": "D:\\Проекты\\RSGAN_TEST\\nine_table_splitter_20260901_040746\\table_07.png",
+      "crop_sha256": "74e3ab120ab9d8ac055cd2979a4344d8d25d60c0d32dad98c2cc26869a0417c4",
+      "same_geometry": true
+    },
+    {
+      "table": 8,
+      "x": 857,
+      "y": 956,
+      "width": 847,
+      "height": 404,
+      "x2_exclusive": 1704,
+      "y2_exclusive": 1360,
+      "same_crop_dimensions": true,
+      "red_felt_geometry": {
+        "status": "FOUND",
+        "bbox_xywh": [
+          107,
+          93,
+          409,
+          207
+        ],
+        "area": 62466,
+        "centroid_xy": [
+          306.83823199820705,
+          195.86791214420646
+        ]
+      },
+      "crop_path": "D:\\Проекты\\RSGAN_TEST\\nine_table_splitter_20260901_040746\\table_08.png",
+      "crop_sha256": "afea664f1cdb89a2fdc29a3fff6c9b762a295ef9cd8dde2385ff2e80a53b50dc",
+      "same_geometry": true
+    },
+    {
+      "table": 9,
+      "x": 1713,
+      "y": 956,
+      "width": 847,
+      "height": 404,
+      "x2_exclusive": 2560,
+      "y2_exclusive": 1360,
+      "same_crop_dimensions": true,
+      "red_felt_geometry": {
+        "status": "FOUND",
+        "bbox_xywh": [
+          111,
+          88,
+          406,
+          210
+        ],
+        "area": 63645,
+        "centroid_xy": [
+          312.93388325870063,
+          194.57871003220993
+        ]
+      },
+      "crop_path": "D:\\Проекты\\RSGAN_TEST\\nine_table_splitter_20260901_040746\\table_09.png",
+      "crop_sha256": "28fab165cbc89fa9b1d39b26c769c9f741d09fe8e034da96496803d9a966abf9",
+      "same_geometry": true
+    }
+  ]
+}

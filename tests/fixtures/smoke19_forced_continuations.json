@@ -1,0 +1,415 @@
+{
+  "authority": "GRAMMAR_ONLY; ACTOR_COUNT_IS_NOT_OCCUPANCY_PROOF",
+  "source": "D:\\Новый парсер\\runs\\smoke19_quality_recovery_20261004\\live1500\\seat_forced_inputs.jsonl",
+  "source_sha256": "103a698e806951efc53303dbadd448d19a0db0d19012fc6ed6e4c48fd7de696d",
+  "groups": [
+    {
+      "table": 7,
+      "hand_id": "2878365529",
+      "rows": [
+        {
+          "index": 0,
+          "text": "Dealer: strawberry08 wins 13 750 from",
+          "score": 0.9802921414375305,
+          "source_ref": "8b1c90c5488eb4d3870da50605d4548cfd5e5bfcc1f793aef6098020fb2c46f9",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 576
+        },
+        {
+          "index": 1,
+          "text": "the main pot with Two pairs, 9966",
+          "score": 0.9555962085723877,
+          "source_ref": "50bcb6e831602ea195ab3baed74979323e5643675dddd8eb1237c1b9ffb9b2f3",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 577
+        },
+        {
+          "index": 2,
+          "text": "9090606080",
+          "score": 0.7399336099624634,
+          "source_ref": "be249e75190e1b0d0e774e0451c50be398653e96a8d3e37825143e0d7df7cc18",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 578
+        },
+        {
+          "index": 3,
+          "text": "Hand #2878365529",
+          "score": 0.9662165641784668,
+          "source_ref": "878610e3ab64d254b550f5801b9b7e55ad88de0b20183d05bf3640bd58afc3ee",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 579
+        },
+        {
+          "index": 4,
+          "text": "Dealer: Starting a new hand",
+          "score": 0.9801024198532104,
+          "source_ref": "ea5a79eae22fa05a3664709a2344fd96e932d41ba516f2dcae7a5bec7b7b8c97",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 580
+        },
+        {
+          "index": 5,
+          "text": "#2878365529",
+          "score": 0.9992136359214783,
+          "source_ref": "f94314ae5558bc6c6d47004215aee6c52b99dd58525da310517579467d6f91d6",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 581
+        },
+        {
+          "index": 6,
+          "text": "Dealer: spartak152 posts Ante 625",
+          "score": 0.9900366067886353,
+          "source_ref": "fb58cc3917f7079052360670cf04d39298fe32c13c7bd069a5524f19364716d8",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 582
+        },
+        {
+          "index": 7,
+          "text": "Dealer: avtobusvip01 posts Ante 625",
+          "score": 0.9920852780342102,
+          "source_ref": "09c553eb0486fdaec1e3d62ef521dd2fbb76cacf1438a63c5ca69517d6645b77",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 583
+        },
+        {
+          "index": 8,
+          "text": "Dealer: strawberry08 posts Ante 625",
+          "score": 0.9808030128479004,
+          "source_ref": "f0c4bc0057b6eb80817117a550ab344b539ede202c92844e52406238c15acd57",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 584
+        },
+        {
+          "index": 9,
+          "text": "Dealer: ubivashka88888 posts Ante",
+          "score": 0.9933246374130249,
+          "source_ref": "f232e24d602666da72f574bb4b64efd3972a3082ce89c94bfa21dd3b65d9c3df",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 585
+        },
+        {
+          "index": 10,
+          "text": "625",
+          "score": 0.999957263469696,
+          "source_ref": "185c4fcc0291cdf878ae72fe6adc5e8c98ab1526f831f91be9ed8c61452f30d7",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 586
+        },
+        {
+          "index": 11,
+          "text": "Dealer: romashka91808 posts Ante 625",
+          "score": 0.9889054894447327,
+          "source_ref": "6bc05e23bfc0856cdc4dc8b19c000ba44ec9f1c9504f8c0d4147d18ef4c57129",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 587
+        },
+        {
+          "index": 12,
+          "text": "Dealer: bolshoi60 posts Ante 625",
+          "score": 0.9447662234306335,
+          "source_ref": "3b7211e68d4dc42829440fafe0f268ec08d548d10f9a506945ef160095a0ef1b",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 588
+        },
+        {
+          "index": 13,
+          "text": "Dealer: strawberry08 posts Small Blind",
+          "score": 0.9904108643531799,
+          "source_ref": "62fd37bf6421f59ee299af4c06b787a1999db4e507b1097b062787fcc9301b8d",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 589
+        },
+        {
+          "index": 14,
+          "text": "2500",
+          "score": 0.9977811574935913,
+          "source_ref": "8ab7b47785d89f3759bec84897766ee4c677d57357e940364c71f64fe853ed5f",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 590
+        },
+        {
+          "index": 15,
+          "text": "Dealer: ubivashka88888 posts Big",
+          "score": 0.993358850479126,
+          "source_ref": "0aed69113779a8e2d29216a0fcc7b8d6c3fa2befdb3e5bac21a3b06c3bd622be",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 591
+        },
+        {
+          "index": 16,
+          "text": "Blind 5000",
+          "score": 0.991895318031311,
+          "source_ref": "11a029a4ecb41684c28e81d4df1d76871d770e689184cef3642c6b0c29b24bb9",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 592
+        },
+        {
+          "index": 17,
+          "text": "Dealer: Dealing cards",
+          "score": 0.9630960822105408,
+          "source_ref": "2090ea79969cd0368d9361d86c8fad9a9e2f6b0687b31c1e7881c8b1c82ee216",
+          "source_frame": 151,
+          "table_id": 7,
+          "session_id": "table_e25d299903d57bd974d3ae55",
+          "hand_id": "2878365529",
+          "saved_input_line": 593
+        }
+      ]
+    },
+    {
+      "table": 8,
+      "hand_id": "2878365523",
+      "rows": [
+        {
+          "index": 0,
+          "text": "Dealer: krismoltisanta doesn't show",
+          "score": 0.985247790813446,
+          "source_ref": "5992a7c83ccaf834107be5b8391aba91fd6cd827df31dea2dbbbb604f6d2d97c",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 558
+        },
+        {
+          "index": 1,
+          "text": "cards",
+          "score": 0.9954246282577515,
+          "source_ref": "7148fab42737ed1dfaf15721fb956b3524ae0f45f8b388ea2190d7fdf11cf74e",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 559
+        },
+        {
+          "index": 2,
+          "text": "Dealer: krismoltisanta wins 8 750 from",
+          "score": 0.9869492053985596,
+          "source_ref": "1322af4ef35af8c5b64252fed88e4e8c514f72bf8cda791874ac0e3b0a67438b",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 560
+        },
+        {
+          "index": 3,
+          "text": "the main pot",
+          "score": 0.95730060338974,
+          "source_ref": "7cb40794cee268ea3fac98c59cd8326e5590b47c430814ecdd387fb4110b7882",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 561
+        },
+        {
+          "index": 4,
+          "text": "Hand #2878365523",
+          "score": 0.969956636428833,
+          "source_ref": "3d1dd985009e383abdb94571e590b333b2d00f4fda24940cd3a12bbf488ee83f",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 562
+        },
+        {
+          "index": 5,
+          "text": "Dealer: Starting a new hand",
+          "score": 0.9893076419830322,
+          "source_ref": "4278fbcd418a82e32ca66af0126603923964725aafdde28cdafdc5a035d598b3",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 563
+        },
+        {
+          "index": 6,
+          "text": "#2878365523",
+          "score": 0.9997982382774353,
+          "source_ref": "670d54275e4fca07639b90be0d127a99ce60e18a71cea2ccbca386d5564ac8f0",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 564
+        },
+        {
+          "index": 7,
+          "text": "Dealer: mexan posts Ante 625",
+          "score": 0.9861446619033813,
+          "source_ref": "ef4cd98c1e294b4f59a8e947eb91a6f627deae3d0394a058f848b10f166339c0",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 565
+        },
+        {
+          "index": 8,
+          "text": "Dealer: krismoltisanta posts Ante 625",
+          "score": 0.9960647821426392,
+          "source_ref": "30b7d2ffe5831f43d1db6c362ffa8be5c9c63c5cda3a016bab0d874f0c424de0",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 566
+        },
+        {
+          "index": 9,
+          "text": "Dealer: dended posts Ante 625",
+          "score": 0.9794300198554993,
+          "source_ref": "e8e3e2256144ef510bc9a1b00d884a57df947c8052781b94f4356bcec06ebb11",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 567
+        },
+        {
+          "index": 10,
+          "text": "Dealer: vasyajin posts Ante 625",
+          "score": 0.989439070224762,
+          "source_ref": "fc5ea2259168922d3ea057cbdeb664699eec0ec8f53f6b61147b016038c068da",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 568
+        },
+        {
+          "index": 11,
+          "text": "Dealer: rinatromanov19 posts Ante 137",
+          "score": 0.9856465458869934,
+          "source_ref": "222f9bf6278a7b3780198310d9df9c66fe6715db481f8ae79f00fedac7204b0f",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 569
+        },
+        {
+          "index": 12,
+          "text": "and is All-in",
+          "score": 0.9741894602775574,
+          "source_ref": "80dbe218ba2a2b699c2b4f6d559696292bf0a4e3f97c785309724e242f8b8bc8",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 570
+        },
+        {
+          "index": 13,
+          "text": "Dealer: franticma posts Ante 625",
+          "score": 0.9716017246246338,
+          "source_ref": "35ac4e2a499ef28fb8e3d84632f5a8bec66cf9b4d2f2ee96ab8a82a51c02b952",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 571
+        },
+        {
+          "index": 14,
+          "text": "Dealer: krismoltisanta posts Small",
+          "score": 0.9958948493003845,
+          "source_ref": "0f713dcc3c97dfe677ca253629452fa467f5e82d3cce963c0e97cbfdf073bf8d",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 572
+        },
+        {
+          "index": 15,
+          "text": "Blind 2500",
+          "score": 0.9824901819229126,
+          "source_ref": "77af1741a8d647fcf195d2c5574c70aedddc5b3225cc8c8457fd0c505b6d8580",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 573
+        },
+        {
+          "index": 16,
+          "text": "Dealer: dended posts Big Blind 5 000",
+          "score": 0.9791044592857361,
+          "source_ref": "de30bad996245b7176ccc28fad3dbeacd188159158af3a43b3af7d1f1bf157d7",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 574
+        },
+        {
+          "index": 17,
+          "text": "Dealer: Dealing cards",
+          "score": 0.9957736730575562,
+          "source_ref": "862890001556e889e106934cbfebee83606fce52f95ebad70fde791adb5d12f6",
+          "source_frame": 131,
+          "table_id": 8,
+          "session_id": "table_6a87602fd540be48a6ed6f61",
+          "hand_id": "2878365523",
+          "saved_input_line": 575
+        }
+      ]
+    }
+  ]
+}
