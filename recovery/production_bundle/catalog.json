@@ -1,0 +1,27 @@
+{
+  "name": "production",
+  "archive_sha256": "8811662e2ba43ec232a618ae2ec00fac727cfac6b02ac30846f893ee3c8f50ae",
+  "archive_bytes": 20201624,
+  "uncompressed_bytes": 59875811,
+  "file_count": 810,
+  "files_catalog": "recovery/production_bundle/files.json.gz",
+  "files_catalog_bytes": 42664,
+  "files_catalog_sha256": "17a5b9e7897eef04bb32a5bac3f9672db98c275337510705619e98cd1c887fc8",
+  "parts": [
+    {
+      "path": "recovery/production_bundle/production.part000",
+      "bytes": 8388608,
+      "sha256": "36ff928a967c0aeebd4551c770a636d2c0343a35f0a4e1fff9af947684b98a9a"
+    },
+    {
+      "path": "recovery/production_bundle/production.part001",
+      "bytes": 8388608,
+      "sha256": "97cb9359ead8500381672639694b55fa459bc60ae8d6a790d60c21c81e771137"
+    },
+    {
+      "path": "recovery/production_bundle/production.part002",
+      "bytes": 3424408,
+      "sha256": "6dd59e9a4aa25bdbe87dea3200e3b856e67a058ef6d584aed7c349270e9bb2a1"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "name": "review-sources",
+  "archive_sha256": "15f2b133dee83ba620a6b1fd12a7f45123a733e58fdc4d5863a2da0b9aed8fd0",
+  "archive_bytes": 73549594,
+  "uncompressed_bytes": 189223565,
+  "file_count": 4,
+  "files_catalog": "recovery/review_sources_bundle/files.json.gz",
+  "files_catalog_bytes": 483,
+  "files_catalog_sha256": "d8537138cf889819151172be2c3d9aa7fcae99890086f6930506aee4c6c74ffb",
+  "parts": [
+    {
+      "path": "recovery/review_sources_bundle/review-sources.part000",
+      "bytes": 8388608,
+      "sha256": "fd47c1d4f92d8a2abd957db29d713ff2381c0810f7c675d0333c4c67c197cad2"
+    },
+    {
+      "path": "recovery/review_sources_bundle/review-sources.part001",
+      "bytes": 8388608,
+      "sha256": "4a89ae9b976d1793003e85795d5e01ae9f4b79b901fcbd28ab7ba5a3d3e57168"
+    },
+    {
+      "path": "recovery/review_sources_bundle/review-sources.part002",
+      "bytes": 8388608,
+      "sha256": "f15f42b79f1097d92bff304a1f6f5354c510134518c2197854f6938b336b4637"
+    },
+    {
+      "path": "recovery/review_sources_bundle/review-sources.part003",
+      "bytes": 8388608,
+      "sha256": "3c2f5d0306cbb350d40a2b76015166154b32494039d29807cf9e8e98c4169896"
+    },
+    {
+      "path": "recovery/review_sources_bundle/review-sources.part004",
+      "bytes": 8388608,
+      "sha256": "17d8fbda57a41061de94a67e3d13638d7557750c61a4b6bc2267994fa072772f"
+    },
+    {
+      "path": "recovery/review_sources_bundle/review-sources.part005",
+      "bytes": 8388608,
+      "sha256": "6d82a52928f8a99fa394df2e9042bfca4a1fb6a3a6cd0f18e226002ca75e3714"
+    },
+    {
+      "path": "recovery/review_sources_bundle/review-sources.part006",
+      "bytes": 8388608,
+      "sha256": "0a173a0f180b0670512f32f8879b62414a0e398aed068aa5f8da4a01c4571bb4"
+    },
+    {
+      "path": "recovery/review_sources_bundle/review-sources.part007",
+      "bytes": 8388608,
+      "sha256": "20d9178ac245e8fd37f6edf0b92e1043dad6e1424c5119a783fbb887d90df618"
+    },
+    {
+      "path": "recovery/review_sources_bundle/review-sources.part008",
+      "bytes": 6440730,
+      "sha256": "4096d6e20fad9dd4c22dfb37bbf55c8e98c87b591a338882880375e6bcb64149"
+    }
+  ]
+}

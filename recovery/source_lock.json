@@ -1,0 +1,2585 @@
+{
+  "schema": "unchanged-production-source-lock-v1",
+  "production_version": "candidate-smoke19-nick90-terminal-scope-v22-20261014",
+  "production_manifest_sha256": "a7aaf9c6a657e63073a09722bea7f39b9ea43f650fbf60b4e49f8282dc3aa798",
+  "base_commit": "1b2af48ea4c530c41f8140ca545b0b54e67471ee",
+  "registered_hashes": {
+    ".github/workflows/production-integrity.yml": "e1f9bc7000f9cf2afd318d2e807adc0ad4d7e3ee0a654f9b1c5f2fb43a855d4b",
+    "AGENTS.md": "554d0b7f4d0105a59646ce9d3cd0a2708f6df08bcc4c41f32dec41730e0b2cae",
+    "README.md": "d77f7289b54e49d6bc3a7db3f0733e7416ae55eeb695469254db7bcd2347fe6d",
+    "configs/card_hybrid_local.json": "e67285f74a8251b92ea503f0c3e68aa642fef33bc74d32b221d219358438c20f",
+    "configs/chat_log_bottom_rois.json": "a79427cf111c243cbff288813c85ea54f90864291d4d435b32139f029a5fec01",
+    "configs/layout_847x404.json": "777d1f02e5a927cf7066e89cce53fb5f24e6e241ed2cc87841794037dfd35300",
+    "configs/nine_table_layout.json": "b6722d12f30e872207566272802920b9017d50cd6e521712248e409d9a45acec",
+    "configs/ocr_tiny_local.json": "6208ab8ee6d385399f517540b9e0d96f049967eb9fe582a4aadf4baa764857e6",
+    "configs/rank_ncc_production.json": "a09cf0cad98a3b284065b6cb0862cb8bea46d5992598e1ac880101288ddc7882",
+    "configs/suit_backup_local.json": "3004549d04172cbe6e2e99aec1455c3129c114329c0e7d74050c84a9cda1cecf",
+    "experiments/suit_template_experiment.py": "2e400c8627b8a7fcded7897cf5b2495862187e4898e985a372aaab3d21897e92",
+    "models/board_glyphs_v1.json": "54b260164e512a5d5ddf597ce546885d6a00ab1ee42a5f65abe8ec6a543a3f45",
+    "parser_core/__init__.py": "5868f14ad622bc4f28f762aa1bf84104b943e66dd65f7caab7dea3615f3ea78a",
+    "parser_core/board_tiles.py": "94d879bfa5ac8214a2fd23278d9c4da7012ab50d3bfc472b47138b94ece6f07e",
+    "parser_core/card_hybrid.py": "fc704e9b81507111d818cd1dc9390b14268f1167d6daf1ea292ac5b4b439d39b",
+    "parser_core/chat_rows.py": "5c9ebda463b03f5928edc3b44e90c855b239ad0a7b93ba700023d3e2d713d3fb",
+    "parser_core/component_suit.py": "dd897f2b157ca0d83ba5e01750f5631132ac1b730c0306534103940318922e73",
+    "parser_core/jev_poker_resolver.py": "d9a2245a772db1a403b43a38da3fb1fef2d3ce2bb95072e35e7a43e6812479de",
+    "parser_core/journal.py": "ead6ab294b94215be118b861ae6b3c0aad21eeab5cec658c51ab815e3f1719db",
+    "parser_core/layout.py": "e47d669edd6bee7352ce7f411154681b44f86ba8e6e13253e02db6c9ff42ecd7",
+    "parser_core/message_assembly.py": "b2eabf54911d918a706d1977417d8c1f731288618e0f255eb546aac65ebab0b6",
+    "parser_core/normalize_chat.py": "d9eed9afce867325888dbc8046b31c3685fd50260b6fa963712a132801427174",
+    "parser_core/parallel_ocr.py": "4c710a4edbaddef4914e0dc14d0b496fac7735173e2180667bc2d1e5c39f1d2b",
+    "parser_core/poker_card_engine.py": "273f67c5ac200caea8b1672f95dd84d42ead4aed2dfd9b08d16c51fce3cc5612",
+    "parser_core/poker_diagnostics.py": "66f1809b51466b014f30cd540eced52d62c3208baea957857bf1ff4f71ec3b5f",
+    "parser_core/poker_logic_engine.py": "3b4124089aed574ebfbc24d72ca98f63c0274b20c48b8921aa40cc512cc27a31",
+    "parser_core/production_integrity.py": "8b97b3b060fbcd2d2ff7be76ce91776dcfc122be6d731cd74e0b295e31be36fb",
+    "parser_core/ram_first_stage.py": "f11b474205d4c6bfe2558154e2f8cab2de27f3d074813d66814cbd8567b761d6",
+    "parser_core/rank_ncc.py": "d71c26d4098e76ca56e38ce3615aec757c42741f8acd27b73ffd38bc3800b19e",
+    "parser_core/suit_backup.py": "03c0a352a059d6739af8457a4f5e9b900a9b4be203fca659c2562e3ac7174fae",
+    "parser_core/temporal_overlap.py": "579662a77e5cec868a88999b43bdcfe28d9e5311270c67443735cad919ea0272",
+    "parser_core/tiny_chat_client.py": "d64cf5953e218ee9560b5aa9789f9081a32a264979f24b6532973d536ada8627",
+    "parser_core/visual_cards.py": "29ce3bfba6e4c562161189d918b60c82f9c5549e319d4bfaefd20ec63e20ade7",
+    "parser_core/visual_crops.py": "7f67f0e654bd2cca333e68066d0ca8e072e97d43182186d44a60e63ee882c131",
+    "parser_core/visual_tile_queue.py": "2c9add5d9ac47f74d259adba68ae09f3c0f397df092129a5d82c029326b42fc0",
+    "pytest.ini": "aa3b070e21719b0376f6f664099c922f0aca0c626e9caeb55b21fdde761603c4",
+    "requirements.txt": "8bced1e3e7bbf2ed9fcd5a46d7e5d50e9afa274e6a5e08d2dc3c009b54f6ee1f",
+    "run_production.py": "6ed26ac9f255c0edf20755f3b864c401d77da4ef1165b7c68d9e63cc6c7a00a8",
+    "scripts/check_production_integrity.py": "d7356ecc0cfd2423bb2ac4bb2d05b040d1c69d8b41e7979167a2bcb25e855d69",
+    "scripts/freeze_production_manifest.py": "aaf21a4b6072ebc02397cc0a5f5db0b93c3cc896bfd619862ef3ea921c6ecb8c",
+    "scripts/tiny_chat_worker.py": "82a0c9a87a70095b110fd023946be99e10e06f24c1a0ff447ca47f8fdcdc3f6a",
+    "tests/test_annotation.py": "e247b2e5ee11eb9139395962b87dd7130b087225e1c02565b22e5bb513879c8a",
+    "tests/test_board_roundtrip.py": "c5c6e965d1ebc9485efb41f1c3b74b700d4565f0d9cfca746d254e6681fd222d",
+    "tests/test_board_tiles.py": "d8361cb3718653e92d076428373a579cfec24412b29e095e4e39a6af92e82c62",
+    "tests/test_capture_nine_tables.py": "58c526b56914c064bf6614c3fa0baa2450b7cad71e53804fe55a13328c7ab4bc",
+    "tests/test_capture_predeclared_windows.py": "c635893e1a8df7e78f3d3620a3e60b6a7ddb74ccd5e45b0e124933d9c69e94e3",
+    "tests/test_card_hybrid_native_span_recovery.py": "300b99dd3b569ab46ef5196c1e40ee7ec2eabcd7b252cc91b7c727670d6940f5",
+    "tests/test_card_hybrid_precision_contract.py": "5b422159374db499b9cbecd97b6119fca67c6a8c13d24467b197e82bf00fe29b",
+    "tests/test_chat_card_projection.py": "b5f219f7e8bcf3c7157fe4bee4fdf2a09fbc058778a9de2f0e6735bd646a4a13",
+    "tests/test_chat_ocr.py": "a11dcdbf3ce88d004b8c553f8a433544fa34af5a680a4296d13a515254ca002d",
+    "tests/test_chat_rows.py": "fd306208c71ac581bb5b18614b7bb12f416157ef7cce03081466c5116828aeea",
+    "tests/test_cross_track_linker.py": "12411e74be7097ea2471d5e785179c1a7657b894b923cf67c88a7c2c42aae060",
+    "tests/test_edge_gate.py": "9bbf98c786d876936eca1047dc2d68081d275b9482cc988b82e2dca1db1a9b61",
+    "tests/test_fixed_edge_window_simulation.py": "54cbd2ffbf2a1fc5c5fb3fded6efa3202b6ab04a6a5800d7039ad0514929ca06",
+    "tests/test_hands.py": "1b283293e390e51695d75c1b18117a678bcc0da97895b0903944763759ae5605",
+    "tests/test_identity_observer_isolation.py": "f5cfec451fd57d280018e8e0df27771e9cc66b3547ee175606fcbe12216becc7",
+    "tests/test_jev_structured_evidence.py": "1f9746be35f83415d559699655afd5cb8bde319ad811ca1a1368e5d48326356f",
+    "tests/test_jev_typesafe.py": "4e3115f0cc96d148a0ea97fcde8e87b8f8bcfdd7bd6a04152a938db5ff266bcc",
+    "tests/test_journal.py": "12339bffdf1af20101c6997141da1f49577e25e5b4055413a083cf7b57878a81",
+    "tests/test_layout.py": "c690d01dba4088a327c520552d7ee6f48e96064f91e16bf48280e2bce6e34869",
+    "tests/test_message_assembly.py": "66450db64519abfff48662414a9ed3c4e80111c3b2eac536212acaab251a59f3",
+    "tests/test_normalize_chat.py": "345b8a7c3d61fd9d30b75f8487c6730c88c5bb03350494d18484637821170b04",
+    "tests/test_ocr_retry.py": "923eaaf4bb8fb92972dbcc27575658ce5717b932304ca285e64695dd97e64b46",
+    "tests/test_parallel_ocr.py": "e086e838991b9883d09dae29aa04c4316f041942c1fb4675fdbf762e3fa84122",
+    "tests/test_pixel_card_projection_contract.py": "8a2c39972c52a6f7e584e60f9b1e00d58d9e24c5f7fa093a61d5527f50e10d52",
+    "tests/test_pixel_card_secondary_contracts.py": "964cdbe6cdce9b273b7eaa19d5e762f4569a61f7f6e92951ccfd11902d2ec572",
+    "tests/test_png_compatible_gray.py": "d5e9d82ce76bccf102fa11bcfef7a77e7f00ba6a8d78859353303a5bd9bf1760",
+    "tests/test_poker_first_break.py": "bcf621a0745bba8766f4903c7945b9f927068361e0646fd2859e1a422fb28cb5",
+    "tests/test_poker_logic_layered_verdicts.py": "73dce2a2d1c53fa038be4cd940f72a103ee2917b48f065ef0db4c99bd495d786",
+    "tests/test_poker_logic_math_jev.py": "8f30a5da44a7d74f5995fe8893641d6cb4c88bdc05ca6f629cf4236bd96294ad",
+    "tests/test_poker_pipeline.py": "6e958d6e6a53429f284a259d97b6a1437dac37e7eabe0c270fffeaf3b5e0ad9b",
+    "tests/test_production_integrity.py": "d43b92f3436928d89a44a2310cf53b3d1601f4731798f4834db8b885f3ceb3d7",
+    "tests/test_production_pixel_policy.py": "15cc7196e0772fc00401035804f677669adf052bf8ff06a8f679f95d5a396f8e",
+    "tests/test_ram_crop_metadata.py": "0cafc1354d032bd79c5508807bb20d4d12b4eaf9c92d45bc1d9238944ca07725",
+    "tests/test_ram_visual_transport.py": "63f2f1b763ea79867a28b982250be8a834fca1c4caa7081560d182877c46bd02",
+    "tests/test_rank_ncc.py": "f05bd75667e40b2957d1a7ab1ddfe50e2b9fad8c06259b6729e485a808a9d3d8",
+    "tests/test_remaining_candidate_receipts.py": "983c3b875ae2dd82801c1319dba614d336190de5aa493600fc285c7a5058e044",
+    "tests/test_report_full_start_stack.py": "da6d929367f7fe817e0cbb43d66b4310b6dcceb909647300ea281d47a54b720d",
+    "tests/test_row_content_evidence.py": "7520347a3ad59b11f5bce01502b0e576d28ec0a8281b4feab3ee60a6a0ddae06",
+    "tests/test_row_crop_reuse.py": "ae650fdd1598558e9e426ff62576066d912158ad79a2e2b1dd779aba0e49966d",
+    "tests/test_row_identity_history.py": "7802abc39c1ad17c2ef8bfef769ef356bba4289fdfb829718c908db71b0030c6",
+    "tests/test_row_identity_overlap.py": "1589a56909a2423fdef7bc509888d8e37e63b425e21940fbf0757d540da06bf6",
+    "tests/test_smoke17_amount_materiality.py": "f883ba09c93cd0b27109926512871bfe75ff81661ac13ce2682c990aa1988b0a",
+    "tests/test_stack_temporal.py": "f647a62bb3d784a5b48cbcda08ac8f66b0a443e1585b3f918ae8ac00c28473e4",
+    "tests/test_start_stack.py": "b4e6c34e6c32ad20820b5ba60335895b142be0b2121fb35d43ac5e496717117b",
+    "tests/test_suit_backup.py": "e3591b2f7b740063edb8d574a0787553b8e55e100bb24df55a0706723533ef3d",
+    "tests/test_temporal_evidence_analysis.py": "f428197b8710312512028f28e5730efdfbe8917a5e0ff02ecdc59a63d1f791ab",
+    "tests/test_temporal_overlap.py": "5db015edad21cad08f4d6c939bd801e10813f58f3cc0ea62b223b8dda7df4afb",
+    "tests/test_text_first_identity_audit.py": "f0e4845c01fd1a53d667820b16ce53c354850e2d5bade6858a01a09ddfc16bfa",
+    "tests/test_validated_relationship_edge_simulation.py": "7c04a3739c42618cd39b0d3b1079bda2db7b5c52139bd679fe6ada316954b1f6",
+    "tests/test_visual_cards.py": "73c0970a35d47c899ab3c5f91594c2396f48e263c623dd93965568911672bd89",
+    "tests/test_visual_crops.py": "ecb6c604ce2221b0b50a0b6f2b0a54032d1041c5a827169ed1acd29ee97bf09c",
+    "tests/test_visual_review_viewer.py": "8e34a8a4e42b1cb13cd196593648ad69a7d05cb8b23fe64d2e04bc8f25c9908e",
+    "tests/test_visual_tile_queue.py": "aa25c66f0a8eb3a119b83ad60d9f4d434b039073d80133fc30cfbe147a53b111",
+    "tests/test_vl_batch_dispatcher.py": "41f0718cfceea40a0fdc0a6bd096bca204117c814c2e7ae8b50155414cd5a665",
+    "tests/test_capture_ocr_batches.py": "af8bea3786384cb1814e68b5a5a354e4e2f81e2e3b66453d7ec508c973686e1e",
+    "tests/test_temporal_parallel.py": "f47f93d74f249173b6ad7df12e40a963aadbed9605cb910bd1099210043e4887",
+    "parser_core/chat_tracker.py": "d6414b8dbc1054352b3cfbdc2e3df61e8140b7d96d8b68794632dc5e9dc70aca",
+    "parser_core/poker_reconstruction/accounting.py": "a3831a3237b523ba21d63a089e7b57bc1444fb0f089cfce466b2bc0094ff5d69",
+    "parser_core/poker_reconstruction/identity.py": "ed645c7e03fc8d5468b55f2c980554eaac52c165c4babb52d88eae5c7c8c5851",
+    "parser_core/poker_reconstruction/models.py": "f4028593f4b18fd318f7ac3c7cba1bb991cbeb42927c8e3cfe8836f3d084ddf1",
+    "parser_core/poker_reconstruction/reconstruct.py": "ccbde3628910836b56801192ad72984a0bc0e4efa9cd25681335a863dff0b945",
+    "parser_core/poker_reconstruction/solver.py": "faa555127c031bd341edf1ac77055e110a7a1ec905acc8b50c690988a17289fe",
+    "parser_core/poker_reconstruction/stale_filter.py": "ceb93ea082c162f0fc59f8db4725d5ada2ad18ac024b8c055bfb2dd9bc082775",
+    "parser_core/poker_reconstruction/state_machine.py": "68fe1ee8ee9bae61856c677a6ee61cd696ed7f2d14fa53fc14072e75e83c1fb5",
+    "parser_core/poker_reconstruction/__init__.py": "e045ad1c22bda59b657819fba743bd32cc7aa6dfc096d694fb1f44b542e70187",
+    "configs/poker_reconstruction.json": "3f6e8d06bceb33fa303e2db32fb3099dc950b418145c84b4786e09730dd3738a",
+    "tests/test_poker_reconstruction_accounting.py": "df1228a01f9d6aa6ff6139d18284e184e44bb16379e4ad4b132cc3ec2e6a8f03",
+    "tests/test_poker_reconstruction_assembly.py": "db0ca8f5e4744ccd74c261cd28783ac6b15f72b26220d323b42c9ed4f4a7ca77",
+    "tests/test_poker_reconstruction_layer.py": "70754189309a4fc8dfcfc57e00a26c2c4036273ee2140b313711cdbc45d76eaf",
+    "tests/test_poker_reconstruction_regression.py": "980e31521edb72f7ca4e214cae3f5d74c111b4d324b214c79c37d6833eb5d9f5",
+    "tests/test_poker_reconstruction_stale_filter.py": "4735a7426d7b78eca5fa08535914914afc7d1f1312441a39160adddb2bd84435",
+    "tests/test_poker_reconstruction_state_machine.py": "89b07c929ce9a1a025910634ea2685605f9c54d6b6aa51bdc4209c2ace791549",
+    "parser_core/dealing_cards_ncc.py": "9ec772ccba27154f9c5267d3f468b733cf57229db0ba23512822ced89276268e",
+    "parser_core/dealing_start_stack.py": "9a3a0a52b0d94b8442cd03cec81bd17ae175bbd5e9035a4a9496694cf61b7ce1",
+    "configs/dealing_cards_ncc.json": "432f680e17ad59575866374a3cdccd0c2d197c2a8a2a6fc92994e27a2a2c4919",
+    "configs/dealing_start_stack.json": "9cb6e8d006b5682699fc2cfb4604a2b1be599d82ae799a12cbb02071e2b0645d",
+    "models/dealing_cards_ncc/cards.png": "37387bc37ed77e735fcfdf21ef831735116654f3d0151d6ee69245fa4b238193",
+    "models/dealing_cards_ncc/Dealer_Dealing.png": "786f47ce10f8fad5580ea40416f4950bd65f977dc6d3fc0dc0e159e087555f3d",
+    "models/dealing_cards_ncc/Dealer_part.png": "f6d9644b9b4622e364faf7ce79241de84b68aed5cbcd800f07dda82731dba8ce",
+    "models/dealing_cards_ncc/Dealing_part.png": "3622371fadd016a24d2629e27268e284e0270e216198b3c6a41184be2b7907ff",
+    "models/dealing_cards_ncc/Flop.png": "316bccf0755963f71ea6e5b814a5f97693769c3eb09827ede2f400e325d3292c",
+    "models/dealing_cards_ncc/River.png": "8cad0a3abc5907b217354254655e002afae3348eee44b4215f0bf19325e61b1d",
+    "models/dealing_cards_ncc/Turn.png": "2fc0490783286cb3a8fddb83fee55da16e4efe945dafc6222b4c49be3b94ecdf",
+    "tests/test_dealing_start_stack_sidecar.py": "e6b63c64c8ce53997b0effd7a7773c82c48c41c7963dfca15e9e2c6d548e3d20",
+    "parser_core/hand_header_admission.py": "e38db776facf22e233f24d080ffe3aaf29aea80835acb3bd01d83a1035073d36",
+    "models/hand_header_prefix/Hand_hash.png": "74c0dbf2edb370542442bebfab82bb43e09b355c0fb8040669771a6b93021a10",
+    "models/hand_header_prefix/hash.png": "276ef0c4c87ead47a5e32325e6bf309b9c95db42f22c8307e8a9f6e75f0b72de",
+    "models/hand_header_prefix/model.json": "e8005a97e056b13b5e64c81098a19676703d378c2c7e6e8161d23cb6f65352b4",
+    "tests/test_hand_header_admission.py": "bafc26bfd3786c921dc80d76a7fb5ff060e3ccb44ecca9faea474a6f5514aefd",
+    "parser_core/hand_state_marker_gate.py": "37ed6920770d21f348d42ccadf7a6d95c1a7de7f7f8895f051d0c250aa07017c",
+    "tests/test_hand_state_marker_gate.py": "31216828ddafb25904081927ad0cb59c0296a95d7d12856e18fa2ab0fd76e82e",
+    "models/start_stack_table_cards.json": "3880c9dd9d9e30323a717ab0a24380ae2d95ad643a68c9e2b67820e811b5380a",
+    "parser_core/seat_epoch_state.py": "46bc24750fcc59d6780da24eed2d8e0ae5ffbf8a8a19c91fb2dc5f5741832dbd",
+    "tests/test_seat_epoch_state.py": "7819f3920d2340e30d7c3dcdba0f8eebddead65c98f8f44b78cbfa4361278dcd",
+    "tests/test_seat_forced_binding.py": "438cdd7c4d75f8465f771fd30d62277ba8015848b31540af9b470112801942cf",
+    "parser_core/poker_reconstruction/timeline.py": "507ead98043732caf02b56d0ecb55c1275585af815f72b8f63f85972a9b81c00",
+    "parser_core/poker_reconstruction/assembly.py": "dc0cfae3a147c275e4551d2a686f7b333ba054b5bdd23c247588507e1de75038",
+    "parser_core/start_stack_live.py": "d5020b80e9df503d260129a6163cbb819051dc9e3553ebcfcbdf996b6a880744",
+    "parser_core/seat_forced_binding.py": "37f4c503d5d211e2489c1d717e270d2c59f81126ec311c08b623131d89370859",
+    "tests/test_start_stack_live.py": "7b8c8776727c6aeaa077df97e2da4af1f7fb4036bea27fcbeaf8eabad6dc9c8e",
+    "parser_core/poker_hand_assembly.py": "7eeda5a7a398deb6c9e6ae9a4ed5379d49c2a531317d756aa6ed329148a7f84a",
+    "parser_core/poker_pipeline.py": "012ad0f760c10027c50c9174c8933ed4d291bf79095a42c01df1e2ab0430035b",
+    "parser_core/poker_reconstruction_layer.py": "8f578ed4b90741476f840f257527a2e85037efd6e45c09d484ce0542092ffe13",
+    "parser_core/poker_math_engine.py": "cbe7857641cae65297c9f59847762096a7de81ea804ac31ced420e3ed5fa995b",
+    "PRODUCTION.md": "500ecfa97e939e9da90ec18b23632552dff303ee009d38095012808dd5a0e882",
+    "parser_core/hand_lifecycle.py": "969a29d71e680a3b55dcfc326a25cc07c4544a363208b54b5e354036653a3efd",
+    "scripts/run_smoke14_ram.py": "5528f5809ac7ee4f6668276e2bcc1185f7be7f9ee495c4309329851eb3e8b00d",
+    "scripts/build_smoke14_ram_workbook.mjs": "c3ae0b0880079d3ba4e4e1dcc13c2784b205d1fbae1ae8b1254ca1c0a34ec4d9",
+    "tests/test_smoke19_bounded_contracts.py": "43093665dff70b27d0591a7d87451ea6788fd182e87803e5abb6cca6c74b22b5",
+    "tests/test_canonical_events.py": "6634fd1a07035f12de1e2f4dc041f879af090554cd0c12d53f7b62b7b0f064d0",
+    "parser_core/performance_diagnostics.py": "50bb2d0196bec81cb2bcc5c07147bbd4e136a8421e11b32dee0c61b271580144",
+    "tests/test_performance_diagnostics.py": "2422b12608e94b956a447fb8b655897071f3c8ee6c40a08a40c6b13bddb6c6e6",
+    "parser_core/canonical_events.py": "a27b7b2640cfb6321fd4c0f984f12ca0215a2aa8f740d1948779d7f7681c91c1",
+    "scripts/replay_saved_quality.py": "07ba1485d8b483bb44943553797bd45d5923ef6dde869d063f4e6283b72d5840",
+    "parser_core/canonical_semantics.py": "e8956cae4a17c76f26d306ad1fa699df482ae2f5ed85f9794088f3a1531cb510",
+    "parser_core/stack_evidence.py": "e100014d9f88a5b7e64a4a5908e6e85d1fe25c106f51a08805202366bc35936a",
+    "tests/test_stack_evidence.py": "070fb987fdefc8ebbedbc436a7c19e66a44430544e5e34dbf402e615121ca8b3",
+    "parser_core/stack_timeline_algorithms.py": "604e2b74a3c950443c985d1776685f1c6f2b5f4410fd681ba7a61e2fb7f83f87",
+    "parser_core/stack_timeline_live.py": "7834691276faa7cb8906ef9ba97df85fe42e7180817c886d5556cf744e05240b",
+    "parser_core/raw_worker.py": "e01d8ea529d9bed88e4063b4d2020bcb9a6a3e45c950aa3ebc57840ebcc7b73a",
+    "configs/stack_digit_gate.json": "9d8a00b9fcb36782400c9bab85ec676ec7de428d14c68b61fdfa9bac5387609f",
+    "configs/stack_roi_refined.json": "388c6cc79d1f81f0cf87b2ecebde36a2355b0d8f951da3b42cbeaa579de4f2b1",
+    "configs/stack_sitout_mask.json": "0b3e7848c152b65b2d3a460b73852b6c2be792ebe74499b7aeaa96cee056f43e",
+    "tests/test_stack_timeline_live.py": "3d961b90bf8c68e4496129f209f489a4b869f3ffd61e2f56b9aec3318bcbba1f",
+    "parser_core/bounded_storage.py": "79423fdb649befa658ff7b9923370de7a9b4832b02140345430a9507ef2d85d1",
+    "tests/test_bounded_storage.py": "0fa979cc67e1d83ba508ee8158c6634ca8a3bbcfecfd51a5a27ae96af6a7eb32",
+    "tests/test_stack_storage_batches.py": "5b3ed1be2ebc8ba2be2318e6a1b53a289e1901d2e1c75592282d07b28f0f9c1d",
+    "parser_core/physical_chat_admission.py": "a29779b5e1c218cf7bb1fc5487e9ec14723ddcc4676129526096e0a36d24bf8e",
+    "parser_core/full_hh_profile.py": "8d17bac889af0f328016422264d3d582956b82d8c7e8178d8ba754a1ad3cc1ca",
+    "parser_core/hh_export.py": "1f172d5509a34aec86b918540c599a364230e21cd4be612625ea10c44ad6f281",
+    "tests/test_physical_chat_admission.py": "267a4c774384bd399a68ee4ffcfcf66290f477236afa99923531425593a97b49",
+    "tests/test_full_hh_profile.py": "7cdb205f6fff56ac1c1dadb81be263efceebb2a8ab0b5adbc249aa6493aaf3ea",
+    "tests/test_chat_tracker_production.py": "f4885dceb467bc8a3393cb2992d57c378470e875b80db7830b87c7eee3879012",
+    "tests/fixtures/physical_chat_admission_smoke19.npz": "fda0eba4f06e9e3cd48dffdb0a7d7ba8b14d20c3174009bb31618c99a6e3fde8",
+    "tests/fixtures/physical_chat_admission_smoke19.json": "e85e4c913a637b5be8c1a10e1d19569bf733ef359da55a19cd9ef4e06ae2f370",
+    "parser_core/seat_occupancy.py": "45afa5ca6610c462ecf970510a694b02aedda995a265351b82f33eab4ddb0668",
+    "parser_core/reconstruction_validation.py": "61e4310e0a3a84aebe8b119dc9ca7256804cb3bcd54202b6b1e2a0442390491c",
+    "tests/test_seat_occupancy.py": "cf6876940c73119d8a878aa61ebe4685cbc03437e5148124f1ce712b40bc762b",
+    "tests/test_full_hh_reconstruction.py": "f6cd64e96b4645777f7650e1b3bcb804360c139d1713307f6cb9b663dd327822",
+    "tests/fixtures/full_hh_literal_wraps_smoke19.json": "7cc93e9b52d5d0284a52289ecf714b6b6893cc56a7e14dbcfe21a2064d171a82",
+    "tests/fixtures/full_hh_first_physical_starts_smoke19.json": "a9254e5552612a135b0f42f9806509c081132268f4ad02417a3c20e1d1e27ab5",
+    "tests/fixtures/first_visible_stack_smoke19.json": "be26fd6a5dd61e1cee0461f546cecd19a41734ac2982c72217578bf718c22608",
+    "parser_core/start_stack_visibility.py": "1fd9a02739234e8e66423bbab4f57a6d792c1d26b8237ed6f7231767777eb786",
+    "models/forced_stack_overlays.json": "a9af7dff1cc06300cf4ab1447bb3bb317f3719bc463912995631ef0abb52f926",
+    "tests/test_start_stack_visibility.py": "0b617aa01a9d065edeb6e100201901f1e9c16abd622d2558babd95df7bdad4f1",
+    "tests/fixtures/roster_prefix_smoke19.json": "08005ed4b37c326c052012cbf803127a46f579edb2c065efb56d0f9c5a7fc5d4",
+    "parser_core/nickname_roster_binding.py": "83c7c63bf421dcbcefd56af96246351a4109821e99e60e0fe697c2a53db2e87f",
+    "tests/test_nickname_roster_binding.py": "dd3afab47f84aa60684a41cb2a49804f8d4d2ca831f67e5dbb2b7188591a0031",
+    "tests/fixtures/roster_prefix_smoke19_live_v4.json": "495a8c26b161cd57e354ba3d5f0e6bcbf7159b6517aed5c5a690352acac351bf",
+    "tests/fixtures/empty_button_smoke19.json": "019cd90987a16d042f123ac8ee9c20d4b93b720156054b640de3cc355b5b6491",
+    "tests/fixtures/table_card_back_smoke19.json": "6e05fe26e9e379e28a76eb42477bff5155add1b832bd2fedb994594a0aad2268",
+    "tests/fixtures/native_empty_deal/source_receipts.json": "6cc6a25a41859c6ec1f10adf05e5d3c1f6e8bb4bc0dd9b82004d3b0384ecb8b8",
+    "tests/fixtures/native_empty_deal/T06_frame483_table.png": "dcb3d8d64cc5406c549a29ec0fd0c5d4949cec6eb47fc5ea43e2993456cefcc4",
+    "tests/fixtures/native_empty_deal/T06_frame484_table.png": "9bbfd8514348e136a2ea71ef15bff7d78f9b7927b39cc321bc618a7a27ee0ecb",
+    "tests/fixtures/native_empty_deal/T06_frame485_table.png": "a363387087984a6523c53642d78db04d9d3f262a6d6acf2ba06fc170757f8169",
+    "parser_core/empty_seat_evidence.py": "d3eb32c6ff38f62a38da84ffb3b476441724d6b9416049cf33092a71bd210bcb",
+    "parser_core/table_card_back_evidence.py": "e6e2fa1be887f7d004577c9ec501ff229fbec85748c4a9f6dfd3c35134d085ce",
+    "tests/test_empty_seat_evidence.py": "b8f1bfa7a162eb5eaee8ca739cb9431c552fbbee1a4925bc58893c32685b8415",
+    "tests/test_table_card_back_evidence.py": "82443c3294389877e80410d472aee6ef960ea8de8acc184bcfada586341fa8f4",
+    "models/empty_seat_buttons.json": "9d2da53d62d824c582cb9de4fdd123bda76e3a9c584cdba80a43fba759f45396",
+    "models/table_card_back_supplement.json": "abf14638b57c96b3bcddf85e9f2c4b46f85ad0721856334c710f43e1e4a75ed6",
+    "tests/fixtures/first_stack_scaled_smoke19.json": "c0159fe7de0485d79d027ba223b24a2299149b68e25d1dfb766c2371c845ef7c",
+    "parser_core/first_stack_ocr.py": "f62ca7bedfc043d7b3c4308a18be1327103aaecd5ac00ba1664a8d240c31b8c9",
+    "tests/test_first_stack_ocr.py": "607c119b5e59cc5026533572cff00641368738156506a802a1708822c7165eaf",
+    "tests/test_forced_snapshot_chronology.py": "4ad77df13dd7584abe0444722cb8ecea01fd8e230bf44e8a39e5e2603d920ffd",
+    "tests/fixtures/forced_chronology_short_v6.json.gz": "2f1c6d20740047cea1903dbeeffb7443b15b3dd1ffb6794b1c7be2e6c52072e8",
+    "parser_core/poker_amount_semantics.py": "f4e0ef1c907de08adc3591723941d2c0da6022eabdfc8bd4216dbd8ccd1a1827",
+    "parser_core/poker_numeric_evidence.py": "63c66a7ea678bffd4329ccef00dcb39e7592966c3002d7483c3c6d7db621d2c2",
+    "parser_core/poker_evidence_axes.py": "858b6c07e1b1449fd4a3988bf9f215cbb6b2053cc1fa010f1e1860b5428578ca",
+    "tests/test_poker_math_source_resolution.py": "65de124420093ae1e755aacf8fb398108336202b0d4c9ad7d9964fc087357b52",
+    "tests/fixtures/poker_math_smoke19_source.json": "e83cae6cd5f5b3406cb861ae79e346d668744475763951a2ffb5ce6793231116",
+    "parser_core/exact_forced_chronology.py": "edc9c9d6fbb58b7e2f092c180943ef4183ae28c62948d4ce8eae91add5c1a137",
+    "tests/test_exact_forced_chronology.py": "a31c65353e9df5aa35062d91d6d45a5660354637f13fc6832d0a85bae98cae69",
+    "tests/fixtures/exact_forced_chronology_source.json": "24a5b3cc697cff2011baef43093371efc690390084fef62af4f4292604c745ef",
+    "parser_core/nickname_actor_binding.py": "544857d31f04c92a22b1836a59c4330ee9fe62e59bd6b4f6aa0ebe1afbecfa5a",
+    "tests/test_nickname_actor_binding.py": "06ca310795f1884397723a15793023a0608074b7907a0547e84dedb884d103e2",
+    "tests/test_info_literal_wrap.py": "b5bd370f6f68e097f9a46af213a87db63c66ceae726fc0fdb5741658e70e9a33",
+    "tests/fixtures/joint_stack_hand_source.json": "85f54a8db8a05f146dde5507e748a898a40fd5683c562005b29472955b1d1ae5",
+    "tests/fixtures/joint_stack_native_sources.json": "024548be95f786b1a0813458a2036be3d85d9e72e9d7142cf3aa9941fa38ac4f",
+    "tests/test_joint_start_stack.py": "b1058d047bc4b6f59be38fae9223087a21abcc0a9ad0a1bcf6e0b68092d70a8b",
+    "tests/fixtures/show_class_street_sources.json": "31d4e924a49ce00229af549e72fd36dabf7a3ebddd1a266c79451d1bcedcc42b",
+    "tests/test_show_class_street.py": "8c7cca2a18755f9a150301c4480ae618ef0b701ef10fa82da1750896ba226067",
+    "tests/fixtures/nickname_actor_binding_empty_source.json": "1170c3b87bbc8e715f2e85cb0e0f90cc5e8544fd2bc4daf76bd6e3fcf79c5628",
+    "tests/fixtures/nickname_actor_binding_empty_two_source.json": "de226716f11042b967cb4b0894e6af75cfc55ffbae7440e7108598bd2143efff",
+    "tests/fixtures/nickname_actor_binding_source.json": "fc582fb7c045f6e7e3a0b4d09c839b039f0bc9b684138419a2cfdd58f24ea765",
+    "tests/fixtures/info_wrap_t05_source.json": "087be2eec5b3b40dc8e25149a89c557552ab23106be9ca448c25cbf6c15cde3f",
+    "tests/fixtures/info_wrap_t08_source.json": "e8aa23f29fb06bda45244bf533ee09aa2eb68c1d37ac39b8c6d7d2264025a52e",
+    "parser_core/win_tail_evidence.py": "544d31506ce83ddc450d0f9616d25d51a7254222b97845398fc09dfb51f0f64d",
+    "parser_core/joint_stack_sources.py": "5dcfec1c3aca11c397b8a2d30675e92ade5fecc00c0b56454318a8769a4988ae",
+    "parser_core/joint_start_stack.py": "9415c75f37fdcab85ea327a423389a0ef66910e1e581b3dfbd0faf2a7241235e",
+    "parser_core/actor_seat_point.py": "ddc5ed7fb91add0b6781d22754e3ce36eef8473cd822d572e441e90e101bbaff",
+    "tests/test_win_tail_evidence.py": "339ec5e3535463091e1413884c637b69081753be0c95727e4577122650af3a0f",
+    "tests/fixtures/win_tail_t07_source.json": "0b220c83eb3342aa7666d03b8dbc6c2379ee442f1352e2cad66adc738bb68e67",
+    "tests/fixtures/win_tail_multiple_sources.json": "3d5aa9ab28f84020f8242e619b48c8968a9f97d4adc76b01ef068804a21e9b29",
+    "parser_core/numeric_text_evidence.py": "91b5d5ea7a1197936ad03b6bd17a76c2bd91833fdaa37bbdb8d62fe8cadec766",
+    "tests/test_inline_show_sources.py": "92e727f4a95cdac12a9c21c785bcff0ad08b1e12d03082eb5fdad7de5237ca3c",
+    "tests/fixtures/inline_show_native_sources.json": "bec56346f9db57cb585f13a4befb59d795a3224f4ae829eadd0e5574a9207ffa",
+    "tests/test_numeric_text_evidence.py": "ea04f12fb63e4f2e40d5d4a71ea90b22475597fe3cdf37bd90bfea7e8a68d27d",
+    "tests/fixtures/numeric_text_temporal_sources.json": "dbeca4138b7b705a6441346ad447643071e93e60bf42bd485bd27359961dd42b",
+    "tests/fixtures/joint_text_positive_native_source.json": "3eac14b3adc9620c6bb9c49a3eb1550f5b933039374a4b4d522fce2a16b0534b",
+    "tests/test_own_forced_prefix.py": "bc3971538dbc1303f1572a89fb4095faf533f48f3c61f6bb5aa6179e3c19c42e",
+    "tests/fixtures/own_forced_wrapped_prefix.json": "6ed5736bf32427c1229263c8f052cb2767e1c98e4831f2f848083c516e5ef341",
+    "parser_core/card_set_evidence.py": "0ea03c98a73800a61ebc38c29a40ea540d9a9d1d7ae405d87ada6c3fd8c56148",
+    "tests/test_card_set_evidence.py": "edc56be2db297b6b16ae03ddffbd48abc2d9c1a015ec8b96c02ac7edf11aea29",
+    "tests/fixtures/card_set_unique_native_sources.json": "51aca4540f052e0f8df49c15300be9afc262b9f777d320241f981bf96ce56a9d",
+    "tests/fixtures/card_set_projection_native_sources.json": "c7176b70bf20eeab33ee1542fe3659e7af73e017ad983205a19d001b5359b8bb",
+    "parser_core/table_service_events.py": "24f2374324c295a508009000bfc74015f74b7b01b9719df09a1a47606b78251a",
+    "parser_core/hh_text.py": "617f61a437787eadbd3249a23fd9385d8b6e03e65b118fd79273a90624e3a8e6",
+    "tests/test_table_service_events.py": "36a7c65c47bc2a6b1a1cce6b7cc893e84bdb25a6172115bb0f07b9b52537e167",
+    "tests/fixtures/service_rebuy_native_source.json": "68cb413c255b8469b1f3e975ca9b2d740ede3e3786f3b986c1327d3d3e118113",
+    "tests/test_hh_text.py": "053a25030f12acba3cfe946000b51466e7aecd3d9b07b88abda53e9c8fe90f92",
+    "tests/fixtures/clean_hh_native_source.json": "c4e0f5a81a2851983a7f54ba371aea732525293fab541e00dfd3485967e91b59",
+    "parser_core/adjacent_stack_carry.py": "1266e1823cf346454fc2a289dfcd6e17c2e20b1783cc488702e8345bdeaabfb3",
+    "tests/test_adjacent_stack_carry.py": "ca11a05c220dc02d9757e496332a9661f77fb258f3a570b9e04e1f0305e02b32",
+    "tests/fixtures/adjacent_stack_carry_native_headers.json": "02cee658ba1e1ba4f572ea29103b8dd84ca8981f9e55d60cf8ca1c1285b33714",
+    "tests/test_native_ante_point.py": "66582f20635f08ff3eed0d9caaacd16e89f0b3c7f3169793c4034b36c376fea5",
+    "tests/fixtures/native_ante_point_sources.json": "a44a598632d22ff9e5f658a127881896d0a6ef978327ba8de247a3f7c25b7978",
+    "parser_core/constant_stack_balance.py": "4cbf0ceacd770172b7265f30679071da8cf76a425883144d664ac403be06d14c",
+    "tests/test_constant_stack_balance.py": "8158710f1c090cfece9642ad46106543d569e799456e17bb1c5057fb9f9af933",
+    "parser_core/direct_start_stack.py": "5cee5661f79b2cf4a45139687c7da20d473025f68d64e297671e9cd8aec13f39",
+    "tests/test_direct_start_stack.py": "b2c29da5b7413323d72caec8505e1e2d6da7e8a49d8a4be3bbba91b90aeda2ac",
+    "parser_core/sitout_hand_evidence.py": "4ba18aa8508d3c43e34d8fb80201dabafbdfebefc893337a9fbf604ed5f054b6",
+    "parser_core/sitout_text_pattern.py": "0c159c5c345979cdcbfd1f2507ab2b954828d6c222ed9c0ce2821084f7ddf4b6",
+    "models/sitout_text_gray.json": "1624d38b350321bfa0ee17bbf2acb09c31fb3582767d552f38e08a8be05f9ba0",
+    "tests/test_hh_sitout_contract.py": "359c1d5673409ae25c4fbfd49adf200331f8ff26b7a68e6f97d4a293d8274faa",
+    "tests/test_sitout_hand_evidence.py": "18c62f5aac1c9acbf641f0e3dbebc889d5bf2abfb40580e011f3346dea47f9fa",
+    "tests/test_forced_prefix_ocr_policy.py": "db96ecc77c29a691e8839f5df8fa612c2923d5a21a4c58fdc2575725c8c992cb",
+    "tests/test_card_row_completeness.py": "5be0f545af0addb7a694d77978315aa3274db271e4a3a8a470a354c04a10431b",
+    "tests/fixtures/card_primary_subset_native.png": "ed47002614627f879f355a1c3c9ac3f3867f5a78e345536385cb75ba0ed52c18",
+    "tests/fixtures/card_primary_subset_native.json": "954c0ba8cdf7cbe176c1f9ac1d04efd9f977f5d7f1eff7ab9143af3dd6dbca4b",
+    "tests/test_calibrated_visual_thresholds.py": "aaa34a238e8a978860b813eb70508bb8f7e125680d46693382bc0ea6f8a06414",
+    "tests/fixtures/threshold_calibration/card_rows.json": "d23a99baefcc37f69011d34358f53e319d51b58b60e195b0bdfe885378b4fa52",
+    "tests/fixtures/threshold_calibration/N010.png": "afb41eea045d194198c69428d36d3c4fc2223039825df26fb822ce8652d46a59",
+    "tests/fixtures/threshold_calibration/R001.png": "4e32d70c3dd8458f3321b018791c1d622e53e0ee2890ed39703349bffeb26495",
+    "tests/fixtures/threshold_calibration/sitout_unknown_labels.json": "7eceeee44ffd3c29aaa9fe360ab4695ccb6d04c7015c46dd7b225b5de7117077",
+    "tests/fixtures/threshold_calibration/sitout/fixture_manifest.json": "098eda46e17f89dd32d0ebd38b45977c61af485e72e38b576095fcdc86b0a54d",
+    "tests/fixtures/threshold_calibration/sitout/H000.png": "08805cb3e0591cc346715d158ae28b1b794a28103f122b17ed9186b55884b007",
+    "tests/fixtures/threshold_calibration/sitout/H001.png": "b94b977e991f42fdc542f6c50c7868d6e5a43239ec0b690395b122259e8d93c1",
+    "tests/fixtures/threshold_calibration/sitout/H002.png": "2c1aa55c3c7c8b4a4462a0e4d5d4ba78900662503d30f8e9c55ba01d67555933",
+    "tests/fixtures/threshold_calibration/sitout/H003.png": "6f56a2252454e1b877409ea9815f9a59a9496578ba7d569f10e94e579c40adf6",
+    "tests/fixtures/threshold_calibration/sitout/H004.png": "9aa44679514e2b4efbef2e69f82eb3932b74852dec360aa196762c5e98b8f614",
+    "tests/fixtures/threshold_calibration/sitout/H005.png": "35348e3dc2a5ef707690e9130e02f8070233128b710614b16f26ba07597a1782",
+    "tests/fixtures/threshold_calibration/sitout/H010.png": "763c9a50fe9b7e72b724ade8ad0fa0413676db9b138e829aba0e289c6ca849ab",
+    "tests/fixtures/threshold_calibration/sitout/H016.png": "de90a492ef375718b9e02744c66931264907539031bbfe5eefbea59dd5d64302",
+    "tests/fixtures/threshold_calibration/sitout/H022.png": "e67f7d99d8a7f719afe0e9ab6d2fdf43da8247e24b706a594a04fa3a376d4fd4",
+    "tests/fixtures/threshold_calibration/sitout/I0031.png": "85084a93c3690531bfabf00e13dc2f5e1a3ee81d66ec52ca5954b32e58e55d7f",
+    "tests/fixtures/threshold_calibration/sitout/I0033.png": "e044a4bb157f6d777034fde7efe8b7461c9d33162676fb8e0f3d36edce103c62",
+    "tests/fixtures/threshold_calibration/sitout/I0034.png": "02128b9fd23fb88c4f05925de170d66b8d80c13b679e86ecc6a530072a8d34df",
+    "tests/fixtures/threshold_calibration/sitout/I0048.png": "ad08218edb65c4c1ded29d4b0e01d65184e6c448816e65781ea89a4d3a2620fc",
+    "tests/test_direct_numeric_policy.py": "258666648b68b2caa45b413951de996ac6c256313f59b5cacd2f7e90c7188164",
+    "tests/test_saved_card_replay.py": "0b675e823dfbfdd5e876e6faf6f6e0e552ab12df4237783e5613dd3e1f645188",
+    "tests/fixtures/saved_pixel_native_sources.json": "6748846b96f1d80f93338ea04ac2d086c081dd1e5086a53852adfe736a69bf7b",
+    "parser_core/chat_nick_actor.py": "7dced8a5a7d60e0d52ef678ba8d3fcfdb391ab38b304b3a4fb2ce710dc1c704f",
+    "parser_core/current_chat_sources.py": "1168aff27cc0a4f98aad49f4fdc273f6fb2943d23abada1c11de194d80f6a754",
+    "tests/test_chat_nick_actor_policy.py": "33994b52675938d12d02a8ab53cf5406444b68ba1d9aa681001692f885681c1e",
+    "tests/test_cross_source_nick_chat_policy.py": "d0f2eb104be15eb4170efc84d8a115664adf8d0736d9c2a02be40000e6e2fe82",
+    "parser_core/first_visible_single_numeric.py": "3a92e607f83a40eeba420ba571ca288f5b25d2b49a905905bc99b9ea69e30633",
+    "tests/test_identity_reuse.py": "3886d742167276e2461b79312163c60a2b95040b381b185fa5e558eb8eeb8c97",
+    "tests/test_native_cross_negative_facts.py": "2d1d07f968e32a4c137127a113ec4e2aceb914bbd4f4ad2e762b8734144684de",
+    "tests/fixtures/identity_reuse_native_cross_joint_proofs.json": "f10fb5e04b15f700d75a32e5b56aab4bd4e38de99907e6559cff724e20d9d951",
+    "tests/fixtures/identity_reuse_v4_joint_start_stack.py": "8744be2091cf4a9204875f2c2639148a04a2cc1b9beb70c977b05f88b5abdd7d",
+    "tests/test_first_visible_single_numeric_policy.py": "d35fe7d898c3fa96bbc759185ff7a3292cecffcb7c748ac40cf8ad74c7387e6b",
+    "tests/test_first_visible_single_numeric_native.py": "87d07b666385d97eefba20c9b532e90cd2f5b26de799e6041160ae8bb2b021da",
+    "tests/fixtures/first_single_native_proof.jsonl": "ed58cb6154ea95bb6dc677de40571d01615cc7c560712a0e4672767fbd81cc29",
+    "parser_core/native_nick_who.py": "e2bcf54606314f48511f832dd6e8f94e893e5fbd6527562b986bb3f0a089bbf9",
+    "tests/test_native_nick_who.py": "403483ed86eef47275dfa2f41cae4647f6de0e95767c096b6aba5355191ead28",
+    "tests/fixtures/native_who_guard_inputs.json": "91dde3a9bc2fa6f06bf3c96a5a6a88addbce1feed2dbb9b790035b4603909e05",
+    "tests/test_first_saved_numeric_policy.py": "b99b179fbb823df326161655d68f0bf5150141efe4296a603b14f7dd66cf26f6",
+    "scripts/replay_saved_first_numeric.py": "f5cfaf9e24abad4d5286bc25ad470a2c823936228c8fe1719c9e74b20bc07694",
+    "tests/test_first_saved_numeric_full_hand.py": "ec57930d71694209890807f1781a6f25bfb6001c01cc0b7c5386b74472b01e9e",
+    "parser_core/simple_stack_policy.py": "82ab6baba235d069eecabe3c3448c9cced62f34fc5f4336d3682b9958fd39b40",
+    "parser_core/simple_seat_who.py": "407211a29fc3b1e661061835d0c05f0558782afd8df768efd69ed46ba6f87210",
+    "parser_core/simple_saved_policy.py": "2385acc2bf2a7ec01629d126391a4fdbdcd37560d8688c624ea8502db5a35c65",
+    "parser_core/nick_manual_review.py": "db1409fd0ed7641c0dd98957dbbc79dd5ac447a31542c71ba7a8f20014b734e1",
+    "tests/test_simple_stack_who_policy.py": "f8751c9a0e1242c2d1e663a8f41e56e35b6f1c6f2c1f826018505cbc0ae71cdc",
+    "tests/test_nick_manual_review_policy.py": "27537f83c6f0ed95ee0d7e4314452c26cc7690768ff210024a18aba88297bcd7",
+    "tests/test_simple_sitout_export.py": "32f98605225f3c07f45d5977d7647b330c6f355ea025e065f0ed4a0ab3566eac",
+    "parser_core/service_text_normalizer.py": "cf87721c630d6d3ff2fc486823d5f5cc45a161b29a958809a04647c9a0b40d66",
+    "tests/test_service_text_normalizer.py": "6faceaf9719098d289350232265a5d456f627de9b0ec5eb7ca8e19a5cf8406ae",
+    "tests/fixtures/saved_service_tail_contracts.json": "e5aced7a2480d21312916ca96f669a99bcc41782655d3abc4c30db0390519d45",
+    "tests/fixtures/win_tail_t09_cross_epoch_source.json": "2b1b24ef0786b7de1773aa26358f6ad299bc100cf6296d3abcf25754b0b2c1e4",
+    "tests/fixtures/candidate_forced_prefix_t08_source.json": "dc9d0c4e7eb2482a042860e6e4038eb985a3e4d738fe9999eeb890b0ebcc605d",
+    "tests/sitout_status_fixture.py": "a3b255b74cf6d99fc36db23d2011ed1d7ae3bd9b2549f4e4f514378d7bdd607d",
+    "tests/test_forced_allin_start_stack.py": "0c1fa21f93a64da726a1691702b6136a5005fb29434f14846962ea5f616aa609",
+    "parser_core/hidden_loser_evidence.py": "edaddec27322df7e56cfa18b8d0400965d261f6f922b3b6c0726b219b81d434c",
+    "tests/test_hidden_loser_evidence.py": "0d8a982dd6c8584a07e1f3a6a18f3bb0200c5d2dd07e5a7f1f23656cace35d8c",
+    "tests/fixtures/hidden_loser_saved_three.json.gz": "0e0ee2a369f9807e51613aca7d1ff7edd2984d3941449e5ff6f72a4ae0c04685",
+    "parser_core/performance_work.py": "b2c7cdfe37f272ded44501f22cc32c0f153c3a1bf687bec71bd13730575a54e1",
+    "parser_core/performance_work_targets.py": "b271a6e0514d9c7bed0faa363d27e607cab3fe0f5e946da8676aff5362f3b394",
+    "tests/test_performance_work.py": "b2f70c831ff2a8a5585686db951d38b6a49b1b15617c6b25491aae94aef647be",
+    "tests/test_physical_chat_correlation_cache.py": "b6f9843085b181ffbb7b45075fe4236b23a898713727867cdcb1283d8a573d1e",
+    "parser_core/legitimate_no_sb.py": "0c435ebae175bcd892aceca9823a3fba16b6b6952977a4a3272df05b9a0a9b01",
+    "tests/test_legitimate_no_sb.py": "3784e48dd04c6efe7a6c66e09edb9b9c506d442fa8c8007cc4a767e4556e68c6",
+    "tests/fixtures/legitimate_no_sb_saved.json.gz": "f0eb562c82d0b5000ae26ea60ac1bf7b8f015f14842124fb84c61db4c92695e4",
+    "off_empty_dispatch.py": "63911ecf8ddd380dae1e828386bf2a8eca524ffefb194b28754d967a8cef5328",
+    "off_empty_bound.py": "fac2e1548db17403fd89927e420079e985038b8923c2cb3a88021c4ab135f765",
+    "off_empty_pixels.py": "9bee66bd7094b31590390f6b7d1ef117c1139bacb3c1dfa255ed71ec09028334",
+    "parser_core/empty_fast_capture.py": "22db85705462d28d4b1963c0ad3bd667eaf972e80c68f0d2040764b2f5e171e0",
+    "configs/empty_fast_path.json": "b96473a62834f4855ac6ce265c923ca5ff54c49ac23c9baec5b18bbd2f74df5e",
+    "tests/test_empty_fast_capture.py": "bc043e978670aae3cabb115f7f001f4a3c380a5272d03d461cd6f9211fd3a510",
+    "scripts/replay_saved_empty.py": "bb4e2c389ad7ece83dcda8dd041f452bcb06774c2ce338da7e6f862d6f4c847e",
+    "tests/test_saved_empty_transition.py": "d092330ea78b422b358691924c14285c03ff62d3c3edffaffb25e96420265298",
+    "parser_core/physical_tail_proof4.py": "431c7896a62179e7bae62b9f3d79454d8dd58b3063f4ed54754a11caf0c9870e",
+    "parser_core/physical_tail_route.py": "bd52882defaee3a86b1b5402ddab1681853bd8c70961a23b4cb58b692855084b",
+    "configs/physical_tail_proof4.json": "8a2ba7c27e2eb952171667f5cfebbfcf7faf63b2f1236fb50269d74f2668fa69",
+    "native/physical_tail_proof4/wholeproof.dll": "c6ba8e3ebace49deb97cabb7d462341ca6efabbd76d0379a5d92885899ec061b",
+    "scripts/replay_saved_physical_tail.py": "b6cb66277c1c122601f324894e0c631d31952a958874a157945731854f5c2eab",
+    "parser_core/physical_tail_validation_contract.py": "2747ac0f113a632b5893272c91b77a35e5c51e99896d513d5a059ffd225b98e3",
+    "tests/test_physical_tail_route.py": "6a8d7322bcc9dfb04874e6bf7b2d90ae2d5be99d211837f43ce238bacd56c899",
+    "parser_core/stack_timeline_storage.py": "e1004e6896059842ce536a26cee266284a283e918064f2ebcc05df29c5edc2d4",
+    "tests/test_stack_timeline_storage.py": "2026902e9cb6815163c27cf6bc9531d3b5c8bac2f7afc100bfe500e71c6aeef7",
+    "tests/test_start_stack_direct_delay.py": "4f97fa2f75b753dba54c44399ebdbe20d246b3d21f559b7792356fdd9c454b77",
+    "tests/test_empty_fulltext_policy.py": "6296c40304ec2c0ce87b572b6531ff24bb645efdb3583f10bb7f3e5d34ac1bbf",
+    "tests/fixtures/empty_fulltext_calibration.json": "c6f5998665321b37c76382b56177de6b8ea2553b28df260f94ee4a95244acc1b",
+    "parser_core/player_registry.py": "567db0f908d462fff376a9f893cec14b539dd8003e9b257561c60be3e42cb9e2",
+    "parser_core/nickname_review.py": "9edf285792e831389301335694b5dbf258152fca505d623baec7b0e49b19d4d6",
+    "scripts/review_nicknames.py": "e25bf8bbcdbffecbc9412a6c9156953990ac3511f0155c2aa0a5af1897fc1478",
+    "tests/test_player_registry.py": "41bb7d229401ad17e22941a41ee29c9d63e510b2bbd95aa182b2ff2fb8dca6a4",
+    "tests/test_smoke18_ui_overlay_generalization.py": "bc7d878eed050905b1fef84548f07a91247bb98a229d8fc762340a782c5c4a65",
+    "tests/fixtures/smoke18_nick_ui_sources.json": "366320e202a787a478a8ba03b05e8e31378ffa3903c139bf8a0feb620a135c0a",
+    "tests/test_current_hand_nickname_review.py": "da489b1916f14eb9e6f6dd70d2dd19442ce59c5d754229b340956c206bccb033",
+    "tests/test_nickname_review_queue.py": "2396a4f29b6a98e01bc66df0aada44aac4424d0fe924819814cfdc857d95f105",
+    "tests/test_physical_prefix_no_sb.py": "1b5ba8d3d6d22cf01748cb5f2d9218b3b635cd7eab9ae5dbf5ad7722587af031",
+    "tests/test_simple_scaled_numeric_evidence.py": "619e64034ae3d2ed9c3fa4f8eda336261689589b810a481977602dc2e030425a",
+    "tests/fixtures/simple_scaled_native_smoke18.json": "8f12f833d847fcc12bcf853ed646d339ef4fbe579b62b4e581735aa58a629c6c",
+    "tests/test_terminal_notices.py": "a6eebb7703f647f061fe99b9847dadc9bb509c79fcafec8ae919a31ae07de739",
+    "tests/fixtures/smoke18_terminal_notices.json": "7c7d64c98743f93b0ececfbcb4fceea61c482e500e8ebe7cb66698a194f05191",
+    "configs/confirmed_nickname_associations.json": "1fa692cb08ec90685a7098c6bc4baf151630cb77c2d46f4029e5c65d7a6de230",
+    "configs/confirmed_nickname_associations_source.jsonl": "014e4144ae2db4fab6be0799830a3e2a3399aec70f6be819bddfc865266ca307",
+    "tests/test_current_native_hand_scope.py": "ae52075618dc87c557793d4c96344dabbc3950062c6e03eb2c6e6f287ad6c643",
+    "tests/test_automatic_nickname_review.py": "548437eb0d9cf91666265f1764627e68d270c888b020ea1917188814e09aa981",
+    "tests/fixtures/smoke19_bottom_nick_sources.json": "d1d1e7c0fe11e4848b8c3f8eeac95e713db8df82a2207b3007837701c81edae5",
+    "parser_core/nickname_policy.py": "9adaa6502d53b4497c04979d7a499c1ca2f0d81d04987cbe7168c60ffe450675"
+  },
+  "frozen_runtime_inputs": [
+    {
+      "path": "runs/card_train_smoke16_test_20260930/split_v2/train_manifest.jsonl",
+      "bytes": 249118,
+      "sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43"
+    },
+    {
+      "path": "runs/card_train_smoke16_test_20260930/stage2_template/hybrid_validation_selection.json",
+      "bytes": 1877,
+      "sha256": "d9c0b33eceb26a1ae1809637cf4c6d2ad19872767dd42e6f75b5bc9becfaf51f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_05550a0059de9164be367a1f_00.png",
+      "bytes": 675,
+      "sha256": "5f39b61ba1d34353a3c2ab4d0fef34472674c0808bc193d5b9f4e6f79ae2b82b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_05550a0059de9164be367a1f_01.png",
+      "bytes": 656,
+      "sha256": "b3003ab91a6dac5fd59c9748403d7a5027d9e93e4efc293fbf3067e3d08cacc6"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_05550a0059de9164be367a1f_02.png",
+      "bytes": 618,
+      "sha256": "275a9fcd7ab77700d0b245b300fc8f5990e102610ea2f4eea16771a03fe5fa2a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_061a8d51c6d4dc02b391a92f_00.png",
+      "bytes": 577,
+      "sha256": "fc4a44581a62cf059f5c9dc68663bd64d399a9a99c65aa6b90a7fc5f7a09baaf"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_061a8d51c6d4dc02b391a92f_01.png",
+      "bytes": 627,
+      "sha256": "b385d5f97ab5f5f5c3ce2f44276a77cca02c7413e9e85b893e5e3f6a747c890c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_061a8d51c6d4dc02b391a92f_02.png",
+      "bytes": 649,
+      "sha256": "6e28631862ed0cfe7a9b8561a4ecdb561bd76714710f2e3c4833bc30e480b8bf"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_061a8d51c6d4dc02b391a92f_03.png",
+      "bytes": 725,
+      "sha256": "08f973539793d82a56ed5edca2fd6dc0aed930062dfd38a3bee5785b11277464"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_061a8d51c6d4dc02b391a92f_04.png",
+      "bytes": 698,
+      "sha256": "7fd4698e561cf0d14e3020ee733f6dd64fcf14752370f128e96f86f72fc00362"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0b81659e2eb2476541a153a9_00.png",
+      "bytes": 714,
+      "sha256": "7a4b4ec56002905707db0c698f24055c3af8aa37bf3a1505afc535d21fde35fe"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0b81659e2eb2476541a153a9_01.png",
+      "bytes": 663,
+      "sha256": "6a283ffb522cd20b168c3befaafe0cb914f732295f9d30702cdb7ff310b90ae9"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0b81659e2eb2476541a153a9_02.png",
+      "bytes": 668,
+      "sha256": "6af64f515233fd33233a1d9f5c5ad4450cd5c1dd9082bf3f601d95c1a4d22522"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0bedc5959fda67bbbba38622_00.png",
+      "bytes": 734,
+      "sha256": "821e76e6953d013291f5a7e4f856858d3d9817d21d6866b6d5e77d1099872c69"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0bedc5959fda67bbbba38622_01.png",
+      "bytes": 692,
+      "sha256": "aa7b426be2a82aca8a4f98e4c4dd25b60bbd47d8889f864bc176ae97656b258b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0bedc5959fda67bbbba38622_02.png",
+      "bytes": 638,
+      "sha256": "b467f71f9647da84545f9af01d1b8942bf2d83365816563736aa0e1034418727"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0bedc5959fda67bbbba38622_03.png",
+      "bytes": 721,
+      "sha256": "0f0730ef22b4b5e47d4b48e330822a67ae6313862600a2a2d836a768b6bdcdb9"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0bedc5959fda67bbbba38622_04.png",
+      "bytes": 745,
+      "sha256": "a0cf447352ffb6edd18e222fa4b338e4e8e641afb9dcae145c2070bcd23f099c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0f03bcc8b4fe4c01eb03bdf6_00.png",
+      "bytes": 709,
+      "sha256": "0e71237c45ad48175e1dfbed442130d0f48177d2b0ccf28700d7559f2a9df506"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0f03bcc8b4fe4c01eb03bdf6_01.png",
+      "bytes": 650,
+      "sha256": "658fafadd38be7c2412405256a38715fcd176095086a119af1446a0e2f28e740"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0f03bcc8b4fe4c01eb03bdf6_02.png",
+      "bytes": 630,
+      "sha256": "864cbf59970335346e6d750f94d935fcaee0cb740515059ef4807acf7b956307"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0f03bcc8b4fe4c01eb03bdf6_03.png",
+      "bytes": 756,
+      "sha256": "40dbc0731421eeb52b9498154fb19bd111f03c129aee6738d9906d15da3debb1"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0f03bcc8b4fe4c01eb03bdf6_04.png",
+      "bytes": 660,
+      "sha256": "4675e4122aa1bc3ff938d4c6d6f7dac808b844d799f4e08246c48c714197cdce"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0f660418b937522f99e2fa1d_00.png",
+      "bytes": 680,
+      "sha256": "9a5dd695c1723f18a2be211d4bc5783f5d7dda62b40e1fbbf397272bc4c7e15c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0f660418b937522f99e2fa1d_01.png",
+      "bytes": 617,
+      "sha256": "fe2bb8fb0a5803a003fd26aa14bf4c6f752a491b0eda99ef500acf5c3b5681a2"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0f660418b937522f99e2fa1d_02.png",
+      "bytes": 634,
+      "sha256": "067b7b5ead46b2ae6f0ea54f508f366542b3f538e1bf5ff9cb7b00ca1f9db165"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0f660418b937522f99e2fa1d_03.png",
+      "bytes": 655,
+      "sha256": "8c2e9a778cc35dad1510ed20ceb8bc01f20b0108a61623d97ffb438e30d5cafe"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_0f660418b937522f99e2fa1d_04.png",
+      "bytes": 693,
+      "sha256": "7e8030c87992519b28cdf59378bfee78320c31d2158eba4b0d798b1638322d7b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1aecf646c32c88083a17c24a_00.png",
+      "bytes": 766,
+      "sha256": "47c9cc1b0b91e6e4405493b1b8b2905dbeccb87ab593ab092fa4fd602bb77599"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1aecf646c32c88083a17c24a_01.png",
+      "bytes": 682,
+      "sha256": "a92b387b2f980e224614d21a4047df0f5bdfb9ff3778efabc02858e9697f3534"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1aecf646c32c88083a17c24a_02.png",
+      "bytes": 636,
+      "sha256": "80697af29df5e74ab81335186c9db9fc669fef3d28acad509e4cfdc1db9e9e4a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1d21a039c75c8cf28f7fb063_00.png",
+      "bytes": 672,
+      "sha256": "0070e024457d7521ba82489fed5ea40ca15e50053691c0f8101ce25db0769dfe"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1d21a039c75c8cf28f7fb063_01.png",
+      "bytes": 612,
+      "sha256": "c9eb2068f140b42ecf30d81a230ad5980c4578a6eec7a6e3de4147b9795c74b4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1d21a039c75c8cf28f7fb063_02.png",
+      "bytes": 661,
+      "sha256": "5f96d0ffe4b997cb69506333c65eb4f91a8a9aee3db8412d3d1279e86991d57b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1d21a039c75c8cf28f7fb063_03.png",
+      "bytes": 700,
+      "sha256": "1c238effdc8b4e76e8027b5af9787ed443be32425a50b016ffb3ae62b5a81cfd"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1d21a039c75c8cf28f7fb063_04.png",
+      "bytes": 651,
+      "sha256": "73ca8cae4e93b4bba8f71bb1e4247c3538a4ccee5b75a3e27eb339bf7689dee4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1d4c277ec8074c38893071fb_00.png",
+      "bytes": 723,
+      "sha256": "8bfb95fd466cf50ed285274c44722d7de02b79354aeb3c5fa67a6d97e20fb9d7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1d4c277ec8074c38893071fb_01.png",
+      "bytes": 669,
+      "sha256": "e5198e773babb8f15735b44a00bc404eaba8c5fa0e22b2489f9ae1b74779ba86"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1d4c277ec8074c38893071fb_02.png",
+      "bytes": 650,
+      "sha256": "813033fc237f2bdbbea466bbb23acd8e48830edcaca1e4bbc88040ac6beaa70e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1e0ab710ca717769a4ccee91_00.png",
+      "bytes": 668,
+      "sha256": "e5964416c7d6d5a266e8a785121504cfbf3a0809db2b7d6f83d7581fc2904e47"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1e0ab710ca717769a4ccee91_01.png",
+      "bytes": 703,
+      "sha256": "6ac05a88914928d8cf64505d5fc7645b237b73e1bbf0026677f1028cd5529a34"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1e0ab710ca717769a4ccee91_02.png",
+      "bytes": 656,
+      "sha256": "d6b1f8756da7f1695eb11f43a4e3279fbaaa02cffd5b92ac30e9f09a192a426a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1e0ab710ca717769a4ccee91_03.png",
+      "bytes": 697,
+      "sha256": "fbc27e31486cd4bb96a81d63a3acfbabfe6cbff822a562f5dd37bdf45c326459"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1ea1bbb9a3559e30a821569a_00.png",
+      "bytes": 705,
+      "sha256": "0e38eed268567a8be9e14bd13d64823a2938bb5820c05c4efdf80123862e27d1"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1ea1bbb9a3559e30a821569a_01.png",
+      "bytes": 649,
+      "sha256": "20be68ce4f5ad8d50c04ba0f9715a6359bf7b1a428ff426c5ba9d8aa9a44eb9a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1ea1bbb9a3559e30a821569a_02.png",
+      "bytes": 574,
+      "sha256": "f3fb92f7ef58b30ab8d93e48bb2301438814bdb7e609bc9480616edd271c81d2"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1ea1bbb9a3559e30a821569a_03.png",
+      "bytes": 647,
+      "sha256": "dc9a66b4eb0222b456030d5f4a49b5c72c241a8edd1142c5c0e48a43156a7ecd"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1ee7ccb0ba61dce72a44b69d_00.png",
+      "bytes": 747,
+      "sha256": "87ded5899fdf436c0561ff5d09833036cd9e7713903d42ca79d190893d3aa766"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1ee7ccb0ba61dce72a44b69d_01.png",
+      "bytes": 636,
+      "sha256": "abc95967bdaedfe2a0ad2eec99f7905d51f913f5979101197c18cdb1d6b19c61"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1ee7ccb0ba61dce72a44b69d_02.png",
+      "bytes": 642,
+      "sha256": "de10440a48a65725437cae9bb0c745dc9b1c31716633d1ea2e5d42d508822889"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1fd746e9088284fd0e3ac70c_00.png",
+      "bytes": 673,
+      "sha256": "486448eea76cafbc7a101eec95129eff09a4cbb00753d098c38965134950a34f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_1fd746e9088284fd0e3ac70c_01.png",
+      "bytes": 665,
+      "sha256": "0091e5283b4363b4d66903c903dd968e5d65691cd24d95131a129eb47ed29b77"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2193fb34a30465af0cdba3ab_00.png",
+      "bytes": 693,
+      "sha256": "c9794ac5e0391e4681a005807c83d35a79148b892c772b53f0aa210fb86eaa81"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2193fb34a30465af0cdba3ab_01.png",
+      "bytes": 704,
+      "sha256": "628c2baf86a116b1048745a44fb3b379afcc691c64f56bb142c624cb97e19032"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2193fb34a30465af0cdba3ab_02.png",
+      "bytes": 700,
+      "sha256": "271efe5feeb66ec24abb20095bbf7afa08d6e537e92f817fccfea1068cefdbfa"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2193fb34a30465af0cdba3ab_03.png",
+      "bytes": 711,
+      "sha256": "99ac31c8623b9418b61aa1fdbef509e4f501348d8811888bb5a69c14e468fc0e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_24b40813da1058cee6befe16_00.png",
+      "bytes": 632,
+      "sha256": "ad8a4cb8ef189bca9540ec8e8145a5348aeafc621e0cb2d0b785087a7c4f1177"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_24b40813da1058cee6befe16_01.png",
+      "bytes": 604,
+      "sha256": "48fc9780cf74de9b49f40d2d446f7ed94d2295c6e40b615a836104a47e2dee62"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_24b40813da1058cee6befe16_02.png",
+      "bytes": 645,
+      "sha256": "6066176316ec397a47f66878a3f7338f6bd8478c7a78a3fe4a8a22613b46f77d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_263ef46beacc1676aa2c384e_00.png",
+      "bytes": 669,
+      "sha256": "097f3fcd8098493c258d471dbb30648051b3980c436bd20bc06aa5e5930b45f1"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_263ef46beacc1676aa2c384e_01.png",
+      "bytes": 679,
+      "sha256": "fa4d26e58b070cb154907a9c30d7da687d1a91d17503e7dca9ef6474d48ca0bb"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_263ef46beacc1676aa2c384e_02.png",
+      "bytes": 689,
+      "sha256": "d5e70dc1fe7f5bd97d35f8d2b08368c459a75d14d968a72eb6c5c804d90c47d8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_263ef46beacc1676aa2c384e_03.png",
+      "bytes": 703,
+      "sha256": "b90bc390b5374e45e50d5b43729c5c839117c1cbaa6dbcfb393e477451cfadb9"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2842f9f62db1cf17526e77e1_00.png",
+      "bytes": 701,
+      "sha256": "d8ae0b574cd014d4fd0f740f8bf0c923280f153c3b66be9b8eaaf2fa1880e54f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2842f9f62db1cf17526e77e1_01.png",
+      "bytes": 684,
+      "sha256": "91d2a48810d83eefb7f65aaa40cb87d8ad6a1eeeac6e26708ef6cee005ad16f0"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2842f9f62db1cf17526e77e1_02.png",
+      "bytes": 719,
+      "sha256": "6c64c8c89302e62b37760811db861c5613d3387cdf6b13f14a19d45b38760dac"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2842f9f62db1cf17526e77e1_03.png",
+      "bytes": 704,
+      "sha256": "868a5dd3cefd9a911ef8798ad6922688c743825aed7b5d7b10405668d9fb32a2"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2842f9f62db1cf17526e77e1_04.png",
+      "bytes": 716,
+      "sha256": "9e3383ca2f1cbb4be87f45e12a2f931401937d3df48acf68b7fa1c2387ca169f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_29412d13a7498a7be379cf2e_00.png",
+      "bytes": 651,
+      "sha256": "7e471a26b7007e89022fe449761ed41635e594302f5c966a089bee74e3ef2246"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_29412d13a7498a7be379cf2e_01.png",
+      "bytes": 645,
+      "sha256": "ec879fa586d57b13127815c295bdac413c1adbffd331eb98ea88434409ece983"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_29412d13a7498a7be379cf2e_02.png",
+      "bytes": 680,
+      "sha256": "b44a75febfc8ee83081c031849404e06d92ae92c93a94af2dd113566e85a4cd4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_29412d13a7498a7be379cf2e_03.png",
+      "bytes": 658,
+      "sha256": "10c32f3910e9fd62c92537f68467015a89ebe059d0e4bdc48ab639ff1da9f1eb"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2b189349486c3a6c7eea7186_00.png",
+      "bytes": 704,
+      "sha256": "7c84442372104b1caa1c4b8c782bce833cfd6b887fce3ccfd2c43b5e45ad3132"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2b189349486c3a6c7eea7186_01.png",
+      "bytes": 660,
+      "sha256": "371c02a73df1e458f6bbe8513678c2d499593224999494750cab59a33d6ed498"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2b189349486c3a6c7eea7186_02.png",
+      "bytes": 653,
+      "sha256": "be1a7898f83128139ac5c834ef769fd733d89a176001641a2d2918f268625200"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2b189349486c3a6c7eea7186_03.png",
+      "bytes": 681,
+      "sha256": "202f3a1832a2002f8cc3fe42a7732734259de13e8d353cbf4aa7e21cc44fb6c0"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2d5ac11ba2b1ce16314bc5a0_00.png",
+      "bytes": 672,
+      "sha256": "5a57bfbabb286381abd93a424bdee2316b82fc979058a2fa80c6ec93ee21a73f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2d5ac11ba2b1ce16314bc5a0_01.png",
+      "bytes": 701,
+      "sha256": "7b26580ef4c61e8a8048ae385785037d90388fe6d5269929a7c139676ed4a941"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2d5ac11ba2b1ce16314bc5a0_02.png",
+      "bytes": 660,
+      "sha256": "8a174bff1cb6a633d3dd3cb3a04695bec19ce391344b2e9e5d61b4d10a8d7dd5"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2d5ac11ba2b1ce16314bc5a0_03.png",
+      "bytes": 732,
+      "sha256": "d5c30dd613dc78de3278f5f60b93cf42cb4b9d67f0749ba541dd90f1202adeb7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_2d5ac11ba2b1ce16314bc5a0_04.png",
+      "bytes": 695,
+      "sha256": "5ab97dad3308b2ffc55cbe65fd73a3b40f40f8187f88ecb38ac75aee5c0c247d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_30435eb22067b1cd2215dc74_00.png",
+      "bytes": 765,
+      "sha256": "46bbe3817079ea09f91b006e4cafb0b787c02ae791bb58986da32dbad682f62d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_30435eb22067b1cd2215dc74_01.png",
+      "bytes": 661,
+      "sha256": "dee86d0a02ebff9520f8a9cab5c9e578078a68834622680ed7507501aa97db18"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_30435eb22067b1cd2215dc74_02.png",
+      "bytes": 658,
+      "sha256": "b130ad1b39e2b7499ecba542085bc0c6f7c25283ad35e39175fad870c1ec705c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_30c61922338ece306be0ef65_00.png",
+      "bytes": 606,
+      "sha256": "c6f76e6e021123d59ff925cb99f25a7ea1c127bd8101b0bb0df525efc9b85a00"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_30c61922338ece306be0ef65_01.png",
+      "bytes": 652,
+      "sha256": "3facb5e7326c9a301bfb861304ef785a9a02c804ccd5b2db3656a494b41776c5"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_30c61922338ece306be0ef65_02.png",
+      "bytes": 646,
+      "sha256": "c0fea5cb982c3849a1d679c02127cbeb343986f089d315db132f1d2ac0ecb05a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_30c61922338ece306be0ef65_03.png",
+      "bytes": 673,
+      "sha256": "dc210104a27d01e3e953023d2504f57451ae0a9b7ef60a4d840cf644b38a184a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_30c61922338ece306be0ef65_04.png",
+      "bytes": 694,
+      "sha256": "e6a5b53eebd51173348928a173f1522c541d2e17c3599f97d42b9651d4c327b2"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_316c721bacb8dc83c57a1635_00.png",
+      "bytes": 683,
+      "sha256": "12b13bb2ab0b62a6f6a569ca2bfdf17d485664157304379221830598c587b99a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_316c721bacb8dc83c57a1635_01.png",
+      "bytes": 630,
+      "sha256": "2ea2806d4a241bd22ec4319e759cf798355fb867e0a578819e1d6bfb03b9170b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_316c721bacb8dc83c57a1635_02.png",
+      "bytes": 699,
+      "sha256": "b1f82c5990775be414eb4c3f3062b9baa2af4eb37e22ad824456c39128834f48"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_316c721bacb8dc83c57a1635_03.png",
+      "bytes": 675,
+      "sha256": "ae10894d5ce579ebcf8163c86943b8d7a4633853aa9c04fbe68a506d49550dec"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_316c721bacb8dc83c57a1635_04.png",
+      "bytes": 704,
+      "sha256": "a5f2a43ec37c7eef5c91034822452b0e770f530cfef4d48fa5a8625a6c57acdc"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_318f6bb66b67c44adf48ee05_00.png",
+      "bytes": 663,
+      "sha256": "a9351b71925d30ac93fd8f022219ab6ff7adcac5bfcb7b23447c795f0986e0f0"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_318f6bb66b67c44adf48ee05_01.png",
+      "bytes": 618,
+      "sha256": "aa10b94416eac044598b5c5103bb0d8b683970263dce9ac4779d56769c40a34f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_318f6bb66b67c44adf48ee05_02.png",
+      "bytes": 638,
+      "sha256": "818dacb0a7ec229a34bf38f15a64ec9c603df49b4983be34f2b27676e9f44f35"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_318f6bb66b67c44adf48ee05_03.png",
+      "bytes": 658,
+      "sha256": "b2ca55bec4aeb9e6c0bce59d4286e0d6466008de05c2e7f5e340955b6284405d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3424b5a40d4b08f4fd308025_00.png",
+      "bytes": 667,
+      "sha256": "4d77c2c29cca968137fc10ac9907ef8c5e80bd24e7c6d3b55419d626dc07c146"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3424b5a40d4b08f4fd308025_01.png",
+      "bytes": 687,
+      "sha256": "6e2f44854c8de0f4679322908d560a3dd0081abe560a9b7b55e3cd4e63186ed6"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3424b5a40d4b08f4fd308025_02.png",
+      "bytes": 712,
+      "sha256": "cfc375ec9ccffb61f78bb37058d5ffedb26b6c1a8639fe7bae6b478b65d1cd8d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_37666a56d4c00edd24eeb676_00.png",
+      "bytes": 735,
+      "sha256": "edbd4d8ada1e564de75298dd3ddfa32aad7b1e6fcddefd1eb53e736078826053"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_37666a56d4c00edd24eeb676_01.png",
+      "bytes": 636,
+      "sha256": "2b94bd3fcbe1c9d55e9f570c74aa0f0ec48a59973c10ec8e0d23690721060d63"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_39378c79a2fa87a4aebd1257_00.png",
+      "bytes": 680,
+      "sha256": "9a5dd695c1723f18a2be211d4bc5783f5d7dda62b40e1fbbf397272bc4c7e15c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_39378c79a2fa87a4aebd1257_01.png",
+      "bytes": 617,
+      "sha256": "fe2bb8fb0a5803a003fd26aa14bf4c6f752a491b0eda99ef500acf5c3b5681a2"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_39378c79a2fa87a4aebd1257_02.png",
+      "bytes": 636,
+      "sha256": "7cf28d8cb1cebe3a81fd5d8d3bb80698663a47b9a6de4b44cf95610f586975f8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_39378c79a2fa87a4aebd1257_03.png",
+      "bytes": 697,
+      "sha256": "d50a4f4f4cbbe764b8969d9cc4c504d2fbe5d74df0c9a51ee6181aadbec925bd"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3b42dd4359b8d4cd8e47800e_00.png",
+      "bytes": 739,
+      "sha256": "5e6e1f511305710b3cba981108aa1ddf29c688695535cb9e666c8ae0c8d26792"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3b42dd4359b8d4cd8e47800e_01.png",
+      "bytes": 669,
+      "sha256": "2dbfecd7f1d56a12eb66eb56c4aa85db151ef81775d54a5e4435972f5a3a0d5e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3b42dd4359b8d4cd8e47800e_02.png",
+      "bytes": 658,
+      "sha256": "ba00fc299ebb991448fb05af776697d362f940fafca444d792a1ada0ef42d32e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3b42dd4359b8d4cd8e47800e_03.png",
+      "bytes": 705,
+      "sha256": "278fb62ac579eb1114e439e674ef21d0a0b02fcaa4d30a7587dad3c8a25b17b0"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3b42dd4359b8d4cd8e47800e_04.png",
+      "bytes": 730,
+      "sha256": "2483f13991779a8b101c09c7d205947b1a90fad5578114c8c42eb08c95161a6c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3d850d3ace147322ebecedf4_00.png",
+      "bytes": 668,
+      "sha256": "aa0afa1409fd5b9650adbb610bd9d2f917870f8196128339ff126ecc3809529f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3d850d3ace147322ebecedf4_01.png",
+      "bytes": 636,
+      "sha256": "0b9a3750e50f6c6c8b6f3fe3fb8ebca11f0c89ba067355ec3bcbbb8fe064afd9"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3d850d3ace147322ebecedf4_02.png",
+      "bytes": 625,
+      "sha256": "fcfe7c162897603dc3cd7c0b7c79c38c4205f4a9ea6ba70fabdf6e437f86bfaa"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3d850d3ace147322ebecedf4_03.png",
+      "bytes": 703,
+      "sha256": "ad1acd4a855aeeffb5ba9a086df1ece87a35bb682a1db0224e3be3d88e8eee40"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3d850d3ace147322ebecedf4_04.png",
+      "bytes": 698,
+      "sha256": "f9396b7d20edfb86aacc86f7bca0953288021913fb12b003c4d1186fa0a06254"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3e3fdbd17131a7c52025c1cb_00.png",
+      "bytes": 736,
+      "sha256": "80d314368019eda97a543c22a4006d4d8ce8550022abc60aee6f14dc968c301b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3e3fdbd17131a7c52025c1cb_01.png",
+      "bytes": 741,
+      "sha256": "19e75eee9624401b6a863a369dc239d51cc09bec26f0c900ada959550bfbc6a0"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3e4cf04e7241536f11212e0c_00.png",
+      "bytes": 743,
+      "sha256": "39db2d226c9defe836dfcae6091bcb8d524ed6e94b3ed04965438d94843f30e9"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3e4cf04e7241536f11212e0c_01.png",
+      "bytes": 648,
+      "sha256": "b53746234419445bc410d8fe7991fb70f6b16355654a91b9db61840246ab73ef"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3e4cf04e7241536f11212e0c_02.png",
+      "bytes": 653,
+      "sha256": "62e600980b2f320b422b2a459cd56ba161f2586dba3d4c3f5a088550433f2848"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_3e4cf04e7241536f11212e0c_03.png",
+      "bytes": 707,
+      "sha256": "f7da8680d5fb3a18b50847280c7a285175e5988d9277517f085a25563694a581"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4307078e334d6a26070a5c47_00.png",
+      "bytes": 783,
+      "sha256": "12beaea3a096c52740515a4c3bd50c4f779e677fbaa1e08db37b7697f424e48e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4307078e334d6a26070a5c47_01.png",
+      "bytes": 653,
+      "sha256": "428a6d55e3070df7dc97e20ee4eb180ae0824ecc4133222e5b8edee17dd1c2f7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4307078e334d6a26070a5c47_02.png",
+      "bytes": 669,
+      "sha256": "a49859a76aeea7d5e8b3d9001fc3b5cdda147e81ebd8b68dfbd53ba5442555a4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_43580c0a45fef0e7b6073bee_00.png",
+      "bytes": 661,
+      "sha256": "038ae194605c41b2ade79dbaf132a12a4528e90a9e8d61d66146818617b799db"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_43580c0a45fef0e7b6073bee_01.png",
+      "bytes": 694,
+      "sha256": "bca8feeeb42d00452189ad1ee9af007506cc076b6e7916ce94df76cca085d960"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_43580c0a45fef0e7b6073bee_02.png",
+      "bytes": 685,
+      "sha256": "af5b06f9ae79a722988bf686a532e333d7bfb4c93951fb031df90e0dd789887b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_43580c0a45fef0e7b6073bee_03.png",
+      "bytes": 710,
+      "sha256": "bd5623419eafdc25de607417bedd13eec36228e2363106da843a29e4578929e5"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_47f36750598639695e108182_00.png",
+      "bytes": 624,
+      "sha256": "bb7eb83304b2a2b0a155fa18a2326ff82bfde9d02f8038fcdf688d1e40cf4c96"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_47f36750598639695e108182_01.png",
+      "bytes": 670,
+      "sha256": "6cf94347413825791d554624c1f9d167f069e50758ea2f20b1ca8763c189a246"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_47f36750598639695e108182_02.png",
+      "bytes": 671,
+      "sha256": "945f16641985e1e521fc1cfc469d4936f8d58f7fb531e1bcc4a25177737e5d96"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_47f36750598639695e108182_03.png",
+      "bytes": 682,
+      "sha256": "8672c9778d00908ca26820b784479c58e6c46752ff0e2aacac64b01ef2ded778"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4871526cb6863c94e2ae1382_00.png",
+      "bytes": 713,
+      "sha256": "25339614e45d5a44f38d494a9e6ec9600b303141de425def1cdb5e41ac35ea8f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4871526cb6863c94e2ae1382_01.png",
+      "bytes": 668,
+      "sha256": "48272add88cad34bfdac914287e2b3185eed53cde6eccf9e80066628c7e553de"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4871526cb6863c94e2ae1382_02.png",
+      "bytes": 712,
+      "sha256": "60aea0796e768c39fad7dcdcafda5daed601380909da10966a354988395ae7ed"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_48ba8731f2c0e6ee237694a4_00.png",
+      "bytes": 684,
+      "sha256": "16790a9be909893fc086df9eda257114120c399db2b665f3f6da731d1a1488df"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_48ba8731f2c0e6ee237694a4_01.png",
+      "bytes": 651,
+      "sha256": "003e7f4b8c12d88a786441e24facc382f524fc0e673ba52a74f23a35f0acfbfc"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_48ba8731f2c0e6ee237694a4_02.png",
+      "bytes": 670,
+      "sha256": "d93fd92b018818676499957728c157e8c2db4b004f9f2ab05eac045a8a5d4578"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4d97281834745e9762ceb229_00.png",
+      "bytes": 654,
+      "sha256": "08fa2ddf706b84ee6ea1a5e2809005550b06652164c05e820acabcab5b0ff79d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4d97281834745e9762ceb229_01.png",
+      "bytes": 674,
+      "sha256": "ef95f522d2fadeb8205932859aa8f5861e352f6dfa3d03ab8d8a1a2950a73bdb"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4d97281834745e9762ceb229_02.png",
+      "bytes": 657,
+      "sha256": "67a47a5285e1dc5ec035a2a344349f97f656a5a52bc0b0e2dc30e0b134c0a416"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4dbdf0b4f6427b17dd79ed16_00.png",
+      "bytes": 784,
+      "sha256": "b0cb1c6d63faf17589dab5fe70fcf9a2e1081a255470131cfd1cd466c1f73971"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4dbdf0b4f6427b17dd79ed16_01.png",
+      "bytes": 679,
+      "sha256": "9cad3d6eea4f5ade602c178cb07150d36c681161702dfdf17a14ee47e5f55d72"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4dbdf0b4f6427b17dd79ed16_02.png",
+      "bytes": 693,
+      "sha256": "7672f16108555ca1212c3f32bc97adf5854e0047d07fb3e65d896d1c55c5f7d8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4dbdf0b4f6427b17dd79ed16_03.png",
+      "bytes": 699,
+      "sha256": "0caee7f5836e2262f6c6a4d5217ae6de8cf355ba59943ab5cd7a8b5d8906a478"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4de0175c560b16cff988ec12_00.png",
+      "bytes": 585,
+      "sha256": "cf580f6792b33f8b30ceb80f00c163ddf9defe2abcde575e1819f8c3c3325994"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4de0175c560b16cff988ec12_01.png",
+      "bytes": 649,
+      "sha256": "5dbb2aae5960289ae58a0b02983b24febc6bccaee3337b2f07a930694bec6757"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4de0175c560b16cff988ec12_02.png",
+      "bytes": 656,
+      "sha256": "284e266ce8081647b32dec7d3c1ce3313413ff165c6e5e31fac346ca200f08cb"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4fcf51e1ea8db6e16a03d205_00.png",
+      "bytes": 732,
+      "sha256": "3f02f871261f5cec3bfd1ea7f7ec59bc402f6e32d164314395ff27fc9eb48f39"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4fcf51e1ea8db6e16a03d205_01.png",
+      "bytes": 683,
+      "sha256": "185db1535b4f34d86526fa187eb6736daf5b1c6b9a1eeeb1e75e71be5c98c89e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_4fcf51e1ea8db6e16a03d205_02.png",
+      "bytes": 632,
+      "sha256": "df751a6063dc21b7dccb681d9c58047ecf614d723372e4a3d16688b02bbac7ea"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_50f700dd9f29bfc40d21f692_00.png",
+      "bytes": 732,
+      "sha256": "3f02f871261f5cec3bfd1ea7f7ec59bc402f6e32d164314395ff27fc9eb48f39"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_50f700dd9f29bfc40d21f692_01.png",
+      "bytes": 683,
+      "sha256": "185db1535b4f34d86526fa187eb6736daf5b1c6b9a1eeeb1e75e71be5c98c89e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_50f700dd9f29bfc40d21f692_02.png",
+      "bytes": 624,
+      "sha256": "446601b86074260b4d95ff26e58a1695d876d8dee2a51cc246f0b85c7b51f120"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_50f700dd9f29bfc40d21f692_03.png",
+      "bytes": 744,
+      "sha256": "de14d55ed3edceeeae8d038c97b68d009290ff6dd5f7687f8377c9198d848753"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5412e18f10a29684726b7026_00.png",
+      "bytes": 656,
+      "sha256": "aa650c8cad5c17b37aa69059339ad3f2f9cb28a71673b74f02c143ed4a769370"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5412e18f10a29684726b7026_01.png",
+      "bytes": 611,
+      "sha256": "1dd4b17b106f66a62f1c50b1dfb7e50e8cd579dc35eb9a368385f1d7641a5fab"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5412e18f10a29684726b7026_02.png",
+      "bytes": 632,
+      "sha256": "2a1d3822459a0767b22e642852d034c58fe793a60352db544ddf9fa56769b34c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5412e18f10a29684726b7026_03.png",
+      "bytes": 702,
+      "sha256": "426caaecc4e9e851520858fb6215c5529310c2d3e6c0c1f5ec71f05fc15fef2e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5412e18f10a29684726b7026_04.png",
+      "bytes": 720,
+      "sha256": "bc60c973ef186f8400b68767bb4708bd7bc7771f2556f75b8a2217b7fdfb5724"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_554fd1b4d7ef0c8afe83a12b_00.png",
+      "bytes": 629,
+      "sha256": "734e0d5c0d3963c9c34badb4d6bdb0f976c00306cf08e03042a4b89bb20e1d78"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_554fd1b4d7ef0c8afe83a12b_01.png",
+      "bytes": 686,
+      "sha256": "da021cf46c840d293c42ca007627c0d18fb6c895ef723c756455909a3fe18933"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_554fd1b4d7ef0c8afe83a12b_02.png",
+      "bytes": 685,
+      "sha256": "7f564a8b180baee2ea0636fbd9b810613e51dc43683605768dc3f4b8b642595a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_554fd1b4d7ef0c8afe83a12b_03.png",
+      "bytes": 693,
+      "sha256": "1c834d1e083dede38b95b9f27d7ca405ca2f254fe9ab8fb148f05905e0424ce5"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_554fd1b4d7ef0c8afe83a12b_04.png",
+      "bytes": 732,
+      "sha256": "fc4b75b914014d3dd7f6b5c4e9438121e06b43ede7be3b0034319feb50176f37"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5569963fc58235bc4beb445a_00.png",
+      "bytes": 694,
+      "sha256": "c23af3076b7903cf74c03a8450842b1c0edf0fcf5f9c22cdefebd5c77d5086df"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5569963fc58235bc4beb445a_01.png",
+      "bytes": 688,
+      "sha256": "48073ef7cdeb67f83a42cca065fb0fcb4d3e5d2d0f78cb54d01bb44d5421a212"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5569963fc58235bc4beb445a_02.png",
+      "bytes": 630,
+      "sha256": "4bebfb8a19d25e70bce6ffa82216622493dfc4d8b85f1143b7d361ef83c2142e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_55ef788321d00cf7f6f4b48f_00.png",
+      "bytes": 691,
+      "sha256": "a16508a763035d9ea5015a250808404974ba09f46e9476dde6a3eff444ec64af"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_55ef788321d00cf7f6f4b48f_01.png",
+      "bytes": 668,
+      "sha256": "4c54cf4e56c14dd1c15bc0adbb189edc444116a6901867530a5c5e2dc4dcdd3b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_55ef788321d00cf7f6f4b48f_02.png",
+      "bytes": 691,
+      "sha256": "bba85f9a38e97de7af70d39ff5004b87692424227a06791657992934df996d8d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_560d2c049a5a9421b1bbac9d_00.png",
+      "bytes": 679,
+      "sha256": "9ce81703dbfbbaf97bcf7b6a40095e9cfee6a70edb2d3bced331572a07d3a160"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_560d2c049a5a9421b1bbac9d_01.png",
+      "bytes": 623,
+      "sha256": "beaf1f009d1a3d6f6cb58bb7cedce635093328f16e4528ef7db919dc3c9b93d7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_560d2c049a5a9421b1bbac9d_02.png",
+      "bytes": 661,
+      "sha256": "91bb5eb131012153f8456562e4617155e4dc8d2e4a3069346dadeea3fb9cd45d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_560d2c049a5a9421b1bbac9d_03.png",
+      "bytes": 648,
+      "sha256": "8c4000f23ef6af2ff4e293154e6a3a95acfb60d7006f5085dcffedf7e9c05571"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_560d2c049a5a9421b1bbac9d_04.png",
+      "bytes": 703,
+      "sha256": "25517f1bac2f0096c716a45e87865859a66f9736379d76f20868afb59410b2ff"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_561d35578e7ada6373fe4829_00.png",
+      "bytes": 664,
+      "sha256": "ea79bf66c164529503f60e5679fc9c2885d17ab06262bb31b207853df610b0b3"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_561d35578e7ada6373fe4829_01.png",
+      "bytes": 675,
+      "sha256": "0db2d2f7de39d8426526061e0459098bc5e48c5b63b79d42fec3627a160d32eb"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_561d35578e7ada6373fe4829_02.png",
+      "bytes": 652,
+      "sha256": "fce3eb6fdf376c930fbd276afd1cda5d9d32488ad8d5ec4ac511cc44c7a8b7be"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_561d35578e7ada6373fe4829_03.png",
+      "bytes": 695,
+      "sha256": "c95a0752aaf370c81362806e890156c6ec340bb003ca500b1d28a12794eba9f4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_561d35578e7ada6373fe4829_04.png",
+      "bytes": 713,
+      "sha256": "5877ccfd3194c436bebf7891779a856d9897fda77021814bf9488296012c8dce"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_57b20381c0f01ffe96a1f653_00.png",
+      "bytes": 695,
+      "sha256": "7159631f035381ddf07905d2f807be3aa7ce81648bf35545b71e032fac1e7440"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_57b20381c0f01ffe96a1f653_01.png",
+      "bytes": 661,
+      "sha256": "60759e4f7be7f7d163e9795b886e4bc6da7040a346f1f60bea7128d72b835335"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_57b20381c0f01ffe96a1f653_02.png",
+      "bytes": 679,
+      "sha256": "c3b0a911a05b5395f4976614ce4d972c300670031360c14f348904b9b257f494"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_57b20381c0f01ffe96a1f653_03.png",
+      "bytes": 700,
+      "sha256": "f73569c0ed1274179500037baa33ee5c8b010b12c89c1358045bf30e7d30e972"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_586c958dbd9a74421662a8f7_00.png",
+      "bytes": 813,
+      "sha256": "54a4edc88303f69be3d55fbcdc2ffd35189f3c6cdf67e9cbfeb8e7f5a1f2b20c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_586c958dbd9a74421662a8f7_01.png",
+      "bytes": 770,
+      "sha256": "4da0099814dea96bc65b05ffee11d94cede47ad80c0c508ac50f5513908c1de9"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_586c958dbd9a74421662a8f7_02.png",
+      "bytes": 651,
+      "sha256": "d38eaae0c8e3ee22a37897364c1bf59e9e26049de2ae692c0bc3e4795c28d2e8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_586c958dbd9a74421662a8f7_03.png",
+      "bytes": 760,
+      "sha256": "71ed1011f612d67c754ee4589889bdd0b8f1cab90060f678a590eef8c8b89472"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5a3b0dc8f846211012861e0e_00.png",
+      "bytes": 641,
+      "sha256": "e272c5b9ed9d4b152a5b4e2e7e7b87b3e8430985918369253d31d9f7c914649d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5a3b0dc8f846211012861e0e_01.png",
+      "bytes": 627,
+      "sha256": "dfe5ac66ffb466b773e760b7c3e7259a21da9980b4b67211697df115ad3e5a2c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5a3b0dc8f846211012861e0e_02.png",
+      "bytes": 664,
+      "sha256": "2199810d68134cf964fd08200a3250e593654b4489b358bd2aa674e152ab4658"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5bdb21228c76789bf3c9746c_00.png",
+      "bytes": 690,
+      "sha256": "14a83bba8524c51cdc724d815db0b1cb876ae730ea46cf5d47b1ea287d700b6c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5bdb21228c76789bf3c9746c_01.png",
+      "bytes": 646,
+      "sha256": "4233f7eef4eb2f6150068b1463c373521699387695eceb9728eccf04fac1b13b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5c3588a048a6627b5e5f469d_00.png",
+      "bytes": 686,
+      "sha256": "73a975f18fe7313a9f8a5e30b8e9a27b233a072051e8da2e9d32d61f37c711c4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5c3588a048a6627b5e5f469d_01.png",
+      "bytes": 660,
+      "sha256": "aba6278bf1532c7adf3477b84e29a6c44415eb6435d68e102cbc792bb63ab5e4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_5c3588a048a6627b5e5f469d_02.png",
+      "bytes": 579,
+      "sha256": "cb9a7c47f532e4c142a32f1c728fd7ec5859b12c4490e080bb330e6f057dd6cc"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_632facbb1306ac819a44450e_00.png",
+      "bytes": 657,
+      "sha256": "c4f85fb77265eab6452b574998d43af6b194ec479cb9eca6a17bd1736b8cd7c8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_632facbb1306ac819a44450e_01.png",
+      "bytes": 675,
+      "sha256": "7a84ef3cdd5c516e8b16f65617e235cb79e0cfa9789e1c42d6d18d2c3d665b4a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_632facbb1306ac819a44450e_02.png",
+      "bytes": 604,
+      "sha256": "245c69192881de4e0da7e0cd166b66cc7a0a9afb2db549702eab644ac440f58b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_632facbb1306ac819a44450e_03.png",
+      "bytes": 655,
+      "sha256": "d2a818e337b47430ec6a88fac93b1391d34efdc7b32108a45fc0b257c8176675"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_632facbb1306ac819a44450e_04.png",
+      "bytes": 738,
+      "sha256": "6c179d21e01384b73139cf667fb375467fad1de74900a21a403b2fd1945fd482"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_64cbb7a85db26b015a8ec635_00.png",
+      "bytes": 684,
+      "sha256": "ee36030a27eb17b5e6af407e40dbf3fba385948e69a5131feb4673d84c399d0c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_64cbb7a85db26b015a8ec635_01.png",
+      "bytes": 611,
+      "sha256": "fa642e3f1d071c28bb5748edcc40d30ebc07b56937f13fe95259aebb936c5b99"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_64cbb7a85db26b015a8ec635_02.png",
+      "bytes": 641,
+      "sha256": "cd96cb420561ad6ab6beb4fa4af7f814b189872e26b3fe885758175262a9b8c1"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_64cbb7a85db26b015a8ec635_03.png",
+      "bytes": 690,
+      "sha256": "1b56beace612730986494d57305a509f5e3b1e6299fbd09f759094ca551128d3"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_64cbb7a85db26b015a8ec635_04.png",
+      "bytes": 658,
+      "sha256": "556e797c342dc89f47197cffa2362d7723fb7f654e5efcd2c2fc9f344ab70460"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_6628700722fb3786d8f24648_00.png",
+      "bytes": 720,
+      "sha256": "1b014e00bd3c0ac67f7771de5421d879aab4ca62968bc4e797e8d2de1f297595"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_6628700722fb3786d8f24648_01.png",
+      "bytes": 652,
+      "sha256": "bbb43f8c91bb4c2fa1ec7a4acb885f324b10f3d3b8182a0bd7a2a05b7a803025"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_6810e16615e123007f1631c1_00.png",
+      "bytes": 670,
+      "sha256": "cb0694f08c40a27d5b1e015debd71c858c9a145403bd92cc94ed966ab970d883"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_6810e16615e123007f1631c1_01.png",
+      "bytes": 647,
+      "sha256": "db05a53867a681268e8373bea88592e743841fe39625742ab177bc8706d926a0"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_69ceadd70cc1cea4b6efdcdf_00.png",
+      "bytes": 699,
+      "sha256": "655d68b1627d5388f0d87cf6b5232d159466dc1c78c36a9afc9178639e669ad4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_69ceadd70cc1cea4b6efdcdf_01.png",
+      "bytes": 631,
+      "sha256": "aaea382a6b9db26ba4ca9714ef3a880b9cd0b50c58a3a75ac25e432ef13468ad"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_69ceadd70cc1cea4b6efdcdf_02.png",
+      "bytes": 668,
+      "sha256": "274855edfbd8c997fdb0d1c8c2c8ef7e33c0a0ffdd964067c3dd4ca4d174a17a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_69ceadd70cc1cea4b6efdcdf_03.png",
+      "bytes": 759,
+      "sha256": "5f66736ee6825b3cd6d1cec06f372d179bb1d506c9b8dd0d8f6bf89c4b65f62c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_69ceadd70cc1cea4b6efdcdf_04.png",
+      "bytes": 741,
+      "sha256": "b5477686ac955390937f7d39a5e4f2524600853b8ea010577a0e7904ed3ed70b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_6dd8fc9c5d17fe098668c3cf_00.png",
+      "bytes": 638,
+      "sha256": "7344b316ac549ba79d7fd135caa4df4638621c0debcd07f1406f7095702379af"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_6dd8fc9c5d17fe098668c3cf_01.png",
+      "bytes": 567,
+      "sha256": "af82be157406cd97154087cabc86e446df0c29672ba90af6bb5e7193f4c97ed1"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_6dd8fc9c5d17fe098668c3cf_02.png",
+      "bytes": 661,
+      "sha256": "522556198abeba45209b0bd6b4205e513e4a0d9e7971996bb93a13a842c7e525"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_6ed4a761035fb89533a947a8_00.png",
+      "bytes": 743,
+      "sha256": "ab7774e656061927db6c4f104c048f28d0f4c5800437dcd0923d578b099f2ad7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_6ed4a761035fb89533a947a8_01.png",
+      "bytes": 690,
+      "sha256": "a393d19f073b91ece3e17ade34dce650e706b14eb3ed0e3c0013c31399b99d28"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_6ed4a761035fb89533a947a8_02.png",
+      "bytes": 639,
+      "sha256": "5084c138a3a4de475234323407acee8ab7ec0f82f2f171abce0b14de4dbb8cb3"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_7cd2abd9370051d1beead0d2_00.png",
+      "bytes": 695,
+      "sha256": "ecf1561dd177e452ed588e174fe61cf09b092e72f2f9d11faf0a8a0377e23747"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_7cd2abd9370051d1beead0d2_01.png",
+      "bytes": 657,
+      "sha256": "fa7e81a720d8a5aa2904c3e0c89765bbb51f33d0e435cdaf21849261db8b27a8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_7cd2abd9370051d1beead0d2_02.png",
+      "bytes": 649,
+      "sha256": "22ec007a071c166c8128349c9c012d742f2229a11914f39d3c566447ffa80d02"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_7ed68620176963316244f5b5_00.png",
+      "bytes": 684,
+      "sha256": "3f173456790972def5e3c5fa3c95b16216d99bd0206eff2b2f77db321946fceb"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_7ed68620176963316244f5b5_01.png",
+      "bytes": 655,
+      "sha256": "a06a89083103001cb8d1a340a1f954c53fac073c175688a078ad09bb05a3569f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_7ed68620176963316244f5b5_02.png",
+      "bytes": 677,
+      "sha256": "e6db6ec977a36d4f2bcacd01ce812cf2a0e75482a1f1e5eebcdc80503cd3617f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_7ed68620176963316244f5b5_03.png",
+      "bytes": 677,
+      "sha256": "1fd31e39bc6569ba23fe35dce23e3d97fcb1acd5417cf5fea188becd60f762e8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_7ed68620176963316244f5b5_04.png",
+      "bytes": 669,
+      "sha256": "52957840fc2a6339e03de5d8b24bd12560bd4bec9577d6c5e0c215040184b025"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8565d062205460e6f042069e_00.png",
+      "bytes": 704,
+      "sha256": "439995904f0fb47f5ddb4a8fc5f9908dde054902e29509e9a4737542b16c21ee"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8565d062205460e6f042069e_01.png",
+      "bytes": 640,
+      "sha256": "5b4adc80aa3ece1a500b4f3c674c369724eead48910199a08914c3a218760982"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8565d062205460e6f042069e_02.png",
+      "bytes": 678,
+      "sha256": "ad78c62880e8c84da029387e1208a56e35d43a9600038412faf142c859fd5f2b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_87675c565d6d999e633cc60d_00.png",
+      "bytes": 683,
+      "sha256": "4fe168026cea524f828eff30944bc49aac622e3acc808e71b424b45c385902f6"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_87675c565d6d999e633cc60d_01.png",
+      "bytes": 655,
+      "sha256": "135b4e218aaea4a3fbbfcc112477925b3163cf4515221e6283a4b9f9bdd138d4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_87675c565d6d999e633cc60d_02.png",
+      "bytes": 635,
+      "sha256": "1f766031c5aa3b81c6daecd49c15b9dbdfdfa22530c3394c76d29718979e7b31"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8b9026c9411681f81c2c22a4_00.png",
+      "bytes": 683,
+      "sha256": "ee418069d4e4018cd837d50468c03fa66dcfa1230298ee7c52a4ea389aa5a359"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8b9026c9411681f81c2c22a4_01.png",
+      "bytes": 649,
+      "sha256": "a70a807d3ae2cb0bbc61e7090d08a13fa77e0ab8058f0624f207dbfc8e68b001"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8b9026c9411681f81c2c22a4_02.png",
+      "bytes": 677,
+      "sha256": "112b6d577cb38ec92619c0d19eb7836b3923a92b88675ba53805994e295a1dd7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8b9026c9411681f81c2c22a4_03.png",
+      "bytes": 690,
+      "sha256": "c59fe0056b0eefb898c0473fe4e5f73b8fa67b30b7c35cb75f51be68d634833d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8c078571c125cb17dd65f6e1_00.png",
+      "bytes": 609,
+      "sha256": "b69166840dfea22abcf8fbdf916139f7f0d9b1f3da82277a3af974e5f0b82305"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8c078571c125cb17dd65f6e1_01.png",
+      "bytes": 621,
+      "sha256": "3929087929efc65a986b8e857b56ab36f8c5ad25edf02e83fa9f9e1030f7222a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8c078571c125cb17dd65f6e1_02.png",
+      "bytes": 653,
+      "sha256": "6012ba93ce948da5a86a8c8f9d775859369208d44562d3fe6d1ecc26c91d6403"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8c078571c125cb17dd65f6e1_03.png",
+      "bytes": 757,
+      "sha256": "43a35a14be6e8cea4b66eebc542aa203f75dd0424da249757710f26dcc34566e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8c958a4b5ee266a0547758a4_00.png",
+      "bytes": 709,
+      "sha256": "9c3012cb2116032b093cdcc0a23f8a971d94daefc3daf958511efc3860b16ea2"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8c958a4b5ee266a0547758a4_01.png",
+      "bytes": 666,
+      "sha256": "917636c7bbd86f73a0533d8e5fb84d214ca75b04fd74c6036d0eaf5b915c957b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8f3a34d73331545a79722164_00.png",
+      "bytes": 704,
+      "sha256": "bd17957e56b753cd4adfd3b31f940fac63b488cc1512cd4e46d089d18ff7ee66"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8f3a34d73331545a79722164_01.png",
+      "bytes": 655,
+      "sha256": "ad296592e2dd989f61a4e98c96c79c71e427b0c49ed06030b5b9d9f029564b08"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_8f3a34d73331545a79722164_02.png",
+      "bytes": 651,
+      "sha256": "8b4ce3b66a2150f412abb83f8f2b973d6485aea021fd93fe52bc56e3d3d8f8e8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_9476f97bcee8930f7c66e5d8_00.png",
+      "bytes": 673,
+      "sha256": "f830506092b95ef7dc6ff3b44c5b5187c9807275f3e54220db4bdb4e06d047b3"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_9476f97bcee8930f7c66e5d8_01.png",
+      "bytes": 647,
+      "sha256": "470ce90b47e5d624e0b15cc4c6ddd6f376eea1cffbb780b296df92889483ff49"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_9476f97bcee8930f7c66e5d8_02.png",
+      "bytes": 631,
+      "sha256": "15b3722ca2f9055c43139bb8fe7975fba4efa8b01729080ba28fd2dc155a51f0"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_9476f97bcee8930f7c66e5d8_03.png",
+      "bytes": 661,
+      "sha256": "9a2218f5788d62f313c639eb1d404b98a3e5e30016f0d01c0542241b38017454"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_9476f97bcee8930f7c66e5d8_04.png",
+      "bytes": 695,
+      "sha256": "b2d37c882d1e6a086ac2630201a7585ac23dedc4a7a185c74e44da37c07fb24e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_95e96e0f0d924871f552ad76_00.png",
+      "bytes": 652,
+      "sha256": "a5fe2d764ea00b0c219ca4079c30e3fcfd8dda0e4b7dab4db0d7986ba92c505f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_95e96e0f0d924871f552ad76_01.png",
+      "bytes": 632,
+      "sha256": "9dcef621b6c625698d260e5d45d526b1763eb4fddd09bf275c16ba76273b2e6a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_95e96e0f0d924871f552ad76_02.png",
+      "bytes": 648,
+      "sha256": "b5a4e4815cdfcef7bd2d592435e75d3b06d56ee8b50a213f80d35be14d55e38a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_962ffb8e21f940256c3d59e8_00.png",
+      "bytes": 643,
+      "sha256": "6e08a9797dd8e34cf2c8909db94fb3a1ee87e9aa1f3e9523fc6a4ac79cbfee92"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_962ffb8e21f940256c3d59e8_01.png",
+      "bytes": 620,
+      "sha256": "63d4e367006257f13af5a9fa89eedfa17dcb0460bfb1ace3ee0fc136631e48d2"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_96abef3801a785e9435b6060_00.png",
+      "bytes": 754,
+      "sha256": "2673b8076c1d9dd7da58a038577574a7976e544d24d4534f3f7b9be57bce48b4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_96abef3801a785e9435b6060_01.png",
+      "bytes": 698,
+      "sha256": "98d263c03fbe5f502a5f421b8a5e3d5ac6daf5bc0649dc91e65404797ae9e3a9"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_96abef3801a785e9435b6060_02.png",
+      "bytes": 675,
+      "sha256": "44d657c2a1662fa67b10a4aeb06884abc526426da217e16fb37d6ccb8a2e0260"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_96abef3801a785e9435b6060_03.png",
+      "bytes": 682,
+      "sha256": "91d37f6a10d90251e3f9fe7e041812cceade641f685617d0dcf587bb9f83539d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_96abef3801a785e9435b6060_04.png",
+      "bytes": 718,
+      "sha256": "64c05bdadeee8dbbfee7462c537af563a19a7a129f35c35e4b31af07f6343c38"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_9c73e8c7ca6cdcbeadc5da8f_00.png",
+      "bytes": 688,
+      "sha256": "9c69ab3a4ca6fb10403d10044bacd941e70995c520205e4e3245758204cebbc1"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_9c73e8c7ca6cdcbeadc5da8f_01.png",
+      "bytes": 647,
+      "sha256": "e448610b8aa876145de0e356e51718522e7c7ff2ace84dce6bdc8e37544e71e7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_9c73e8c7ca6cdcbeadc5da8f_02.png",
+      "bytes": 646,
+      "sha256": "a4915a7b81e14cbc32c94270d684a4a68c5b3ae22c0325b6db3f30ba88c49443"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_9c8b523e9bd8e46befaeba8d_00.png",
+      "bytes": 734,
+      "sha256": "8642cf443e4094bd6f4913b132f17a5696667fdae8178259990f4fade49b3dfd"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_9c8b523e9bd8e46befaeba8d_01.png",
+      "bytes": 708,
+      "sha256": "1b48b9d228ae6e7d80a10676b085a64f0538816b0211a92ec7fcaeaa133e1124"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a123d2d7264e8f7595e2b4a9_00.png",
+      "bytes": 690,
+      "sha256": "2802dcb3adc3189ac85b7037b4ce4bfbf3a98faae29d2ae7d07f4fea0efc512a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a123d2d7264e8f7595e2b4a9_01.png",
+      "bytes": 680,
+      "sha256": "4ed1e2b869ee584e6d8984a86ba978e7be97a63811f1cc2d7519b281b091aeb8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a123d2d7264e8f7595e2b4a9_02.png",
+      "bytes": 662,
+      "sha256": "dfa5c4df3e2dc9823e9ddb0076b83dbea367bb96a67334a024e4aa4aae0aefa3"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a123d2d7264e8f7595e2b4a9_03.png",
+      "bytes": 700,
+      "sha256": "561e52a74d5d660124a9efb0bbcc7c848702cacf1815cddb2b9af8c33c914ea5"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a123d2d7264e8f7595e2b4a9_04.png",
+      "bytes": 678,
+      "sha256": "e141b63a5ab1aa0febe398ddd3073213adfdd102355b795d4e627c33750fe58e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a196adc8b16a08fd0faa919d_00.png",
+      "bytes": 655,
+      "sha256": "95ff5c100a41873da6c680f11406051b61864110d91404588d8b4371234080cc"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a196adc8b16a08fd0faa919d_01.png",
+      "bytes": 660,
+      "sha256": "fdfa914092bac14ad57d3fad1d27bee509c5906f7938721c12b5ec0c546237cb"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a196adc8b16a08fd0faa919d_02.png",
+      "bytes": 640,
+      "sha256": "b5767e13d652629c47e22026f0df96e6a6551d1bd9a16ee9ebe8d6fb0a7e1f89"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a22549d9970f06e7d8623feb_00.png",
+      "bytes": 657,
+      "sha256": "0d857a48964145860b8bf17ab54f540baffb7885e7e3edd8c670256d04e7d66a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a22549d9970f06e7d8623feb_01.png",
+      "bytes": 621,
+      "sha256": "7869eee5ccbfca704822d21dd6419d55009995a2f2283342b9378032f20dd17f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a22549d9970f06e7d8623feb_02.png",
+      "bytes": 646,
+      "sha256": "63499a647685615a33d52d61b32469057ca023ea11b3d7f1480b6da5d0823753"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a22549d9970f06e7d8623feb_03.png",
+      "bytes": 635,
+      "sha256": "f906f830de4ad24068b8461879ba9cd2c889594174d94c452e59289b1c2a6479"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a22549d9970f06e7d8623feb_04.png",
+      "bytes": 655,
+      "sha256": "d6fef189fd8f3272a8401060342751e6c4f7fb57aa43f6114a4b53f92f7497ff"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a76dd81a11556f5d7c02f155_00.png",
+      "bytes": 736,
+      "sha256": "572a379641e6a1dc7c6610abb48fc1912a8a7b7b2edb8053223fde28f2bfb581"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a76dd81a11556f5d7c02f155_01.png",
+      "bytes": 688,
+      "sha256": "9b0fbc6296df77c3e9fea1b87050c1587077d290f5586117610523b4f12034f9"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a76dd81a11556f5d7c02f155_02.png",
+      "bytes": 628,
+      "sha256": "38752dbdfd4f69f637c0b3800851942fed046b9e0482897fa59d0ed4edd57d89"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a76dd81a11556f5d7c02f155_03.png",
+      "bytes": 675,
+      "sha256": "279e3b976286db3823e8c4d3e96cafa44d2b3d3b6e74f4cfb9ef893e931991e5"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a76dd81a11556f5d7c02f155_04.png",
+      "bytes": 689,
+      "sha256": "feb8529b26087a0df6b9e286860967d703c74b636fdb8d5334f98bb3241d7d71"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a78738c4041e7af19bb0ff37_00.png",
+      "bytes": 697,
+      "sha256": "596ca04665245e654eb5522a8ec62e8a1c36720b583dcc37668748d5e37a65c9"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a78738c4041e7af19bb0ff37_01.png",
+      "bytes": 661,
+      "sha256": "8d77863ecd636f0ffb1e65d43c88d61e96d545cca90eb014a477a5c19a539c8d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a78738c4041e7af19bb0ff37_02.png",
+      "bytes": 668,
+      "sha256": "dcedd4912e3c4798068960420f46ffbffc851b2d08725cb0a34fc536dfc261fc"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a78738c4041e7af19bb0ff37_03.png",
+      "bytes": 656,
+      "sha256": "a02b4654e2b9e74c9d35d7b4fafd6d4a63dc000cd368cfe1c83ff179f7eeb186"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a78738c4041e7af19bb0ff37_04.png",
+      "bytes": 685,
+      "sha256": "7d55183177128ee8d31d6cc45299cd4522a75512ed7e552929a9be4b18d3d0b2"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a7ed02c65de37509cb062da9_00.png",
+      "bytes": 745,
+      "sha256": "70dec98b449d465647399d55edf714a972575907f6e2a75dc7ce945b3b73a983"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a7ed02c65de37509cb062da9_01.png",
+      "bytes": 649,
+      "sha256": "394088a2f0634a653a8cbaf0067beccc5ead007e31e635a10831946c542eecbd"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a934919011bbfda97ee29065_00.png",
+      "bytes": 664,
+      "sha256": "cb0a5fd9219167e95fc27d38dcbf503df03759ee120be3293af2bcf0d5d37ee7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a934919011bbfda97ee29065_01.png",
+      "bytes": 633,
+      "sha256": "2af4abd4c986849bc9a9b076ff0c66943b21b616c765ae049e97ad610e18aec7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a934919011bbfda97ee29065_02.png",
+      "bytes": 640,
+      "sha256": "56abb0fd6589f7ff453aa110753ede94d35763c117d52b8954b37d160ad2ccd0"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a9c0f4a276ceae1b22d64172_00.png",
+      "bytes": 618,
+      "sha256": "e8a2ecca800374f4b94bc6a448414cec1940e25721a977903646795637270732"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a9c0f4a276ceae1b22d64172_01.png",
+      "bytes": 668,
+      "sha256": "06421716d6ab3641849490f1e3bc35e3c4141dc8f0ca0f1f85d3a391e40b67fb"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_a9c0f4a276ceae1b22d64172_02.png",
+      "bytes": 655,
+      "sha256": "d9800d08fb3d3cbd6906ac900990597cf21da65a668eed6f03360f6abc2d473c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_aca327505d7d894f87e263df_00.png",
+      "bytes": 701,
+      "sha256": "830738a7418a21626b6b77a7af07d0583615ec38ee031900cda7a0f534f6551f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_aca327505d7d894f87e263df_01.png",
+      "bytes": 669,
+      "sha256": "1f339ee010fef299258067f29c8265955e9b909c8c612f1a9b04a86d4adf1ac1"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_aca327505d7d894f87e263df_02.png",
+      "bytes": 670,
+      "sha256": "74f80c9b6180bf491b8dc433307626cc96cdb1b15c6843d7ea70e93bf6c46741"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_aca327505d7d894f87e263df_03.png",
+      "bytes": 684,
+      "sha256": "54c358ff318ca00fcf591aee21d62f108d7c3d97e30cb242d308a8ff562405a5"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_aca327505d7d894f87e263df_04.png",
+      "bytes": 709,
+      "sha256": "dd45a53a63c0f97b26b6d291065aa0f4176724d45f390fa93ad0c52cacb18f13"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b2fc989b2741670b5d7b2f0b_00.png",
+      "bytes": 697,
+      "sha256": "b4b1d5388c0f35213507a8e3b0f8c83249687d62ae6f6c84b6451d6572a3a30f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b2fc989b2741670b5d7b2f0b_01.png",
+      "bytes": 630,
+      "sha256": "d4dc194381b87e15e87b231091368a4b5fe1023b7fb97f1040d82847d5311ae3"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b2fc989b2741670b5d7b2f0b_02.png",
+      "bytes": 689,
+      "sha256": "1a186943c0e3a50f2078a0c32efedfa6ef8366e5d4095cd57939b2310389cb3f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b3d3a87b935a86f9439cad7c_00.png",
+      "bytes": 696,
+      "sha256": "72d193f6fc241be762922fb1e5c663203465f3b7c0be8ab2f8b6b01409c9d1c8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b3d3a87b935a86f9439cad7c_01.png",
+      "bytes": 629,
+      "sha256": "4d205d0e80f355f1df7b3546cc5cf03f1274e6274fe580a8d5ee37a7eb71aa56"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b3d3a87b935a86f9439cad7c_02.png",
+      "bytes": 636,
+      "sha256": "6f258429fdf0f9a7d7e32546a3820ef5739a6c2ebdcf49bcec1cd11d45bb0e64"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b3d3a87b935a86f9439cad7c_03.png",
+      "bytes": 674,
+      "sha256": "29300cc08cf609946e4a4c296f1df10a059b36fd83fb64873c3a4081f9016bb3"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b4d2b200f1ae7d55131aa544_00.png",
+      "bytes": 662,
+      "sha256": "632e452a7ba98d9bb15a0062d5b94614cc057fb911c80944d85fb45dff2cee50"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b4d2b200f1ae7d55131aa544_01.png",
+      "bytes": 699,
+      "sha256": "3d203fb5e36d5d642eb985e072e7619175b7267ababe36007ef27eb46a15e13c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b4d2b200f1ae7d55131aa544_02.png",
+      "bytes": 616,
+      "sha256": "b164c50813ac2d66157fee3472cdcc323e672a8da9e03909aae6c6746eded047"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b67c1d60f87cba4efb2fac82_00.png",
+      "bytes": 665,
+      "sha256": "29fcfd0dbfb5ec1c3b9362448e6024194dc70c3c1608b9e155b54d7fe577df69"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b67c1d60f87cba4efb2fac82_01.png",
+      "bytes": 645,
+      "sha256": "f37ce574a25b48ce2655849a3ad79634ae46efe1c59589f3ef20f348549f7d55"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b67c1d60f87cba4efb2fac82_02.png",
+      "bytes": 612,
+      "sha256": "a7509104169fa0e482d436b1db5f521d02f2ff1fdcbdcd1864ac7f9d4e81c8d8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b67c1d60f87cba4efb2fac82_03.png",
+      "bytes": 680,
+      "sha256": "96e860dcb68d9942fc7fce50b3dd0d8b41873554849c2d7cfe909d71ca7414c7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b67c1d60f87cba4efb2fac82_04.png",
+      "bytes": 678,
+      "sha256": "8da66266c5becbc1dc4d8339da1840e199095db48ce478c83ebb0dbbf55b8a20"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b7be09995a1c15ee4121106b_00.png",
+      "bytes": 633,
+      "sha256": "91791689b5eb8d24054b4481ffa1a1ae7539dc0ffd9fab83598ad04204fd5ce5"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b7be09995a1c15ee4121106b_01.png",
+      "bytes": 698,
+      "sha256": "8b236f507a6736274a25600cb88e6862e27b31971cb4f3f23e9ec39d5ff8ac09"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b7be09995a1c15ee4121106b_02.png",
+      "bytes": 669,
+      "sha256": "9fd700c85b96007c053132830f4b3dd8e3376b85753b846d9fdc89529bf8a5be"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b7be09995a1c15ee4121106b_03.png",
+      "bytes": 677,
+      "sha256": "9476a832d553c89567e8b4dc3fff269c455e1e966f1205e3cdb83cc0630ec071"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b7be09995a1c15ee4121106b_04.png",
+      "bytes": 748,
+      "sha256": "ad67436939af47386dd6fcab0c80db186ab868221b2b9f669d5388f962271f84"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b7bfc402e1330f4ca149008a_00.png",
+      "bytes": 654,
+      "sha256": "7fa0cd1adda8fe3d0e417eca827fd3bf895eb44c48284fa3a368245b1dd9fed4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b7bfc402e1330f4ca149008a_01.png",
+      "bytes": 636,
+      "sha256": "b5f2c90ead7a1a06fe76d89105360b2c835208d929f268349955f221bbf525fe"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b7bfc402e1330f4ca149008a_02.png",
+      "bytes": 621,
+      "sha256": "9208ed7c0e862d2ae8291408339a2ca874ea6468107ee7bfc1242bf58c27c719"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b7bfc402e1330f4ca149008a_03.png",
+      "bytes": 669,
+      "sha256": "4b1bf5f2e9b7a8ff442a34fe1a05222d78eb3fd638d24138cdf918f6cd88be7a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b7bfc402e1330f4ca149008a_04.png",
+      "bytes": 654,
+      "sha256": "1b6a7f141031695bc11571cdc1a94898db0f62e0c1ee23cd0d344a773d46aa96"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b848002f15c6795cb90706bf_00.png",
+      "bytes": 731,
+      "sha256": "9c53a67994c33d31b8d7ad63079b1d47715fe1c175cbf191d2ccf5baf1c7d93d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b848002f15c6795cb90706bf_01.png",
+      "bytes": 620,
+      "sha256": "aa9b774a8758db39d4fe00f066ea752ba84c70bea9dbbfb997aac8edede00977"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_b848002f15c6795cb90706bf_02.png",
+      "bytes": 656,
+      "sha256": "aef44f4e0a96f53bee73c6233a0ef6bb379d1861258a86349e0f8ad39f6f94b7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bbf9c581149c3ce488853ecf_00.png",
+      "bytes": 641,
+      "sha256": "01e2399e60dc610110ed51e9b16293cc1c9311fe671423aac9acd34ad2f0d1aa"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bbf9c581149c3ce488853ecf_01.png",
+      "bytes": 644,
+      "sha256": "17db5bd9cf054883f2a95ad2287d85b608a900536256d9b3daf087ab85c39ff8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bbf9c581149c3ce488853ecf_02.png",
+      "bytes": 669,
+      "sha256": "57e77ad4f57ef16d6065852739364de1418157545d32302e339b509044ad1465"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bbf9c581149c3ce488853ecf_03.png",
+      "bytes": 725,
+      "sha256": "d0e59c941bcb0c63622a958b8e592f6eaa06689b229587bc1d74af4153840c51"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bbf9c581149c3ce488853ecf_04.png",
+      "bytes": 662,
+      "sha256": "df58a60afb4895b525dc85517135b02d3e41ffc9cb74ea9a3499c7ba118ba51e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bc55c9d4949eb9d0bf51992a_00.png",
+      "bytes": 667,
+      "sha256": "11bc8644f1c5fcb81a7ed32573229540c65222da4bade0d493ca63fdbc05dd94"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bc55c9d4949eb9d0bf51992a_01.png",
+      "bytes": 693,
+      "sha256": "2f01d2d544a72454114f4884251cdf62f486811714d59496bafe6709782f037c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bc55c9d4949eb9d0bf51992a_02.png",
+      "bytes": 682,
+      "sha256": "44cf236f92a130ed70aa4d51185e0b50172413964d884981d6eb9d31bb6d3322"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bc55c9d4949eb9d0bf51992a_03.png",
+      "bytes": 680,
+      "sha256": "ef36d48a205f69ae5fe293ee54e95445357aa691b6b3bd7ff98757ddd9dcfed8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bc55c9d4949eb9d0bf51992a_04.png",
+      "bytes": 673,
+      "sha256": "3562e56f109d06eede608f133aa2ec132b9eda355b5cf3452b6f1969f95168d6"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_be76b824c27d868f9041b9b4_00.png",
+      "bytes": 737,
+      "sha256": "d93b6106cfb4337a31da854d64a94293115cd984c784c47321100cb8f8548695"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_be76b824c27d868f9041b9b4_01.png",
+      "bytes": 634,
+      "sha256": "e07e295bb06ceb3a5c2f7f20957d82c65a9a999c9364b363d22f504ec0e53606"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_be76b824c27d868f9041b9b4_02.png",
+      "bytes": 624,
+      "sha256": "5716e2e813d3203320d7c38d1294ddebc2126372815162d63424e08a555610b3"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bf9197f8c1c1d266959b43cf_00.png",
+      "bytes": 683,
+      "sha256": "0d24cbca5881d4640522216f0f59b3a0f32eee26891b58596bd34151baef2399"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bf9197f8c1c1d266959b43cf_01.png",
+      "bytes": 634,
+      "sha256": "65b72881074de4bd08b65012359f8e6571d788e9ee09b972408d8e6c6e542c7c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bf9197f8c1c1d266959b43cf_02.png",
+      "bytes": 660,
+      "sha256": "ced3ec4db1a8f90143fd4b87be4c2a95f42877ff844a74be5c6b79b2e6664208"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bf9197f8c1c1d266959b43cf_03.png",
+      "bytes": 674,
+      "sha256": "8eeffd60018c61c4bcb3453df544a28564d3ac17d21d49b8d45958b35bf2161d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_bf9197f8c1c1d266959b43cf_04.png",
+      "bytes": 693,
+      "sha256": "89da58807a56419cf176324792e2a89d37124b8a83df39b9b65512ab4568f158"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c176f8c8ffa64546b46c5c7f_00.png",
+      "bytes": 654,
+      "sha256": "7fa0cd1adda8fe3d0e417eca827fd3bf895eb44c48284fa3a368245b1dd9fed4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c176f8c8ffa64546b46c5c7f_01.png",
+      "bytes": 633,
+      "sha256": "41240e52df1530315745b1262bf24181be722ff135ba5c607415f4916a9a4e3d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c176f8c8ffa64546b46c5c7f_02.png",
+      "bytes": 661,
+      "sha256": "be13a18d16c6b913473d2f7f16aa4a33cee7f8a8e1deb6e6605ee67dee2d14c1"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c1b5d91180ac579b28fa0800_00.png",
+      "bytes": 653,
+      "sha256": "f62c9c4800781b4cceead13649ddd51ceb4ec77f39bf76254abcffaea60cf3dd"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c1b5d91180ac579b28fa0800_01.png",
+      "bytes": 690,
+      "sha256": "99382391990c0f6ccf26a85e73af0d4d1b7da4e14b4aa1365bc95e56b09e51e6"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c1b5d91180ac579b28fa0800_02.png",
+      "bytes": 710,
+      "sha256": "043cba611cac47e0250144b206ee8e2bc21e79bfa165dded1b5526e3e10f3537"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c1b5d91180ac579b28fa0800_03.png",
+      "bytes": 722,
+      "sha256": "b113111d1a4284c43759a4da3caaef7c7c58962b986abed6a123cd32eb817c9e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c42263226c226c73584fce0f_00.png",
+      "bytes": 675,
+      "sha256": "a2a698934b285985415b73cbad5c4c6ed9f7b529df6e39f06105385d84ba9c44"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c42263226c226c73584fce0f_01.png",
+      "bytes": 678,
+      "sha256": "27d24b8bf0330516828abc79f562aaa5c9fffbeacb0e4946776420c7ff703eb0"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c42263226c226c73584fce0f_02.png",
+      "bytes": 711,
+      "sha256": "feadfde4d2d6582a07c9f20e3e615c3c0403bcc26bd267463ddb0617a5446462"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c42263226c226c73584fce0f_03.png",
+      "bytes": 673,
+      "sha256": "f16a7afc10efe1aa883543c08dc275c30a7ba713d5fef0177f63753a707f393c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c42263226c226c73584fce0f_04.png",
+      "bytes": 681,
+      "sha256": "a0583c3d90d6dd1fdde0f7b0beaa7af42fcbbe16748b891bc19a9e6676f491cc"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c4b8c3bc5d734d8c10ba114d_00.png",
+      "bytes": 704,
+      "sha256": "fff1d827c939cdf7027f8815b9da7134129cd41cd1ea52ec9e7df345d76d21e7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c4b8c3bc5d734d8c10ba114d_01.png",
+      "bytes": 629,
+      "sha256": "541caa7999bb35e9032611221452200956c8cb47ca91e8de145f8c4f50afef70"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c4b8c3bc5d734d8c10ba114d_02.png",
+      "bytes": 659,
+      "sha256": "eb6b597bfe7cc3df6c26501b86c03527b52cca227c30e82aa8699afde485fa40"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c4b8c3bc5d734d8c10ba114d_03.png",
+      "bytes": 672,
+      "sha256": "80554dd54c84c90f4fc06c66b4b584ffd9eec3b0fc39bc09260740d16cc9e367"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c4b8c3bc5d734d8c10ba114d_04.png",
+      "bytes": 636,
+      "sha256": "b254cb520adf8a9cdf9921c4d6167dad2e079b23f2034eeb2ff67c6346dfce52"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c703b891ad88435cd33554ba_00.png",
+      "bytes": 661,
+      "sha256": "5aedfd8bd7dae3663de1b5f741ce9a7f2b0c3885e6e4dcfe019ed609d3f163d1"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c703b891ad88435cd33554ba_01.png",
+      "bytes": 677,
+      "sha256": "4f3563322dc3ddb01249b9360131d7eb1e5d8cac0ff2de4f52b7fb0abdc09427"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_c703b891ad88435cd33554ba_02.png",
+      "bytes": 659,
+      "sha256": "3a4dc409a170a5bf7850107452e1a473878472c832fc742de85af55a763be99a"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_cd7869ad97de2a3adb50707a_00.png",
+      "bytes": 711,
+      "sha256": "bd1fd2ded7a67fab51960cd43d119a43deb7058bce67e65bb1aab9cad66dc250"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_cd7869ad97de2a3adb50707a_01.png",
+      "bytes": 660,
+      "sha256": "8935815ebc4d3023c331ba46035e24feba198aeaa2cfb0b3c8bf02d4cbe68a0c"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_cd7869ad97de2a3adb50707a_02.png",
+      "bytes": 659,
+      "sha256": "e86dbd2777760c72a6c7b313a62542b53eadafdd54b0009db8200c75aede3b1f"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_cd7869ad97de2a3adb50707a_03.png",
+      "bytes": 692,
+      "sha256": "b8150ff96708f564ff6ae47862bac867cac16de365f5e594786803b48be13bdf"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_cd7869ad97de2a3adb50707a_04.png",
+      "bytes": 722,
+      "sha256": "40b3751d660e334161516b469d2ce99b5171482d20af45c846c4196e2956022e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d16de38502a6e6e2b7373147_00.png",
+      "bytes": 675,
+      "sha256": "a4b2e59993ae5b539a6972d58cfd1832e70aa121f14e00adc517158d849db5ee"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d16de38502a6e6e2b7373147_01.png",
+      "bytes": 682,
+      "sha256": "1e9dbd023a5933eb4157e03669687ce24b0a3011229ebf5ec4d359c7568cb0d5"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d213e0b80c923e65a338eed0_00.png",
+      "bytes": 724,
+      "sha256": "93117be42795e4d0e64d1b36c7112411f2112d8ba16553f9b351ff2ff3104964"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d213e0b80c923e65a338eed0_01.png",
+      "bytes": 665,
+      "sha256": "0fc48d8087bc118772e3913aa672348f4ab260dc6481ab3035a6900730c916ca"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d515b39dd1a7484960ba7956_00.png",
+      "bytes": 670,
+      "sha256": "f7e9157ea7d8593efaec7a8c0c1b4797da01f9195a112dc704af11da78dfbc03"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d515b39dd1a7484960ba7956_01.png",
+      "bytes": 592,
+      "sha256": "e581e87a30b029a3e9a3b91ca2ef3cfaf908d9fb4ee450054d70535fef96a7e3"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d515b39dd1a7484960ba7956_02.png",
+      "bytes": 673,
+      "sha256": "cf1833b0b0023498b9ccf8a515cd500babf22578dbc2a29cd259fc8739752690"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d65f830e4d8d96d48b7f9bee_00.png",
+      "bytes": 702,
+      "sha256": "b717a2f924facd15543fb5658a5695de33a3fecfdc63f0847e8fc10c0fd1b974"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d65f830e4d8d96d48b7f9bee_01.png",
+      "bytes": 682,
+      "sha256": "8a5c37b19b59c9dd8604d07061808cf81c41aceeb87c6969c4cea57d829aa3b1"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d65f830e4d8d96d48b7f9bee_02.png",
+      "bytes": 661,
+      "sha256": "abf6a25659ed15f1b5ccef6ec5cf90ede638abdacdfad864a791c1667225110b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d75e4719108ac640b86fe462_00.png",
+      "bytes": 686,
+      "sha256": "73b91453d54918ef06355e567118908d0091e850ba3f6025125afdcb18b74ff5"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d75e4719108ac640b86fe462_01.png",
+      "bytes": 667,
+      "sha256": "b4d0e8586a2f253a0a79c2d58530ab221a8400daacf246e1b7c0cfcb061ca58d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d75e4719108ac640b86fe462_02.png",
+      "bytes": 716,
+      "sha256": "114752a6cddda9e7d334506ebe02647208b3ac48e0541affd4ad7a3521393e62"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d75e4719108ac640b86fe462_03.png",
+      "bytes": 693,
+      "sha256": "a39fef782820d68866a04c26f0598a9225817568147ca8c713acaa5b6b781e07"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d75e4719108ac640b86fe462_04.png",
+      "bytes": 715,
+      "sha256": "369acc2c3a4aaeca8d07556e08440bb4523c4fb3e70f682380ccfb4abf357271"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d7f71ddf72570c0d2ce9f782_00.png",
+      "bytes": 659,
+      "sha256": "c2f948962e63ebaa93cae50063f7e93f78df5ade91247f2f06c124efe8bf818e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d7f71ddf72570c0d2ce9f782_01.png",
+      "bytes": 698,
+      "sha256": "ef02141fa06c3636b6b1916c1c9c2ecf021181d08df774624ce5f5ba679372b5"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_d7f71ddf72570c0d2ce9f782_02.png",
+      "bytes": 694,
+      "sha256": "ec2da40044e27a5f80947519804ffa7832ebd8a5268a10e8c8feadf7f251c22b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_e0246fae8be4ad6f7783c39d_00.png",
+      "bytes": 671,
+      "sha256": "6e19d04235816e516ab983101b89da191005d04e80a6bec3377ace5d25abd07d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_e0246fae8be4ad6f7783c39d_01.png",
+      "bytes": 671,
+      "sha256": "005ec6ad08ace63ccdd7f15063bd3630a7c60773cd23003595a808e28a197fcd"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_e0246fae8be4ad6f7783c39d_02.png",
+      "bytes": 670,
+      "sha256": "fc127e36fe6ffbb1cff106997acbb221017a509d269881da0ca40f2987786cc1"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_e0246fae8be4ad6f7783c39d_03.png",
+      "bytes": 698,
+      "sha256": "dcf041d6872f6e4b7969f6fc7059389a926da1a673800aba370c1c33459e1f80"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_e0246fae8be4ad6f7783c39d_04.png",
+      "bytes": 695,
+      "sha256": "5d7d078883b8141d7c7e3ce889bfc0023f1a427c7df7290b45035f37137367a0"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_e18a50bcb9f6512ceea986e2_00.png",
+      "bytes": 720,
+      "sha256": "53a69b76ad2904c3a8f4b9528e538bc2bdece1f6ef4142e75d2cba14ed98e531"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_e18a50bcb9f6512ceea986e2_01.png",
+      "bytes": 671,
+      "sha256": "9e9c5327292a63f8efa2d214df28fbc52bdf79507f4095fb4aeecc62646e2b55"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_e18a50bcb9f6512ceea986e2_02.png",
+      "bytes": 652,
+      "sha256": "2b16575bdc6eaf0387f2f5cc4072e5d5b4691356801a4a8b62e8b15e508400c4"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_e832903af42590b5efdc9f2b_00.png",
+      "bytes": 736,
+      "sha256": "7fc6758640206948c8c949c0588c269cf4be83e92a6850d9b4584680fed8c3aa"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_e832903af42590b5efdc9f2b_01.png",
+      "bytes": 672,
+      "sha256": "a6cc233d9d47a53e6f52a4215f849451555d5d7cdc1fd307f3d3c4361abbf1f8"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_e832903af42590b5efdc9f2b_02.png",
+      "bytes": 662,
+      "sha256": "b535182f703e465c43349fc582924fb47aa7e19e4e61911e798057d6c453acd1"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_e832903af42590b5efdc9f2b_03.png",
+      "bytes": 717,
+      "sha256": "06e1e9c01aa2a7fe3cbaf3f1e85cf192befc7fc08a161fbcd8bedf5dbe136f30"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_ef0630c96ee4470fb6690936_00.png",
+      "bytes": 776,
+      "sha256": "6696818e1d3ce9d61130916e656913f266e1d07ca7d92642beaee8f169ef67be"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_ef0630c96ee4470fb6690936_01.png",
+      "bytes": 723,
+      "sha256": "8854c8fa7f86102bb0527ec441b185cf75f70b89b9694306a2166735977fd01d"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f1b45d9490a84d15040dc05b_00.png",
+      "bytes": 684,
+      "sha256": "0afe6861aa21eee26b1448bb1c0352e1b32b736a6eec77feeb40c0c1e82ccf6b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f1b45d9490a84d15040dc05b_01.png",
+      "bytes": 702,
+      "sha256": "28748542ae6b0bcda8b26b8663dd0b895b8efc14806efcfd99d048c8ad197fff"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f1b45d9490a84d15040dc05b_02.png",
+      "bytes": 629,
+      "sha256": "6bb01acf0e48d223fce9d9b6f9f83a0d163f3f63ad01d9f8e2a197bf9213c771"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f4892f438b6e0cbb2bd85a22_00.png",
+      "bytes": 714,
+      "sha256": "af6992290e906ca5323c80346eae2fbbdcba8bf6685d1cdb883a04a252a1bc91"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f4892f438b6e0cbb2bd85a22_01.png",
+      "bytes": 646,
+      "sha256": "d45949d88347c2c90005bc58cd4b829784cc11c1c3daa8ae5a25bae654f100bf"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f4892f438b6e0cbb2bd85a22_02.png",
+      "bytes": 676,
+      "sha256": "9843a1094b44ae2c5904cf2daffcab871eeb986b805736a120a8aafa125047d9"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f4892f438b6e0cbb2bd85a22_03.png",
+      "bytes": 681,
+      "sha256": "d6f1fdeb03bcd293724a046fd24b3fc26bd25b8bc6fd698d0f473d55110a8dba"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f4892f438b6e0cbb2bd85a22_04.png",
+      "bytes": 696,
+      "sha256": "db1ee7535bfbef5a4951e87e8fd392dad4e6db4137aacf1849ae317a5f1faaf7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f7fd7cdcc0c09b44dac23b8a_00.png",
+      "bytes": 663,
+      "sha256": "852334d67385e42c74a985211cdb9d02f0b19da5e6a93a0a4ed760bf87bd8028"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f7fd7cdcc0c09b44dac23b8a_01.png",
+      "bytes": 690,
+      "sha256": "99382391990c0f6ccf26a85e73af0d4d1b7da4e14b4aa1365bc95e56b09e51e6"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f7fd7cdcc0c09b44dac23b8a_02.png",
+      "bytes": 710,
+      "sha256": "043cba611cac47e0250144b206ee8e2bc21e79bfa165dded1b5526e3e10f3537"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f7fd7cdcc0c09b44dac23b8a_03.png",
+      "bytes": 680,
+      "sha256": "59f2c7b46580f9405f521a6d22006c7f2116ec9f9c6d1bd52ca0ea37d813c0bb"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_f7fd7cdcc0c09b44dac23b8a_04.png",
+      "bytes": 698,
+      "sha256": "239c2ddc4c2ce68827c65079393d6b8c698b26dde358157b2ac592a4afd6a0f5"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_faa729225359f842c051926f_00.png",
+      "bytes": 702,
+      "sha256": "791cf6ee1ff2e10c784ec28c107c5514431f7b3ac1494e130c9ef4f16e46c58b"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_faa729225359f842c051926f_01.png",
+      "bytes": 662,
+      "sha256": "7ee26f1ac95aa316afdb262de3aa288f94e352f637bf37fa54f276f14c258a59"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_faa729225359f842c051926f_02.png",
+      "bytes": 675,
+      "sha256": "b77793ee4af162eceeea28c53ad017fd8e5e529411a045d08672cf44e43333e3"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_faa729225359f842c051926f_03.png",
+      "bytes": 654,
+      "sha256": "c962299cc04b3c9f82504676309a852bbc08e7893b90d38c3c5e930c36138c34"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_faa729225359f842c051926f_04.png",
+      "bytes": 706,
+      "sha256": "4549df65024e09eaf1e3c5799e1372fdb467124f2be9a874d551414a262735f0"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_fd0cb7a9914baf1849bd9816_00.png",
+      "bytes": 679,
+      "sha256": "caa174a1b76cc1db2a7824cfe7b06a2ff0e446d6a36ebb3c368438272d2015a7"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_fd0cb7a9914baf1849bd9816_01.png",
+      "bytes": 634,
+      "sha256": "171fc28b38acf718c219d5084c75051680643846c30373fac88add7f7360aaf0"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_fd0cb7a9914baf1849bd9816_02.png",
+      "bytes": 635,
+      "sha256": "b8ea75d27ae04258328629f9070ac54cf21aa1ca51c0348679dc0f0da46c7161"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_fd0cb7a9914baf1849bd9816_03.png",
+      "bytes": 670,
+      "sha256": "72afcbed0c0a1c47e98589844d18bb519e1ca6370f1d0d7a74d743087e7fa94e"
+    },
+    {
+      "path": "runs/paddle_vl15_poker_sft_20260930/verified_chat_card_tiles/cand_fd0cb7a9914baf1849bd9816_04.png",
+      "bytes": 720,
+      "sha256": "e7db0a39cbb1eaeeaec041fd8a8c2e44d448b1b70c455a049454400b1ba741f2"
+    },
+    {
+      "path": "runs/suit_template_experiment_20260930/results.csv",
+      "bytes": 2180381,
+      "sha256": "3c1b03bba7e4b4af4dde0655480063dced5229f563a1c2dffe9b080593d9215a"
+    }
+  ],
+  "review_source_inputs": [
+    {
+      "path": "runs/smoke18_ready_current_20261013_205122/pipeline/physical_rows.jsonl",
+      "bytes": 1999251,
+      "sha256": "7ed9ec29f6945163d2c124353dc7358298dd2cf7b8122c20a1e0faff744b7822",
+      "original_absolute_path": "D:\\Новый парсер\\runs\\smoke18_ready_current_20261013_205122\\pipeline\\physical_rows.jsonl"
+    },
+    {
+      "path": "runs/smoke18_ready_current_20261013_205122/pipeline/seat_forced_inputs.jsonl",
+      "bytes": 27188259,
+      "sha256": "6d7aaf82219d15bc1839e84f6ade00d958d9ba889a4d12cbe3fa4fcdbb3d6829",
+      "original_absolute_path": "D:\\Новый парсер\\runs\\smoke18_ready_current_20261013_205122\\pipeline\\seat_forced_inputs.jsonl"
+    },
+    {
+      "path": "runs/smoke19_fps_benchmark_20261014_111634/BASELINE_NATIVE/pipeline/physical_rows.jsonl",
+      "bytes": 12634928,
+      "sha256": "508ce27446cb5c5118cf4d284d94e7b1e94e1b1cd75cd5aaaa954c4fea57ae0f",
+      "original_absolute_path": "D:\\Новый парсер\\runs\\smoke19_fps_benchmark_20261014_111634\\BASELINE_NATIVE\\pipeline\\physical_rows.jsonl"
+    },
+    {
+      "path": "runs/smoke19_fps_benchmark_20261014_111634/BASELINE_NATIVE/pipeline/seat_forced_inputs.jsonl",
+      "bytes": 147401127,
+      "sha256": "fa3cd43428832d12734f7bf465947e556142012eb02612c1c816da053b218d23",
+      "original_absolute_path": "D:\\Новый парсер\\runs\\smoke19_fps_benchmark_20261014_111634\\BASELINE_NATIVE\\pipeline\\seat_forced_inputs.jsonl"
+    }
+  ],
+  "database_policy": {
+    "included": false,
+    "reason": "User explicitly excluded nickname database from GitHub publication on 2026-10-14",
+    "initial_restored_state": "ABSENT_EMPTY_REGISTRY"
+  }
+}
