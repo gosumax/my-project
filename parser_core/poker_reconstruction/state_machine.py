@@ -37,7 +37,7 @@ class State:
         if type(delta) is not int or delta < 0:
             raise RuleError("INVALID_INTEGER_DELTA")
         p = self.players[name]
-        if p.start_stack is not None and p.total_commit - p.returned + delta > p.start_stack:
+        if p.remaining_stack is not None and delta > p.remaining_stack:
             raise RuleError("CONTRIBUTION_EXCEEDS_STACK")
         p.total_commit += delta
         if street:
@@ -185,7 +185,7 @@ class State:
                 self.pending = self.active() - {name}
             self.invest(name, delta)
             if event.all_in:
-                if p.start_stack is not None and p.total_commit - p.returned != p.start_stack:
+                if p.remaining_stack is not None and p.remaining_stack != 0:
                     raise RuleError("ALL_IN_DOES_NOT_EXHAUST_EXACT_STACK")
                 p.status = "ALL_IN"
             if event.semantics == "UNKNOWN":

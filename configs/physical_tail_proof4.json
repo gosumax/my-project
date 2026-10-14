@@ -1,0 +1,7 @@
+{
+  "schema": "poker.physical-tail-proof4.v1",
+  "enabled": true,
+  "native_threads": 4,
+  "dll": "native/physical_tail_proof4/wholeproof.dll",
+  "dll_sha256": "c6ba8e3ebace49deb97cabb7d462341ca6efabbd76d0379a5d92885899ec061b"
+}

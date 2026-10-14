@@ -37,6 +37,24 @@ def reconstruction_settings(config):
     return dict(config,allow_logic_math_output=True,strict_source_uniqueness=True,first_visible_stack_contract=True)
 
 
+def project_current_card_evidence(timeline, readings):
+    """Shared live/saved FULL projection after the source-bound canonical join.
+
+    Readings come from this run's PIXEL_ONLY producer (or its fresh saved-pixel
+    replay). Each proof keeps its existing native source and consumer guards.
+    """
+    from .visual_cards import associate_visual_evidence, project_chat_card_events
+    from .win_tail_evidence import project_win_tails
+    from .card_set_evidence import project_unique_card_sets
+
+    associate_visual_evidence(timeline, readings)
+    native = project_chat_card_events(timeline, readings)
+    winning = project_win_tails(timeline, readings)
+    derived = project_unique_card_sets(timeline, readings)
+    return dict(native_card_events=native, win_best_five_proofs=winning,
+                unique_card_set_proofs=derived)
+
+
 def connection_matrix(*, stage, ocr, header_lane, sidecar, stack_live, seat_binding,
                       stack_timeline, cards, reconstruction_enabled, diagnostic, hh_export):
     """ON denotes a connected consumer, never proven evidence or HH quality."""

@@ -1,0 +1,20 @@
+{
+  "authority": "ROOT_BLIND_NATIVE_PIXEL_LABEL_TEST_ONLY",
+  "source_row_key": "6:2843:17",
+  "source_frame": 2843,
+  "source_table": 6,
+  "source_session": "table_de6df4eff185ac16ec217d53",
+  "source_pts": 1455616,
+  "time_base": [
+    1,
+    15360
+  ],
+  "native_gray_sha256": "f3c6546f4d384bed1dbdee69e92750508a404ee568fe0a593f239f543b771441",
+  "native_png_sha256": "ed47002614627f879f355a1c3c9ac3f3867f5a78e345536385cb75ba0ed52c18",
+  "visually_observed_cards": [
+    "7s",
+    "Kh",
+    "4d"
+  ],
+  "runtime_authority": false
+}

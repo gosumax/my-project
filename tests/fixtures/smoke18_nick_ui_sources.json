@@ -1,0 +1,263 @@
+{
+  "source_file": "D:\\Новый парсер\\runs\\smoke18_ready_current_20261013_205122\\pipeline\\seat_forced_inputs.jsonl",
+  "source_sha256": "6d7aaf82219d15bc1839e84f6ade00d958d9ba889a4d12cbe3fa4fcdbb3d6829",
+  "observations": {
+    "ANE": {
+      "source_line": 2655,
+      "native_source": {
+        "table_id": 6,
+        "session_id": "table_80d74ea45f995eee1c57dbb5",
+        "hand_id": "2875902776",
+        "source_frame": 201,
+        "source_pts": 102912,
+        "time_base": [
+          1,
+          15360
+        ],
+        "kind": "NICK",
+        "seat": "seat6",
+        "roi": [
+          139,
+          277,
+          221,
+          295
+        ],
+        "source_ref": "6e108334815aad2719b349d31f6ba1df1543b5762e234e60eb4742018c31bf1e",
+        "pre_deal": true,
+        "ocr_response": {
+          "item_id": "6:201:105",
+          "status": "OK",
+          "raw_text": "ANE",
+          "score": 0.5653231739997864
+        },
+        "pixel_sha256": "6e108334815aad2719b349d31f6ba1df1543b5762e234e60eb4742018c31bf1e",
+        "png_base64": "iVBORw0KGgoAAAANSUhEUgAAAFIAAAASCAAAAADtH9YrAAABfUlEQVQ4Ea3BwU4TUQCG0e+7TAmhWHTpbqoP4PqOXfhGPrlKALGFmftL0zRNoCQseo4/BU1SmkFjUoiGSIyRZ5EYiU2lBREIB9quPv/yW5qUZjMlhuKE01koiTh2BFJaCU5a2lQ0MiECAgECyDT78dUvBIGwJ+E4CSBBgoQd2QkwVJcEgbAn4TgJIEGChB3ZCfC92rMlW0EggAQJOxJAwp4E2QsHQ7VnS7aCQAAJEnYkgIQ9CbIXDobqkiCnEWSoLglyGkGGag/I6QzVHpDTGapLgrzFMvF+QergkiBvM7xbkKHaA3KchGeG9wkwVHtAjutIy1nxEegAORjDKwHqyiVBjkm3YL0ZZx9z+8T84v6yGMLmvEBpd1PjpSB15ZIgR51/8PF+6j45/nY+v5FykXXaIv/Gjs0kLwWpK3tAXgvd5Wzq/rTuGv4+zC9vn+iux7vWXY93E8hrQerKHpDX4tliHOf369liotxcXN08MltsHlq3yDpMI4QXgtTVf18Fs27CSVa0AAAAAElFTkSuQmCC"
+      }
+    },
+    "r0bot": {
+      "source_line": 2733,
+      "native_source": {
+        "table_id": 6,
+        "session_id": "table_80d74ea45f995eee1c57dbb5",
+        "hand_id": "2875902776",
+        "source_frame": 205,
+        "source_pts": 104960,
+        "time_base": [
+          1,
+          15360
+        ],
+        "kind": "NICK",
+        "seat": "seat6",
+        "roi": [
+          139,
+          277,
+          221,
+          295
+        ],
+        "source_ref": "af6044661847d1688a77fb3db0b9835b41b0d7f46f9f94ccce35f58fe35b982c",
+        "pre_deal": true,
+        "ocr_response": {
+          "item_id": "6:205:105",
+          "status": "OK",
+          "raw_text": "r0bot",
+          "score": 0.9550722241401672
+        },
+        "pixel_sha256": "af6044661847d1688a77fb3db0b9835b41b0d7f46f9f94ccce35f58fe35b982c",
+        "png_base64": "iVBORw0KGgoAAAANSUhEUgAAAFIAAAASCAAAAADtH9YrAAADDklEQVQ4EXXBX2hVBQDH8e/v3HumhAZZUbOIezVEDTGageduOa8xN+l1EkZQEIVU1EshspB6KCm3LhIUWGFI0f/9eVg9BKZLfVChhLJGaWy2MdcfWs7S3XvOr53d1sW2Ph89KZBsB4mMZEEiJGNhWRbTLCwLK5FEYoQAUyMli+p/1VonIkiUyIFlAiU4zprAFqpkMThIAqNYCpI4kCxihAABBgyIONy4XMswAkyNMDMsyJQtZSsChEklgeIAYapElYFCpDxGgKkRJuVsBS2ZKGcWbTtwCRAmlQRSgjBVospAY6QcIKqMqDIzXNe449qhHcM3fNIyjgCTWnZ5vAzCpASYWYVIOUBUGVFlZvjWZ3/4Jqp7YunB4igCTKp0pu8cCJMSYGYVIuUxIGqMmObr1l1Yceqtewc3v9hQf2jbmkt9fwTZ4i0/H5y866nzHx77k7mMKETKY0DUGDEtu/6lX0a79671qo836MiJLxvGOiaeWXds/eC+Le2Tvf3jzGVEIVKOlJgj3NS5+9zil1dyW89GHdo5ePPurZO9rx5fvqtjtONM99dl5leIlCMl/kthc2nLb8U9q1jds0mft/y44KtHM889/O3C/gPdXWffHeJ/FCLlMWIeYXOpbezuV1ZkV/YU46ONY5x4esljj58OPnu7u+v794fNXEZEBeUxYh5hc6l1tOn1Db837F9z/UDzWObU9szzDw5yZF/P3u/eGwqYy4hCpBwgrmQEYXOpdWR150fdj9y5denAzp7Ne9onekv9d7yw64uu8XfOMg8DhUg5QFzJCMLmUsv5xfe1X8681nfj0f1t5YHOye33lDMn3xx54KHDbwwxl4GoSXmMSBkBRhhDUN/6wcW6q9uyk59ezN5/+vbKwHB8TXHh1PGfyjcVR05eoEZUGRE1KY8RKSPACGMIp+piI1/1F4lIFjCFspW6ShwSZ6hY/EtUGRE1KQeIWUaYVBwIZCxhyJadSeLQJCIlsPiHqDIialIOELOMMMg4I0icSA4rluykLpaxMuUgCSvCQphposqIqOlvAU1OfTxmBKkAAAAASUVORK5CYII="
+      }
+    },
+    "5OD": {
+      "source_line": 4561,
+      "native_source": {
+        "table_id": 6,
+        "session_id": "table_80d74ea45f995eee1c57dbb5",
+        "hand_id": "2875902776",
+        "source_frame": 470,
+        "source_pts": 240640,
+        "time_base": [
+          1,
+          15360
+        ],
+        "kind": "NICK",
+        "seat": "seat6",
+        "roi": [
+          139,
+          277,
+          221,
+          295
+        ],
+        "source_ref": "f96d41bd0bf72206b7f4ad4c38ee81934afacf094794dd1a8e6b9a427af0c943",
+        "pre_deal": true,
+        "ocr_response": {
+          "item_id": "6:470:105",
+          "status": "OK",
+          "raw_text": "5OD",
+          "score": 0.5265771746635437
+        },
+        "pixel_sha256": "f96d41bd0bf72206b7f4ad4c38ee81934afacf094794dd1a8e6b9a427af0c943",
+        "png_base64": "iVBORw0KGgoAAAANSUhEUgAAAFIAAAASCAAAAADtH9YrAAAB+0lEQVQ4EY3BzYvMcQDH8ffnO2uXxLJbWxzsD+WxlJPZXzM5SPJQ6+joISUnf5OL4uAkkjxdtGf2gNQSrd2mlZWHMb/v98OYpu3bMHm9dA2QsQAZgTHCQkYYCEAERI/4O5E2bmvpEF0J8VsMtUSXgaBIkOlJEqZH5ESfR2f2qADEcAaE6RM50zNCpN5UAYjhDAjTJ3KmZySmMNPQLsz/EGvMP9ihbKrA/A+xxuQCa2aOaidG5IwwXcL0GdEnDIhB9VI7MSJnhOkSps+IPmFADKqXKgCRM8MJMCAG1UsVgMiZ4QQYEIPqpaYRImdAoSLVPBJHok0gRJnfHFyrhPiHelPTCJEzXUoEo6SEAoRK/KEEQvzdkaYKQOQMGAJJOLiWSMLB/OFgQBgxqN5QAYicgdEJ5FCttkNtauzLys/RNOkWsG5Ste8/vgFGDGrMqEAWuUSgOKWk0Ln7bvux8eSVx62x80t32lHj59ZHOi/mv9BRIGegbKhAFrlEYO9s63VU9bI6O/X82+Z9729vuLp4sx21+dLPV9WOTc/mf4DIGSgbKpBFLhHYN/vm/nelzoHTC48+bZnder268uFWO2riQuvp8u4TSw+Wq1oiZ6BsqEAWuURg/5mPTzrpa/vg8bm5Tjx5+Mbq5cWb7ajxi58fvl13mXsLRJEzUDZ+AYAyy329bEs9AAAAAElFTkSuQmCC"
+      }
+    },
+    "5OLD": {
+      "source_line": 4671,
+      "native_source": {
+        "table_id": 6,
+        "session_id": "table_80d74ea45f995eee1c57dbb5",
+        "hand_id": "2875902776",
+        "source_frame": 480,
+        "source_pts": 245760,
+        "time_base": [
+          1,
+          15360
+        ],
+        "kind": "NICK",
+        "seat": "seat6",
+        "roi": [
+          139,
+          277,
+          221,
+          295
+        ],
+        "source_ref": "ea63bdf23ebdfcc8b3e0ef7a7533d341888966468cad6640d7f1f60ed8487b3f",
+        "pre_deal": true,
+        "ocr_response": {
+          "item_id": "6:480:105",
+          "status": "OK",
+          "raw_text": "5OLD",
+          "score": 0.5612566471099854
+        },
+        "pixel_sha256": "ea63bdf23ebdfcc8b3e0ef7a7533d341888966468cad6640d7f1f60ed8487b3f",
+        "png_base64": "iVBORw0KGgoAAAANSUhEUgAAAFIAAAASCAAAAADtH9YrAAAB8ElEQVQ4EY3BzUsUcQDG8e8zo1JYLViBdNDZgx6CPLvT1C0qIoWOHTpk4bm/qUOnEIJeoENYQXT0EPQGYVTSpoYki6vu72mHzZaZEfHz0T1AJucoILpkukQQ/ykg0WP6RJ/l4TO/NEVOgC1hkAIgDAbxj2zRI8D0CDB7PHShrgRxGKZP7M9AmilBHIbpE/szkGYaByIOZgQY0WOKRI+BRqZxIOJgRoARPaZI9BhoZKpjRJHZI8DkhAFh+kSRgTRTHSOKzB4BJicMCNMnigykmepUGWGqhBEmJ4woM2mmOlVGmCphhMkJI8pMmqmOEUWmS3YcpCAjhBUAEaLgCMQ+DExfVB0jikzOSCjEwSCgE4GwI4Msqgw0MiWAKDI5gTGOACPLoktB6sgRIIoMNFIlgCgyMHQKy/7d9uDokc3V7YjTXgUGRmKHjTY5UWRg+rwSRJXj5IqAzuNvo5eHB3abL5vDt34+bcGxm0NBnaX364AoM2mmBFHleHJ27UPQzqedGyNL28fPLj86Or/ysAW12+2PnbHa63ftEFFh0kwJIMocT15ffrJlPDH7eXHjxMzJ+7t3vy+0ArW59cXVsavN581gUWbSTAkgyhxPzKy8arO1OXXpzds21849+HPnx0IrUJtbe/F1cN7PvgRHlJk0+wsIpc98OE53/wAAAABJRU5ErkJggg=="
+      }
+    },
+    "5On": {
+      "source_line": 4970,
+      "native_source": {
+        "table_id": 6,
+        "session_id": "table_80d74ea45f995eee1c57dbb5",
+        "hand_id": "2875902776",
+        "source_frame": 509,
+        "source_pts": 260608,
+        "time_base": [
+          1,
+          15360
+        ],
+        "kind": "NICK",
+        "seat": "seat6",
+        "roi": [
+          139,
+          277,
+          221,
+          295
+        ],
+        "source_ref": "e7295eb33e4d5b8845e75dd13a6215cfeaf09448a21db28fed97287ddb8cf6a5",
+        "pre_deal": true,
+        "ocr_response": {
+          "item_id": "6:509:105",
+          "status": "OK",
+          "raw_text": "5On",
+          "score": 0.5110195279121399
+        },
+        "pixel_sha256": "e7295eb33e4d5b8845e75dd13a6215cfeaf09448a21db28fed97287ddb8cf6a5",
+        "png_base64": "iVBORw0KGgoAAAANSUhEUgAAAFIAAAASCAAAAADtH9YrAAABrklEQVQ4EY3BUU9bBQAG0POVAmbsZQ8ziplr1b36bJs7/5O/eC9myIhxiUAQ2n7upiopxW3n5BekRp1sxAepD2IT/8lGYqvuxb2mJ6cX+dEoaBMl2SBKiX+kja2gtoL6V49ezzMTn6PuxeOK5ZCZ+Bx1Lx5XLIe8xMTHVVCxVbtiq1gMeYmJj6ugYqt2xVaxGDJXsatGMapRUFGjGFXsKpZD5ip21ShGNQoqahSjil3FcsjcvroXoxrFp9RyyNy+uhekNYpPqeWQuYpdRWyCFBNFBQ2p/1GL15mr2FVkYu1go4Q0NoIiUo+q5ZAZYlcRTX0QbYgaRTNZx2OKxZAZYleRI2Szttk8ndz91YlpV2U6NVndmjT1UPHTz5mJh4ovTpGe3Rw9P25u3t0dvLj9bR3HX+bQ3eX7DWLfYshMPFScvLi5bPP7wemTP9bTZ3/+evjq6u1dTH+4vfQ051cl9i2GzBC7iien12dMcnx6dbGenh6/yXdXb1fpdH5zvj75+vr8No19iyEzxK7i5Jvr84lVTr56916eP3uzfnV1ttLDb2/PVvl+fXFJ7FsMfwOoOLGCc/lXxwAAAABJRU5ErkJggg=="
+      }
+    },
+    "ANe_F202": {
+      "source_line": 2680,
+      "native_source": {
+        "table_id": 6,
+        "session_id": "table_80d74ea45f995eee1c57dbb5",
+        "hand_id": "2875902776",
+        "source_frame": 202,
+        "source_pts": 103424,
+        "time_base": [
+          1,
+          15360
+        ],
+        "kind": "NICK",
+        "seat": "seat6",
+        "roi": [
+          139,
+          277,
+          221,
+          295
+        ],
+        "source_ref": "5d8fe09971eb8503b2abaf97d207ec4a3d516236bfbd5e274daf666874eda249",
+        "pre_deal": true,
+        "ocr_response": {
+          "item_id": "6:202:105",
+          "status": "OK",
+          "raw_text": "ANe",
+          "score": 0.34615278244018555
+        },
+        "pixel_sha256": "5d8fe09971eb8503b2abaf97d207ec4a3d516236bfbd5e274daf666874eda249",
+        "png_base64": "iVBORw0KGgoAAAANSUhEUgAAAFIAAAASCAAAAADtH9YrAAABbklEQVQ4Ea3BQW7aUABF0Xu/SVxQN9CZSRfQ8XcZdEddeWdtIMH+r0EIIQVHyoBz/C1oktIMGpNCNERijLyJxEhsKi2IQLjS9vXbH3+kSWk2U2Iozjh3oSTitCKQ0kpw1tLmopEZERAIEEDmh1/ffSIIhAsJyySABAkSzuQswFjdEgTChYRlEkCCBAlnchbgZ3XgRE6CQAAJEs4kgIQLCXIRrsbqwImcBIEAEiScSQAJFxLkIlyN1S1B7iPIWN0S5D6CjNUBkPsZqwMg9zNWtwT5iITPC1JHtwT5mOHTgozVAZBlEt4YPifAWB0AWdbRiB0T0AFyNYcbAerOLUGWpNtwOGa1Zj/ZP76sSgnkuFLIYeZGkLpzS5BFq7XHZ7qN89/S9/tQHvNKW+fYYIq8F6TuHAC5Fbq+a92/1m3I4bXv9zNlMx/SbeZ9kyVB6s4BkFuxrDN92R+7TYvPD/1+oltPL+nWvMTMEN4JUnf/AWHysG4rsTnlAAAAAElFTkSuQmCC"
+      }
+    },
+    "5On_F512": {
+      "source_line": 4989,
+      "native_source": {
+        "table_id": 6,
+        "session_id": "table_80d74ea45f995eee1c57dbb5",
+        "hand_id": "2875902776",
+        "source_frame": 512,
+        "source_pts": 262144,
+        "time_base": [
+          1,
+          15360
+        ],
+        "kind": "NICK",
+        "seat": "seat6",
+        "roi": [
+          139,
+          277,
+          221,
+          295
+        ],
+        "source_ref": "d1a6d0b300fdc2f12ab26ea7dfbcfcb5a284941fc969561e54f802433ee754f5",
+        "pre_deal": true,
+        "ocr_response": {
+          "item_id": "6:512:105",
+          "status": "OK",
+          "raw_text": "5On",
+          "score": 0.28797364234924316
+        },
+        "pixel_sha256": "d1a6d0b300fdc2f12ab26ea7dfbcfcb5a284941fc969561e54f802433ee754f5",
+        "png_base64": "iVBORw0KGgoAAAANSUhEUgAAAFIAAAASCAAAAADtH9YrAAABYElEQVQ4Ea3By04TARgG0PO10wYDaHHphvYFXNtm8J18bhMjYrkNnV/IiARaCYuek29IeVCjXtxLuRd9/JNeYlCexJNKHX76ns8eBFWJIukRRRF/pSoGQRkE5VFNzxaZi7coT2K3wqrNXLxFeRK7FVZtTjHyuhKUGJTnYlBYtjnFyOtKUGJQnotBYdlmocR+FFZtFkrsR2HVZmGfyqrNwj6VVZuFEtuCMojyKO6V/yjLsyyU2FaIQYlHhUjZqazazBHbgjKI8igouxWWbeaIbQ2CDgd918egQfVll8KXr5mLl0qMj7Np+vq9GR8Z993VxsndBcZH477G11eF2LZsMxcvlWiO+htyM3o3ud4009u1j90Fmlm/njYubxDblm3miOdKTI5vL3ujzeT47oKT8Q+zu3NMZt0vzfvuHLFt2WaOeK7E9LhbpzYmR9fr5PDgp1l3juZDt+5GJ/mB2LZs/wApv4OC2uvS1AAAAABJRU5ErkJggg=="
+      }
+    },
+    "5on_F513": {
+      "source_line": 4992,
+      "native_source": {
+        "table_id": 6,
+        "session_id": "table_80d74ea45f995eee1c57dbb5",
+        "hand_id": "2875902776",
+        "source_frame": 513,
+        "source_pts": 262656,
+        "time_base": [
+          1,
+          15360
+        ],
+        "kind": "NICK",
+        "seat": "seat6",
+        "roi": [
+          139,
+          277,
+          221,
+          295
+        ],
+        "source_ref": "61cc654fe70a285de34360dd136f4f15ad656b89e80555b9172aebc35bc9c774",
+        "pre_deal": true,
+        "ocr_response": {
+          "item_id": "6:513:105",
+          "status": "OK",
+          "raw_text": "5on",
+          "score": 0.25781428813934326
+        },
+        "pixel_sha256": "61cc654fe70a285de34360dd136f4f15ad656b89e80555b9172aebc35bc9c774",
+        "png_base64": "iVBORw0KGgoAAAANSUhEUgAAAFIAAAASCAAAAADtH9YrAAABUklEQVQ4EZXBQVITCQAF0PebKJUBL+DG5AKuJ6nWO3ludxagCaT/YEUGKFqM7+ULUj91mARR92KK/2WSOKpH8ajpxfuv+einoE2UpCVKiV/SxlFQR0E96NtP66zEKepRzCu2Y1biFPUo5hXbMR8weF3FU/VcHBWbMR8weF3FU/VcHBWbMWsVr6s4RbEds1bxuopTFNsxa39WcZrajln7s4rT1HbMWsVLQR1FPYh79Ru1+ZS1ir+VmlXbMSvES0EdRT0Ial6xGbNCvLQowR3e9FC/nLk31Zzi389ZieeKGJbpMNndDUuZuptcTDfIcqhhv6+YsxmzEs8VcbbsLbl1vthPw5vbncvDDfKuu2FhvxdzNmNWiKeKWCzvdpPhsFhON1wO37ybrjBc9HoYlodrMWczZoV4qojFP4fv6eRsuf+RnL+9dnm4cu+yN82FKzFnM/4Hs6aBgmP7eSsAAAAASUVORK5CYII="
+      }
+    }
+  },
+  "label_scope": "Retained exact native T06 crops. ANE/5OD/5OLD/5On visually show clipped ANTE/FOLD; r0bot shows nickname. No OCR/source row has been modified."
+}

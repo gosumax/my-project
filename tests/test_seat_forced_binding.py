@@ -147,7 +147,8 @@ def test_all_in_continuation_rejects_unproven_join(change):
 
 
 class FakeOCR:
-    def __init__(self,*a,**kw):self.errors=[];self.batches=[]
+    def __init__(self,*a,**kw):
+        self.errors=[];self.batches=[];self.jobs=SimpleNamespace(join=lambda:None)
     def submit_batch(self,b):self.batches.append(b)
     def finish(self):pass
 
@@ -210,7 +211,7 @@ def test_confirmed_marker_preserves_candidate_chat_before_deal_without_admission
     assert len(binder.ocr.batches)==1
 
 
-def test_numeric_nickname_from_fixed_nick_roi_keeps_exact_three_frame_label(binder):
+def test_numeric_nickname_from_fixed_nick_roi_uses_first_qualified_frame(binder):
     key=binder.test_key
     source=snapshot(hand=key[2])
     for row in source:row['text']=row['text'].replace('p0','7697')
@@ -223,8 +224,137 @@ def test_numeric_nickname_from_fixed_nick_roi_keeps_exact_three_frame_label(bind
                                           kind='NICK',seat='seat1',source_ref=row.pixel_sha256))
         binder.completed(row,dict(status='OK',raw_text='7697',score=.99998))
     labels=binder.nick_labels[(*key,'seat1')]
-    assert labels[0]['actor']=='7697' and labels[0]['frames']==[21,22,23]
-    assert binder.seats_for_actor(key,'7697',23)==['seat1']
+    assert labels[0]['actor']=='7697' and labels[0]['frames']==[21]
+    assert binder.seats_for_actor(key,'7697',21)==['seat1']
+
+
+def queue_nick(binder,frame,text,score=.99):
+    from parser_core.parallel_ocr import row_key
+    row=binder.row(3,'S',frame,frame*512,[1,15360],100,0,np.ones((2,2),np.uint8),'NICK_ONLY')
+    binder.jobs[row_key(row)]=(binder.test_key,dict(kind='NICK',seat='seat1',source_frame=frame))
+    return row,dict(status='OK',raw_text=text,score=score)
+
+
+def test_first_nick_waits_for_earlier_pending_source_not_first_callback(binder):
+    early=queue_nick(binder,21,'first',.95);later=queue_nick(binder,24,'later',.999)
+    binder.completed(*later)
+    assert not binder.nick_labels[(*binder.test_key,'seat1')]
+    binder.completed(*early)
+    assert binder.nick_labels[(*binder.test_key,'seat1')][0]['actor']=='first'
+    assert binder.nick_labels[(*binder.test_key,'seat1')][0]['frames']==[21]
+
+
+def test_pending_sources_remain_exact_after_duplicate_frame_overwrite_pop_and_clear():
+    from parser_core.seat_forced_binding import PendingSourceJobs
+    jobs=PendingSourceJobs();key=(3,'S','12345678');route=(*key,'seat1')
+    value=lambda f:(key,dict(kind='NICK',seat='seat1',source_frame=f))
+    jobs.update(a=value(21),b=value(24),c=value(21))
+    jobs['prefix']=(key,dict(kind='CHAT_CANDIDATE',source_frame=11))
+    assert jobs.earliest_pending[route]==21 and jobs.pending_prefix[key]==1
+    jobs.pop('a');assert jobs.earliest_pending[route]==21
+    jobs['c']=value(30);assert jobs.earliest_pending[route]==24
+    jobs.pop('b');assert jobs.earliest_pending[route]==30
+    jobs.pop('prefix');assert key not in jobs.pending_prefix
+    jobs.clear();assert not jobs and not jobs.earliest_pending and not jobs.pending_prefix
+
+
+def test_nick_below_090_does_not_block_later_first_qualified_source(binder):
+    early=queue_nick(binder,21,'weak',.8999);later=queue_nick(binder,24,'first',.90)
+    binder.completed(*later);binder.completed(*early)
+    assert binder.nick_labels[(*binder.test_key,'seat1')][0]['frames']==[24]
+
+
+def test_low_empty_callback_drains_later_qualified_nick_without_clearing_seat(binder):
+    from parser_core.seat_occupancy import SeatOccupancyEvidence
+    binder.occupancy=SeatOccupancyEvidence(.95,nickname_confidence=.90)
+    early=queue_nick(binder,21,'OPEN SEAT',.92)
+    later=queue_nick(binder,24,'first',.93)
+    binder.occupancy.observe(binder.test_key,'seat1',24,later[0].pixel_sha256)
+    binder.completed(*later)
+    assert not binder.nick_labels[(*binder.test_key,'seat1')]
+    binder.completed(*early)
+    labels=binder.nick_labels[(*binder.test_key,'seat1')]
+    assert len(labels)==1 and labels[0]['actor']=='first' and labels[0]['frames']==[24]
+    assert not any(r.get('kind')=='EMPTY' for r in binder.machine.events)
+
+
+def test_earlier_numeric_nick_waits_for_prefix_before_later_alphabetic_callback(binder):
+    key=binder.test_key
+    early=queue_nick(binder,21,'7697',.95);later=queue_nick(binder,24,'later',.999)
+    binder.completed(*later);binder.completed(*early)
+    assert not binder.nick_labels[(*key,'seat1')]
+    source=snapshot(hand=key[2])
+    for row in source:row['text']=row['text'].replace('p0','7697')
+    binder.forced[key]=parse_forced_snapshot(source,key[2],8)[0]
+    binder._resolve_nick_labels()
+    assert binder.nick_labels[(*key,'seat1')][0]['actor']=='7697'
+    assert binder.nick_labels[(*key,'seat1')][0]['frames']==[21]
+
+
+def test_qualified_nick_does_not_change_later_in_same_hand(binder):
+    binder.completed(*queue_nick(binder,21,'first',.95))
+    binder.completed(*queue_nick(binder,99,'WINNER',.999))
+    assert [r['actor'] for r in binder.nick_labels[(*binder.test_key,'seat1')]]==['first']
+
+
+def prefix_capture_fixture(binder,monkeypatch):
+    key=binder.test_key;lines=[r['text'] for r in snapshot(hand=key[2])]
+    chat=np.repeat(np.arange(len(lines),dtype=np.uint8)[:,None],24,axis=1)
+    monkeypatch.setattr('parser_core.seat_forced_binding.physical_spans',lambda image:[(i,i+1) for i in range(len(lines))])
+    monkeypatch.setattr('parser_core.seat_forced_binding.padded_row_span',lambda spans,i,height:(i,i+1))
+    binder.sidecar.windows[key].deal=None
+    binder.sidecar.profile={'slots':{'slot_03':{'seats':{}}}}
+    return key,lines,chat,np.zeros((10,24,3),np.uint8)
+
+
+@pytest.mark.parametrize('complete',[True,False])
+def test_complete_early_prefix_avoids_later_ocr_only_when_all_posts_valid(binder,monkeypatch,complete):
+    key,lines,chat,rgb=prefix_capture_fixture(binder,monkeypatch)
+    binder.observe_frame(3,'S',11,11,[1,30],rgb,chat)
+    early=[row for batch in binder.ocr.batches for row in batch]
+    for i,row in enumerate(early):
+        binder.completed(row,dict(status='OK',raw_text=lines[i],score=.9 if i==1 and not complete else .99))
+    binder.sidecar.windows[key].confirm_deal(dict(evidence_status='PROVEN',table_pixel_sha256='table',
+        occupied_seats=[f'seat{i}' for i in range(1,9)],source_frame=20))
+    binder.observe_frame(3,'S',21,21,[1,30],rgb,chat)
+    submitted=[row for batch in binder.ocr.batches for row in batch]
+    if complete:
+        assert submitted==early and len(binder.forced[key]['posts'])==10
+        assert {p['source_frame'] for p in binder.forced[key]['posts']}=={11}
+        assert {r['kind'] for p in binder.forced[key]['posts'] for r in p['source_rows']}=={'CHAT_CANDIDATE'}
+        assert binder.counts['FORCED_CHAT_OCR_ROWS_AVOIDED']==len(lines)
+    else:
+        assert len(submitted)==2*len(lines)
+        assert {r.frame_id for r in submitted[len(lines):]}=={21}
+
+
+@pytest.mark.parametrize('complete',[True,False])
+def test_prefix_pending_at_eof_drains_before_shutdown_and_preserves_fallback(binder,monkeypatch,complete):
+    from parser_core.parallel_ocr import ParallelRowOCR
+    key,lines,chat,rgb=prefix_capture_fixture(binder,monkeypatch)
+    ready=threading.Event();calls=[]
+    class Client:
+        def read_batch(self,prepared,size):
+            assert ready.wait(2)
+            calls.extend(item['item_id'] for item in prepared)
+            result=[]
+            for item in prepared:
+                table,frame,index=map(int,item['item_id'].split(':'))
+                offset=index-(2000 if frame==11 else 1000)
+                result.append(dict(item_id=item['item_id'],status='OK',raw_text=lines[offset],
+                    score=.9 if frame==11 and offset==1 and not complete else .99))
+            return dict(results=result)
+        def close(self):pass
+    binder.ocr=ParallelRowOCR(lambda worker:Client(),workers=1,queue_size=1,batch_size=8,result_observer=binder.completed)
+    binder.observe_frame(3,'S',11,11,[1,30],rgb,chat)
+    binder.sidecar.windows[key].confirm_deal(dict(evidence_status='PROVEN',table_pixel_sha256='table',
+        occupied_seats=[f'seat{i}' for i in range(1,9)],source_frame=20))
+    binder.observe_frame(3,'S',21,21,[1,30],rgb,chat)
+    assert key in binder.pending_snapshots
+    ready.set();binder.finish()
+    assert len(calls)==len(lines)*(1 if complete else 2)
+    assert {p['source_frame'] for p in binder.forced[key]['posts']}==({11} if complete else {21})
+    assert not binder.ocr.errors
 
 
 @pytest.mark.parametrize('snapshot_proof',[None,dict(actors=['7697'],forced_snapshot_complete=False),
@@ -545,6 +675,22 @@ def test_standard_ante_special_actor_on_two_seats_blocks_adjustment(binder):
     r=combined_math_summary(binder.output)['results'][0]
     assert r['status']=='UNKNOWN' and r['blocker']=='SPECIAL_FORCED_SEAT_UNKNOWN'
     assert r['displayed_stack']=='1000'
+
+
+def test_first_pre_deal_nick_is_consumed_by_blind_reverse_and_state_event_binding(binder):
+    from parser_core.nickname_roster_binding import FIRST_NICK_POLICY
+    key=standard_snapshot(binder)
+    binder.nick_labels[(*key,'seat2')]=[dict(actor='small',frames=[15],nickname_witness_policy=FIRST_NICK_POLICY)]
+    install_raw_triplet(binder,key,'seat2',[24,25,26])
+    binder.stack_live.states[key]['numeric_triples']['seat2'].update(
+        clean_window_rule='FIRST_VISIBLE_STABLE_STACK_TRIPLE_AFTER_DEAL_COMPLETE',status='PASS')
+    binder.state_events.append(dict(table=key[0],session=key[1],hand_id=key[2],frame=22,
+        source_index=1,actor='small',kind='sit out',source_ref='real_state_event_fixture'))
+    binder.finish()
+    summary=json.loads((binder.output/'seat_forced_summary.json').read_text('utf-8'))
+    assert not summary['unresolved_state_events']
+    result=next(r for r in summary['results'] if r['seat']=='seat2')
+    assert result['status']=='PROVEN_FOR_MATH' and result['forced_bets']=={'ANTE':100,'SB':500}
 
 
 def test_standard_ante_two_actors_on_blind_seat_block_adjustment(binder):

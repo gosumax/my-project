@@ -28,6 +28,13 @@ class Player:
     payout: int = 0
     start_stack: int | None = None
 
+    @property
+    def remaining_stack(self):
+        """Exact saved initial stack less net paid chips; unknown stays unknown."""
+        if self.start_stack is None:
+            return None
+        return self.start_stack - (self.total_commit - self.returned)
+
 
 class RuleError(ValueError):
     pass

@@ -71,7 +71,7 @@ def _verify_gray_source(row):
     return pixels
 
 
-def _nickname_triples(rows, key, source, end, confidence, deal, forced_source):
+def _legacy_nickname_triples(rows, key, source, end, confidence, deal, forced_source):
     by_seat = defaultdict(dict)
     frame_pts = {source:deal['source_pts']}
     frame_pts[forced_source[0]]=forced_source[1]
@@ -137,7 +137,86 @@ def _nickname_triples(rows, key, source, end, confidence, deal, forced_source):
     return triples
 
 
-def prove_roster_binding(inputs):
+from .nickname_policy import (FIRST_NICK_POLICY, FIRST_NICK_POLICY_V1,
+    FIRST_NICK_POLICIES, nickname_witness_floor)
+
+
+def nickname_epoch_matches(machine, key, seat, frame, deal_frame, epoch):
+    """An early name may precede DEAL occupancy, never a physical replacement."""
+    if frame >= deal_frame:
+        return machine.epoch_at(*key[:2], seat, frame) == epoch
+    if any((e['table'], e['session'], e['seat']) == (*key[:2], seat)
+           and frame <= e['frame'] <= deal_frame
+           and (e['kind'] in {'EMPTY', 'REPLACE'} or e['status'] != 'APPLIED')
+           for e in machine.audit):
+        return False
+    earlier = machine.epoch_at(*key[:2], seat, frame)
+    return earlier in (None, epoch) and machine.epoch_at(*key[:2], seat, deal_frame) == epoch
+
+
+def nickname_hand_bounds(inputs):
+    """Current confirmed hand, ending before the next header or observed EOF."""
+    key=tuple(inputs['context'])
+    triggers=[t for t in inputs['hand_triggers'] if
+        (t['table_id'],t['session_id'])==key[:2]]
+    own=[t['source_frame'] for t in triggers if t['hand_id']==key[2]]
+    if not own:raise ValueError('NICK_HAND_START_UNKNOWN')
+    start=min(own)
+    following=[t['source_frame'] for t in triggers if t['hand_id']!=key[2]
+               and t['source_frame']>start]
+    observed=inputs.get('observed_capture_end_frame')
+    if observed is None:
+        observed=max([inputs['deal']['source_frame']]+[
+            r['source_frame'] for r in inputs['nick_rows'] if
+            (r.get('table_id'),r.get('session_id'),r.get('hand_id'))==key])
+    if type(observed) is not int or observed<start:raise ValueError('NICK_HAND_END_UNKNOWN')
+    return start,min(observed,min(following)-1) if following else observed
+
+
+def _nickname_triples(rows, key, source, end, confidence, deal, forced_source):
+    """Historical function name; new witnesses contain one real source frame."""
+    by_seat=defaultdict(dict)
+    frame_pts={deal['source_frame']:deal['source_pts'],forced_source[0]:forced_source[1]}
+    for row in rows:
+        if row.get('kind')!='NICK':continue
+        if (row.get('table_id'),row.get('session_id'),row.get('hand_id'))!=key:
+            raise ValueError('NICKNAME_SOURCE_CONTEXT_CONFLICT')
+        frame=row.get('source_frame')
+        if type(frame) is not int:raise ValueError('NICKNAME_SOURCE_FRAME_UNKNOWN')
+        if not source<=frame<=end:continue
+        pts=row.get('source_pts')
+        if (row.get('time_base')!=deal['time_base'] or type(pts) is not int or
+                (frame<deal['source_frame'] and pts>=deal['source_pts']) or
+                (frame==deal['source_frame'] and pts!=deal['source_pts']) or
+                (frame>deal['source_frame'] and pts<=deal['source_pts'])):
+            raise ValueError('NICKNAME_SOURCE_TIME_CONFLICT')
+        if frame in frame_pts and frame_pts[frame]!=pts:raise ValueError('NICKNAME_SOURCE_FRAME_PTS_CONFLICT')
+        frame_pts[frame]=pts
+        prior=by_seat[row['seat']].get(frame)
+        if prior is not None and prior!=row:raise ValueError('NICKNAME_DUPLICATE_SOURCE_CONFLICT')
+        by_seat[row['seat']][frame]=row
+    times=[frame_pts[f] for f in sorted(frame_pts)]
+    if times!=sorted(set(times)):raise ValueError('NICKNAME_SOURCE_ORDER_CONFLICT')
+    from .chat_nick_actor import literal_constraint as current_constraint, prove_nick_ui_overlay
+    result=defaultdict(list)
+    for seat,readings in by_seat.items():
+        for frame,row in sorted(readings.items()):
+            response=row.get('ocr_response',{});score=response.get('score')
+            if (response.get('status')!='OK' or type(score) not in (int,float) or
+                    not math.isfinite(score) or not confidence<=score<=1):continue
+            constraint=current_constraint((response.get('raw_text') or '').strip())
+            if constraint is None or prove_nick_ui_overlay(row) is not None:continue
+            roi=_seat_rois()[f'slot_{key[0]:02d}']['seats'][seat]['nick']
+            if list(row.get('roi',[]))!=list(roi):raise ValueError('NICKNAME_FIXED_SEAT_ROI_CONFLICT')
+            pixels=_verify_gray_source(row)
+            if pixels.shape!=(roi[3]-roi[1],roi[2]-roi[0]):raise ValueError('NICKNAME_PIXEL_SHAPE_CONFLICT')
+            result[seat].append(dict(constraint=constraint,frames=[frame],
+                source_rows=[copy.deepcopy(row)]))
+            break
+    return result
+
+
+def prove_roster_binding(inputs, *, _legacy=False, _witness_policy=FIRST_NICK_POLICY):
     """Find the first complete literal constraint graph; never retry conflicts."""
     def unknown(reason):
         return dict(status='UNKNOWN', reason=reason, binding_rule=RULE)
@@ -199,8 +278,10 @@ def prove_roster_binding(inputs):
         confidence = inputs.get('confidence', .95)
         if type(confidence) not in (int, float) or not math.isfinite(confidence) or confidence < .95:
             return unknown('ROSTER_CONFIDENCE_GATE_UNKNOWN')
-        end = deal_frame + inputs['capture_frames']
-        triples = _nickname_triples(inputs['nick_rows'], key, deal_frame, end, confidence, deal,(source,prefix_pts))
+        start,end=(deal_frame,deal_frame+inputs['capture_frames']) if _legacy else nickname_hand_bounds(inputs)
+        witness=_legacy_nickname_triples if _legacy else _nickname_triples
+        nick_confidence=confidence if _legacy or _witness_policy==FIRST_NICK_POLICY_V1 else nickname_witness_floor(_witness_policy)
+        triples = witness(inputs['nick_rows'], key, start, end, nick_confidence, deal,(source,prefix_pts))
         if any(not triples.get(seat) for seat in seats):
             return unknown('ROSTER_SEAT_LITERAL_TRIPLE_UNKNOWN')
         anchor = max(source,max(min(t['frames'][-1] for t in triples[seat]) for seat in seats))
@@ -236,7 +317,9 @@ def prove_roster_binding(inputs):
             epoch = epochs[seat]
             if (not machine.membership(*key[:2],seat,key[2],epoch)['participant'] or
                     machine.epoch_at(*key[:2],seat,source) != epoch or
-                    any(machine.epoch_at(*key[:2],seat,f) != epoch for t in labels[seat] for f in t['frames'])):
+                    any((machine.epoch_at(*key[:2],seat,f) != epoch if _legacy else
+                         not nickname_epoch_matches(machine,key,seat,f,deal_frame,epoch))
+                        for t in labels[seat] for f in t['frames'])):
                 return unknown('ROSTER_PARTICIPANT_MEMBERSHIP_UNPROVEN')
         if any((e.get('table'),e.get('session')) == key[:2] and e.get('frame', -1) <= anchor
                for e in inputs['unresolved_events']):
@@ -253,11 +336,13 @@ def prove_roster_binding(inputs):
         retained['nick_rows'] = [r for r in retained['nick_rows'] if r.get('source_frame',end+1) <= anchor]
         retained['state_receipts'] = [e for e in retained['state_receipts'] if e.get('frame',end+1) <= anchor]
         retained['unresolved_events'] = [e for e in retained['unresolved_events'] if e.get('frame',end+1) <= anchor]
-        return dict(status='PROVEN', reason=None, binding_rule=RULE, context=list(key),
+        result=dict(status='PROVEN', reason=None, binding_rule=RULE, context=list(key),
                     forced_source_frame=source, deal_source_frame=deal_frame,
                     forced_source_pts=prefix_pts,binding_anchor_frame=anchor,
                     matching=matching, edges={s:sorted(a) for s,a in edges.items()},
                     epochs=epochs, label_evidence=labels, source_inputs=retained)
+        if not _legacy:result['nickname_witness_policy']=_witness_policy
+        return result
     except (KeyError, TypeError, ValueError, IndexError, AttributeError, cv2.error):
         return unknown('ROSTER_SOURCE_RECEIPT_INVALID')
 
@@ -281,7 +366,10 @@ def binding_receipt(proof, actor, posts):
 def verify_binding_receipt(receipt, snapshot):
     try:
         proof = receipt['roster_proof']
-        if proof.get('status') != 'PROVEN' or proof != prove_roster_binding(proof['source_inputs']):
+        policy=proof.get('nickname_witness_policy')
+        if proof.get('status') != 'PROVEN' or proof != prove_roster_binding(proof['source_inputs'],
+                _legacy=policy not in FIRST_NICK_POLICIES,
+                _witness_policy=policy if policy in FIRST_NICK_POLICIES else FIRST_NICK_POLICY):
             return False
         fields = ('posts', 'actors', 'forced_snapshot_complete')
         if any(snapshot.get(k) != proof['source_inputs']['snapshot'].get(k) for k in fields):

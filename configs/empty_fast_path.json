@@ -1,0 +1,8 @@
+{
+  "schema": "poker.empty-capture-fast-path.v1",
+  "enabled": true,
+  "scope": "NATIVE_START_STACK_CAPTURE_ONLY",
+  "golden": "golden-empty-fast-path-20261012",
+  "verify_classifier": "CURRENT_NATIVE_FULL_TEXT_BORDER_V2",
+  "status": "PROMOTED_CALIBRATED_FULL_TEXT_BORDER_V2"
+}

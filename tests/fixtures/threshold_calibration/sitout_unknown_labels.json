@@ -1,0 +1,93 @@
+{
+  "authority": "ROOT_VISUAL_LABEL_SITOUT_ALL12_20261009",
+  "runtime_authority": false,
+  "contact_sheet_sha256": "8925a725a885d145aa6d7d2a3b6dbcda1ccc1bf4cc855b56758d8c14d7484f3e",
+  "original_results_sha256": "6c1b61545eac9bc9eeb3196a64792e46d1e9a991fa301984706fae9c72c973d4",
+  "rows": [
+    {
+      "state_id": "S00063",
+      "raw_gray_sha256": "c781b2b9897b1b2621067a376134ae273c9e70e5a1a33af2b055130f024bc731",
+      "score": 0.8816772103309631,
+      "original_category": "unknown_unreviewed",
+      "independent_visual_label": "SIT_OUT"
+    },
+    {
+      "state_id": "S00263",
+      "raw_gray_sha256": "3a40673faf49588721ddfbd6b0c574515b9ee3b582a6b8a922d2bbfe16a7caf5",
+      "score": 0.913842499256134,
+      "original_category": "unknown_unreviewed",
+      "independent_visual_label": "SIT_OUT"
+    },
+    {
+      "state_id": "S00820",
+      "raw_gray_sha256": "5226cf1c160390e41e6d7df438f57343f43de1ad68975cf968594119dbedcf63",
+      "score": 0.8684291243553162,
+      "original_category": "unknown_unreviewed",
+      "independent_visual_label": "SIT_OUT"
+    },
+    {
+      "state_id": "S01474",
+      "raw_gray_sha256": "ec86a4ec7ec1f0e2889724160b38eff55f379367457b00fa7c7fc8a9dd849c56",
+      "score": 0.8685840964317322,
+      "original_category": "unknown_unreviewed",
+      "independent_visual_label": "SIT_OUT"
+    },
+    {
+      "state_id": "S02278",
+      "raw_gray_sha256": "772372d1e36454a2778296a2aecb7feb1d0ac5afeef7755e01eee5124f7cc56f",
+      "score": 0.8685166239738464,
+      "original_category": "unknown_unreviewed",
+      "independent_visual_label": "SIT_OUT"
+    },
+    {
+      "state_id": "S02495",
+      "raw_gray_sha256": "e9f3906d514c093a4ea0cdc0f3161321bba82b788bdfe919adb50b21873267fd",
+      "score": 0.9270021915435791,
+      "original_category": "unknown_unreviewed",
+      "independent_visual_label": "SIT_OUT"
+    },
+    {
+      "state_id": "S03140",
+      "raw_gray_sha256": "48894180e027d7329a2489fe47486bca4294690ddbabdf7d53adcd50f9f93c07",
+      "score": 0.9119423627853394,
+      "original_category": "unknown_unreviewed",
+      "independent_visual_label": "SIT_OUT"
+    },
+    {
+      "state_id": "S03386",
+      "raw_gray_sha256": "219dbdb08c27910f23d1abe55e6f144611621f55e15dfb10b229f618e072857c",
+      "score": 0.8681955337524414,
+      "original_category": "unknown_unreviewed",
+      "independent_visual_label": "SIT_OUT"
+    },
+    {
+      "state_id": "S03420",
+      "raw_gray_sha256": "937a80c2488c21efc860289f8b0f91f381f87a75a7d58255b6589d761c0f7bbd",
+      "score": 0.927970826625824,
+      "original_category": "unknown_unreviewed",
+      "independent_visual_label": "SIT_OUT"
+    },
+    {
+      "state_id": "S03956",
+      "raw_gray_sha256": "55f9754b6a956135b6992e9d189271b8155cf555b9f229186a0e490cbe30cb60",
+      "score": 0.8657694458961487,
+      "original_category": "unknown_unreviewed",
+      "independent_visual_label": "SIT_OUT"
+    },
+    {
+      "state_id": "S04253",
+      "raw_gray_sha256": "14579592788508e417ae69f7bb46c0186721b234c6109d001da90ce2947e62a2",
+      "score": 0.8673567771911621,
+      "original_category": "unknown_unreviewed",
+      "independent_visual_label": "SIT_OUT"
+    },
+    {
+      "state_id": "S05143",
+      "raw_gray_sha256": "a3151ceddb203f8d64fb49e1edbd47e7de2be9f4834bb7a5122dcf02eb6a17ad",
+      "score": 0.8692875504493713,
+      "original_category": "unknown_unreviewed",
+      "independent_visual_label": "SIT_OUT"
+    }
+  ],
+  "candidate_086": "11prior_known+12new_reviewed literalpositives; reusedsource/modeldevelopment NOT_UNTOUCHED_CALIBRATION; NO_PHASE_AUTHORITY"
+}

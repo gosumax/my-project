@@ -1,0 +1,177 @@
+{
+  "schema": "poker.confirmed-hand-associations.v1",
+  "source_video_sha256": "6d6acc0a624ce9b6675a8c923383ec6750939ce1f8c32adb8dd29469f3c5021c",
+  "source_file": "configs/confirmed_nickname_associations_source.jsonl",
+  "source_sha256": "014e4144ae2db4fab6be0799830a3e2a3399aec70f6be819bddfc865266ca307",
+  "records": [
+    {
+      "table_id": 4,
+      "session_id": "table_334222ac19659c5286d00af7",
+      "seat": "seat3",
+      "aliases": [
+        "11",
+        "111",
+        "1111"
+      ],
+      "hand_id": "2878365731",
+      "frame_start": 1009,
+      "frame_end": 2873,
+      "authority": "USER_EXPLICIT_SAME_OCCUPANT",
+      "receipt": "User explicitly associated these spellings with this fixed seat/table occupant in this task; scope limited to this saved hand."
+    },
+    {
+      "table_id": 4,
+      "session_id": "table_334222ac19659c5286d00af7",
+      "seat": "seat3",
+      "aliases": [
+        "11",
+        "111",
+        "1111"
+      ],
+      "hand_id": "2878366131",
+      "frame_start": 2874,
+      "frame_end": 4795,
+      "authority": "USER_EXPLICIT_SAME_OCCUPANT",
+      "receipt": "User explicitly associated these spellings with this fixed seat/table occupant in this task; scope limited to this saved hand."
+    },
+    {
+      "table_id": 4,
+      "session_id": "table_334222ac19659c5286d00af7",
+      "seat": "seat3",
+      "aliases": [
+        "11",
+        "111",
+        "1111"
+      ],
+      "hand_id": "2878366543",
+      "frame_start": 4796,
+      "frame_end": 6523,
+      "authority": "USER_EXPLICIT_SAME_OCCUPANT",
+      "receipt": "User explicitly associated these spellings with this fixed seat/table occupant in this task; scope limited to this saved hand."
+    },
+    {
+      "table_id": 4,
+      "session_id": "table_334222ac19659c5286d00af7",
+      "seat": "seat3",
+      "aliases": [
+        "11",
+        "111",
+        "1111"
+      ],
+      "hand_id": "2878366901",
+      "frame_start": 6524,
+      "frame_end": 7827,
+      "authority": "USER_EXPLICIT_SAME_OCCUPANT",
+      "receipt": "User explicitly associated these spellings with this fixed seat/table occupant in this task; scope limited to this saved hand."
+    },
+    {
+      "table_id": 4,
+      "session_id": "table_334222ac19659c5286d00af7",
+      "seat": "seat3",
+      "aliases": [
+        "11",
+        "111",
+        "1111"
+      ],
+      "hand_id": "2878367194",
+      "frame_start": 7828,
+      "frame_end": 9605,
+      "authority": "USER_EXPLICIT_SAME_OCCUPANT",
+      "receipt": "User explicitly associated these spellings with this fixed seat/table occupant in this task; scope limited to this saved hand."
+    },
+    {
+      "table_id": 9,
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "seat": "seat4",
+      "aliases": [
+        "zerotolerance",
+        "zeroto1era..",
+        "zeroto1era..."
+      ],
+      "hand_id": "2878365800",
+      "frame_start": 1330,
+      "frame_end": 2323,
+      "authority": "USER_EXPLICIT_SAME_OCCUPANT",
+      "receipt": "User explicitly associated these spellings with this fixed seat/table occupant in this task; scope limited to this saved hand."
+    },
+    {
+      "table_id": 9,
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "seat": "seat4",
+      "aliases": [
+        "zerotolerance",
+        "zeroto1era..",
+        "zeroto1era..."
+      ],
+      "hand_id": "2878366014",
+      "frame_start": 2324,
+      "frame_end": 3745,
+      "authority": "USER_EXPLICIT_SAME_OCCUPANT",
+      "receipt": "User explicitly associated these spellings with this fixed seat/table occupant in this task; scope limited to this saved hand."
+    },
+    {
+      "table_id": 9,
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "seat": "seat4",
+      "aliases": [
+        "zerotolerance",
+        "zeroto1era..",
+        "zeroto1era..."
+      ],
+      "hand_id": "2878366331",
+      "frame_start": 3746,
+      "frame_end": 5329,
+      "authority": "USER_EXPLICIT_SAME_OCCUPANT",
+      "receipt": "User explicitly associated these spellings with this fixed seat/table occupant in this task; scope limited to this saved hand."
+    },
+    {
+      "table_id": 9,
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "seat": "seat4",
+      "aliases": [
+        "zerotolerance",
+        "zeroto1era..",
+        "zeroto1era..."
+      ],
+      "hand_id": "2878366656",
+      "frame_start": 5330,
+      "frame_end": 8084,
+      "authority": "USER_EXPLICIT_SAME_OCCUPANT",
+      "receipt": "User explicitly associated these spellings with this fixed seat/table occupant in this task; scope limited to this saved hand."
+    },
+    {
+      "table_id": 9,
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "seat": "seat4",
+      "aliases": [
+        "zerotolerance",
+        "zeroto1era..",
+        "zeroto1era..."
+      ],
+      "hand_id": "2878367252",
+      "frame_start": 8085,
+      "frame_end": 10069,
+      "authority": "USER_EXPLICIT_SAME_OCCUPANT",
+      "receipt": "User explicitly associated these spellings with this fixed seat/table occupant in this task; scope limited to this saved hand."
+    },
+    {
+      "table_id": 9,
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "seat": "seat5",
+      "aliases": [
+        "retrel",
+        "retre1"
+      ],
+      "hand_id": "2878365800",
+      "frame_start": 1330,
+      "frame_end": 2323,
+      "authority": "USER_EXPLICIT_SAME_OCCUPANT",
+      "receipt": "User explicitly associated these spellings with this fixed seat/table occupant in this task; scope limited to this saved hand."
+    }
+  ],
+  "authority_scope": "ORIGINAL_USER_SAME_OCCUPANT_DECISIONS; SAME_VIDEO_HAND_SEAT_BOUNDS; CURRENT_NATIVE_REPROOF_REQUIRED; NO_GLOBAL_CANONICAL",
+  "original_history_provenance": {
+    "path": "D:\\Новый парсер\\runs\\hh_all_hands_20261009\\nick_manual_review_v9_saved\\nick_occupant_associations.jsonl",
+    "sha256": "014e4144ae2db4fab6be0799830a3e2a3399aec70f6be819bddfc865266ca307"
+  }
+}

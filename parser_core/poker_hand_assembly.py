@@ -4,9 +4,16 @@ from __future__ import annotations
 import copy
 import re
 from collections import defaultdict
-from parser_core.normalize_chat import normalize
+from parser_core.normalize_chat import normalize_with_service
+from parser_core.service_text_normalizer import (normalize_service, same_physical_neighbor,
+    physical_service_group, literal_win_pot_continuation)
 from parser_core.poker_card_engine import described_class
 from parser_core.canonical_semantics import bound_forced_all_in
+from parser_core.win_tail_evidence import verified_win_tail
+from parser_core.card_set_evidence import (validated_rows as validated_card_set_rows,
+    verified_group as verified_card_set_group, apply_to_hand as apply_card_set_to_hand)
+from parser_core.table_service_events import (describe_service, BOUNTY_HEAD, BUSTED_PLAYERS,
+    PLAYER_LIST, BREAK_HEAD, BREAK_TAIL)
 
 VERSION = 'experimental-assembly-4-source-continuations'
 MONEY = re.compile(r'(?<!\d)\d+(?:[ \u00a0]\d{3})*(?!\d)')
@@ -27,13 +34,46 @@ def observed_wrapped_continuation(group,row):
                 for k in ('table_id','session_id','epoch'))):
         return False
     text=lambda r:str(r.get('raw_ocr_text') or r.get('raw_text') or r.get('text') or '').strip()
+    # An unlabelled middle fragment cannot bridge conflicting known contexts.
+    context_consistent = all(len({r[field] for r in group + [row]
+        if r.get(field) is not None}) <= 1
+        for field in ('hand_id', 'hand_number', 'source_file'))
     head=re.sub(r'^(?:Dealer|Дилер)\s*:\s*','',text(first),flags=re.I)
     tail=text(row)
+    if same_physical_neighbor(previous, row):
+        tail=normalize_service(tail, previous_clause=head).normalized_text
+    if context_consistent and physical_service_group(group + [row]):
+        if literal_win_pot_continuation(group + [row]):
+            return True
+        if (len(group) == 1 and re.fullmatch(BREAK_HEAD, head, re.I)
+                and re.fullmatch(BREAK_TAIL, tail, re.I)):
+            return True
+        if len(group) == 1 and (
+                re.fullmatch(BOUNTY_HEAD, head, re.I) and re.fullmatch(BUSTED_PLAYERS, tail, re.I)
+                or re.fullmatch(r'Please wait while players are', head, re.I)
+                and re.fullmatch(r'reseating[.!●]?', tail, re.I)):
+            return True
+        if (len(group) == 2 and re.fullmatch(BOUNTY_HEAD, head, re.I)
+                and re.fullmatch(BUSTED_PLAYERS, text(group[1]), re.I)
+                and re.fullmatch(PLAYER_LIST, tail)):
+            return True
+    if first.get('unique_card_set_proof') and verified_card_set_group(first['unique_card_set_proof'],group+[row]):
+        return True
+    if len(group)==2 and verified_win_tail(group+[row]):
+        return True
     if len(group)==1 and (
             re.fullmatch(r'.+ gets uncalled',head,re.I) and re.fullmatch(r'bet\s*'+CHIP_NUMBER+r'\s+back[.!●]?',tail,re.I)
             or re.fullmatch(r".+ (?:doesn't show|does not show)",head,re.I) and re.fullmatch(r'cards[.!●]?',tail,re.I)
             or re.fullmatch(r'.+ (?:has joined|has left)',head,re.I) and re.fullmatch(r'the table[.!●]?',tail,re.I)
+            or re.fullmatch(r'.+ has',head,re.I) and re.fullmatch(r'(?:joined|left) the table[.!●]?',tail,re.I)
+            or re.fullmatch(r'.+ (?:has joined the|has left the)',head,re.I) and re.fullmatch(r'table[.!●]?',tail,re.I)
+            or re.fullmatch(r'.+ finished',head,re.I) and re.fullmatch(r'the tournament[.!●]?',tail,re.I)
+            or re.fullmatch(r'.+ finished the',head,re.I) and re.fullmatch(r'tournament[.!●]?',tail,re.I)
+            or re.fullmatch(r'Limits going up: stakes(?:\s+'+CHIP_NUMBER+'/'+CHIP_NUMBER+')?',head,re.I)
+                and re.fullmatch(r'(?:'+CHIP_NUMBER+'/'+CHIP_NUMBER+r'\s+)?ante\s+'+CHIP_NUMBER,tail,re.I)
             or re.fullmatch(r'Waiting for .+ to',head,re.I) and re.fullmatch(r'(?:reconnect|rebuy)\.{0,3}',tail,re.I)
+            or re.fullmatch(r'.+ makes rebuy\(s\) and',head,re.I)
+                and describe_service(head+' '+tail) is not None
             or re.fullmatch(r'.+ posts (?:Small|Big)',head,re.I) and re.fullmatch(r'Blind '+CHIP_NUMBER,tail,re.I)
             or re.fullmatch(r'.+ shows',head,re.I) and re.fullmatch(RANK_DESCRIPTION,tail,re.I)):
         return True
@@ -42,13 +82,16 @@ def observed_wrapped_continuation(group,row):
     card_group=(len(group)==1 or len(group)==2 and re.fullmatch(RANK_DESCRIPTION,text(group[1]),re.I))
     same_source=all(r.get('frame_id')==frame and all(r.get(k)==row.get(k)
         for k in ('table_id','session_id','epoch')) for r in group)
-    return bool(card_group and same_source and card_id and card_id==row.get('stable_row_id',row.get('row_id'))
+    return bool(card_group and same_source and context_consistent and physical_service_group(group + [row])
+        and (len(group) == 1 or first.get('hand_id') is not None)
+        and card_id and card_id==row.get('stable_row_id',row.get('row_id'))
         and isinstance(digest,str) and re.fullmatch(r'[0-9a-f]{64}',digest)
         and first.get('identity_status')=='CHAT_ROW_SHA_ROUNDTRIP_VERIFIED'
         and first.get('card_crop_pixel_sha256')==digest
         and make_message(group+[row],require_pixel_cards=True)['field_sources'].get('cards')=='OBSERVED_PIXEL'
         and (re.fullmatch(r'(?:Dealing (?:the )?)?(?:Flop|Turn|River)',head,re.I)
-             or re.fullmatch(r'.+ shows',head,re.I)))
+             or re.fullmatch(r'.+ shows',head,re.I)
+             or re.fullmatch(r'.+ shows (?:High card, [2-9TJQKA]|Pair, ([2-9TJQKA])\1)',head,re.I)))
 
 
 def split_small_blind(first, second):
@@ -74,10 +117,11 @@ def card_tokens(text):
     return [('T' if r == '10' else r.upper()) + SUITS.get(s, s.lower()) for r, s in CARDS.findall(text)]
 
 
-def parse_text(text):
-    clean = re.sub(r'^\s*\[\d{1,2}:\d{2}\]\s*', '', text).strip()
+def parse_text(text, *, source_rows=None):
+    c, service = normalize_with_service([text],
+        apply_service=source_rows is None or physical_service_group(source_rows))
+    clean = re.sub(r'^\s*\[\d{1,2}:\d{2}\]\s*', '', service.normalized_text).strip()
     clean = re.sub(r'^(?:Dealer|Дилер)\s*:\s*', '', clean, flags=re.I)
-    c = normalize([text])
     event = c.event_type
     actor, amount, hand_id = c.actor, c.amount_decimal, c.hand_number
     # English action/amount extraction is owned by the same normalizer that
@@ -93,7 +137,7 @@ def parse_text(text):
             if number:
                 suffix = tail[number.end():].strip()
                 allowed = (not suffix or suffix in {'.', '!', '●'} or
-                           bool(re.fullmatch(r'(?:and\s*(?:is All-in)?|is All-in|back)\s*[.!●]?', suffix, re.I)) or
+                           bool(re.fullmatch(r'(?:and\s*(?:is All[ -]?in)?|is All[ -]?in|back)\s*[.!●]?', suffix, re.I)) or
                            (kind == 'WIN' and bool(re.match(r'from\b', suffix, re.I))))
                 amount = number.group().replace(' ', '').replace('\u00a0', '') if allowed else None
             else:
@@ -114,6 +158,9 @@ def parse_text(text):
             event = kind
     if re.fullmatch(r'Dealing cards[.!●]?', clean, re.I):
         event = 'DEAL'
+    notice = describe_service(clean)
+    if notice and notice['kind'] in {'BOUNTY', 'RESEATING', 'BREAK'}:
+        event, actor, amount = 'TABLE_INFO', None, None
     if re.search(r'(?:uses Time Bank|sits out|sits in)$', clean, re.I):
         event = 'TABLE_INFO'
     if re.fullmatch(r'.+ (?:finished the tournament|has joined the table|has left the table)[.!]?', clean, re.I):
@@ -124,16 +171,19 @@ def parse_text(text):
         event, actor, amount = 'TABLE_INFO', None, None
     if re.fullmatch(r'Limits going up: stakes(?:\s+\d+(?:[ \u00a0]\d{3})*/\d+(?:[ \u00a0]\d{3})*\s+ante\s+\d+(?:[ \u00a0]\d{3})*)?[.!]?', clean, re.I):
         event, actor, amount = 'BLIND_LEVEL', None, None
-    return {'action': event, 'player': actor, 'amount': amount, 'hand_number': hand_id,
+    parsed = {'action': event, 'player': actor, 'amount': amount, 'hand_number': hand_id,
             'amount_role': c.amount_role if event in MONEY_ACTIONS else None,
             'all_in': bool(re.search(r'all[ -]?in|олл.?ин|ва.?банк', clean, re.I)),
             'cards': card_tokens(clean), 'showdown_class': described_class(clean) if event in {'SHOW', 'WIN'} else None,
             'normalized_text': clean}
+    if service.changes:
+        parsed['service_normalizations'] = list(service.changes)
+    return parsed
 
 
 def make_message(rows, *, require_pixel_cards=False, pixel_sources=None):
     text = ' '.join(str(r.get('raw_text') or r.get('raw_ocr_text') or r.get('text') or '') for r in rows)
-    parsed = parse_text(text)
+    parsed = parse_text(text, source_rows=rows)
     message = dict(parsed, raw_text=text, source_rows=copy.deepcopy(rows),
                 source_row_ids=[str(r.get('row_id', r.get('stable_row_id', r.get('physical_row_id', 'MISSING_ROW_ID')))) for r in rows],
                 frame_id=rows[0].get('frame_id'), timestamp_ms=rows[0].get('timestamp_ms'),
@@ -143,6 +193,13 @@ def make_message(rows, *, require_pixel_cards=False, pixel_sources=None):
         message['cards'] = []
         message['field_sources']['cards'] = 'UNRESOLVED'
     trigger = rows[0]
+    if trigger.get('win_best_five_proof') and parsed['action']=='WIN':
+        winning = verified_win_tail(rows)
+        message['field_sources']['win_best_five'] = 'OBSERVED_PIXEL' if winning else 'UNRESOLVED'
+        if winning:
+            message['win_best_five_cards'] = list(winning['cards'])
+            message['win_best_five_provenance'] = {k:copy.deepcopy(winning[k]) for k in
+                ('rule','evidence_kind','actor','amount','pot','hand_class','hand_id','source_refs')}
     if trigger.get('canonical_provenance'):
         message['canonical_event_id'] = trigger.get('canonical_event_id')
         message['canonical_provenance'] = copy.deepcopy(trigger['canonical_provenance'])
@@ -201,18 +258,25 @@ def make_message(rows, *, require_pixel_cards=False, pixel_sources=None):
 
 def assemble_messages(rows, *, require_pixel_cards=False, require_adjacency=False, pixel_sources=None,
                       join_show_description=False):
+    rows=validated_card_set_rows(rows)
     groups = []
-    for row in rows:
+    for row_offset, row in enumerate(rows):
         text = str(row.get('raw_text') or row.get('raw_ocr_text') or row.get('text') or '')
         continuation = False
         if groups:
             prior = make_message(groups[-1], require_pixel_cards=require_pixel_cards, pixel_sources=pixel_sources)
+            if physical_service_group(groups[-1] + [row]):
+                text = normalize_service(text, previous_clause=prior['raw_text']).normalized_text
             no_prefix = not re.match(r'^\s*(?:\[\d+:\d+\]|Dealer:|Дилер:)', text, re.I)
             visual_link = (str(row.get('row_id', row.get('stable_row_id'))) == str(groups[-1][0].get('card_row_id')) and
-                           bool(groups[-1][0].get('card_evidence_id')))
+                           bool(groups[-1][0].get('card_evidence_id')) and
+                           observed_wrapped_continuation(groups[-1], row))
+            proved_show_description = (prior['action'] == 'SHOW' and
+                re.fullmatch(RANK_DESCRIPTION, text.strip(), re.I) and row_offset + 1 < len(rows) and
+                observed_wrapped_continuation(groups[-1] + [row], rows[row_offset + 1]))
             continuation = visual_link or no_prefix and (
                 (observed_wrapped_continuation(groups[-1],row) and
-                 (join_show_description or prior['action']!='SHOW' or
+                 (join_show_description or proved_show_description or prior['action']!='SHOW' or
                   not re.fullmatch(RANK_DESCRIPTION,text.strip(),re.I))) or
                 (len(groups[-1]) == 1 and split_small_blind(groups[-1][0], row)) or
                 (prior['action'] == 'TABLE_INFO' and
@@ -222,12 +286,12 @@ def assemble_messages(rows, *, require_pixel_cards=False, require_adjacency=Fals
                  bool(re.fullmatch(r'Limits going up: stakes', prior['normalized_text'], re.I)) and
                  bool(re.fullmatch(r'\s*\d+(?:[ \u00a0]\d{3})*/\d+(?:[ \u00a0]\d{3})*\s+ante\s+\d+(?:[ \u00a0]\d{3})*\s*', text, re.I))) or
                 (prior['action'] in MONEY_ACTIONS and prior['amount'] is None and
-                 bool(re.fullmatch(r'\s*\d+(?:[ \u00a0]\d{3})*(?:\s+(?:back|and is All-in|is All-in))?\s*[.!●]?\s*', text, re.I))) or
+                 bool(re.fullmatch(r'\s*\d+(?:[ \u00a0]\d{3})*(?:\s+(?:back|and is All[ -]?in|is All[ -]?in))?\s*[.!●]?\s*', text, re.I))) or
                 (prior['action'] in {'ANTE', 'CALL', 'BET', 'RAISE', 'SMALL_BLIND', 'BIG_BLIND'} and
-                 bool(re.fullmatch(r'\s*(?:and is All-in|is All-in|и (?:идет|идёт) ва-банк)\s*[.!]?\s*', text, re.I))) or
+                 bool(re.fullmatch(r'\s*(?:and is All[ -]?in|is All[ -]?in|и (?:идет|идёт) ва-банк)\s*[.!]?\s*', text, re.I))) or
                 (prior['action'] in MONEY_ACTIONS and
                  bool(re.search(r'\band is$', prior['normalized_text'], re.I)) and
-                 bool(re.fullmatch(r'\s*All-in\s*[.!●]?\s*', text, re.I))) or
+                 bool(re.fullmatch(r'\s*All[ -]?in\s*[.!●]?\s*', text, re.I))) or
                 (bool(re.fullmatch(r'.+ (?:finished the|has joined the|has left the)', prior['normalized_text'], re.I)) and
                  bool(re.fullmatch(r'\s*(?:tournament|table)[.!]?\s*', text, re.I))) or
                 (prior['action'] == 'NEW_HAND' and prior['hand_number'] is None and
@@ -285,8 +349,19 @@ def assemble_hands(rows, *, require_pixel_cards=False, require_adjacency=False, 
                 current['hand_id'] = number
                 current['start_observed'] = True
             current['messages'].append(message)
+            if (message.get('win_best_five_provenance') and
+                    message['win_best_five_provenance']['hand_id'] != current['hand_id']):
+                message.pop('win_best_five_cards',None)
+                message.pop('win_best_five_provenance',None)
+                message['field_sources']['win_best_five']='UNRESOLVED'
+                message['win_best_five_conflict']='NUMBERED_HAND_CONTEXT_CONFLICT'
+                for source in message['source_rows']:
+                    source.pop('win_best_five_proof',None)
+                    source['win_best_five_conflict']='NUMBERED_HAND_CONTEXT_CONFLICT'
             if message['action'] in {'WIN', 'HAND_END'}:
                 current['end_observed'] = True
         if current:
             hands.append(current)
+    for hand in hands:
+        apply_card_set_to_hand(hand)
     return hands

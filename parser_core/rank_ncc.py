@@ -11,7 +11,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 from PIL import Image
-from parser_core.board_tiles import _glyph_boxes
+from parser_core.board_tiles import _glyph_boxes, _glyphs
 
 RANKS = tuple('23456789TJQKA')
 
@@ -49,6 +49,50 @@ def rank_feature(rgb: np.ndarray, method: str = 'component_ncc', size: int = 16)
         return None,box,'EMPTY_RANK_EVIDENCE'
     feature /= norm
     return feature.reshape(-1),box,None
+
+
+def rank_geometry_fallback(rgb: np.ndarray, result: dict) -> dict:
+    """Resolve only an already rejected T/Q tie using tiny mask geometry.
+
+    The gate is deliberately closed for every other candidate pair.  A dense
+    central stem is a T receipt; a lower-right tail with no central stem is a
+    Q receipt.  Borderline masks remain unresolved.
+    """
+    candidates = {result.get('rank_candidate'), result.get('rank_second_candidate')}
+    if candidates != {'T', 'Q'} or result.get('rank_accepted'):
+        return result
+    # Keep the fallback inside the registered ambiguity envelope: a usable
+    # primary match, two close candidates, and the ordinary margin gate as the
+    # reason for abstention. Very weak or non-ambiguous T/Q scores stay closed.
+    best = result.get('rank_best_score')
+    second = result.get('rank_second_score')
+    margin = result.get('rank_margin')
+    if (best is None or second is None or margin is None or
+            best < 0.71 or second < 0.65 or margin > 0.015):
+        return {**result, 'rank_geometry_reason': 'TQ_GEOMETRY_OUTSIDE_ENVELOPE'}
+    if rgb.ndim != 3 or rgb.shape[2] != 3 or rgb.shape[0] != 16:
+        return result
+    gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
+    glyphs = _glyphs(gray, 0, gray.shape[1] - 1)
+    if glyphs is None:
+        return {**result, 'rank_geometry_reason': 'TQ_GEOMETRY_UNRESOLVED'}
+    mask = glyphs[0].astype(bool)
+    stem = float(mask[2:, 3:5].mean())
+    tail = float(mask[5:, 5:].mean())
+    # Thresholds are integer-grid boundaries measured on the saved native
+    # corpus.  They intentionally leave the boundary cases unresolved.
+    if stem >= 0.875:
+        label = 'T'
+    elif stem < 0.75 and tail > 0.75:
+        label = 'Q'
+    else:
+        return {**result, 'rank_geometry_reason': 'TQ_GEOMETRY_UNRESOLVED',
+                'rank_geometry_stem_ratio': stem, 'rank_geometry_tail_ratio': tail}
+    return {**result, 'rank_geometry_fallback': True,
+            'rank_geometry_method': 'NATIVE_GLYPH_8X8_STEM_TAIL_V1',
+            'rank_geometry_stem_ratio': stem, 'rank_geometry_tail_ratio': tail,
+            'rank_geometry_result': label, 'rank_result': label,
+            'rank_accepted': True, 'rank_reason': 'RANK_GEOMETRY_FALLBACK_TQ'}
 
 class RankNCC:
     def __init__(self, manifest: Path, *, method='component_ncc', threshold=1.01, margin=1.01,

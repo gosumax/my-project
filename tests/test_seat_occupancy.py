@@ -4,6 +4,18 @@ from parser_core.seat_occupancy import SeatOccupancyEvidence
 KEY = (2, 'source-session', '1234567890')
 
 
+def test_nickname90_does_not_lower_empty95_or_change_pixel_continuity():
+    evidence=SeatOccupancyEvidence(.95,nickname_confidence=.90)
+    for frame in range(3):
+        for seat,text,score in [('seat1','Alice',.90),('seat2','Bob',.90),('seat3','OPEN SEAT',.90)]:
+            sha=(text.encode().hex()+'0'*64)[:64]
+            evidence.observe(KEY,seat,frame,sha)
+            if frame==0:
+                evidence.completed(KEY,seat,frame,sha,dict(status='OK',raw_text=text,score=score),pts=frame,time_base=(1,30))
+    assert evidence.receipt(KEY,2,['seat1','seat2'])['occupied_seats']==['seat1','seat2']
+    assert evidence.receipt(KEY,2,['seat1','seat2','seat3']) is None
+
+
 def test_truncated_empty_text_remains_unknown_in_full_contract():
     for fragment in ('PENSEAT','PEN SEAT'):
         evidence=SeatOccupancyEvidence(reject_empty_fragments=True)
@@ -58,6 +70,21 @@ def test_source_change_and_gap_invalidate_even_if_old_ocr_arrives_late():
         evidence.completed(KEY,'seat1',2,('Player1'.encode().hex()+'0'*64)[:64],
             dict(status='OK',raw_text='Player1',score=.99),pts=1024,time_base=(1,15360))
         assert evidence.receipt(KEY,changed_frame,labels) is None
+
+
+def test_one_new_ocr_recovers_after_pixel_change_with_current_pixel_continuity():
+    evidence=SeatOccupancyEvidence()
+    labels=dict(seat1='Player1',seat2='Player2')
+    feed(evidence,0,labels)
+    for frame in (1,2):feed(evidence,frame,labels,callback=False)
+    assert evidence.receipt(KEY,2,labels)
+    labels['seat1']='Different'
+    feed(evidence,3,labels)
+    assert evidence.receipt(KEY,3,labels) is None
+    for frame in (4,5):feed(evidence,frame,labels,callback=False)
+    receipt=evidence.receipt(KEY,5,labels)
+    assert receipt['seats']['seat1']['actor']=='Different'
+    assert [r['frame'] for r in receipt['seats']['seat1']['observations']]==[3]
 
 
 def test_wrong_hand_low_confidence_and_unobserved_seat_never_supply_proof():

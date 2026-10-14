@@ -24,13 +24,17 @@ def test_smoke19_stack_snapshot_is_joined_to_actor_but_never_authoritative():
         assert proven_start_stacks(hand,[changed])[1]==[]
 
 
-def test_literal_amount_role_survives_without_granting_a_validator_contract():
+def test_literal_amount_role_survives_and_unique_call_effect_is_proved():
     from parser_core.poker_hand_assembly import parse_text
     assert parse_text('Dealer: A raises to 300')['amount_role']=='RAISE_TO'
     assert parse_text('Dealer: A calls 100')['amount_role']=='CALL'
     source=records('Hand #123456','Dealer: A posts Small Blind 5','Dealer: B posts Big Blind 10',
                    'Dealer: A calls 5','Dealer: B checks','Dealer: A folds','Dealer: B wins 20')
-    assert any(i['code']=='AMOUNT_SEMANTICS_UNPROVEN' for i in source[0]['validation']['issues'])
+    assert not any(i['code']=='AMOUNT_SEMANTICS_UNPROVEN' for i in source[0]['validation']['issues'])
+    proof=source[0]['validation']['amount_resolution_proofs'][0]
+    assert proof['status']=='RESOLVED' and proof['delta']=='5'
+    assert proof['source']=='POKER_MATH_INFERENCE'
+    assert 'semantics' not in source[0]['observed_hand']
 
 
 def records(*texts, failed=None):

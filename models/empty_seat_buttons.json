@@ -1,7 +1,7 @@
 {
-  "schema": "native-full-empty-seat-button-v1",
-  "full_ncc_min": 0.98,
-  "text_ncc_min": 0.98,
+  "schema": "native-full-text-border-empty-seat-button-v2",
+  "full_ncc_min": 0.91,
+  "text_ncc_min": 0.95,
   "text_box": [
     20,
     12,
@@ -118,5 +118,6 @@
       "label_authority": "ROOT_VISUAL_FULL_TABLE_AND_BUTTON_REVIEW_20261007"
     }
   ],
-  "border_ncc_min": 0.98
+  "border_ncc_min": 0.08,
+  "border_check_enabled": true
 }

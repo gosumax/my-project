@@ -102,6 +102,21 @@ def test_all_eight_cards_need_three_consecutive_frames_before_numeric_jobs(conne
     assert len(obj.ocr.batches[0]) == 8
 
 
+def test_full_single_stack_early_pass_is_revoked_by_late_closed_boundary(connection):
+    from parser_core.first_stack_ocr import direct_numeric_policy
+    obj=connection;deal(obj);observe(obj,13)
+    obj.visibility_source=object();obj.numeric_policy=direct_numeric_policy();obj.numeric_confidence=.85
+    complete(obj,obj.ocr.batches[-1],confidence=.85)
+    state=obj.states[obj.test_key]
+    assert state['canonical_attempts']['seat1']['frames']==[13]
+    assert state['canonical_attempts']['seat1']['status']=='PASS'
+    obj.sidecar.windows[obj.test_key].closed=13
+    obj.finish()
+    assert state['canonical_attempts']['seat1']['status']=='UNKNOWN'
+    assert state['canonical_attempts']['seat1']['blocker']=='FIRST_QUALIFIED_SOURCE_AFTER_WINDOW_CLOSED'
+    assert not state['numeric_triples']
+
+
 def test_missing_seat_template_remains_unknown(connection):
     connection.templates.pop((1, 'seat8'))
     deal(connection)

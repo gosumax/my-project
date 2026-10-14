@@ -11,6 +11,7 @@ import hashlib
 import numpy as np
 
 from parser_core.chat_tracker import GEOMETRY_TOLERANCE_PX, NCC_SCORE_MIN, NCC_MARGIN_MIN
+from parser_core.performance_work import note
 
 
 def pixel_hash(gray):
@@ -27,6 +28,33 @@ def correlation(a, b):
     return float(np.dot(x, y) / den) if den else -1.0
 
 
+class _CorrelationMemo:
+    """Exact paired views, alive and immutable during one tail proof only.
+
+    The proof owns old/new arrays throughout the call and correlation only
+    mutates its float64 copies. Shape, stride and dtype are part of identity;
+    pointers are never reused as cross-call or cross-frame cache keys.
+    """
+    def __init__(self):
+        self.values = {}
+        self.hits = 0
+
+    def __call__(self, a, b):
+        key = (int(a.__array_interface__['data'][0]), a.shape, a.strides, a.dtype.str,
+               int(b.__array_interface__['data'][0]), b.shape, b.strides, b.dtype.str)
+        if key in self.values:
+            self.hits += 1
+            return self.values[key]
+        value = correlation(a, b)
+        self.values[key] = value
+        return value
+
+    def finish(self, result):
+        note('physical_chat_admission.correlation_cache', category='capture/cache',
+             hits=self.hits, misses=len(self.values), entries=len(self.values))
+        return result
+
+
 def physical_tail_proof(old, new, old_spans, new_spans):
     """Prove a unique retained suffix and complete newly exposed bottom rows.
 
@@ -37,6 +65,7 @@ def physical_tail_proof(old, new, old_spans, new_spans):
     """
     if old.shape != new.shape or not old_spans or not new_spans:
         return dict(status='UNKNOWN', reason='NO_RETAINED_ROW_SUPPORT', candidates=[])
+    correlate = _CorrelationMemo()
     height = len(new)
     width = new.shape[1] - 12 if new.shape[1] >= 50 else new.shape[1]
     shifts = {0}
@@ -82,12 +111,12 @@ def physical_tail_proof(old, new, old_spans, new_spans):
             # Append without scrolling: require the entering region was blank.
             if any(np.count_nonzero(old[a:b, :width] > 70) >= 5 for a, b in (new_spans[j] for j in entering)):
                 continue
-        score = correlation(old[shift:shift + support_end, :width], new[:support_end, :width])
+        score = correlate(old[shift:shift + support_end, :width], new[:support_end, :width])
         rows = []
         for j, i in retained:
             a, b = new_spans[j]
             lo, hi = max(0, a - 2), min(support_end, b + 2)
-            alignments = [(delta, correlation(old[lo + shift + delta:hi + shift + delta, :width],new[lo:hi,:width]))
+            alignments = [(delta, correlate(old[lo + shift + delta:hi + shift + delta, :width],new[lo:hi,:width]))
                           for delta in range(-int(GEOMETRY_TOLERANCE_PX),int(GEOMETRY_TOLERANCE_PX)+1)
                           if lo+shift+delta>=0 and hi+shift+delta<=height]
             delta, row_score = max(alignments,key=lambda pair:pair[1])
@@ -98,14 +127,14 @@ def physical_tail_proof(old, new, old_spans, new_spans):
                                new_indices=entering, retained_rows=rows))
     candidates.sort(key=lambda c: (-c['score'], c['shift_px']))
     if not candidates:
-        return dict(status='UNKNOWN', reason='NO_ORDERED_RETAINED_SUFFIX_AND_NEW_TAIL', candidates=[])
+        return correlate.finish(dict(status='UNKNOWN', reason='NO_ORDERED_RETAINED_SUFFIX_AND_NEW_TAIL', candidates=[]))
     best = candidates[0]
     # Compare exactly the same retained pixels against *all* translations,
     # including no-birth / zero-shift explanations. Repeated old rows plus a
     # local edit must never manufacture a scroll and a second OCR submission.
     support = best['support_end']
     alternatives = [dict(shift_px=shift,
-        score=correlation(old[shift:shift + support, :width], new[:support, :width]))
+        score=correlate(old[shift:shift + support, :width], new[:support, :width]))
         for shift in shifts if shift + support <= height and
         abs(shift - best['shift_px']) > GEOMETRY_TOLERANCE_PX]
     second = max((c['score'] for c in alternatives), default=-1.)
@@ -119,11 +148,11 @@ def physical_tail_proof(old, new, old_spans, new_spans):
         row['identity_status'] = 'UNKNOWN'
         row['pixel_anchor'] = row['score'] >= NCC_SCORE_MIN
     if best['score'] < NCC_SCORE_MIN or best['confident_retained_rows'] < 2:
-        return dict(status='UNKNOWN', reason='RETAINED_PIXELS_UNPROVEN', candidates=candidates)
+        return correlate.finish(dict(status='UNKNOWN', reason='RETAINED_PIXELS_UNPROVEN', candidates=candidates))
     if best['margin'] < NCC_MARGIN_MIN:
-        return dict(status='UNKNOWN', reason='RETAINED_TRANSLATION_AMBIGUOUS', candidates=candidates)
-    return dict(status='PROVEN_PHYSICAL_NEW', reason='UNIQUE_PIXEL_SUFFIX_PREFIX_WITH_NEW_BOTTOM_REGION',
-                candidates=candidates, **best)
+        return correlate.finish(dict(status='UNKNOWN', reason='RETAINED_TRANSLATION_AMBIGUOUS', candidates=candidates))
+    return correlate.finish(dict(status='PROVEN_PHYSICAL_NEW', reason='UNIQUE_PIXEL_SUFFIX_PREFIX_WITH_NEW_BOTTOM_REGION',
+                candidates=candidates, **best))
 
 
 class PhysicalChatAdmission:

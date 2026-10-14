@@ -15,6 +15,7 @@ from parser_core.seat_forced_binding import parse_forced_snapshot
 
 VERSION = 'canonical-source-join-v1'
 ROLES = {'ANTE': 'ANTE', 'SB': 'SMALL_BLIND', 'BB': 'BIG_BLIND'}
+FORCED_PREFIX_CAPABILITY = 'AUTHORIZED_FOR_FORCED_PREFIX'
 
 
 def context(row):
@@ -28,6 +29,9 @@ def load_jsonl(path):
 def _binding_rule_verified(receipt, snapshot, post):
     if post.get('binding_rule') and post['binding_rule'] != receipt.get('binding_rule'):
         return False
+    if 'actor_prefix_proof' in receipt or post.get('binding_rule')=='UNIQUE_LITERAL_PREFIX_ACTOR_IN_COMPLETE_ROSTER_V1':
+        from parser_core.nickname_actor_binding import RULE, verify_binding_receipt
+        return receipt.get('binding_rule')==RULE and verify_binding_receipt(receipt,snapshot)
     if receipt.get('binding_rule') == 'FIRST_EXACT_LABEL_HISTORICAL_EPOCH':
         # Legacy source-bound exact receipts retain their original schema. A
         # prefix constraint cannot be relabelled as exact to bypass replay.
@@ -38,7 +42,146 @@ def _binding_rule_verified(receipt, snapshot, post):
     return receipt.get('binding_rule') == RULE and verify_binding_receipt(receipt, snapshot)
 
 
-def join_forced_posts(timeline, summary, headers=()):
+def _ordinary_forced_conflict(posts, ordinary, rows):
+    """Same economic conflict checks for legacy posts and atomic candidates."""
+    actor_seats = defaultdict(set); seat_actors = defaultdict(set)
+    for p, _ in posts:
+        actor_seats[p['actor']].add(p['seat']); seat_actors[p['seat']].add(p['actor'])
+    first_voluntary = next((r for r in rows if parse_text(r['raw_ocr_text'])['action'] in
+        {'FOLD','CHECK','CALL','BET','RAISE','FLOP','TURN','RIVER','WIN'}), None)
+    checked = []
+    for p, receipt in posts:
+        kind = ROLES[p['role']]
+        matches = [m for m in ordinary if m['player']==p['actor'] and m['action']==kind]
+        incompatible = [m for m in ordinary if
+            (kind in {'SMALL_BLIND','BIG_BLIND'} and m['action']==kind and m['player']!=p['actor']) or
+            (kind in {'SMALL_BLIND','BIG_BLIND'} and m['player']==p['actor'] and
+             m['action'] in {'SMALL_BLIND','BIG_BLIND'} and m['action']!=kind)]
+        conflict = (bool(incompatible) or sum(q['actor']==p['actor'] and q['role']==p['role'] for q,_ in posts)!=1
+            or len(actor_seats[p['actor']])!=1 or len(seat_actors[p['seat']])!=1
+            or any(m['amount'] is None or str(m['amount'])!=str(p['amount']) or
+                any(r.get('seat') not in {None,p['seat']} for r in m['source_rows']) for m in matches))
+        if first_voluntary and any((m['frame_id'],m['source_rows'][0]['row_index']) >=
+                (first_voluntary['frame_id'],first_voluntary['row_index']) for m in matches):
+            conflict = True
+        checked.append((p, receipt, matches, incompatible, conflict))
+    return checked
+
+
+def prove_candidate_forced_prefix(rows, physical, hand, actor_provider, nick_rows, headers):
+    """Prove observed posts only; never table occupancy or historical seat epochs.
+
+    The saved physical enumeration proves the entire CHAT header -> DEAL interval.
+    Existing current-hand WHO contracts supply compatible actor/seat identity.
+    Their original intervals/boundaries remain unchanged, including late labels.
+    """
+    try:
+        from parser_core.chat_rows import padded_row_span, physical_spans
+        from parser_core.nickname_roster_binding import _verify_gray_source, _seat_rois
+        key = (table_key(hand['table_id']), hand['session_id'], hand['hand_id'])
+        ordered = sorted(rows, key=lambda r:r['index'])
+        frame = ordered[0]['source_frame']; pts = ordered[0]['source_pts']; tb = ordered[0]['time_base']
+        marker = ordered[0]['marker_source_frame']
+        if (physical.get('schema')!='physical-chat-admission-v1' or
+                (physical.get('table'),physical.get('session_id'),physical.get('frame_after'))!=(*key[:2],frame)
+                or physical.get('source_pts')!=pts or physical.get('time_base')!=tb
+                or type(frame) is not int or type(pts) is not int or pts<0
+                or len(tb)!=2 or any(type(n) is not int or n<=0 for n in tb)
+                or type(marker) is not int or marker>frame
+                or not isinstance(physical.get('source_pixel_hash_after'),str)
+                or len(physical['source_pixel_hash_after'])!=64
+                or [r['index'] for r in ordered]!=list(range(len(physical['new_spans'])))
+                or len({r['source_ref'] for r in ordered})!=len(ordered)
+                or len({r.get('epoch') for r in ordered})!=1
+                or any(r.get('epoch') is not None and r['epoch']!=physical.get('epoch') for r in ordered)):
+            return None
+        current_headers = sorted([h for h in headers if
+            (table_key(h['table_id']),h['session_id'])==key[:2]], key=lambda h:(h['frame_id'],h['row_index']))
+        def active(at):
+            number = None
+            for h in current_headers:
+                if h['frame_id']>at:break
+                number = parse_text(h['raw_ocr_text'])['hand_number'] if h.get('ocr_status')=='OK' else None
+            return number
+        if (active(frame)!=key[2] or not any(h['frame_id']==marker and h.get('ocr_status')=='OK'
+                and parse_text(h['raw_ocr_text'])['hand_number']==key[2] and h.get('header_provenance')
+                for h in current_headers)):
+            return None
+        packed=[]
+        for r in ordered:
+            response=r['ocr_response']; pixels=_verify_gray_source(r)
+            bounds=list(padded_row_span(physical['new_spans'],r['index'],physical['geometry']['shape'][0]))
+            if ((r.get('table_id'),r.get('session_id'),r.get('hand_id'),r.get('source_frame'))!=(*key,frame)
+                    or r.get('kind')!='CHAT_CANDIDATE' or r.get('authority')!='CANDIDATE_ONLY'
+                    or r.get('admission_rule')!='CONFIRMED_HAND_MARKER_WITHOUT_DEAL_COMPLETE'
+                    or r.get('marker_source_frame')!=marker or r.get('source_pts')!=pts or r.get('time_base')!=tb
+                    or response.get('status')!='OK' or r.get('row_bounds')!=bounds
+                    or pixels.shape!=(bounds[1]-bounds[0],physical['geometry']['shape'][1])
+                    or [[a+bounds[0],b+bounds[0]] for a,b in physical_spans(pixels)]!=[physical['new_spans'][r['index']]]):
+                return None
+            packed.append(dict(r,text=(response.get('raw_text') or '').strip(),score=response.get('score')))
+        # Count is a syntax consistency check on a physically bounded CHAT prefix,
+        # not evidence of table occupancy or unseen players' ANTE obligations.
+        from parser_core.seat_forced_binding import POST
+        actors={m[1] for r in packed if (m:=POST.fullmatch(r['text'])) and m[2].lower()=='ante'}
+        snapshot, reason = parse_forced_snapshot(packed,key[2],len(actors))
+        if snapshot is None:return None
+        identities={}; seats=set()
+        source_rows=[r for m in hand['messages'] for r in m['source_rows']]
+        hand_frames=[r['frame_id'] for r in source_rows]
+        for actor in snapshot['actors']:
+            who=actor_provider.for_actor(hand,actor)
+            anchor=who.get('anchor',{}); seat=who.get('seat')
+            if (who.get('status')!='PROVEN' or who.get('actor')!=actor or seat in seats
+                    or (table_key(who.get('table_id')),who.get('session_id'),who.get('hand_id'))!=key
+                    or (table_key(anchor.get('table_id')),anchor.get('session_id'),anchor.get('hand_id'))!=key
+                    or not min(hand_frames)<=anchor.get('frame',-1)<=max(hand_frames)
+                    or active(anchor['frame'])!=key[2]):
+                return None
+            originals=[r for r in nick_rows if (r.get('table_id'),r.get('session_id'),r.get('hand_id'),
+                r.get('seat'),r.get('source_frame'))==(*key,seat,anchor['frame'])]
+            if len(originals)!=1:return None
+            nick=originals[0]; response=nick['ocr_response']; pixels=_verify_gray_source(nick)
+            roi=_seat_rois()[f'slot_{key[0]:02d}']['seats'][seat]['nick']
+            if (nick.get('roi')!=roi or pixels.shape!=(roi[3]-roi[1],roi[2]-roi[0])
+                    or nick['pixel_sha256']!=anchor.get('pixel_sha256') or nick['source_pts']!=anchor.get('source_pts')
+                    or nick['time_base']!=anchor.get('time_base') or response.get('status')!='OK'
+                    or (response.get('raw_text') or '').strip()!=anchor.get('raw_text')
+                    or response.get('score')!=anchor.get('confidence')):
+                return None
+            # Retain WHO's boundaries; no historical ownership is inferred.
+            # Explicit seat/actor changes in this hand cannot support a join.
+            low, high=sorted((frame,anchor['frame']))
+            for boundary in who.get('boundaries',[]):
+                if low<=boundary.get('frame',-1)<=high and boundary.get('kind') in {
+                        'EMPTY','OPEN SEAT','OPENSEAT','REPLACE','LEFT','LEAVE','HAS LEFT THE TABLE'}:
+                    return None
+            for r in source_rows:
+                if low<=r['frame_id']<=high:
+                    p=parse_text(r['raw_ocr_text'])
+                    if p['action'] in {'SIT_IN','SIT_OUT','LEFT_TABLE','JOINED_TABLE'} and p.get('player')==actor:
+                        return None
+                    text=r['raw_ocr_text'].lower()
+                    if actor.lower() in text and ('has left the table' in text or 'has joined the table' in text):
+                        return None
+            identities[actor]=copy.deepcopy(who);seats.add(seat)
+        posts=[]
+        for p in snapshot['posts']:
+            p=copy.deepcopy(p)
+            p.update(table=key[0],session=key[1],hand_id=key[2],seat=identities[p['actor']]['seat'],
+                epoch=None,source_frame=frame,source_pts=pts,time_base=tb)
+            for r in p['source_rows']:r.pop('png_base64',None)
+            posts.append(p)
+        return dict(capability=FORCED_PREFIX_CAPABILITY,table=key[0],session=key[1],hand_id=key[2],
+            posts=posts,identities=identities,header_index=snapshot['header_index'],deal_index=snapshot['deal_index'],
+            physical_source=copy.deepcopy(physical),source_refs=[r['source_ref'] for r in ordered],
+            seat_authority='EXISTING_CURRENT_HAND_WHO_ONLY; NO_HISTORICAL_OCCUPANCY',
+            occupancy_authority=False,deal_complete_authority=False,start_stack_timing_authority=False)
+    except (KeyError,TypeError,ValueError,IndexError,AttributeError,OSError,ZeroDivisionError):
+        return None
+
+
+def join_forced_posts(timeline, summary, headers=(), *, candidate_inputs=()):
     """Join only existing historical actor/seat proofs and strict hand prefixes.
 
     No name aliases, majority vote or confidence tie-break invents identity.
@@ -155,30 +298,59 @@ def join_forced_posts(timeline, summary, headers=()):
         for m in assemble_messages(rows,require_adjacency=True):
             if m['action'] in ROLES.values():
                 ordinary[key].append(m)
+    candidate_conflicts=set()
+    for inputs in candidate_inputs:
+        proof=prove_candidate_forced_prefix(**inputs)
+        if proof is None:
+            diagnostics.append(dict(status='UNRESOLVED',blocker='CANDIDATE_FORCED_PREFIX_AUTHORITY_UNPROVEN'))
+            continue
+        key=(proof['table'],proof['session'],proof['hand_id'])
+        if key in candidate_conflicts:
+            diagnostics.append(dict(status='CONFLICT',blocker='CANDIDATE_FORCED_PREFIX_CONFLICT_RETAINED'))
+            continue
+        posts=[(p,dict(capability=FORCED_PREFIX_CAPABILITY,identity_proof=proof['identities'][p['actor']],
+                      forced_prefix_proof=proof)) for p in proof['posts']]
+        expected={(p['actor'],ROLES[p['role']],str(p['amount'])) for p,_ in posts}
+        checks=_ordinary_forced_conflict(posts,ordinary[key],groups[key])
+        negative_forced=any((r.get('canonical_conflict') or r.get('canonical_duplicate_of') or
+            r.get('origin')=='UNRESOLVED_IDENTITY' or r.get('ocr_status')=='ERROR') and
+            (parse_text(r['raw_ocr_text'])['action'] in ROLES.values() or ' posts ' in r['raw_ocr_text'].lower())
+            for r in groups[key])
+        if (key not in anchors or negative_forced or any(c[-1] for c in checks) or
+                any((m['player'],m['action'],str(m['amount'])) not in expected for m in ordinary[key])):
+            candidate_conflicts.add(key)
+            accepted=[(k,p,r) for k,p,r in accepted if k!=key or r.get('capability')!=FORCED_PREFIX_CAPABILITY]
+            diagnostics.append(dict(status='CONFLICT',blocker='CANDIDATE_FORCED_PREFIX_ATOMIC_CONFLICT'))
+            continue
+        existing=[(p,r) for k,p,r in accepted if k==key]
+        if existing:
+            # Never let candidate duplicates suppress prior accepted authority.
+            # Legacy summary posts keep their original independent contract.
+            if any(r.get('capability')!=FORCED_PREFIX_CAPABILITY for _,r in existing):
+                diagnostics.append(dict(status='UNRESOLVED',blocker='EXISTING_SUMMARY_FORCED_AUTHORITY_RETAINED'))
+                continue
+            signature=lambda ps:{(p['actor'],p['role'],p['amount'],p['seat']) for p,_ in ps}
+            if signature(existing)!=signature(posts):
+                candidate_conflicts.add(key)
+                accepted=[(k,p,r) for k,p,r in accepted if k!=key or r.get('capability')!=FORCED_PREFIX_CAPABILITY]
+                diagnostics.append(dict(status='CONFLICT',blocker='CANDIDATE_FORCED_PREFIX_SOURCES_DISAGREE'))
+            else:
+                diagnostics.append(dict(status='CORROBORATED',capability=FORCED_PREFIX_CAPABILITY,hand_id=key[2]))
+            continue
+        if all(c[2] for c in checks):
+            # An already complete ordinary prefix needs no new source authority.
+            diagnostics.append(dict(status='CORROBORATED',capability=FORCED_PREFIX_CAPABILITY,
+                                    hand_id=key[2],posts=len(posts)))
+            continue
+        accepted.extend((key,p,receipt) for p,receipt in posts)
     candidates = defaultdict(list)
     for key,p,receipt in accepted:
         candidates[key].append((p,receipt))
     inserted = defaultdict(list)
     decisions = []
     for key, posts in candidates.items():
-        actor_seats = defaultdict(set); seat_actors = defaultdict(set)
-        for p,_ in posts:
-            actor_seats[p['actor']].add(p['seat']);seat_actors[p['seat']].add(p['actor'])
-        for p,receipt in posts:
+        for p,receipt,matches,incompatible,conflict in _ordinary_forced_conflict(posts,ordinary[key],groups[key]):
             kind=ROLES[p['role']]
-            matches=[m for m in ordinary[key] if m['player']==p['actor'] and m['action']==kind]
-            incompatible=[m for m in ordinary[key] if
-                (kind in {'SMALL_BLIND','BIG_BLIND'} and m['action']==kind and m['player']!=p['actor']) or
-                (kind in {'SMALL_BLIND','BIG_BLIND'} and m['player']==p['actor'] and m['action'] in {'SMALL_BLIND','BIG_BLIND'} and m['action']!=kind)]
-            same_posts=[q for q,_ in posts if q['actor']==p['actor'] and q['role']==p['role']]
-            conflict=(bool(incompatible) or len(same_posts)!=1 or len(actor_seats[p['actor']])!=1 or len(seat_actors[p['seat']])!=1 or
-                any(m['amount'] is None or str(m['amount'])!=str(p['amount']) or
-                    any(r.get('seat') not in {None,p['seat']} for r in m['source_rows']) for m in matches))
-            # A repeated same actor/role after voluntary action is not a proven
-            # duplicate of the prefix. Keep all raw rows, withhold money authority.
-            first_voluntary=next((r for r in groups[key] if parse_text(r['raw_ocr_text'])['action'] in {'FOLD','CHECK','CALL','BET','RAISE','FLOP','TURN','RIVER','WIN'}),None)
-            if first_voluntary and any((m['frame_id'],m['source_rows'][0]['row_index']) >=
-                                     (first_voluntary['frame_id'],first_voluntary['row_index']) for m in matches):conflict=True
             if conflict:
                 diagnostics.append(dict(status='CONFLICT',blocker='FORCED_SOURCES_DISAGREE_OR_IDENTITY_AMBIGUOUS',post=copy.deepcopy(p),ordinary_messages=copy.deepcopy(matches+incompatible)))
                 for m in matches+incompatible:
@@ -190,6 +362,9 @@ def join_forced_posts(timeline, summary, headers=()):
             event_id='CANONICAL_FORCED:'+digest
             provenance=dict(source_lane='FORCED_SNAPSHOT',post=copy.deepcopy(p),binding_receipt=copy.deepcopy(receipt),
                             source_time_semantics='OBSERVED_IN_SNAPSHOT_NOT_ACTION_ONSET',order_rule='PROVEN_BEFORE_DEAL_FORCED_PREFIX')
+            if receipt.get('capability')==FORCED_PREFIX_CAPABILITY:
+                provenance.update(source_lane='CANDIDATE_FORCED_PREFIX',capability=FORCED_PREFIX_CAPABILITY,
+                                  seat_authority='CURRENT_HAND_WHO_ONLY; NO_HISTORICAL_OCCUPANCY')
             if matches:
                 # All corroborating ordinary rows retain exact original text.
                 # Repeated messages are explicit observations, one money event.
@@ -217,6 +392,11 @@ def join_forced_posts(timeline, summary, headers=()):
                 notes_error='SOURCE_OBSERVATION_TIME; PROVEN_BEFORE_DEAL_PREFIX',canonical_event_id=event_id,
                 canonical_provenance=provenance,canonical_stream_version=VERSION,binding_status='PROVEN_ACTOR_SEAT_HAND',
                 action_onset_timestamp=None)
+            if receipt.get('capability')==FORCED_PREFIX_CAPABILITY:
+                r.update(origin='CANDIDATE_FORCED_PREFIX',source_lane='CANDIDATE_FORCED_PREFIX',
+                         binding_status='PROVEN_OBSERVED_POST_CURRENT_HAND_WHO',
+                         forced_prefix_capability=FORCED_PREFIX_CAPABILITY,
+                         historical_occupancy_authority=False)
             inserted[anchors[key]['stable_row_id']].append(r)
             decisions.append(dict(status='JOINED',canonical_event_id=event_id,post=p))
     result=[]
@@ -254,6 +434,68 @@ def join_forced_posts(timeline, summary, headers=()):
     counts=dict(Counter(d['status'] for d in decisions+diagnostics))
     return result, dict(version=VERSION,counts=counts,decisions=decisions,diagnostics=diagnostics,
                         bound=len(summary.get('bound_posts',[])),source_time_semantics='OBSERVATION_ONLY')
+
+
+def admit_saved_candidate_forced_prefixes(source, records, actor_provider):
+    """Resolve deferred source admission once existing current-hand WHO is ready.
+
+    Reuses canonical projection and the existing hand analyzer. Only successful
+    observed-prefix views change; immutable capture/OCR/sidecar files are read.
+    """
+    source=Path(source)
+    if not (source/'physical_chat_admission.jsonl').exists():return []
+    hands={(table_key(r['observed_hand']['table_id']),r['observed_hand']['session_id'],
+            r['observed_hand']['hand_id']):r for r in records}
+    wanted=set()
+    for r in records:
+        for who in actor_provider.for_hand(r['observed_hand']):
+            a=who.get('anchor',{})
+            wanted.add((a.get('table_id'),a.get('session_id'),a.get('hand_id'),a.get('seat'),a.get('frame')))
+    candidates=defaultdict(list); nicks=[]
+    with (source/'seat_forced_inputs.jsonl').open(encoding='utf-8') as stream:
+        for line in stream:
+            if not line.strip():continue
+            row=json.loads(line)
+            key=(row.get('table_id'),row.get('session_id'),row.get('hand_id'))
+            if key not in hands:continue
+            if row.get('kind')=='CHAT_CANDIDATE':candidates[(*key,row['source_frame'])].append(row)
+            elif row.get('kind')=='NICK' and (*key,row.get('seat'),row.get('source_frame')) in wanted:
+                nicks.append(row)
+    if not candidates:return []
+    physical={}
+    with (source/'physical_chat_admission.jsonl').open(encoding='utf-8') as stream:
+        for line in stream:
+            if not line.strip():continue
+            row=json.loads(line); key=(row.get('table'),row.get('session_id'),row.get('frame_after'))
+            if any((k[0],k[1],k[3])==key for k in candidates):
+                physical.setdefault(key,[]).append(row)
+    headers,_,_=source_bound_headers(source)
+    reports=[]
+    from parser_core.poker_pipeline import analyze_timeline
+    for key,record in hands.items():
+        hand=record['observed_hand']; inputs=[]
+        for route,rows in candidates.items():
+            if route[:3]!=key:continue
+            receipts=physical.get((route[0],route[1],route[3]),[])
+            if len(receipts)==1:
+                inputs.append(dict(rows=rows,physical=receipts[0],hand=hand,
+                    actor_provider=actor_provider,nick_rows=nicks,headers=headers))
+        if not inputs:continue
+        timeline=[r for m in hand['messages'] for r in m['source_rows']]
+        joined,report=join_forced_posts(timeline,{},candidate_inputs=inputs)
+        report.update(table=key[0],session=key[1],hand_id=key[2])
+        promoted=[r for r in joined if r.get('forced_prefix_capability')==FORCED_PREFIX_CAPABILITY]
+        report['new_observed_posts']=len(promoted)
+        reports.append(report)
+        if not promoted:continue
+        analyzed,_=analyze_timeline(joined,ocr_status={r['stable_row_id']:r.get('ocr_status','OK') for r in joined},
+                                    join_show_description=True)
+        if len(analyzed)!=1 or context(analyzed[0]['observed_hand'])!=key:
+            raise ValueError('CANDIDATE_FORCED_PREFIX_CHANGED_HAND_BOUNDARY')
+        for field in ('observed_hand','validation','diagnostics','fully_validated'):
+            record[field]=analyzed[0][field]
+        record['forced_prefix_admission']=dict(capability=FORCED_PREFIX_CAPABILITY,new_posts=len(promoted))
+    return reports
 
 
 def canonical_join(output, timeline):
@@ -340,7 +582,8 @@ def _first_number_forced_chronology(facts, snapshot, matched, events):
     except (KeyError,TypeError,ValueError,IndexError,ZeroDivisionError):return None
 
 
-def reconcile_stack_facts(facts, events, *, forced_snapshots=(), first_visible_contract=False):
+def reconcile_stack_facts(facts, events, *, forced_snapshots=(), first_visible_contract=False,
+                          exact_binding_sources=None):
     """Use the same actor/seat money events; retain the original vision object."""
     result=copy.deepcopy(facts)
     key=(facts['table'],facts['session'],facts['hand_id'])
@@ -378,6 +621,9 @@ def reconcile_stack_facts(facts, events, *, forced_snapshots=(), first_visible_c
             chronology=None
             if first_visible_contract:
                 chronology=_first_number_forced_chronology(facts,snapshot,matched,events)
+                if chronology is None and exact_binding_sources:
+                    from parser_core.exact_forced_chronology import prove
+                    chronology=prove(facts,snapshot,matched,exact_binding_sources)
             prior_order=all(p.get('phase')=='BEFORE_DEAL' and p.get('source_frame') is not None and
                         p['source_frame']<=facts.get('deal_complete_frame',-1) for p in bound)
             order_proven=chronology is not None if first_visible_contract else prior_order
@@ -389,6 +635,12 @@ def reconcile_stack_facts(facts, events, *, forced_snapshots=(), first_visible_c
                                           posts=copy.deepcopy(own),event_ids=refs))
                 if chronology is not None:
                     result.update(actor=actor,forced_chronology_proof=chronology)
+                    if chronology['rule']=='EXACT_LABEL_COMPLETE_ACTOR_POSTS_BEFORE_FIRST_NUMBER_V1':
+                        result['forced_truth']='CANONICAL_COMPLETE_ACTOR_POSTS_EXACT_LABEL'
+                        result['correction_proof']['rule']='COMPLETE_PHYSICAL_ACTOR_POST_SET_EXACT_LABEL'
+                    elif chronology['rule']=='UNIQUE_ACTOR_PREFIX_COMPLETE_POSTS_BEFORE_FIRST_NUMBER_V1':
+                        result['forced_truth']='CANONICAL_COMPLETE_ACTOR_POSTS_ACTOR_PREFIX'
+                        result['correction_proof']['rule']='COMPLETE_PHYSICAL_ACTOR_POST_SET_ACTOR_PREFIX'
     else:
         result['forced_bets']=forced
         result['forced_truth']='CANONICAL_EVENTS'

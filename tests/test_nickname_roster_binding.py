@@ -27,7 +27,9 @@ def test_native_truncated_seat_has_unique_complete_source_roster(native):
     proof = prove_roster_binding(native)
     assert proof['status'] == 'PROVEN', proof
     assert proof['matching']['seat2'] == 'stoleyourblind'
-    assert proof['binding_anchor_frame'] == 286
+    assert proof['binding_anchor_frame'] == 284
+    assert all(len(t['frames'])==1 and len(t['source_rows'])==1
+               for labels in proof['label_evidence'].values() for t in labels)
     assert len(proof['matching']) == 8
     assert native == before
     posts = [p for p in native['snapshot']['posts'] if p['actor'] == 'stoleyourblind']
@@ -35,6 +37,27 @@ def test_native_truncated_seat_has_unique_complete_source_roster(native):
     assert receipt['label_evidence'][0]['constraint'] == dict(kind='PREFIX', text='stoleyourbl')
     assert verify_binding_receipt(receipt, native['snapshot'])
     assert prove_roster_binding(proof['source_inputs']) == proof
+
+
+def test_nick90_v2_is_separate_from_chat95_and_v1_sealed_replay(native):
+    from parser_core.nickname_policy import FIRST_NICK_POLICY,FIRST_NICK_POLICY_V1
+    old=prove_roster_binding(native,_witness_policy=FIRST_NICK_POLICY_V1)
+    assert old['status']=='PROVEN'
+    posts=[p for p in native['snapshot']['posts'] if p['actor']=='stoleyourblind']
+    assert verify_binding_receipt(binding_receipt(old,'stoleyourblind',posts),native['snapshot'])
+    for row in native['nick_rows']:
+        if row['seat']=='seat2' and 284 <= row['source_frame'] <= 286:
+            row['ocr_response']['score']=.90
+    current=prove_roster_binding(native)
+    assert current['status']=='PROVEN' and current['nickname_witness_policy']==FIRST_NICK_POLICY
+    assert current['source_inputs']['confidence']==.95
+    assert verify_binding_receipt(binding_receipt(current,'stoleyourblind',posts),native['snapshot'])
+    # The complete fixture has later >=.95 alternatives. Keep only the actual
+    # .90 seat2 witness to isolate the V1/V2 admission boundary.
+    native['nick_rows']=[r for r in native['nick_rows']
+        if r['seat']!='seat2' or 284 <= r['source_frame'] <= 286]
+    assert prove_roster_binding(native)['status']=='PROVEN'
+    assert prove_roster_binding(native,_witness_policy=FIRST_NICK_POLICY_V1)['status']=='UNKNOWN'
 
 
 @pytest.mark.parametrize('case', ['bare_ellipsis','prefix_conflict','case_conflict','low_confidence',
@@ -62,7 +85,7 @@ def test_native_proof_cannot_bridge_unknown_or_contradictory_sources(native, cas
     elif case == 'missing_ante': native['snapshot']['posts'].pop(0)
     elif case == 'duplicate_ante': native['snapshot']['posts'].append(copy.deepcopy(native['snapshot']['posts'][0]))
     elif case == 'cardinality': native['deal']['occupied_seats'].pop()
-    assert prove_roster_binding(native)['status'] == 'UNKNOWN'
+    assert prove_roster_binding(native)['status'] == ('PROVEN' if case in {'low_confidence','triple_gap'} else 'UNKNOWN')
 
 
 def test_constraint_intersection_cannot_ignore_a_conflicting_exact_name(native):

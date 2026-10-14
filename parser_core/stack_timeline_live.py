@@ -6,6 +6,7 @@ Physical seats remain unbound to players; no action or START_STACK is invented.
 import hashlib
 import json
 import sqlite3
+import sys
 import time
 from collections import Counter, defaultdict, OrderedDict
 from pathlib import Path
@@ -14,17 +15,29 @@ import cv2
 import numpy as np
 
 from . import performance_diagnostics as diagnostics
+from .performance_work import note as work_note
 from .stack_timeline_algorithms import Timeline, RawTiny, numeric, excluding_gate_class
 from .bounded_storage import BoundedStats, HotHistory, StatePool, DiskRecords, RoutedRecords
+from .stack_timeline_storage import create_stack_timeline_storage
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class StackTimelineLive:
     def __init__(self, output, *, video_sha256, sessions, frames):
+        self.client = self.db = self.receipts = self.rejected_receipts = None
+        self.closed = False
+        try:
+            self._initialize(output, video_sha256=video_sha256, sessions=sessions, frames=frames)
+        except BaseException:
+            self._close_resources()
+            self.closed = True
+            raise
+
+    def _initialize(self, output, *, video_sha256, sessions, frames):
         self.output = Path(output) / 'stack_pipeline'
         self.output.mkdir()
-        self.path = self.output / 'timeline.sqlite'
+        self.path, self.storage_receipt = create_stack_timeline_storage(output)
         self.sessions = sessions
         self.requested_frames = frames
         self.client = None
@@ -263,9 +276,11 @@ class StackTimelineLive:
     def load_state(self,state_id):
         cached=self.state_cache.get(state_id)
         if cached is not None:
+            work_note("cache/sqlite_state",category="cache/branch",key=(str(self.path),state_id),hits=1)
             self.state_cache.move_to_end(state_id)
             return cached
         tick=self.tick()
+        work_note("cache/sqlite_state",category="cache/branch",key=(str(self.path),state_id),misses=1,queries=1)
         row=self.db.execute('select provenance,raw_gray,exact_hash from visual_states where state_id=?',(state_id,)).fetchone()
         if row is None:raise ValueError('STACK recurrence state not committed')
         payload=json.loads(row[0])['state_payload']
@@ -319,10 +334,24 @@ class StackTimelineLive:
             # Mandatory final flush includes current last_seen updates even without new states.
             self.flush()
         finally:
-            if self.client is not None:
-                self.client.close()
-            self.receipts.close()
-            self.rejected_receipts.close()
-            self.db.close()
+            original_error = sys.exc_info()[1]
+            close_error = self._close_resources()
             self.closed = True
-            self.write_metrics()
+            try:
+                self.write_metrics()
+            except BaseException:
+                if original_error is None and close_error is None:
+                    raise
+            if original_error is None and close_error is not None:
+                raise close_error
+
+    def _close_resources(self):
+        error = None
+        for resource in (self.client, self.receipts, self.rejected_receipts, self.db):
+            if resource is not None:
+                try:
+                    resource.close()
+                except BaseException as exc:
+                    if error is None:
+                        error = exc
+        return error

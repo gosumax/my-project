@@ -1,6 +1,7 @@
 """Experimental Decimal contribution ledger; no visual pot authority."""
 from decimal import Decimal
 from time import perf_counter
+from parser_core.poker_amount_semantics import resolve_call, call_contract, call_start_stack
 
 VERSION = 'experimental-math-2-observed-and-prefix-ledgers'
 
@@ -43,6 +44,7 @@ def audit_observed_ledger(hand):
     street_contributions = defaultdict(Decimal)
     street, bet = 'PREFLOP', Decimal(0)
     steps, missing, suspicious = [], [], []
+    call_ledger_known = True
     excluded = set(hand.get('excluded_message_indices', []))
 
     def snapshot():
@@ -85,6 +87,7 @@ def audit_observed_ledger(hand):
                 missing.append(entry)
                 suspicious.append(entry)
                 effect['status'] = 'UNKNOWN_MONEY_EFFECT'
+                call_ledger_known = False
             else:
                 delta = Decimal(0)
                 if action in {'ANTE', 'SMALL_BLIND', 'BIG_BLIND'}:
@@ -94,10 +97,19 @@ def audit_observed_ledger(hand):
                         street_contributions[player] += delta
                         bet = max(bet, street_contributions[player])
                 elif action == 'CALL':
-                    semantics = hand.get('semantics', {}).get('call')
-                    delta = amount-own if semantics == 'TOTAL' else amount
-                    if semantics not in {'ADDED', 'TOTAL'}:
-                        suspicious.append({'message_index': index, 'RULE_TRIGGER': 'AMOUNT_SEMANTICS_UNPROVEN', 'PROVEN_CAUSE': 'UNKNOWN'})
+                    semantics = call_contract(hand, msg)
+                    proof = resolve_call(amount, own, bet, all_in=msg.get('all_in', False), contract=semantics,
+                        start_stack=call_start_stack(hand, player) if call_ledger_known else None,
+                        total_contribution=sum(ledger[player].values(), Decimal(0)), returned=returns[player])
+                    if proof['status'] != 'RESOLVED':
+                        call_ledger_known = False
+                    effect['amount_resolution'] = proof
+                    delta = (Decimal(proof['delta']) if proof['status'] == 'RESOLVED' else
+                             amount-own if semantics == 'TOTAL' else amount)
+                    if proof['status'] != 'RESOLVED':
+                        suspicious.append({'message_index': index,
+                            'RULE_TRIGGER': 'AMOUNT_SEMANTICS_UNPROVEN' if proof['status']=='AMBIGUOUS' else 'INVALID_CALL',
+                            'PROVEN_CAUSE': 'UNKNOWN'})
                     street_contributions[player] += delta
                 elif action == 'BET':
                     delta = amount
@@ -107,8 +119,11 @@ def audit_observed_ledger(hand):
                     delta = amount-own
                     street_contributions[player], bet = amount, amount
                     if delta <= 0:
+                        call_ledger_known = False
                         suspicious.append({'message_index': index, 'RULE_TRIGGER': 'NON_POSITIVE_RAISE_DELTA', 'PROVEN_CAUSE': 'UNKNOWN'})
                 elif action == 'UNCALLED_RETURN':
+                    if amount > sum(ledger[player].values(), Decimal(0))-returns[player] or amount > own:
+                        call_ledger_known = False
                     returns[player] += amount
                     street_contributions[player] -= amount
                     bet = max(street_contributions.values(), default=Decimal(0))
@@ -119,8 +134,31 @@ def audit_observed_ledger(hand):
                 if action in {'CALL', 'BET', 'RAISE'}:
                     ledger[player][street.lower()+'_contribution'] += delta
                 effect.update(contribution=str(delta), status='OBSERVED_BOOKKEEPING_ONLY')
-        steps.append({'message_index': index, 'before': before, 'after': snapshot(), 'math_effect': effect,
-                      'amount_to_call_before': str(required) if required is not None else None})
+        after = snapshot()
+        if action == 'UNKNOWN_EVENT' and index not in excluded:
+            call_ledger_known = False
+        resolved = effect.get('amount_resolution', {})
+        steps.append({'message_index': index, 'before': before, 'after': after, 'math_effect': effect,
+                      'amount_to_call_before': str(required) if required is not None else None,
+                      'hand_id': hand.get('hand_id'), 'street': before['street'],
+                      'event_index': index, 'player': player, 'action': action,
+                      'raw_amount': msg.get('raw_amount_text', msg.get('observed_amount', msg.get('amount'))),
+                      'raw_source_event': msg.get('raw_text'),
+                      'source_row_ids': list(msg['source_row_ids']),
+                      'resolved_semantics': resolved.get('resolved_semantics', msg.get('amount_role')),
+                      'delta': str(Decimal(effect['contribution'])-Decimal(effect['return'])),
+                      'street_contribution_before': str(own),
+                      'street_contribution_after': after['street_contributions_by_player'].get(player, '0'),
+                      'ante_contribution': str(ledger.get(player, {}).get('ante', Decimal(0))),
+                      'total_hand_contribution': str(sum(ledger.get(player, {}).values(), Decimal(0))-returns.get(player, Decimal(0))),
+                      'current_highest_bet': before['current_bet'],
+                      'stack_before': None, 'stack_after': None,
+                      'pot_before': str(Decimal(before['total_contributions'])-Decimal(before['total_returns'])),
+                      'pot_after': str(Decimal(after['total_contributions'])-Decimal(after['total_returns'])),
+                      'inference_used': bool(msg.get('amount_proof')) or
+                          resolved.get('source')=='POKER_MATH_INFERENCE' and resolved.get('status')=='RESOLVED',
+                      'inference_reason': msg.get('resolution_reason') or
+                          msg.get('amount_proof', {}).get('rule') or resolved.get('reason')})
     result = validate_math(ledger, payouts, returns)
     result.update(total_contributions=snapshot()['total_contributions'], total_returns=snapshot()['total_returns'],
                   contributions_by_street=snapshot()['contributions_by_street'],
@@ -141,12 +179,31 @@ def calculate_start_stack(facts, *, first_visible_contract=False):
     if facts.get('status') != 'PROVEN_FOR_MATH':
         result['blocker'] = result['blocker'] or 'FORCED_CORRECTIONS_UNKNOWN'
         return result
+    chronology_rule=facts.get('forced_chronology_proof', {}).get('rule')
+    if (facts.get('forced_truth') in {'CANONICAL_COMPLETE_ACTOR_POSTS_EXACT_LABEL',
+                                    'CANONICAL_COMPLETE_ACTOR_POSTS_ACTOR_PREFIX'} or
+            facts.get('correction_proof',{}).get('rule') in {'COMPLETE_PHYSICAL_ACTOR_POST_SET_EXACT_LABEL',
+                                                         'COMPLETE_PHYSICAL_ACTOR_POST_SET_ACTOR_PREFIX'} or
+            chronology_rule in {'EXACT_LABEL_COMPLETE_ACTOR_POSTS_BEFORE_FIRST_NUMBER_V1',
+                                'UNIQUE_ACTOR_PREFIX_COMPLETE_POSTS_BEFORE_FIRST_NUMBER_V1'}):
+        from parser_core.exact_forced_chronology import verify
+        if not verify(facts):
+            result['blocker'] = 'EXACT_FORCED_CHRONOLOGY_NOT_REPRODUCIBLE'
+            return result
+    elif (first_visible_contract and facts.get('forced_truth')=='CANONICAL_COMPLETE_ACTOR_POSTS' and
+            chronology_rule!='COMPLETE_FORCED_PREFIX_OBSERVED_BY_FIRST_POSTFORCED_NUMBER_V1' and
+            not (facts.get('correction_proof',{}).get('posts') and
+                 isinstance(facts.get('deal_complete_frame'),int) and
+                 all(type(p.get('source_frame')) is int and p['source_frame']<=facts['deal_complete_frame']
+                     for p in facts['correction_proof']['posts']))):
+        result['blocker'] = 'FORCED_CHRONOLOGY_NOT_REPRODUCIBLE'
+        return result
     if not facts.get('occupancy_epoch') or not facts.get('participant_proven'):
         result['blocker'] = 'OCCUPANCY_MEMBERSHIP_UNKNOWN'
         return result
     frames = facts.get('frames', [])
-    if (len(frames) != 3 or frames != list(range(frames[0], frames[0]+3))
-            or facts.get('clean_window_rule') != 'FIRST_VISIBLE_STABLE_STACK_TRIPLE_AFTER_DEAL_COMPLETE'
+    from parser_core.start_stack_visibility import valid_numeric_witness
+    if (not valid_numeric_witness(facts)
             or facts.get('deal_complete_frame') is None or frames[0] <= facts['deal_complete_frame']):
         result['blocker'] = 'FIRST_VISIBLE_STACK_TRIPLE_UNPROVEN'
         return result
@@ -178,7 +235,7 @@ def calculate_start_stack(facts, *, first_visible_contract=False):
         from parser_core.start_stack_visibility import CONTRACT, verify_first_visible_fact
         if verify_first_visible_fact(facts):
             result.update(START_STACK=result['START_STACK_CANDIDATE'],status='PASS',blocker=None,
-                          initial_stack_contract=CONTRACT,start_stack_certified=True)
+                          initial_stack_contract=facts['first_visible_proof']['contract'],start_stack_certified=True)
         else:
             result['blocker']='FIRST_VISIBLE_POST_FORCED_SOURCE_UNPROVEN'
     return result
@@ -196,7 +253,13 @@ def write_start_stack_math(output, *, eligible_contexts=None, first_visible_cont
         summary_path=output/'seat_forced_summary.json'
         snapshots=json.loads(summary_path.read_text('utf-8')).get('forced_snapshots',[]) if summary_path.exists() else []
         options={'first_visible_contract':True} if first_visible_contract else {}
-        facts=[reconcile_stack_facts(fact,events,forced_snapshots=snapshots,**options) for fact in facts]
+        exact_sources={}
+        if first_visible_contract:
+            from parser_core.exact_forced_chronology import load_sources
+            exact_sources=load_sources(output)
+        facts=[reconcile_stack_facts(fact,events,forced_snapshots=snapshots,
+            exact_binding_sources=exact_sources.get((fact['table'],fact['session'],fact['hand_id'])),
+            **options) for fact in facts]
     selected = facts if eligible_contexts is None else [r for r in facts
         if (r['table'],r['session'],r['hand_id']) in eligible_contexts]
     excluded = [] if eligible_contexts is None else [r for r in facts

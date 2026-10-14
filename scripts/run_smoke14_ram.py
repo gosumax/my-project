@@ -25,7 +25,8 @@ import sqlite3
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from parser_core.message_assembly import RowFact, group_rows
-from parser_core.normalize_chat import normalize
+from parser_core.normalize_chat import normalize, normalize_with_service
+from parser_core.service_text_normalizer import physical_service_group
 from parser_core.parallel_ocr import ParallelRowOCR, CaptureTableBatches, row_key
 from parser_core.ram_first_stage import FirstStage
 from parser_core.temporal_overlap import TemporalObservations
@@ -38,6 +39,9 @@ from parser_core.visual_cards import associate_visual_evidence, project_chat_car
 from parser_core.layout import load_fixed_layout
 from parser_core.journal import stable_id
 from parser_core.visual_tile_queue import VisualTileQueue
+
+
+from parser_core.performance_work import write_json_line
 
 
 class Telemetry:
@@ -86,6 +90,13 @@ def source_identity(video: Path, root: Path) -> tuple[dict, dict[str, str]]:
     return {"source_id": source_id, "source_video_sha256": video_sha,
             "layout_id": layout.layout_id, "layout_sha256": hashes[0],
             "profile_sha256": hashes[1], "calibration_sha256": hashes[2]}, sessions
+
+
+def write_capture_metadata(output: Path, metadata: dict) -> Path:
+    """Retain source metadata before HH; final run status has its own envelope."""
+    path=output/'capture_metadata.json'
+    path.write_text(json.dumps(metadata,ensure_ascii=False,indent=2),'utf-8')
+    return path
 
 
 def main(*, production_guard=None):
@@ -348,6 +359,9 @@ def main(*, production_guard=None):
                 "ocr_batch_contract": "PER_TABLE_SESSION_CAPTURE_ORDER_BATCH8_TAIL_AT_EOF",
                 "poker_analysis": "STRICT_SOURCE_ASSEMBLY_LOGIC_MATH_PIXEL_CARDS",
                 "status": "RUNNING"}
+    if stack_timeline is not None:
+        metadata.update({k:v for k,v in stack_timeline.storage_receipt.items()
+                         if k.startswith('STACK_TIMELINE_')})
     (output / "run_metadata.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2), "utf-8")
     try:
         def observe_ordinary_ocr(row,response):
@@ -369,7 +383,8 @@ def main(*, production_guard=None):
             if sidecar_flags['enable_start_stack_capture']:
                 from parser_core.start_stack_live import StartStackLiveConnection
                 start_stack_live = StartStackLiveConnection(ROOT,output,start_stack_sidecar,config,
-                    first_visible_contract=full_hh,empty_card_contract=full_hh)
+                    first_visible_contract=full_hh,empty_card_contract=full_hh,
+                    direct_ocr_delay_frames=20 if full_hh else 0)
                 from parser_core.seat_forced_binding import SeatForcedBinding
                 seat_binding = SeatForcedBinding(ROOT,output,start_stack_sidecar,start_stack_live,config,
                                                 independent_occupancy=full_hh,roster_prefix_binding=full_hh,
@@ -435,6 +450,10 @@ def main(*, production_guard=None):
             stack_lookup_tick = diagnostic.tick() if diagnostic else None
             stack_provider = StackEvidenceProvider(stack_timeline.path,
                 video_sha256=source_metadata['source_video_sha256'])
+            if stack_provider.path != stack_timeline.path:
+                raise ValueError('STACK_TIMELINE_WRITER_READER_PATH_MISMATCH')
+            metadata['STACK_TIMELINE_READER_DB_PATH'] = str(stack_provider.path)
+            metadata['STACK_TIMELINE_WRITER_CLOSED_BEFORE_READER'] = stack_timeline.closed
             if diagnostic:diagnostic.record('STACK_evidence_load',stack_lookup_tick,len(stack_provider.points))
         capture_finished = time.perf_counter()
         if diagnostic:
@@ -510,7 +529,7 @@ def main(*, production_guard=None):
                                           "error": "OCR_WORKER_DID_NOT_RETURN"})
             raw = result.get("raw_text") or ""
             tick = time.perf_counter()
-            candidate = normalize([raw])
+            candidate, service = normalize_with_service([raw])
             telemetry.add("text_normalize_classify", time.perf_counter() - tick)
             status_text = "UNRESOLVED" if row.origin == "UNRESOLVED_IDENTITY" else (
                 "ERROR" if result.get("status") == "ERROR" else
@@ -520,12 +539,14 @@ def main(*, production_guard=None):
                              "frame_id": row.frame_id, "video_time": row.video_time,
                              "source_roi_change_id": f"{row.session_id}:{row.frame_id}:chat",
                              "row_index": row.source_span_index, "raw_ocr_text": raw,
-                             "normalized_text": raw.strip(), "event_type": candidate.event_type,
+                             "normalized_text": service.normalized_text, "event_type": candidate.event_type,
                              "confidence": result.get("score"), "status": status_text,
                              "notes_error": result.get("error") or candidate.reason or "",
                              "session_id": row.session_id, "origin": row.origin,
                              "epoch": row.epoch, "row_pixel_sha256": row.pixel_sha256,
                              "stable_row_id": row.stable_row_id})
+            if service.changes:
+                timeline[-1]['service_normalizations'] = list(service.changes)
             if row.admission_ref:
                 timeline[-1].update(row_identity_status=row.identity_status,admission_ref=row.admission_ref,
                     admission_reason='PROVEN_PHYSICAL_NEW; OLD_IDENTITY_UNKNOWN')
@@ -560,7 +581,9 @@ def main(*, production_guard=None):
             by_key = {(x["frame_id"], x["row_index"]): x for x in table_rows}
             for message_index, message in enumerate(messages, 1):
                 tick_message = time.perf_counter()
-                candidate = normalize([r.text for r in message.rows])
+                source_group = [by_key[(fact.frame_id, int(fact.y1))] for fact in message.rows]
+                candidate, service = normalize_with_service([r.text for r in message.rows],
+                    apply_service=physical_service_group(source_group))
                 telemetry.add("message_normalize_classify", time.perf_counter() - tick_message)
                 for fact in message.rows:
                     item = by_key[(fact.frame_id, int(fact.y1))]
@@ -568,19 +591,30 @@ def main(*, production_guard=None):
                     item["message_event_type"] = candidate.event_type
                     item["message_status"] = message.completeness
                     item["message_reason"] = message.reason or ""
+                    if service.changes:
+                        item['message_service_normalizations'] = list(service.changes)
         telemetry.add("message_grouping", time.perf_counter() - tick, len(timeline))
         if vl is not None:
             runtime_state["phase"] = "vl_drain"
             vl.finish()
             if gpu_dispatcher is not None:
                 gpu_dispatcher.close()
-            associate_visual_evidence(timeline, vl.results)
-            project_chat_card_events(timeline, vl.results)
-            vl.write_evidence(output / "visual_evidence.jsonl")
+            if not full_hh:
+                associate_visual_evidence(timeline, vl.results)
+                project_chat_card_events(timeline, vl.results)
+                vl.write_evidence(output / "visual_evidence.jsonl")
         runtime_state["phase"] = "poker_analysis"
         tick = time.perf_counter()
         timeline, canonical_report = canonical_join(output, timeline)
         telemetry.add("canonical_event_join", time.perf_counter() - tick, len(timeline))
+        if full_hh:
+            from parser_core.full_hh_profile import project_current_card_evidence
+            tick = time.perf_counter()
+            card_projection = project_current_card_evidence(timeline, vl.results)
+            telemetry.add("full_hh_card_projection", time.perf_counter() - tick, len(vl.results))
+            (output/'full_hh_card_projection.json').write_text(
+                json.dumps(card_projection, indent=2), 'utf-8')
+            vl.write_evidence(output / "visual_evidence.jsonl")
         tick = time.perf_counter()
         hand_records, hand_summary = analyze_timeline(timeline, ocr_status={
             row.stable_row_id: recognized.get(row_key(row), {}).get("status", "ERROR")
@@ -590,14 +624,14 @@ def main(*, production_guard=None):
                               ("validated_hands.jsonl", [r for r in hand_records if r["fully_validated"]])):
             with (output / name).open("w", encoding="utf-8") as stream:
                 for record in records:
-                    stream.write(json.dumps(record, ensure_ascii=False, allow_nan=False) + "\n")
+                    write_json_line(stream,record,allow_nan=False)
         (output / "hand_summary.json").write_text(
             json.dumps(hand_summary, ensure_ascii=False, indent=2, allow_nan=False), "utf-8")
         tick = time.perf_counter()
         diagnostic_jsonl_tick=diagnostic.tick() if diagnostic else None
         with (output / "ordered_timeline.jsonl").open("w", encoding="utf-8") as stream:
             for item in timeline:
-                stream.write(json.dumps(item, ensure_ascii=False) + "\n")
+                write_json_line(stream,item)
         telemetry.add("jsonl_write", time.perf_counter() - tick, len(timeline))
         if diagnostic:diagnostic.record('JSONL_write',diagnostic_jsonl_tick,len(timeline))
         tick = time.perf_counter()
@@ -618,7 +652,7 @@ def main(*, production_guard=None):
                                ("complete_hand_analysis.jsonl", complete_hands),
                                ("validated_hands.jsonl", [r for r in complete_hands if r["fully_validated"]])):
             with (output/name).open('w',encoding='utf-8') as stream:
-                for record in selected:stream.write(json.dumps(record,ensure_ascii=False,allow_nan=False)+'\n')
+                for record in selected:write_json_line(stream,record,allow_nan=False)
         if seat_binding is not None:
             from parser_core.poker_math_engine import write_start_stack_math
             tick = time.perf_counter()
@@ -630,6 +664,11 @@ def main(*, production_guard=None):
         if full_hh:
             from parser_core.full_hh_profile import reconstruction_settings
             reconstruction_options=reconstruction_settings(reconstruction_config())
+            write_capture_metadata(output,metadata)
+            if stack_provider is not None:
+                from parser_core.simple_saved_policy import SimpleSavedPolicyProvider
+                stack_provider.simple_sources=SimpleSavedPolicyProvider.from_saved(output,logical_records)
+                stack_provider.actor_sources=stack_provider.simple_sources.actor_sources
         if stack_provider is None:
             reconstruction_summary = write_reconstruction(output, complete_hands,config=reconstruction_options)
         else:
@@ -638,7 +677,13 @@ def main(*, production_guard=None):
         telemetry.add("poker_reconstruction", time.perf_counter() - tick, len(complete_hands))
         if full_hh:
             tick = time.perf_counter()
-            export_hand_histories(output,logical_records)
+            from parser_core.table_service_events import service_view
+            (output/'table_service_events.json').write_text(json.dumps(
+                service_view([r['observed_hand'] for r in logical_records]),
+                ensure_ascii=False, indent=2), 'utf-8')
+            simple=getattr(stack_provider,'simple_sources',None)
+            export_hand_histories(output,logical_records,simple_provider=simple,
+                                 actor_provider=simple.actor_sources if simple is not None else None)
             telemetry.add('HH_export',time.perf_counter()-tick,len(logical_records))
         if errors or any(item["status"] == "ERROR" for item in recognized.values()):
             status = "PARTIAL_OCR_ERROR"

@@ -61,11 +61,24 @@ class HandHeaderAdmission:
     def __init__(self, root, output, provider, ocr):
         self.gate=HeaderPrefixGate(root);self.provider=provider;self.ocr=ocr
         self.lock=threading.RLock();self.counts=Counter();self.seen={};self.rows=[]
+        self._seen_counts={};self._seen_count_source=self.seen;self._seen_count_size=0
         self.closed=False
         self.stream=(Path(output)/'hand_header_ocr.jsonl').open('w',encoding='utf-8')
 
     def _log(self, value):
         self.stream.write(json.dumps(value,ensure_ascii=False)+'\n')
+
+    def _session_seen_count(self, table, session):
+        # Preserve the original query on first use and after fixture replacement.
+        # Ordinary ownership only appends; other sessions' counts stay unchanged.
+        if (self.seen is not self._seen_count_source or
+                len(self.seen) != self._seen_count_size):
+            self._seen_counts={};self._seen_count_source=self.seen
+            self._seen_count_size=len(self.seen)
+        pair=(table,session)
+        if pair not in self._seen_counts:
+            self._seen_counts[pair]=sum(k[0]==table and k[1]==session for k in self.seen)
+        return self._seen_counts[pair]
 
     def observe_frame(self, table, session, frame, pts, time_base, table_rgb, chat_gray):
         # Install replacement-session context before a fast worker can reply.
@@ -88,9 +101,10 @@ class HandHeaderAdmission:
             with self.lock:
                 if key in self.seen:
                     self.counts['REPEATED_CANDIDATE_SUPPRESSED']+=1;continue
-                if sum(k[0]==table and k[1]==session for k in self.seen)>=4096:
+                if self._session_seen_count(table,session)>=4096:
                     raise RuntimeError('HEADER_SESSION_CAPACITY_UNKNOWN')
                 self.seen[key]=(frame,index)
+                self._seen_counts[(table,session)]+=1;self._seen_count_size=len(self.seen)
                 digest=hashlib.sha256(pixels.tobytes()).hexdigest()
                 row=RamRow(frame,None,table,session,index,a,'HEADER_ONLY_CANDIDATE',0,
                            pixels.copy(),digest,f'{session}:HEADER:{frame}:{index}',pts,*time_base)

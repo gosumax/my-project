@@ -11,10 +11,11 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from parser_core.board_tiles import card_spans, secondary_card_spans, _glyph_boxes, _glyphs, _scores, TEMPLATE_PATH
+from parser_core.board_tiles import (card_spans, secondary_card_spans, _glyph_boxes,
+    _glyphs, _scores, TEMPLATE_PATH, prove_split_card_partition, SPLIT_PARTITION_RULE)
 from parser_core.suit_backup import SuitBackup, decide_suit
 from parser_core.component_suit import ComponentSuitBackup
-from parser_core.rank_ncc import RankNCC
+from parser_core.rank_ncc import RankNCC, rank_geometry_fallback
 
 
 def _sha(data: bytes) -> str:
@@ -23,6 +24,8 @@ def _sha(data: bytes) -> str:
 
 _VL_RANK_TOKEN = re.compile(r"10|[2-9TJQKA]")
 _STRUCTURED_RANK_TOKEN = re.compile(r"(?<![A-Z0-9])(?:10|[2-9TJQKA])(?=(?:[SHDC](?![A-Z0-9]))|[^A-Z0-9]|$)")
+_PRODUCTION_RANK_POLICY = (.71, .015)
+_DEVELOPMENT_RANK_POLICY = (.80, .01)
 
 
 def parse_rank_tokens(text: str) -> list[str]:
@@ -87,23 +90,28 @@ class CardHybrid:
         if rank_ncc_config is not None:
             rank_bytes = Path(rank_ncc_config).read_bytes()
             rank_config = json.loads(rank_bytes)
+            production_rank = (rank_config.get("mode") == "PIXEL_ONLY" and
+                               rank_config.get("production_authorized") is True and
+                               rank_config.get("production_enabled") is True)
+            rank_policy = (_PRODUCTION_RANK_POLICY if production_rank else
+                           _DEVELOPMENT_RANK_POLICY)
             if (rank_config.get("mode") not in ("FALLBACK", "PIXEL_ONLY") or
                     not (rank_config.get("development_only") is True or
                          (rank_config.get("mode") == "PIXEL_ONLY" and
                           rank_config.get("production_authorized") is True and
                           rank_config.get("production_enabled") is True)) or
                     rank_config.get("method") != "component_ncc" or
-                    rank_config.get("best_score_threshold") != .80 or
-                    rank_config.get("margin_threshold") != .01 or
+                    rank_config.get("best_score_threshold") != rank_policy[0] or
+                    rank_config.get("margin_threshold") != rank_policy[1] or
                     self.suit_backup.mode != "BACKUP"):
-                raise ValueError("Experimental rank policy is not the frozen development policy")
+                raise ValueError("Rank policy is not the registered production or frozen development policy")
             implementation = Path(__file__).with_name("rank_ncc.py")
             if _sha(implementation.read_bytes()) != rank_config["implementation_sha256"]:
                 raise ValueError("Frozen RankNCC implementation changed")
             if (rank_config["train_manifest_sha256"] != self.train_manifest_sha256):
                 raise ValueError("Rank and suit template provenance disagree")
             self.rank_ncc = RankNCC(Path(rank_config["train_manifest"]), method="component_ncc",
-                                   threshold=.80, margin=.01,
+                                   threshold=rank_policy[0], margin=rank_policy[1],
                                    expected_manifest_sha256=rank_config["train_manifest_sha256"])
             self.rank_mode = rank_config["mode"]
             self.development_only = rank_config.get("development_only", True)
@@ -141,13 +149,34 @@ class CardHybrid:
         primary_spans = spans
         geometry_valid = (2 <= len(spans) <= 5 and all(
             2 <= spans[i+1][0]-spans[i][1]-1 <= 5 for i in range(len(spans)-1)))
-        if not geometry_valid and self.suit_backup.mode == "BACKUP":
+        if self.suit_backup.mode == "BACKUP":
             secondary, secondary_evidence = secondary_card_spans(model)
-            if secondary:
+            if geometry_valid and len(secondary) > len(primary_spans):
+                # A valid-looking subset is not a complete physical card row.
+                # The independently supported y2 geometry may expose a card
+                # whose y3 background was split by ink. Keep both native box
+                # sets; neither a rank score nor VL can erase this conflict.
+                proof = prove_split_card_partition(model)
+                if (proof is None or proof['chosen_spans_inclusive'] != [list(s) for s in secondary]
+                        or proof['primary_spans_inclusive'] != [list(s) for s in primary_spans]):
+                    return {**result, "reason": "CARD_SPAN_COVERAGE_UNRESOLVED",
+                            "detected_spans_inclusive": [list(span) for span in primary_spans],
+                            "secondary_candidate_spans_inclusive": secondary,
+                            "secondary_geometry_evidence": secondary_evidence,
+                            "recovered_split_spans": recovered_spans,
+                            "row_geometry_source": "PRIMARY_SECONDARY_COVERAGE_CONFLICT"}
+                spans = secondary
+                recovered_spans = recovered_spans+proof['bridged_spans']
+                result.update(row_geometry_source=SPLIT_PARTITION_RULE,
+                    secondary_partition_proof=proof,
+                    primary_incomplete_spans_inclusive=[list(s) for s in primary_spans])
+            if not geometry_valid and secondary:
                 spans, recovered_spans = secondary, recovered_spans+secondary_evidence
                 result["primary_rejected_spans_inclusive"] = primary_spans
                 result["row_geometry_source"] = "SECONDARY_NATIVE_BACKGROUND_Y2"
-        result["detected_spans_inclusive"] = spans
+        # This public receipt is consumed before and after JSON persistence.
+        # Emit its declared array shape here; persistence must not repair it.
+        result["detected_spans_inclusive"] = [list(span) for span in spans]
         result["recovered_split_spans"] = recovered_spans
         if not 2 <= len(spans) <= 5 or any(not 2 <= spans[i+1][0]-spans[i][1]-1 <= 5 for i in range(len(spans)-1)):
             return {**result, "reason": "CARD_SPAN_COUNT_OR_GAP_UNRESOLVED"}
@@ -199,6 +228,8 @@ class CardHybrid:
                         rank_status = "RANK_VISUAL_CONFLICT"
             rgb = Image.fromarray(model[:, start:end+1]).convert("RGB")
             pixel_rank = self.rank_ncc.read(np.asarray(rgb)) if self.rank_ncc is not None else None
+            if pixel_rank is not None:
+                pixel_rank = rank_geometry_fallback(np.asarray(rgb), pixel_rank)
             if pixel_rank is not None and rank is None and pixel_rank.get("rank_accepted"):
                 rank = pixel_rank["rank_result"]
                 rank_source = "FROZEN_RANK_NCC_PIXEL_FALLBACK"

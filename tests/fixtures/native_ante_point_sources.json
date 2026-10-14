@@ -1,0 +1,227 @@
+{
+  "scope": "PROJECTION_FOR_NEXT_PATTERN_TEST; NO_AUTHORITY",
+  "source": "C:\\Users\\Admin\\.codex\\tmp\\hh95_source_cache_20261008\\full_v1\\ordered_timeline.jsonl",
+  "source_sha256": "ed0869734ef30a6c954297f82891db67c96f22c279784cbd87254596deffd4d5",
+  "cases": [
+    {
+      "table": "T07",
+      "hand_id": "2878365529",
+      "frame": 150,
+      "source_pair": [
+        {
+          "row": {
+            "table_id": "T07",
+            "session_id": "table_e25d299903d57bd974d3ae55",
+            "frame_id": 150,
+            "row_index": 9,
+            "stable_row_id": "table_e25d299903d57bd974d3ae55:F000007",
+            "raw_ocr_text": "Dealer: ubivashka88888 posts Ante",
+            "confidence": 0.9933246374130249,
+            "epoch": 1,
+            "row_pixel_sha256": "f232e24d602666da72f574bb4b64efd3972a3082ce89c94bfa21dd3b65d9c3df",
+            "video_time": 5.0,
+            "origin": "NEW_CANDIDATE",
+            "admission_ref": "table_e25d299903d57bd974d3ae55:150:physical_new:9"
+          },
+          "source_line": 1598,
+          "source_record_sha256": "7f3bc0a2c4775d7392ddcc833e1eec7b4ba1aa36f8533e9a675fbee21b6b24da"
+        },
+        {
+          "row": {
+            "table_id": "T07",
+            "session_id": "table_e25d299903d57bd974d3ae55",
+            "frame_id": 150,
+            "row_index": 10,
+            "stable_row_id": "table_e25d299903d57bd974d3ae55:F000008",
+            "raw_ocr_text": "625",
+            "confidence": 0.999957263469696,
+            "epoch": 1,
+            "row_pixel_sha256": "185c4fcc0291cdf878ae72fe6adc5e8c98ab1526f831f91be9ed8c61452f30d7",
+            "video_time": 5.0,
+            "origin": "NEW_CANDIDATE",
+            "admission_ref": "table_e25d299903d57bd974d3ae55:150:physical_new:10"
+          },
+          "source_line": 1599,
+          "source_record_sha256": "07fc554e2a821bc46090f4a807ae8ff53a6bc71822e0ca53b8c92de91728344a"
+        }
+      ],
+      "prefix_row_count": 15
+    },
+    {
+      "table": "T07",
+      "hand_id": "2878365900",
+      "frame": 1808,
+      "source_pair": [
+        {
+          "row": {
+            "table_id": "T07",
+            "session_id": "table_e25d299903d57bd974d3ae55",
+            "frame_id": 1808,
+            "row_index": 9,
+            "stable_row_id": "table_e25d299903d57bd974d3ae55:F000022",
+            "raw_ocr_text": "Dealer: ubivashka88888 posts Ante",
+            "confidence": 0.994635283946991,
+            "epoch": 2,
+            "row_pixel_sha256": "b288e92936812f6de2b9b5f82cb46ded6397f79ebeef1574a5afef7744ad39df",
+            "video_time": 60.266666666666666,
+            "origin": "NEW_CANDIDATE",
+            "admission_ref": "table_e25d299903d57bd974d3ae55:1808:physical_new:9"
+          },
+          "source_line": 1633,
+          "source_record_sha256": "3319d1bde393c79708adab716bd01b99eaa9534ae8f861893a700e78451be412"
+        },
+        {
+          "row": {
+            "table_id": "T07",
+            "session_id": "table_e25d299903d57bd974d3ae55",
+            "frame_id": 1808,
+            "row_index": 10,
+            "stable_row_id": "table_e25d299903d57bd974d3ae55:F000023",
+            "raw_ocr_text": "625",
+            "confidence": 0.9999080300331116,
+            "epoch": 2,
+            "row_pixel_sha256": "0cdb3c702db24b865feddeb6d462bb1a73b529b766a7198271a5070393984d99",
+            "video_time": 60.266666666666666,
+            "origin": "NEW_CANDIDATE",
+            "admission_ref": "table_e25d299903d57bd974d3ae55:1808:physical_new:10"
+          },
+          "source_line": 1634,
+          "source_record_sha256": "677cedae8111f4408a7e9a7ddd21ace8747f21ef3d06bf08eec0a4b1233e00e4"
+        }
+      ],
+      "prefix_row_count": 15
+    },
+    {
+      "table": "T07",
+      "hand_id": "2878366136",
+      "frame": 2887,
+      "source_pair": [
+        {
+          "row": {
+            "table_id": "T07",
+            "session_id": "table_e25d299903d57bd974d3ae55",
+            "frame_id": 2887,
+            "row_index": 10,
+            "stable_row_id": "table_e25d299903d57bd974d3ae55:F000037",
+            "raw_ocr_text": "Dealer: ubivashka88888 posts Ante",
+            "confidence": 0.9920439124107361,
+            "epoch": 3,
+            "row_pixel_sha256": "47f1e8b0d68f846ecae3094a04365c2b06f8e158752ea7b68fb94ff4d9a164bd",
+            "video_time": 96.23333333333333,
+            "origin": "NEW_CANDIDATE",
+            "admission_ref": "table_e25d299903d57bd974d3ae55:2887:physical_new:10"
+          },
+          "source_line": 1678,
+          "source_record_sha256": "64aede6ad0a3baa920296aa11721e41ea2e7f7bb9d597356aa6cb03b25cf1d06"
+        },
+        {
+          "row": {
+            "table_id": "T07",
+            "session_id": "table_e25d299903d57bd974d3ae55",
+            "frame_id": 2887,
+            "row_index": 11,
+            "stable_row_id": "table_e25d299903d57bd974d3ae55:F000038",
+            "raw_ocr_text": "625",
+            "confidence": 0.9999594688415527,
+            "epoch": 3,
+            "row_pixel_sha256": "2e4668ce7775821b2aa91fd0210bf226c43420fd7cdf8773d6bf17b77ddc68e6",
+            "video_time": 96.23333333333333,
+            "origin": "NEW_CANDIDATE",
+            "admission_ref": "table_e25d299903d57bd974d3ae55:2887:physical_new:11"
+          },
+          "source_line": 1679,
+          "source_record_sha256": "10e84c907bb3f36001b6e72b35e8429876d75da8ce9ee6daa6dd5c7e16947128"
+        }
+      ],
+      "prefix_row_count": 14
+    },
+    {
+      "table": "T07",
+      "hand_id": "2878366487",
+      "frame": 4570,
+      "source_pair": [
+        {
+          "row": {
+            "table_id": "T07",
+            "session_id": "table_e25d299903d57bd974d3ae55",
+            "frame_id": 4570,
+            "row_index": 9,
+            "stable_row_id": "table_e25d299903d57bd974d3ae55:F000051",
+            "raw_ocr_text": "Dealer: ubivashka88888 posts Ante",
+            "confidence": 0.9948558211326599,
+            "epoch": 4,
+            "row_pixel_sha256": "b6834186c6c93e27103211b283c777aa366477b176cd57148f1030b8fe0dbfd6",
+            "video_time": 152.33333333333334,
+            "origin": "NEW_CANDIDATE",
+            "admission_ref": "table_e25d299903d57bd974d3ae55:4570:physical_new:9"
+          },
+          "source_line": 1723,
+          "source_record_sha256": "ceaa7464129cbfd5adeeb2e81d7d067e97842b937b68a7b1abd121ab676916dc"
+        },
+        {
+          "row": {
+            "table_id": "T07",
+            "session_id": "table_e25d299903d57bd974d3ae55",
+            "frame_id": 4570,
+            "row_index": 10,
+            "stable_row_id": "table_e25d299903d57bd974d3ae55:F000052",
+            "raw_ocr_text": "625",
+            "confidence": 0.9998828768730164,
+            "epoch": 4,
+            "row_pixel_sha256": "72c52f6ae8414260df5c56cdc376b10a41f874270b7c6ed6aa1079f1d49549f3",
+            "video_time": 152.33333333333334,
+            "origin": "NEW_CANDIDATE",
+            "admission_ref": "table_e25d299903d57bd974d3ae55:4570:physical_new:10"
+          },
+          "source_line": 1724,
+          "source_record_sha256": "5035e054efed2adcbd5bcb9e3a2108104b68037924a4b8a7dfdac33b7e1f66e3"
+        }
+      ],
+      "prefix_row_count": 15
+    },
+    {
+      "table": "T07",
+      "hand_id": "2878366745",
+      "frame": 5750,
+      "source_pair": [
+        {
+          "row": {
+            "table_id": "T07",
+            "session_id": "table_e25d299903d57bd974d3ae55",
+            "frame_id": 5750,
+            "row_index": 9,
+            "stable_row_id": "table_e25d299903d57bd974d3ae55:F000066",
+            "raw_ocr_text": "Dealer: ubivashka88888 posts Ante",
+            "confidence": 0.9915496110916138,
+            "epoch": 5,
+            "row_pixel_sha256": "ae3065ea22e9f00c45d72af8fe0f5adab197f7079f827948555a74b7abc2a1af",
+            "video_time": 191.66666666666666,
+            "origin": "NEW_CANDIDATE",
+            "admission_ref": "table_e25d299903d57bd974d3ae55:5750:physical_new:9"
+          },
+          "source_line": 1761,
+          "source_record_sha256": "8c02df9ef87b36a3d5d3a320fdbaaddfd69d441ad10173c4a0fb5bb7d7d346e6"
+        },
+        {
+          "row": {
+            "table_id": "T07",
+            "session_id": "table_e25d299903d57bd974d3ae55",
+            "frame_id": 5750,
+            "row_index": 10,
+            "stable_row_id": "table_e25d299903d57bd974d3ae55:F000067",
+            "raw_ocr_text": "625",
+            "confidence": 0.999915599822998,
+            "epoch": 5,
+            "row_pixel_sha256": "f5c7b84a75dda95f4e19603c09d19a750e2814249bfc5cbabb6ba2598b87adb6",
+            "video_time": 191.66666666666666,
+            "origin": "NEW_CANDIDATE",
+            "admission_ref": "table_e25d299903d57bd974d3ae55:5750:physical_new:10"
+          },
+          "source_line": 1762,
+          "source_record_sha256": "56f2bc7778f11b7685afb210cd13ed2642a53d7c964f403309264b9c3a20557d"
+        }
+      ],
+      "prefix_row_count": 15
+    }
+  ]
+}

@@ -7,6 +7,7 @@ from dataclasses import replace
 from pathlib import Path
 
 from .poker_reconstruction.models import RuleError
+from .performance_work import note as work_note, scope as work_scope
 
 
 class StackEvidenceProvider:
@@ -22,8 +23,10 @@ class StackEvidenceProvider:
             if self.metadata.get('fps') != 30.0:
                 raise ValueError('STACK frame/time alignment unsupported')
             for row in db.execute('select width,height,raw_gray,exact_hash from visual_states'):
-                if len(row['raw_gray']) != row['width'] * row['height'] or hashlib.sha256(row['raw_gray']).hexdigest() != row['exact_hash']:
-                    raise ValueError('STACK raw grayscale provenance mismatch')
+                with work_scope('stack/sqlite_pixel_validation',category='proof/pixels',
+                        key=(str(self.path),row['exact_hash']),source_rows=1,input_bytes=len(row['raw_gray'])):
+                    if len(row['raw_gray']) != row['width'] * row['height'] or hashlib.sha256(row['raw_gray']).hexdigest() != row['exact_hash']:
+                        raise ValueError('STACK raw grayscale provenance mismatch')
             self.points = [dict(r) for r in db.execute('select t.*,s.source_state_id,s.ocr_raw,s.digit_gate_status,s.exact_hash '
                 'from numeric_timeline t join visual_states s using(state_id) order by observation_id')]
             seen = {}
@@ -46,9 +49,12 @@ class StackEvidenceProvider:
                         or int(point['stack_value']) - int(previous['stack_value']) != point['observed_delta']):
                     raise ValueError('STACK delta arithmetic mismatch')
                 seen[point['observation_id']] = point
-        self.sha256 = hashlib.sha256(self.path.read_bytes()).hexdigest()
+        with work_scope('stack/sqlite_file_hash',category='proof/source_seal',key=str(self.path),hash_calls=1):
+            self.sha256 = hashlib.sha256(self.path.read_bytes()).hexdigest()
 
     def observations(self, table_id, seat_id, first_frame, last_frame):
+        work_note("stack/observation_scan",category="lookup/scan",
+            key=(str(self.path),table_id,seat_id,first_frame,last_frame),candidates_scanned=len(self.points))
         return [copy.deepcopy(p) for p in self.points if p['table_id'] == table_id
                 and p['seat_id'] == seat_id and first_frame <= p['frame_index'] <= last_frame]
 
@@ -82,11 +88,49 @@ class StackEvidenceProvider:
         from a physical seat or treating a CHAT observation as action onset.
         """
         output = Path(output)
+        simple=getattr(self,'simple_sources',None)
+        if simple is not None:
+            simple.write_audit(output)
+            receipts=[p for r in records for p in simple.player_rows(r['observed_hand'],segment_id=r['segment_id'])]
+            (output/'stack_start_stack.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n'
+                for r in receipts),encoding='utf-8')
+            seats=[p for r in records for p in simple.seat_rows(r['observed_hand'])]
+            summary=dict(enabled=True,policy=simple.__class__.__name__,start_stack_enabled=True,
+                eligible_players=len(receipts),recovered_proven=sum(r['status']=='START_STACK_PROVEN' for r in receipts),
+                start_stack_unknown=sum(r['status']=='START_STACK_UNKNOWN' for r in receipts),
+                DISPLAYED_STACK_known=sum(r['DISPLAYED_STACK'] is not None for r in seats),
+                fixed_seats=len(seats),verdict='SAVED_POLICY_CANDIDATE_NOT_FULL_HH_ACCEPTANCE')
+            (output/'stack_evidence_summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),'utf-8')
+            return summary
         receipts = []
         reconstruction={r['segment_id']:r for r in reconstruction_results}
         linked_observations=set();snapshot_candidates=0
         for record in records:
             hand = record['observed_hand']
+            sitout_source=getattr(self,'sitout_sources',None)
+            sitout_joined=reconstruction.get(record['segment_id'],{}).get('sitout_join_receipts',[])
+            sitout_verified=[]
+            if start_stack and sitout_joined and sitout_source is not None:
+                from .sitout_hand_evidence import join_receipt as sitout_receipt
+                sitout_verified=[sitout_receipt(p) for p in sitout_source.for_hand(hand)]
+            carry_source=getattr(self,'carry_sources',None)
+            carry_joined=reconstruction.get(record['segment_id'],{}).get('adjacent_stack_carry_join_receipts',[])
+            carry_verified=[]
+            if start_stack and carry_joined and carry_source is not None:
+                from .adjacent_stack_carry import join_receipts as carry_receipts
+                carry_verified=[r for p in carry_source.for_hand(hand) for r in carry_receipts(p)]
+            constant_source=getattr(self,'constant_sources',None)
+            constant_joined=reconstruction.get(record['segment_id'],{}).get('constant_stack_balance_join_receipts',[])
+            constant_verified=[]
+            if start_stack and constant_joined and constant_source is not None:
+                from .constant_stack_balance import join_receipt as constant_receipt
+                constant_verified=[constant_receipt(p) for p in constant_source.for_hand(hand)]
+            direct_source=getattr(self,'direct_sources',None)
+            direct_joined=reconstruction.get(record['segment_id'],{}).get('direct_start_stack_join_receipts',[])
+            direct_verified=[]
+            if start_stack and direct_joined and direct_source is not None:
+                from .direct_start_stack import join_receipt as direct_receipt
+                direct_verified=[direct_receipt(p) for p in direct_source.for_hand(hand)]
             rows = [r for m in hand['messages'] for r in m['source_rows']]
             players = sorted({m.get('player') or m.get('actor') for m in hand['messages']
                               if m.get('player') or m.get('actor')})
@@ -100,12 +144,20 @@ class StackEvidenceProvider:
                     voluntary_amount_added_back=None, calculated_start_stack=None,
                     status='START_STACK_UNKNOWN', reason='SEAT_PLAYER_EPOCH_AND_ACTION_INTERVAL_UNPROVEN',
                     source_observation_id=None, source_state_id=None)
+                statuses=[r for r in sitout_joined if r.get('actor')==player and r in sitout_verified]
+                if len(statuses)==1:
+                    s=statuses[0]
+                    receipt.update(seat_id=s['seat'],occupancy_epoch=None,player_status='SIT_OUT',
+                        stack_requirement='NOT_REQUIRED_SIT_OUT',reason='SIT_OUT_NUMERIC_STACK_NOT_REQUIRED',
+                        sitout_binding_receipt=s,numeric_authority=None)
+                    receipts.append(receipt);continue
                 candidates=[r for r in reconstruction.get(record['segment_id'],{}).get('start_stack_join_receipts',[])
                             if r['actor']==player]
                 conflicts=[r for r in reconstruction.get(record['segment_id'],{}).get('start_stack_join_rejections',[])
-                           if r.get('actor')==player and r.get('reason')=='INDEPENDENT_STACK_OCR_CONFLICT']
+                           if r.get('actor')==player and r.get('reason') in
+                           {'INDEPENDENT_STACK_OCR_CONFLICT','INDEPENDENT_START_STACK_PROOF_CONFLICT'}]
                 if conflicts:
-                    receipt.update(status='START_STACK_CONFLICT',reason='INDEPENDENT_STACK_OCR_CONFLICT',
+                    receipt.update(status='START_STACK_CONFLICT',reason=conflicts[0]['reason'],
                                    seat_id=conflicts[0]['seat'],conflict_receipts=copy.deepcopy(conflicts))
                 if len(candidates)==1 and not conflicts:
                     joined=candidates[0];fact=joined['math_fact']
@@ -143,6 +195,58 @@ class StackEvidenceProvider:
                                     binding_receipt=dict(player=player,seat_id=joined['seat'],table_id=hand['table_id'],
                                         session_id=hand['session_id'],hand_id=hand['hand_id'],
                                         occupancy_epoch=joined['occupancy_epoch'],canonical_forced_event_ids=fact['canonical_forced_event_ids']))
+                joint=[r for r in reconstruction.get(record['segment_id'],{}).get('joint_start_stack_join_receipts',[])
+                       if r.get('actor')==player]
+                provider=getattr(self,'joint_sources',None)
+                if start_stack and len(joint)==1 and provider is not None and not conflicts:
+                    from .joint_start_stack import join_receipt
+                    proven=[p for p in provider.for_hand(hand) if p['actor']==player and join_receipt(p)==joint[0]]
+                    if len(proven)==1:
+                        p=proven[0];j=joint[0]
+                        receipt.update(status='START_STACK_PROVEN',reason=j['rule'],seat_id=p['seat'],
+                            observed_stack=str(p['displayed_stack']),calculated_start_stack=p['calculated_start_stack'],
+                            forced_amount_added_back=p['forced_amount_added_back'],voluntary_amount_added_back=0,
+                            source_observation_id=j['source_observation_ids'][0],source_state_id=j['source_state_ids'][0],
+                            numeric_authority='SAVED_SQL_OCR_EXACT_NATIVE_RGB_PROJECTION',joint_binding_receipt=j)
+                        linked_observations.update(j['source_observation_ids'])
+                carried=[r for r in carry_joined if r.get('actor')==player and r in carry_verified]
+                if start_stack and len(carried)==1 and not conflicts and receipt['status']!='START_STACK_CONFLICT':
+                    c=carried[0]
+                    if receipt['status']=='START_STACK_PROVEN':
+                        if (receipt['seat_id'],receipt['calculated_start_stack'])!=(c['seat'],c['calculated_start_stack']):
+                            receipt.update(status='START_STACK_CONFLICT',reason='INDEPENDENT_START_STACK_PROOF_CONFLICT')
+                    else:
+                        receipt.update(status='START_STACK_PROVEN',reason=c['rule'],seat_id=c['seat'],
+                            calculated_start_stack=c['calculated_start_stack'],observed_stack=None,
+                            forced_amount_added_back=None,voluntary_amount_added_back=None,
+                            source_observation_id=None,source_state_id=None,occupancy_epoch=None,
+                            numeric_authority='PROVEN_PREVIOUS_END_BALANCE',carry_binding_receipt=c)
+                constants=[r for r in constant_joined if r.get('actor')==player and r in constant_verified]
+                if start_stack and len(constants)==1 and not conflicts and receipt['status']!='START_STACK_CONFLICT':
+                    c=constants[0]
+                    if receipt['status']=='START_STACK_PROVEN':
+                        if (receipt['seat_id'],receipt['calculated_start_stack'])!=(c['seat'],c['calculated_start_stack']):
+                            receipt.update(status='START_STACK_CONFLICT',reason='INDEPENDENT_START_STACK_PROOF_CONFLICT')
+                    else:
+                        receipt.update(status='START_STACK_PROVEN',reason=c['rule'],seat_id=c['seat'],
+                            calculated_start_stack=c['calculated_start_stack'],observed_stack=str(c['displayed_stack']),
+                            forced_amount_added_back=c['forced_amount_added_back'],voluntary_amount_added_back=0,
+                            source_observation_id=c['source_observation_ids'][0],source_state_id=c['source_state_ids'][0],
+                            occupancy_epoch=None,numeric_authority='SOURCE_REPLAYED_CONSTANT_POST_FORCED_BALANCE',
+                            constant_binding_receipt=c)
+                        linked_observations.update(c['source_observation_ids'])
+                direct=[r for r in direct_joined if r.get('actor')==player and r in direct_verified]
+                if start_stack and len(direct)==1 and not conflicts and receipt['status']!='START_STACK_CONFLICT':
+                    d=direct[0]
+                    if receipt['status']=='START_STACK_PROVEN':
+                        if (receipt['seat_id'],receipt['calculated_start_stack'])!=(d['seat'],d['calculated_start_stack']):
+                            receipt.update(status='START_STACK_CONFLICT',reason='INDEPENDENT_START_STACK_PROOF_CONFLICT')
+                    else:
+                        receipt.update(status='START_STACK_PROVEN',reason=d['rule'],seat_id=d['seat'],
+                            calculated_start_stack=d['calculated_start_stack'],observed_stack=str(d['displayed_stack']),
+                            forced_amount_added_back=d['forced_amount_added_back'],voluntary_amount_added_back=0,
+                            source_observation_id=None,source_state_id=None,occupancy_epoch=None,
+                            numeric_authority='SOURCE_REPLAYED_DIRECT_FIRST_NUMBER',direct_binding_receipt=d)
                 # A joined numeric snapshot is not proof of the action interval.
                 # calculated_start_stack stays null until those gates are met.
                 receipts.append(receipt)

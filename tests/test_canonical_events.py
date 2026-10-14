@@ -1,9 +1,211 @@
 import copy
 import hashlib
+import json
+from pathlib import Path
 import pytest
 from parser_core.canonical_events import join_forced_posts, reconcile_stack_facts
 from parser_core.poker_pipeline import analyze_timeline
 from parser_core.seat_forced_binding import parse_forced_snapshot
+from parser_core.canonical_events import prove_candidate_forced_prefix, FORCED_PREFIX_CAPABILITY
+
+
+@pytest.fixture
+def candidate_prefix_source():
+    return json.loads((Path(__file__).parent/'fixtures/candidate_forced_prefix_t08_source.json').read_text('utf8'))
+
+
+def candidate_arguments(source):
+    class ExistingWho:
+        def for_actor(self,hand,actor):
+            return copy.deepcopy(next((p for p in source['who'] if p['actor']==actor),{'status':'UNKNOWN'}))
+    return dict(rows=source['rows'],physical=source['physical'],hand=source['record']['observed_hand'],
+                actor_provider=ExistingWho(),nick_rows=source['nick_rows'],headers=source['headers'])
+
+
+def candidate_timeline(source):
+    return [copy.deepcopy(r) for m in source['record']['observed_hand']['messages'] for r in m['source_rows']]
+
+
+def test_complete_candidate_has_only_observed_forced_prefix_capability(candidate_prefix_source):
+    s=candidate_prefix_source;before=copy.deepcopy(s)
+    proof=prove_candidate_forced_prefix(**candidate_arguments(s))
+    assert proof and proof['capability']==FORCED_PREFIX_CAPABILITY
+    assert len(proof['posts'])==8 and sum(p['role']=='ANTE' for p in proof['posts'])==6
+    assert {(p['actor'],p['amount']) for p in proof['posts'] if p['role']=='SB'}=={('dended',2500)}
+    assert {(p['actor'],p['amount']) for p in proof['posts'] if p['role']=='BB'}=={('maximus058',5000)}
+    assert all(p['epoch'] is None for p in proof['posts'])
+    assert not proof['occupancy_authority'] and not proof['deal_complete_authority']
+    assert not proof['start_stack_timing_authority']
+    assert 'forced_snapshot_complete' not in proof and 'standard_ante_proven' not in proof
+    assert proof['identities']=={p['actor']:p for p in s['who']} and s==before
+
+
+def test_absent_ordinary_prefix_and_wrapped_bb_project_once(candidate_prefix_source):
+    s=candidate_prefix_source;timeline=candidate_timeline(s);before=copy.deepcopy(timeline)
+    joined,report=join_forced_posts(timeline,{},candidate_inputs=[candidate_arguments(s)])
+    assert report['counts']=={'JOINED':8}
+    new=[r for r in joined if r.get('forced_prefix_capability')==FORCED_PREFIX_CAPABILITY]
+    assert len(new)==8 and len({r['canonical_event_id'] for r in new})==8
+    bb=next(r for r in new if r['event_type']=='BIG_BLIND')
+    assert bb['amount']==5000 and len(bb['canonical_provenance']['post']['source_refs'])==2
+    assert bb['epoch'] is None and not bb['historical_occupancy_authority']
+    assert timeline==before
+
+
+def test_candidate_partial_overlap_uses_existing_economic_dedup(candidate_prefix_source):
+    s=candidate_prefix_source;timeline=candidate_timeline(s)
+    full,_=join_forced_posts(timeline,{},candidate_inputs=[candidate_arguments(s)])
+    ante=copy.deepcopy(next(r for r in full if r.get('event_type')=='ANTE'))
+    joined,report=join_forced_posts(timeline+[ante],{},candidate_inputs=[candidate_arguments(s)])
+    unique={r['canonical_event_id'] for r in joined if r.get('canonical_event_id') and not r.get('canonical_duplicate_of')}
+    assert len(unique)==8 and report['counts']=={'DEDUPLICATED':1,'JOINED':7}
+
+
+def test_complete_ordinary_prefix_is_byte_preserved_on_candidate_repeat(candidate_prefix_source):
+    s=candidate_prefix_source
+    full,_=join_forced_posts(candidate_timeline(s),{},candidate_inputs=[candidate_arguments(s)])
+    again,report=join_forced_posts(full,{},candidate_inputs=[candidate_arguments(s)])
+    assert again==full and report['counts']=={'CORROBORATED':1}
+
+
+@pytest.mark.parametrize('mutation',[
+    'foreign_hand','foreign_session','foreign_table','cross_epoch','unknown_epoch','missing_marker',
+    'foreign_marker','physical_frame','physical_clock','source_gap','source_order','source_pixel',
+    'source_geometry','no_deal','low_confidence','missing_who','foreign_who_hand','foreign_nick_hand',
+    'nick_pixel','seat_collision','explicit_replacement','explicit_departure','no_sb',
+])
+def test_candidate_authority_rejects_incomplete_or_conflicting_source(candidate_prefix_source,mutation):
+    s=candidate_prefix_source
+    if mutation=='foreign_hand':s['rows'][8]['hand_id']='foreign'
+    elif mutation=='foreign_session':s['rows'][8]['session_id']='foreign'
+    elif mutation=='foreign_table':s['rows'][8]['table_id']=1
+    elif mutation=='cross_epoch':s['rows'][8]['epoch']=4
+    elif mutation=='unknown_epoch':
+        for r in s['rows']:r['epoch']=4
+    elif mutation=='missing_marker':s['headers']=[]
+    elif mutation=='foreign_marker':
+        for r in s['rows']:r['marker_source_frame']=0
+    elif mutation=='physical_frame':s['physical']['frame_after']+=1
+    elif mutation=='physical_clock':s['physical']['source_pts']+=1
+    elif mutation=='source_gap':s['rows'].pop(9)
+    elif mutation=='source_order':s['rows'][9]['index']=8
+    elif mutation=='source_pixel':s['rows'][9]['pixel_sha256']='0'*64
+    elif mutation=='source_geometry':s['rows'][9]['row_bounds'][0]+=1
+    elif mutation=='no_deal':s['rows'][-1]['ocr_response']['raw_text']='Dealer: Unknown message'
+    elif mutation=='low_confidence':s['rows'][14]['ocr_response']['score']=.9
+    elif mutation=='missing_who':s['who'][0]['status']='UNKNOWN'
+    elif mutation=='foreign_who_hand':s['who'][0]['hand_id']='foreign'
+    elif mutation=='foreign_nick_hand':s['nick_rows'][0]['hand_id']='foreign'
+    elif mutation=='nick_pixel':s['nick_rows'][0]['pixel_sha256']='0'*64
+    elif mutation=='seat_collision':s['who'][0]['seat']=s['who'][1]['seat']
+    elif mutation=='explicit_replacement':s['who'][0]['boundaries'].append({'kind':'REPLACE','frame':1700})
+    elif mutation=='explicit_departure':
+        row=next(r for m in s['record']['observed_hand']['messages'] for r in m['source_rows'] if r['frame_id']>=1673)
+        row['frame_id']=1700;row['raw_ocr_text']='Dealer: dended has left the table'
+    elif mutation=='no_sb':s['rows'][14]['ocr_response']['raw_text']='Dealer: Waiting for players'
+    assert prove_candidate_forced_prefix(**candidate_arguments(s)) is None
+    joined,report=join_forced_posts(candidate_timeline(s),{},candidate_inputs=[candidate_arguments(s)])
+    assert not any(r.get('forced_prefix_capability') for r in joined)
+    assert report['counts']=={'UNRESOLVED':1}
+
+
+@pytest.mark.parametrize('mutation',['sb_actor','sb_amount','bb_amount','extra_ante'])
+def test_candidate_conflict_rejects_entire_prefix_atomically(candidate_prefix_source,mutation):
+    s=candidate_prefix_source;timeline=candidate_timeline(s)
+    full,_=join_forced_posts(timeline,{},candidate_inputs=[candidate_arguments(s)])
+    target='SMALL_BLIND' if mutation.startswith('sb') else 'BIG_BLIND'
+    ordinary=copy.deepcopy(next(r for r in full if r.get('event_type')==target))
+    text={'sb_actor':'Dealer: other posts Small Blind 2 500',
+          'sb_amount':'Dealer: dended posts Small Blind 2 501',
+          'bb_amount':'Dealer: maximus058 posts Big Blind 5 001',
+          'extra_ante':'Dealer: other posts Ante 625'}[mutation]
+    ordinary.update(raw_ocr_text=text,stable_row_id='ordinary-conflict')
+    for field in ('canonical_event_id','canonical_provenance','forced_prefix_capability'):ordinary.pop(field,None)
+    joined,report=join_forced_posts(timeline+[ordinary],{},candidate_inputs=[candidate_arguments(s)])
+    assert report['counts']=={'CONFLICT':1}
+    assert not any(r.get('forced_prefix_capability') for r in joined)
+
+
+def test_retained_raw_forced_conflict_cannot_hide_as_unknown(candidate_prefix_source):
+    s=candidate_prefix_source;timeline=candidate_timeline(s)
+    full,_=join_forced_posts(timeline,{},candidate_inputs=[candidate_arguments(s)])
+    ordinary=copy.deepcopy(next(r for r in full if r.get('event_type')=='SMALL_BLIND'))
+    ordinary.update(stable_row_id='retained-conflict',raw_ocr_text='Dealer: other posts Small Blind 2500',
+                    canonical_conflict='FORCED_SOURCES_DISAGREE_OR_IDENTITY_AMBIGUOUS')
+    for field in ('canonical_event_id','canonical_provenance','forced_prefix_capability'):ordinary.pop(field,None)
+    joined,report=join_forced_posts(timeline+[ordinary],{},candidate_inputs=[candidate_arguments(s)])
+    assert report['counts']=={'CONFLICT':1} and not any(r.get('forced_prefix_capability') for r in joined)
+    assert next(r for r in joined if r['stable_row_id']=='retained-conflict')['canonical_conflict']
+
+
+def test_legacy_accepted_summary_is_not_suppressed_by_candidate_overlap(candidate_prefix_source):
+    s=candidate_prefix_source;args=candidate_arguments(s)
+    proof=prove_candidate_forced_prefix(**args);posts=copy.deepcopy(proof['posts'])
+    for p in posts:p['epoch']='legacy-existing-epoch'
+    p=posts[0]
+    summary=dict(forced_snapshots=[dict(table=p['table'],session=p['session'],hand_id=p['hand_id'],
+        forced_snapshot_complete=True,posts=posts)],bound_posts=[p],historical_binding_receipts=[
+        dict(table=p['table'],session=p['session'],hand_id=p['hand_id'],actor=p['actor'],seat=p['seat'],
+             epoch=p['epoch'],binding_rule='FIRST_EXACT_LABEL_HISTORICAL_EPOCH',
+             forced_source_frame=p['source_frame'],forced_source_refs=[p['source_refs']],label_evidence=[])])
+    joined,report=join_forced_posts(candidate_timeline(s),summary,candidate_inputs=[args])
+    assert not any(r.get('forced_prefix_capability') for r in joined)
+    assert sum(r.get('canonical_event_id') is not None for r in joined)==1
+    assert any(d.get('blocker')=='EXISTING_SUMMARY_FORCED_AUTHORITY_RETAINED' for d in report['diagnostics'])
+
+
+def test_repeated_candidate_batch_creates_one_prefix(candidate_prefix_source):
+    s=candidate_prefix_source;args=candidate_arguments(s)
+    joined,report=join_forced_posts(candidate_timeline(s),{},candidate_inputs=[args,args])
+    assert sum(r.get('forced_prefix_capability')==FORCED_PREFIX_CAPABILITY for r in joined)==8
+    assert report['counts']=={'JOINED':8,'CORROBORATED':1}
+
+
+@pytest.mark.parametrize('order',[(0,1,0),(1,0,0)])
+def test_candidate_source_conflict_cannot_be_erased_by_later_repeat(candidate_prefix_source,order):
+    a=candidate_prefix_source;b=copy.deepcopy(a)
+    b['rows'][16]['ocr_response']['raw_text']='5001'
+    sources=[candidate_arguments(a),candidate_arguments(b)]
+    joined,report=join_forced_posts(candidate_timeline(a),{},candidate_inputs=[sources[i] for i in order])
+    assert not any(r.get('forced_prefix_capability') for r in joined)
+    assert report['counts']=={'CONFLICT':2}
+
+
+def test_deferred_admission_updates_existing_records_before_simple_corrections(candidate_prefix_source,tmp_path,monkeypatch):
+    from parser_core.simple_saved_policy import SimpleSavedPolicyProvider
+    import parser_core.canonical_events as canonical
+    s=candidate_prefix_source;record=copy.deepcopy(s['record']);hand=record['observed_hand']
+    key=(8,hand['session_id'],hand['hand_id'])
+    (tmp_path/'seat_forced_inputs.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in s['rows']+s['nick_rows']),'utf8')
+    (tmp_path/'physical_chat_admission.jsonl').write_text(json.dumps(s['physical'])+'\n','utf8')
+    monkeypatch.setattr(canonical,'source_bound_headers',lambda source:(s['headers'],{},[]))
+    frames=[r['frame_id'] for m in hand['messages'] for r in m['source_rows']]
+    provider=SimpleSavedPolicyProvider([hand],{key:(min(frames),max(frames))},{},
+        [p['anchor'] for p in s['who']],candidate_source=tmp_path,candidate_records=[record])
+    assert record['forced_prefix_admission']['capability']==FORCED_PREFIX_CAPABILITY
+    assert record['observed_hand'] is provider.hands[key]
+    rows=provider.seat_rows(record['observed_hand'])
+    dended=next(r for r in rows if r['seat']=='seat4')
+    assert dended['forced']=={'ANTE':625,'SB':2500,'BB':0}
+    assert dended['START_STACK'] is None  # No numeric or timing authority is fabricated.
+    assert len(provider.forced_prefix_admission)==1
+    old=s['record']
+    for name in ('logical_hand_analysis.jsonl','complete_hand_analysis.jsonl'):
+        (tmp_path/name).write_text(json.dumps(old)+'\n','utf8')
+    retained=dict(canonical_event_id='retained-other-hand',raw_ocr_text='unchanged')
+    (tmp_path/'canonical_forced_events.jsonl').write_text(json.dumps(retained)+'\n','utf8')
+    (tmp_path/'canonical_join_summary.json').write_text(json.dumps({'counts':{'JOINED':1}}),'utf8')
+    provider.write_audit(tmp_path)
+    for name in ('logical_hand_analysis.jsonl','complete_hand_analysis.jsonl'):
+        assert json.loads((tmp_path/name).read_text('utf8'))==record
+    events=[json.loads(line) for line in (tmp_path/'canonical_forced_events.jsonl').read_text('utf8').splitlines()]
+    assert events[0]==retained and len(events)==9
+    assert len({r['canonical_event_id'] for r in events})==9
+    provider.write_audit(tmp_path)
+    assert events==[json.loads(line) for line in (tmp_path/'canonical_forced_events.jsonl').read_text('utf8').splitlines()]
+    summary=json.loads((tmp_path/'canonical_join_summary.json').read_text('utf8'))
+    assert summary['counts']=={'JOINED':1}
+    assert summary['candidate_forced_prefix_admission']==provider.forced_prefix_admission
 
 
 def all_in_fixture(ordinary=True):

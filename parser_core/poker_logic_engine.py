@@ -7,6 +7,7 @@ from decimal import Decimal, InvalidOperation
 from time import perf_counter
 from parser_core.poker_hand_assembly import BETTING, MONEY_ACTIONS
 from parser_core.poker_math_engine import validate_math
+from parser_core.poker_amount_semantics import resolve_call, call_contract, call_start_stack
 from parser_core.poker_card_engine import best_rank, CLASSES
 
 VERSION = 'experimental-logic-4-first-break-diagnostics'
@@ -36,11 +37,13 @@ class _FirstLogicBreak(Exception):
         self.issue = issue
 
 
-def validate_hand(hand, *, diagnostic_stop=False):
+def validate_hand(hand, *, diagnostic_stop=False, hidden_card_source=None, no_sb_source=None):
     began = perf_counter()
     issues = []
     diagnostic_trace = []
     first_break = None
+    amount_proofs = []
+    call_ledger_known = True
     players = {}
     ledger = defaultdict(lambda: defaultdict(Decimal))
     payouts, returns = defaultdict(Decimal), defaultdict(Decimal)
@@ -50,6 +53,8 @@ def validate_hand(hand, *, diagnostic_stop=False):
     seen_start = False
     seen_deal = False
     hole = {}
+    from .legitimate_no_sb import prove_no_sb
+    no_sb_authority = prove_no_sb(hand,no_sb_source)
     excluded = set(hand.get('excluded_message_indices', []))
     # An informational observation becomes critical when another layer relies on
     # it to infer a money/action field. Its own action type is insufficient.
@@ -59,6 +64,9 @@ def validate_hand(hand, *, diagnostic_stop=False):
         inference_evidence.update(inference.get('decision', {}).get('evidence_rows', []))
 
     def error(code, index, detail='', *, domain=None, severity='BLOCKER', evidence_type='CONTRADICTION'):
+        nonlocal call_ledger_known
+        if severity == 'BLOCKER' and (domain or issue_domain(code)) != 'CARDS':
+            call_ledger_known = False
         issues.append({'code': code, 'message_index': index, 'detail': detail,
                        'source_row_ids': hand['messages'][index]['source_row_ids'] if index >= 0 else [],
                        'domain': domain or issue_domain(code), 'severity': severity, 'evidence_type': evidence_type})
@@ -151,6 +159,7 @@ def validate_hand(hand, *, diagnostic_stop=False):
                     seen_deal = True
                 continue
             if action == 'UNKNOWN_EVENT':
+                call_ledger_known = False
                 error('MISSING_ACTION', index, evidence_type='MISSING_EVIDENCE')
                 continue
             if action in STREETS[1:]:
@@ -181,6 +190,7 @@ def validate_hand(hand, *, diagnostic_stop=False):
                 ended = True
                 continue
             if not name or '?' in name or '\ufffd' in name:
+                call_ledger_known = False
                 error('PLAYER_IDENTITY_CONFLICT', index)
                 continue
             if name not in players and any(old.rstrip('.') == name.rstrip('.') and old != name for old in players):
@@ -204,7 +214,7 @@ def validate_hand(hand, *, diagnostic_stop=False):
                 hole[name] = cards
                 continue
             if action in BETTING:
-                if diagnostic_stop and ('SMALL_BLIND' not in seen_forced or 'BIG_BLIND' not in seen_forced):
+                if diagnostic_stop and ('SMALL_BLIND' not in seen_forced and no_sb_authority is None or 'BIG_BLIND' not in seen_forced):
                     error('MISSING_BLINDS_BEFORE_ACTION', index, 'Required Small Blind and Big Blind before voluntary action', evidence_type='MISSING_EVIDENCE')
                 betting_started = True
                 if ended:
@@ -227,6 +237,7 @@ def validate_hand(hand, *, diagnostic_stop=False):
                     if not amount.is_finite() or amount <= 0:
                         raise InvalidOperation
                 except (InvalidOperation, ValueError):
+                    call_ledger_known = False
                     error('MISSING_AMOUNT', index, evidence_type='MISSING_EVIDENCE')
                     continue
             delta = Decimal(0)
@@ -245,18 +256,30 @@ def validate_hand(hand, *, diagnostic_stop=False):
                 required = bet-p['street_contribution']
                 if required <= 0:
                     error('CALL_WITH_NOTHING_TO_CALL', index)
-                semantics = hand.get('semantics', {}).get('call', 'UNPROVEN')
-                if semantics not in {'ADDED', 'TOTAL'}:
-                    error('AMOUNT_SEMANTICS_UNPROVEN', index, 'CALL')
-                delta = amount-p['street_contribution'] if semantics == 'TOTAL' else amount
+                semantics = call_contract(hand, msg)
+                proof = resolve_call(amount, p['street_contribution'], bet,
+                    all_in=msg.get('all_in', False), contract=semantics,
+                    start_stack=call_start_stack(hand, name) if call_ledger_known else None,
+                    total_contribution=p['total_contribution'], returned=returns[name])
+                if proof['status'] != 'RESOLVED':
+                    call_ledger_known = False
+                amount_proofs.append(dict(proof, message_index=index,
+                                         source_row_ids=list(msg['source_row_ids'])))
+                if proof['status'] == 'AMBIGUOUS':
+                    error('AMOUNT_SEMANTICS_UNPROVEN', index, 'Multiple legal CALL effects',
+                          evidence_type='AMBIGUOUS_EVIDENCE')
+                elif proof['status'] == 'CONTRADICTION':
+                    error('INVALID_CALL', index, proof['reason'])
+                delta = (Decimal(proof['delta']) if proof['status'] == 'RESOLVED' else
+                         amount-p['street_contribution'] if semantics == 'TOTAL' else amount)
                 if delta <= 0 or delta > required or (delta < required and not msg.get('all_in')):
                     error('INVALID_CALL', index)
                 p['street_contribution'] += delta
             elif action == 'BET':
                 if bet != 0:
                     error('BET_INTO_EXISTING_BET', index)
-                if hand.get('semantics', {}).get('bet') != 'ADDED':
-                    error('AMOUNT_SEMANTICS_UNPROVEN', index, 'BET')
+                # A literal BET into an unopened round has a single paid effect.
+                # Existing-bet contradictions remain an independent blocker.
                 delta = amount
                 p['street_contribution'] += delta
                 bet = p['street_contribution']
@@ -324,7 +347,7 @@ def validate_hand(hand, *, diagnostic_stop=False):
         # accusation against an earlier observed legal message.
         if first_break is None:
             eof_code = ('INCOMPLETE_START' if not hand.get('start_observed') or
-                        'SMALL_BLIND' not in seen_forced or 'BIG_BLIND' not in seen_forced else
+                        'SMALL_BLIND' not in seen_forced and no_sb_authority is None or 'BIG_BLIND' not in seen_forced else
                         'HAND_BOUNDARY_CONFLICT' if hand.get('boundary_conflicts') else
                         'INCOMPLETE_END' if not hand.get('end_observed') or not payouts else
                         'BETTING_ROUND_INCOMPLETE' if not round_closed() else None)
@@ -336,7 +359,7 @@ def validate_hand(hand, *, diagnostic_stop=False):
         return {'first_issue': first_break, 'trace': diagnostic_trace,
                 'prefix_state': public_state(), 'issues_evaluated': issues,
                 'logic_ms': (perf_counter()-began)*1000}
-    if 'SMALL_BLIND' not in seen_forced or 'BIG_BLIND' not in seen_forced:
+    if 'SMALL_BLIND' not in seen_forced and no_sb_authority is None or 'BIG_BLIND' not in seen_forced:
         error('INCOMPLETE_START', -1, 'Missing forced blind sequence', evidence_type='MISSING_EVIDENCE')
     if not payouts:
         error('INCOMPLETE_END', -1, 'No observed payout', evidence_type='MISSING_EVIDENCE')
@@ -363,24 +386,44 @@ def validate_hand(hand, *, diagnostic_stop=False):
             error('CARD_LOGIC_CONFLICT', -1, 'Hole card equals final board')
     live = [n for n, p in players.items() if p['state'] != 'FOLDED']
     ranks = {}
+    hidden_authority = None
     if len(live) > 1 and payouts:
-        if len(board) != 5 or any(len(hole.get(n, [])) != 2 for n in live):
+        missing = {n for n in live if len(hole.get(n, [])) != 2}
+        if missing and hidden_card_source is not None:
+            from parser_core.hidden_loser_evidence import HiddenLoserSource
+            if isinstance(hidden_card_source, HiddenLoserSource):
+                hidden_authority = hidden_card_source.authorize(hand, players=players,
+                    nets=nets,payouts=payouts,board=board,hole=hole,
+                    ledger_known=ledger_known,math=validate_math(ledger,payouts,returns))
+        exempt = set(hidden_authority['hidden_losers']) if hidden_authority else set()
+        if len(board) != 5 or missing-exempt:
             error('CARD_EVIDENCE_MISSING', -1, 'Contested payout rank comparison lacks full board/live hole cards', evidence_type='MISSING_EVIDENCE')
             error('SIDE_POT_NOT_VERIFIABLE', -1, 'Winner ranks cannot be independently verified', evidence_type='MISSING_EVIDENCE')
         else:
             try:
-                ranks = {n: best_rank(board+hole[n]) for n in live}
+                # Explicit native NO_SHOW exempts only independent comparison.
+                # Unknown cards/ranks are never inserted into either mapping.
+                ranks = {n: best_rank(board+hole[n]) for n in live if n not in exempt}
             except ValueError:
                 error('CARD_LOGIC_CONFLICT', -1, 'Invalid physical cards')
+    description_board = []
     for index, msg in enumerate(hand['messages']):
         if index in excluded:
             continue
+        if msg['action'] in {'FLOP', 'TURN', 'RIVER'}:
+            description_board = list(msg.get('cards') or [])
         expected_class = msg.get('showdown_class')
         n = msg.get('player')
         if expected_class and msg['action'] in {'SHOW', 'WIN'}:
-            if len(board) == 5 and len(hole.get(n, [])) == 2:
+            # A player may reveal while all-in before the runout completes.
+            # Their literal SHOW describes the board at that source event;
+            # final payout descriptions still require the complete final board.
+            class_board = description_board if msg['action'] == 'SHOW' else board
+            enough_board = (3 <= len(class_board) <= 5 if msg['action'] == 'SHOW'
+                            else len(class_board) == 5)
+            if enough_board and len(hole.get(n, [])) == 2:
                 try:
-                    actual_class = CLASSES[best_rank(board+hole[n])[0]]
+                    actual_class = CLASSES[best_rank(class_board+hole[n])[0]]
                     if expected_class != actual_class:
                         error('CARD_LOGIC_CONFLICT', index, 'Showdown description contradicts physical cards')
                 except ValueError:
@@ -436,6 +479,7 @@ def validate_hand(hand, *, diagnostic_stop=False):
                            'folded': p['state'] == 'FOLDED', 'all_in': p['state'] == 'ALL_IN',
                            'net_contribution': str(nets[n])} for n, p in players.items()}
     return {'status': status, 'complete_candidate': bool(complete), 'logic_pass': logic_pass,
+            'amount_resolution_proofs': amount_proofs,
             'action_logic_pass': logic_pass, 'action_logic_status': action_status,
             'card_status': card_status, 'side_pot_status': side_pot_status,
             'identity_status': 'IDENTITY_CRITICAL' if identity_critical else 'IDENTITY_NONCRITICAL' if any(i['domain'] == 'PROVENANCE' for i in issues) else 'PASS',
@@ -443,7 +487,9 @@ def validate_hand(hand, *, diagnostic_stop=False):
             'cards_pass': cards_pass, 'math': math, 'issues': issues, 'players': serial_players,
             'street': street, 'board': board, 'showdown': hole, 'logic_ms': logic_ms,
             'state': 'HAND_END' if ended else 'SHOWDOWN' if hole and street == 'RIVER' else street,
-            'accepted_inference': False}
+            'accepted_inference': False,
+            **({'hidden_loser_authority':hidden_authority} if hidden_authority else {}),
+            **({'no_sb_authority':no_sb_authority} if no_sb_authority else {})}
 
 
 def resolve_hand(hand, resolver):

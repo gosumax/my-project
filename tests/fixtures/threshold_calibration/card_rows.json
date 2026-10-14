@@ -1,0 +1,29 @@
+[
+  {
+    "review_id": "N010",
+    "source_row_key": "4:2808:12",
+    "path": "N010.png",
+    "png_sha256": "afb41eea045d194198c69428d36d3c4fc2223039825df26fb822ce8652d46a59",
+    "gray_sha256": "b4ba58ff7f77d186ec9ff4bf85f937b8f011aa8e1b7c3248c940ba738a5a9b6b",
+    "cards": [
+      "Th",
+      "4d"
+    ],
+    "authority": "BLIND_ROOT_PIXEL_LABEL_TEST_ONLY"
+  },
+  {
+    "review_id": "R001",
+    "source_row_key": "4:2808:17",
+    "path": "R001.png",
+    "png_sha256": "4e32d70c3dd8458f3321b018791c1d622e53e0ee2890ed39703349bffeb26495",
+    "gray_sha256": "608ab8ef762a96cacd9f72e7237c586703a654aa4600357c722353cc15493e6c",
+    "cards": [
+      "3d",
+      "3h",
+      "Ac",
+      "9c",
+      "8c"
+    ],
+    "authority": "BLIND_ROOT_PIXEL_LABEL_TEST_ONLY"
+  }
+]

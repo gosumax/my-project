@@ -1,0 +1,1425 @@
+{
+  "rows": [
+    {
+      "table_id": "T09",
+      "sequence_id": 2345,
+      "frame_id": 8025,
+      "video_time": 267.5,
+      "source_roi_change_id": "table_50cef80afeaffb41fd8d0e8f:8025:chat",
+      "row_index": 15,
+      "raw_ocr_text": "Dealer: retre1 wins 17 740 from the",
+      "normalized_text": "Dealer: retre1 wins 17 740 from the",
+      "event_type": "WIN",
+      "confidence": 0.9728407859802246,
+      "status": "RAW_UNREVIEWED",
+      "notes_error": "",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "origin": "NEW_CANDIDATE",
+      "epoch": 5,
+      "row_pixel_sha256": "d71f3895cbff5a08f788d0879a6783863807e6a03ee3c750bca4e2797de1ee42",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000064",
+      "row_identity_status": "UNKNOWN",
+      "admission_ref": "table_50cef80afeaffb41fd8d0e8f:8025:physical_new:14",
+      "admission_reason": "PROVEN_PHYSICAL_NEW; OLD_IDENTITY_UNKNOWN",
+      "message_id": "T09:M000137",
+      "message_event_type": "WIN",
+      "message_status": "PARTIAL",
+      "message_reason": "CONTINUATION_WITHOUT_VISIBLE_START",
+      "row_id": "table_50cef80afeaffb41fd8d0e8f:F000064",
+      "raw_text": "Dealer: retre1 wins 17 740 from the",
+      "timestamp_ms": 267500.0,
+      "ocr_status": "OK"
+    },
+    {
+      "table_id": "T09",
+      "sequence_id": 2346,
+      "frame_id": 8025,
+      "video_time": 267.5,
+      "source_roi_change_id": "table_50cef80afeaffb41fd8d0e8f:8025:chat",
+      "row_index": 16,
+      "raw_ocr_text": "main pot with Pair,77",
+      "normalized_text": "main pot with Pair,77",
+      "event_type": "UNKNOWN_EVENT",
+      "confidence": 0.962928056716919,
+      "status": "UNKNOWN",
+      "notes_error": "TYPE_NOT_RECOGNIZED",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "origin": "NEW_CANDIDATE",
+      "epoch": 5,
+      "row_pixel_sha256": "7ad5643178e71769c32cc45b84bae9b529dfc559fe5038dea3d1cba05af73b1f",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000065",
+      "row_identity_status": "UNKNOWN",
+      "admission_ref": "table_50cef80afeaffb41fd8d0e8f:8025:physical_new:15",
+      "admission_reason": "PROVEN_PHYSICAL_NEW; OLD_IDENTITY_UNKNOWN",
+      "message_id": "T09:M000137",
+      "message_event_type": "WIN",
+      "message_status": "PARTIAL",
+      "message_reason": "CONTINUATION_WITHOUT_VISIBLE_START",
+      "row_id": "table_50cef80afeaffb41fd8d0e8f:F000065",
+      "raw_text": "main pot with Pair,77",
+      "timestamp_ms": 267500.0,
+      "ocr_status": "OK"
+    },
+    {
+      "table_id": "T09",
+      "sequence_id": 2347,
+      "frame_id": 8025,
+      "video_time": 267.5,
+      "source_roi_change_id": "table_50cef80afeaffb41fd8d0e8f:8025:chat",
+      "row_index": 17,
+      "raw_ocr_text": "7074K00060",
+      "normalized_text": "7074K00060",
+      "event_type": "UNKNOWN_EVENT",
+      "confidence": 0.6333963871002197,
+      "status": "UNKNOWN",
+      "notes_error": "TYPE_NOT_RECOGNIZED",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "origin": "NEW_CANDIDATE",
+      "epoch": 5,
+      "row_pixel_sha256": "00bd91d6b5a9300137d6af53a5f0784cfba1b5b145ce887f7ccaaeef541a41ce",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000066",
+      "row_identity_status": "UNKNOWN",
+      "admission_ref": "table_50cef80afeaffb41fd8d0e8f:8025:physical_new:16",
+      "admission_reason": "PROVEN_PHYSICAL_NEW; OLD_IDENTITY_UNKNOWN",
+      "message_id": "T09:M000137",
+      "message_event_type": "WIN",
+      "message_status": "PARTIAL",
+      "message_reason": "CONTINUATION_WITHOUT_VISIBLE_START",
+      "row_id": "table_50cef80afeaffb41fd8d0e8f:F000066",
+      "raw_text": "7074K00060",
+      "timestamp_ms": 267500.0,
+      "ocr_status": "OK"
+    }
+  ],
+  "reading": {
+    "row_key": "9:8025:17",
+    "table_id": 9,
+    "table_session_id": "table_50cef80afeaffb41fd8d0e8f",
+    "frame_id": 8025,
+    "source_span_index": 17,
+    "video_time": 267.5,
+    "source_pts": 4108800,
+    "time_base_num": 1,
+    "time_base_den": 15360,
+    "row_pixel_sha256": "00bd91d6b5a9300137d6af53a5f0784cfba1b5b145ce887f7ccaaeef541a41ce",
+    "row_id": "table_50cef80afeaffb41fd8d0e8f:F000066",
+    "epoch": 5,
+    "crop_type": "CHAT_ROW_CARDS",
+    "street": null,
+    "status": "UNRESOLVED",
+    "crop_path": null,
+    "crop_png_base64": "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",
+    "crop_sha256": "2a10c32dcd08911dd26200dd87711ef64f40cd43856b355e3579efbe6ef474bc",
+    "image_transport": "ram",
+    "raw_vl_response": null,
+    "vl_raw_text": "",
+    "vl_status": "NOT_USED",
+    "vl_elapsed_seconds": 5.500001861946657e-06,
+    "raw_pixel_response": {
+      "status": "OK",
+      "raw_text": "",
+      "source_sha256": "2a10c32dcd08911dd26200dd87711ef64f40cd43856b355e3579efbe6ef474bc",
+      "request_id": "pixel_d09bf8068b7cc9d221cadaac",
+      "recognizer": "FROZEN_NATIVE_PIXEL_CARD_READER",
+      "rank_config_sha256": "a09cf0cad98a3b284065b6cb0862cb8bea46d5992598e1ac880101288ddc7882",
+      "suit_config_sha256": "3004549d04172cbe6e2e99aec1455c3129c114329c0e7d74050c84a9cda1cecf"
+    },
+    "recognition_mode": "PIXEL_ONLY",
+    "pixel_elapsed_seconds": 5.500001861946657e-06,
+    "identity_status": "CHAT_ROW_SHA_ROUNDTRIP_VERIFIED",
+    "response_source_sha256": "2a10c32dcd08911dd26200dd87711ef64f40cd43856b355e3579efbe6ef474bc",
+    "card_evidence_id": "chatcard_3e238f0842926f342e838b45",
+    "hybrid": {
+      "card_reader": "pixel_rank_ncc_template_suit_v1",
+      "rank_source": "PIXEL_ONLY_EXACT_AND_RANK_NCC",
+      "vl_rank_source": "NOT_USED",
+      "suit_source": "VERIFIED_TRAIN_CHAT_TEMPLATE_RAW_SUIT2",
+      "template_manifest_sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43",
+      "template_selection_sha256": "d9c0b33eceb26a1ae1809637cf4c6d2ad19872767dd42e6f75b5bc9becfaf51f",
+      "template_config_sha256": "e67285f74a8251b92ea503f0c3e68aa642fef33bc74d32b221d219358438c20f",
+      "right_trim_px": 12,
+      "tiles": [
+        {
+          "card_index": 0,
+          "box_xyxy_exclusive": [
+            12,
+            0,
+            32,
+            16
+          ],
+          "tile_png": null,
+          "tile_png_base64": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAIAAACZeshMAAACcUlEQVR4nIVTz0r7QBDenZ1EY1spKYVa1EOteFGjxfbSYx/AB/DqU/gQ+gD6BhUFTz0KehA91ZPHHCQIBkVbmnazfyQdfqG33weB2c3O7DfffMs3NzfZ/2CtFUIwxrTWAMA513NgrVaj3wBgraU4z8kDzjkF+ck0TXm/319eXgYAxhidWAxo38yxuNRaf3198c/PTyGEUurj40NKmVPd2tpapK21ZoyJOYwx1to4jtHzPGPMz8/P3d1dHMdErNls1ut1z/OEEJPJJIqi19fXSqXSarWKxSJJUCgUkHMupQSAIAim0+nv72+/39daSykLhYLWOgzD29vbq6urvb2909PTbrdbqVSUUpxz1Fpzzn3f73a7QogoigaDge/7xWLRGBOG4fX19fn5ubX28fFRKYWIvV7P8zwpZZaMiFQpSZL39/ckSQ4PD4nww8PDxcUFqWWMeXp6KpfLa2trBwcHSikAgDRNEdEYMx6PB4NBs9kMgkAIMZvNbm5uSKpc5DAMh8OhECLL5Jw7jkMjjeP47e1tf3+/VqsRl+3tbdd1AaBcLvu+DwC+729sbKRpyhjD7EOczWaj0Wg4HNbr9Xa7TbeVSqWTk5N2uz0ejy8vL3d2dnq9XrVaDYKAuGRqJ0niOI4x5v7+vtPprK+vk4oAsLu7W61WX15eqFaj0QiCoFQqUReYe9Vae3x83Gg0rLWImZCu604mk6WlpZWVlbOzM8dxyCekHyJmDqOulFLkfoLWOn8Mub0Xd76/v/H5+Xl1ddUYk6ap67p5MgDkfqYuyKRCCOIVRRE/OjqihhEz8eh+mlNG7N8LMcZks5lXJJpSyj/8Y4MrJ1jeMAAAAABJRU5ErkJggg==",
+          "tile_sha256": "8ed5296425fc51e7fac7256f47c8f9437a3e7435a559e5af1e993174b3f1b543",
+          "tile_pixel_sha256": "7ece6a139e6a051e532afd36e6d6e82297abe9518855aa55592f808d30ffe9ab",
+          "vl_rank": "UNRESOLVED",
+          "final_rank": "7",
+          "rank_source": "EXACT_VERIFIED_TRAIN_RANK_GLYPH",
+          "rank_status": null,
+          "rank_exact_candidate": "7",
+          "rank_exact_train_indices": [
+            350,
+            353,
+            357
+          ],
+          "legacy_rank_scores": [
+            [
+              "7",
+              6
+            ],
+            [
+              "3",
+              23
+            ],
+            [
+              "A",
+              28
+            ],
+            [
+              "Q",
+              30
+            ],
+            [
+              "5",
+              32
+            ],
+            [
+              "9",
+              33
+            ],
+            [
+              "J",
+              33
+            ],
+            [
+              "8",
+              37
+            ],
+            [
+              "K",
+              38
+            ],
+            [
+              "10",
+              40
+            ]
+          ],
+          "legacy_rank_template_sha256": "54b260164e512a5d5ddf597ce546885d6a00ab1ee42a5f65abe8ec6a543a3f45",
+          "size_wh": [
+            20,
+            16
+          ],
+          "detected_bright_box_xyxy_exclusive": [
+            12,
+            0,
+            32,
+            16
+          ],
+          "tile_geometry_source": "BRIGHT_SPAN",
+          "rank_ncc": {
+            "rank_candidate": "7",
+            "rank_second_candidate": "2",
+            "rank_best_score": 0.9996777772903442,
+            "rank_second_score": 0.61850506067276,
+            "rank_margin": 0.38117271661758423,
+            "rank_accepted": true,
+            "rank_result": "7",
+            "rank_roi": [
+              3,
+              4,
+              8,
+              12
+            ],
+            "rank_normalization": "component_ncc",
+            "rank_template_manifest_sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43",
+            "rank_best_template_index": 350,
+            "rank_second_template_index": 103,
+            "rank_reason": null
+          },
+          "nearest_train_card": "7s",
+          "raw_suit2_suit": "s",
+          "primary_suit": "s",
+          "legacy_board_suit": "UNRESOLVED",
+          "primary_channel": "SELECTED_NATIVE_RAW_SUIT2",
+          "primary_confidence": null,
+          "best_distance": 1.2222222222222223,
+          "runner_up_other_card_distance": 16.435185185185187,
+          "template_suit": "s",
+          "template_best_score": 0.9999666213989258,
+          "template_second_score": 0.9485752582550049,
+          "template_margin": 0.0513913631439209,
+          "template_second_suit": "d",
+          "template_confident": true,
+          "suit_backup_mode": "BACKUP",
+          "suit_backup_config_sha256": "3004549d04172cbe6e2e99aec1455c3129c114329c0e7d74050c84a9cda1cecf",
+          "suit": "s",
+          "suit_source": "agreement",
+          "card": "7s"
+        },
+        {
+          "card_index": 1,
+          "box_xyxy_exclusive": [
+            35,
+            0,
+            55,
+            16
+          ],
+          "tile_png": null,
+          "tile_png_base64": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAIAAACZeshMAAACWklEQVR4nH2TT0syURTG779xsMwBBxOMmoWLIGhjIm0Ul+GilZ/Qr+CmokUbcdJqW4GLAhUUE0pjnJlz7wk9Ib4vvO9ZXTj3uXPO8/yGHx0dcc4R0RjD1yWEAAA6M8YQkf1ZiCilRETluq5SaruhtRZCMMb+JZZS6nXxZrPpuu6mobWmV0n5nycmkwl/e3tLp9NxHH99fYVhqLVWSmmt8/n8XxNtHqJvBEGg0uk03e71epPJJJFIRFGEiI1GI5lM0uZKqaenp2QyWSgULMsCACllKpVa7WaMkVIeHh4eHx97nvfx8XF3d7dcLoUQlmUJIfr9fqvVur6+ns1mAGDbthDCGLMaTGttWdbp6SnnPIqibrdbKBToBiIOh8Pb29vn52chRDabrVQq+XxeSinIVaUU5YSI4/H45eWlWq0qpTjng8Gg0+n4vk/23tzc9Hq9xWIBAL9iACBLAKDb7bquWyqVdnd3jTGz2cz3/e/v70QiwRgLw7Ddbi8WiyiKVnrKTUrJGAuC4P7+vlwu27ZtjNFae553cXGRyWRWqXK+v79fr9cdx/mFBBGFEHEcM8ZeX1+DICgWiyS211WpVObz+dXVFSJeXl6Wy+W9vb04jqWUK8NoAQDwff/k5CSTyZh1UapSylqtNhgMDg4Ozs7OKCqimH9+fmqtie2Hh4dcLud5Hm1BIRtjGGPv7++pVMpxHDLyF/7RaLSzs7NhkDLf5onOAEDAUa4AsCLs8fHRcZxtdAlsY8z270FUUIsWnk6n/Pz8nMYDAMuyyDlEtG2bItyIqaWUIjzDMPwBkMmA3gHQ3vMAAAAASUVORK5CYII=",
+          "tile_sha256": "0156aa4fde7fbca720c9def6fdc38e6153b5d00773ebe50ad56eef7b5d94603f",
+          "tile_pixel_sha256": "ddd9f804da600adbef20e0475c54fd0d0fcfdf4c7608dbf86a10aeb398a6a1a7",
+          "vl_rank": "UNRESOLVED",
+          "final_rank": "7",
+          "rank_source": "FROZEN_RANK_NCC_PIXEL_FALLBACK",
+          "rank_status": "PIXEL_RANK_FALLBACK",
+          "rank_exact_candidate": "UNRESOLVED",
+          "rank_exact_train_indices": [],
+          "legacy_rank_scores": [
+            [
+              "7",
+              9
+            ],
+            [
+              "3",
+              24
+            ],
+            [
+              "Q",
+              27
+            ],
+            [
+              "A",
+              27
+            ],
+            [
+              "J",
+              30
+            ],
+            [
+              "9",
+              34
+            ],
+            [
+              "5",
+              35
+            ],
+            [
+              "8",
+              38
+            ],
+            [
+              "K",
+              41
+            ],
+            [
+              "10",
+              43
+            ]
+          ],
+          "legacy_rank_template_sha256": "54b260164e512a5d5ddf597ce546885d6a00ab1ee42a5f65abe8ec6a543a3f45",
+          "size_wh": [
+            20,
+            16
+          ],
+          "detected_bright_box_xyxy_exclusive": [
+            35,
+            0,
+            55,
+            16
+          ],
+          "tile_geometry_source": "BRIGHT_SPAN",
+          "rank_ncc": {
+            "rank_candidate": "7",
+            "rank_second_candidate": "2",
+            "rank_best_score": 0.9939077496528625,
+            "rank_second_score": 0.647578239440918,
+            "rank_margin": 0.3463295102119446,
+            "rank_accepted": true,
+            "rank_result": "7",
+            "rank_roi": [
+              3,
+              4,
+              8,
+              12
+            ],
+            "rank_normalization": "component_ncc",
+            "rank_template_manifest_sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43",
+            "rank_best_template_index": 80,
+            "rank_second_template_index": 103,
+            "rank_reason": null
+          },
+          "nearest_train_card": "7d",
+          "raw_suit2_suit": "d",
+          "primary_suit": "d",
+          "legacy_board_suit": "UNRESOLVED",
+          "primary_channel": "SELECTED_NATIVE_RAW_SUIT2",
+          "primary_confidence": null,
+          "best_distance": 13.810185185185185,
+          "runner_up_other_card_distance": 16.46759259259259,
+          "template_suit": "d",
+          "template_best_score": 0.9991980791091919,
+          "template_second_score": 0.9373509883880615,
+          "template_margin": 0.06184709072113037,
+          "template_second_suit": "s",
+          "template_confident": true,
+          "suit_backup_mode": "BACKUP",
+          "suit_backup_config_sha256": "3004549d04172cbe6e2e99aec1455c3129c114329c0e7d74050c84a9cda1cecf",
+          "suit": "d",
+          "suit_source": "agreement",
+          "card": "7d"
+        },
+        {
+          "card_index": 2,
+          "box_xyxy_exclusive": [
+            58,
+            0,
+            78,
+            16
+          ],
+          "tile_png": null,
+          "tile_png_base64": "iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAIAAACZeshMAAACeElEQVR4nFWT30rrQBDGd7J/Uo2aJrY1oWiplqKpeBFEEG8VH8Vn8kF8ABHxQrwUWbDirdY2VQy2283uoR1POOe72IuZ2Z3hN99Cq9VSSgEA57woCsaYUspxHFhIKcU5p5QaY4qiIIQAACEEI6xarQohMFoUBd4hf2WMwQgAGGMwiAXz1OXlZRzHlFJrreM45YmlAGCtxRNvltmfnx94enqq1+t5nltrPc+z1g6HQ9d1Pc9zXZcQMhqNrLW+7wNAnucA4HkepTTPc7a8vAwAj4+PALC/vy+lfHl5SZKk1+sBwGAwkFIOBoNGo0EpfX9/r1QqOzs7rVZrZWWF4TD9fn88Hvu+f3t7GwTB2tqaMYZSKqW8urqSUu7u7n59fWVZNplMLi4u4jhmjP1StdZ+f3/f3NxMp9Pj4+N6vY6Pvi0khHh9fc2yDAAcx+n3+0oprbVTgv34+Li7u0uSJIoixhgAaK2DIPB9n3OO/Ky1lNIwDH/hlfRHo5HrukII5EkIYYx1Op1ms4kLM8ZYaxuNRqfTWV1dnY9ddt7c3Dw9PZVSjsdjvIylaZpub2+jQwghZ2dn6+vr/3WezWZBEKRpSgh5eHjIskwIobVeWlrqdrtJkoRhqLU+Pz9P07TZbNqFfmm7C1Wr1Xa7fX193W63wzB0XRcA4jg+OjpCQnt7e7VarRyWIYmDgwPs0+v1oiiilGqtK5WK1tpau7W1dXJyAgAbGxuMzftRSueknp+fa7UaehBNi+7jnONsSKu0dFEUnHMAmEwm7P7+PooiXEZpbNzTv89hvEwxxj4/P+Hw8BA/ICEEf6XWmnM+m83YQtPptCwoU0IIpdQfiNVf8SDC58EAAAAASUVORK5CYII=",
+          "tile_sha256": "ca6023bbdfa39055019ee704dd204841592878cf64235627044e582949eccbe7",
+          "tile_pixel_sha256": "cfbd7f3eee808dc4f5e954e8a8d5206ed6e580af00047ea2406405379df1d797",
+          "vl_rank": "UNRESOLVED",
+          "final_rank": "K",
+          "rank_source": "EXACT_VERIFIED_TRAIN_RANK_GLYPH",
+          "rank_status": null,
+          "rank_exact_candidate": "K",
+          "rank_exact_train_indices": [
+            351,
+            354,
+            358
+          ],
+          "legacy_rank_scores": [
+            [
+              "K",
+              15
+            ],
+            [
+              "8",
+              16
+            ],
+            [
+              "Q",
+              17
+            ],
+            [
+              "10",
+              19
+            ],
+            [
+              "5",
+              19
+            ],
+            [
+              "9",
+              24
+            ],
+            [
+              "A",
+              27
+            ],
+            [
+              "3",
+              30
+            ],
+            [
+              "7",
+              33
+            ],
+            [
+              "J",
+              42
+            ]
+          ],
+          "legacy_rank_template_sha256": "54b260164e512a5d5ddf597ce546885d6a00ab1ee42a5f65abe8ec6a543a3f45",
+          "size_wh": [
+            20,
+            16
+          ],
+          "detected_bright_box_xyxy_exclusive": [
+            58,
+            0,
+            78,
+            16
+          ],
+          "tile_geometry_source": "BRIGHT_SPAN",
+          "rank_ncc": {
+            "rank_candidate": "K",
+            "rank_second_candidate": "A",
+            "rank_best_score": 0.9903021454811096,
+            "rank_second_score": 0.5065410137176514,
+            "rank_margin": 0.48376113176345825,
+            "rank_accepted": true,
+            "rank_result": "K",
+            "rank_roi": [
+              2,
+              4,
+              7,
+              12
+            ],
+            "rank_normalization": "component_ncc",
+            "rank_template_manifest_sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43",
+            "rank_best_template_index": 168,
+            "rank_second_template_index": 61,
+            "rank_reason": null
+          },
+          "nearest_train_card": "Kh",
+          "raw_suit2_suit": "h",
+          "primary_suit": "h",
+          "legacy_board_suit": "UNRESOLVED",
+          "primary_channel": "SELECTED_NATIVE_RAW_SUIT2",
+          "primary_confidence": null,
+          "best_distance": 10.592592592592593,
+          "runner_up_other_card_distance": 13.787037037037036,
+          "template_suit": "h",
+          "template_best_score": 0.9995104670524597,
+          "template_second_score": 0.8762927055358887,
+          "template_margin": 0.12321776151657104,
+          "template_second_suit": "d",
+          "template_confident": true,
+          "suit_backup_mode": "BACKUP",
+          "suit_backup_config_sha256": "3004549d04172cbe6e2e99aec1455c3129c114329c0e7d74050c84a9cda1cecf",
+          "suit": "h",
+          "suit_source": "agreement",
+          "card": "Kh"
+        },
+        {
+          "card_index": 3,
+          "box_xyxy_exclusive": [
+            81,
+            0,
+            102,
+            16
+          ],
+          "tile_png": null,
+          "tile_png_base64": "iVBORw0KGgoAAAANSUhEUgAAABUAAAAQCAIAAAB2uKNyAAACkklEQVR4nHWTPUsrQRSGd76cZFc2UUw0RBvhIn4gF9TKRgRb/4Cl4A/wj9gINoKVWFlsZ2VjF0NQNoggKknAr0jWZdAkuzMnl5sT9opwn2bPzM47c+Y9Z8jk5KRlWZRSy7IAAONer5cMEcZYEuNfhI+MjKRSKQAghCSz3+Ner0f6/FBSSlutFt/a2pqdnWWM/U9PCPkuS+h0OpeXl3x1dXVubo4Q0m63m82mZVm5XC6dTv/YKLlLMqP7cMdxhBD1er1cLt/d3QHAysrK0tJSNpsFAM651joIgpubG6XUzMxMoVCwbRsdSaVSlFIKAL7vn5ycCCHe398PDw9fXl4AgDEGAGEYlsvlo6Oj3d3d09PTh4eHKIqMMQMX0J4gCGzbXl9f39jYMMZorTFVpVSpVDo+PvY87/n5eW9vz/O8RqPxz39KqTEGAMbGxoaHhzOZTC6Xw2pprRuNxtnZmed5aPjX19fBwcHU1JTjOBMTE4Pz0R7OuZQSC4Hpcc5rtdrV1RV2B65USl1fX7darcH5fz3kXAjR7XaDIHh7ewvDMNnUdd18Ps8Ys21bSvn5+am1zufzrusO9IwxYwwh5PX1tVQq3d/f+76P2VJKp6end3Z2Njc3fd+vVCpra2u/+oyOjg70+CkWi1LK/f39dp9ms6mUymQy4+PjjuM8Pj7WajUhRKFQWF5eLhaLnA+EnBAihFhYWNje3g7DMI7jer1ujImiSGuN1WGM/e4jpcS6Jk1FLi4u5ufncZHWmhDy9PRk27brulJK04cQghZ+p9vtnp+f82q12ul0hBDY59hO2JHJs/nxchCl1O3tLVlcXEyn00KIKIqklLg0juOhoSFjDMrwtlprxlgcxwBAKeWcf3x8/AE7PW53/bErOwAAAABJRU5ErkJggg==",
+          "tile_sha256": "1c3ee9526652fd4def28d133d828a35a159950e28b46eb6a94a50904bdab0b5d",
+          "tile_pixel_sha256": "2ba94e8eb9bc616766f12840b11d0542dccb70c88ff65fea6c2256a81e801a22",
+          "vl_rank": "UNRESOLVED",
+          "final_rank": "Q",
+          "rank_source": "FROZEN_RANK_NCC_PIXEL_FALLBACK",
+          "rank_status": "PIXEL_RANK_FALLBACK",
+          "rank_exact_candidate": "UNRESOLVED",
+          "rank_exact_train_indices": [],
+          "legacy_rank_scores": [
+            [
+              "K",
+              14
+            ],
+            [
+              "Q",
+              16
+            ],
+            [
+              "8",
+              17
+            ],
+            [
+              "10",
+              18
+            ],
+            [
+              "5",
+              20
+            ],
+            [
+              "A",
+              24
+            ],
+            [
+              "9",
+              25
+            ],
+            [
+              "3",
+              25
+            ],
+            [
+              "7",
+              28
+            ],
+            [
+              "J",
+              39
+            ]
+          ],
+          "legacy_rank_template_sha256": "54b260164e512a5d5ddf597ce546885d6a00ab1ee42a5f65abe8ec6a543a3f45",
+          "size_wh": [
+            21,
+            16
+          ],
+          "detected_bright_box_xyxy_exclusive": [
+            81,
+            0,
+            102,
+            16
+          ],
+          "tile_geometry_source": "BRIGHT_SPAN",
+          "rank_ncc": {
+            "rank_candidate": "Q",
+            "rank_second_candidate": "8",
+            "rank_best_score": 0.9985077381134033,
+            "rank_second_score": 0.7175143361091614,
+            "rank_margin": 0.28099340200424194,
+            "rank_accepted": true,
+            "rank_result": "Q",
+            "rank_roi": [
+              2,
+              4,
+              8,
+              12
+            ],
+            "rank_normalization": "component_ncc",
+            "rank_template_manifest_sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43",
+            "rank_best_template_index": 343,
+            "rank_second_template_index": 131,
+            "rank_reason": null
+          },
+          "nearest_train_card": "Qs",
+          "raw_suit2_suit": "s",
+          "primary_suit": "s",
+          "legacy_board_suit": "UNRESOLVED",
+          "primary_channel": "SELECTED_NATIVE_RAW_SUIT2",
+          "primary_confidence": null,
+          "best_distance": 4.2592592592592595,
+          "runner_up_other_card_distance": 21.046296296296298,
+          "template_suit": "s",
+          "template_best_score": 0.9998339414596558,
+          "template_second_score": 0.9590056538581848,
+          "template_margin": 0.04082828760147095,
+          "template_second_suit": "d",
+          "template_confident": true,
+          "suit_backup_mode": "BACKUP",
+          "suit_backup_config_sha256": "3004549d04172cbe6e2e99aec1455c3129c114329c0e7d74050c84a9cda1cecf",
+          "suit": "s",
+          "suit_source": "agreement",
+          "card": "Qs"
+        },
+        {
+          "card_index": 4,
+          "box_xyxy_exclusive": [
+            104,
+            0,
+            125,
+            16
+          ],
+          "tile_png": null,
+          "tile_png_base64": "iVBORw0KGgoAAAANSUhEUgAAABUAAAAQCAIAAAB2uKNyAAACf0lEQVR4nI1Ty0ojQRStZ6pMV5tJjMS4MTQtiLhpg5tgf4V/Krhzl424cGEjPgM+UEEQlSR2V3c9huQOYZhhYM6iqIK6t+45dQ7u9Xpaa8aYtZYx5pxD/w2MMRNCrK6uMsaMMc45PAdCyHu/WP+FsizZwcFBkiT1eh36ee+hCxxhA/i9I6xZlrHd3d00TYUQGOPv7+/JZKK1FkI0m01o8cfAsCGEIISCIGBKKSEEIeTj4+P+/v76+rooil6vt7293Ww2OedVVRFC3t/fn5+f2+32+vo6pdR7jzEOw5AYYwgh3vvPz8+Tk5OiKOI4brVatVrNz4ExzvM8y7LDw8Orq6vxeOycs9YaYxBCbMHt6+trPB7v7e3t7OxQSmu1GkLIWlsUxeXl5XA4vLm5YYyFYRhFUbvdhsJZPQjGGCvL8uHhgXO+tLS0tramlJpOp6PRaDgcjkYjY0yWZaCUlDIIgpkQC22cc5PJJMuyo6Oj4+Pjp6cnrXWe5y8vLxcXF0CTEHJ7e/v4+Oi9p5T+qgdVtdbLy8tJkgwGgzzP397erLWNRiOKojRNOefee8ZYkiRbW1v1ev0X/8WXCCEQQlJKpdRCds55HMeU0ul0enp62u/39/f34zjmnIPfGCHEWss5V0p1Op2zs7MgCLTWjUYDY2ytRQh1u93BYMAY6/f7GxsblFJjDMw/s6333lrb7XbTNH19fa2qqtVqwT3OeVmWUsooijqdjlIqCAI3h7V2xkhrDfpLKeM5gI61FnwCofoxB8gM5vPeF0XB7u7uwjCUUv5tUsgixhgGXgQEMuK9Pz8/x5ubmysrKxAVIAwvOOcopWBNjHFVVZzzxVBAIc/zn0htdmPb4Xy2AAAAAElFTkSuQmCC",
+          "tile_sha256": "c6fb24a71eb17ec1f1e563399ba08c37029c3ece2b393b9e7af601e997683a03",
+          "tile_pixel_sha256": "ee33a477567dae62e5d1218e936d1c21cd89e0a7a7d20f69922dff110b031627",
+          "vl_rank": "UNRESOLVED",
+          "final_rank": "6",
+          "rank_source": "FROZEN_RANK_NCC_PIXEL_FALLBACK",
+          "rank_status": "PIXEL_RANK_FALLBACK",
+          "rank_exact_candidate": "UNRESOLVED",
+          "rank_exact_train_indices": [],
+          "legacy_rank_scores": [
+            [
+              "A",
+              19
+            ],
+            [
+              "Q",
+              23
+            ],
+            [
+              "8",
+              26
+            ],
+            [
+              "9",
+              26
+            ],
+            [
+              "10",
+              27
+            ],
+            [
+              "5",
+              27
+            ],
+            [
+              "3",
+              30
+            ],
+            [
+              "7",
+              31
+            ],
+            [
+              "J",
+              32
+            ],
+            [
+              "K",
+              33
+            ]
+          ],
+          "legacy_rank_template_sha256": "54b260164e512a5d5ddf597ce546885d6a00ab1ee42a5f65abe8ec6a543a3f45",
+          "size_wh": [
+            21,
+            16
+          ],
+          "detected_bright_box_xyxy_exclusive": [
+            104,
+            0,
+            125,
+            16
+          ],
+          "tile_geometry_source": "BRIGHT_SPAN",
+          "rank_ncc": {
+            "rank_candidate": "6",
+            "rank_second_candidate": "8",
+            "rank_best_score": 0.9819415807723999,
+            "rank_second_score": 0.7361583709716797,
+            "rank_margin": 0.24578320980072021,
+            "rank_accepted": true,
+            "rank_result": "6",
+            "rank_roi": [
+              3,
+              4,
+              9,
+              12
+            ],
+            "rank_normalization": "component_ncc",
+            "rank_template_manifest_sha256": "879590ce19553214010ef1191621ce02385d9f285e3471085c5ed45ab14bbd43",
+            "rank_best_template_index": 257,
+            "rank_second_template_index": 318,
+            "rank_reason": null
+          },
+          "nearest_train_card": "5d",
+          "raw_suit2_suit": "d",
+          "primary_suit": "d",
+          "legacy_board_suit": "UNRESOLVED",
+          "primary_channel": "SELECTED_NATIVE_RAW_SUIT2",
+          "primary_confidence": null,
+          "best_distance": 11.11574074074074,
+          "runner_up_other_card_distance": 11.643518518518519,
+          "template_suit": "d",
+          "template_best_score": 0.9987248182296753,
+          "template_second_score": 0.9467477202415466,
+          "template_margin": 0.05197709798812866,
+          "template_second_suit": "s",
+          "template_confident": true,
+          "suit_backup_mode": "BACKUP",
+          "suit_backup_config_sha256": "3004549d04172cbe6e2e99aec1455c3129c114329c0e7d74050c84a9cda1cecf",
+          "suit": "d",
+          "suit_source": "agreement",
+          "card": "6d"
+        }
+      ],
+      "rank_mode": "PIXEL_ONLY",
+      "rank_ncc_config_sha256": "a09cf0cad98a3b284065b6cb0862cb8bea46d5992598e1ac880101288ddc7882",
+      "development_only": false,
+      "detected_spans_inclusive": [
+        [
+          12,
+          31
+        ],
+        [
+          35,
+          54
+        ],
+        [
+          58,
+          77
+        ],
+        [
+          81,
+          101
+        ],
+        [
+          104,
+          124
+        ]
+      ],
+      "recovered_split_spans": [],
+      "vl_rank_tokens": [],
+      "rank_alignment_status": "INDEPENDENT_PIXEL_RANK_CHANNELS",
+      "primary_vl_rank_conflict": false,
+      "cards": [
+        "7s",
+        "7d",
+        "Kh",
+        "Qs",
+        "6d"
+      ],
+      "reason": null
+    },
+    "hybrid_elapsed_seconds": 0.013344299997697817,
+    "cards": [
+      "7s",
+      "7d",
+      "Kh",
+      "Qs",
+      "6d"
+    ],
+    "card_reader": "pixel_rank_ncc_template_suit_v1",
+    "saved_replay_parent": {
+      "file": "C:\\Users\\Admin\\.codex\\tmp\\hh95_source_cache_20261008\\full_v1\\visual_evidence.jsonl",
+      "file_sha256": "10ccc5ca9e3086eb2e1001b0a41dcca3e6a21805e7a174b30b44e27ef26c3fe2",
+      "row_key": "9:8025:17",
+      "crop_sha256": "2a10c32dcd08911dd26200dd87711ef64f40cd43856b355e3579efbe6ef474bc"
+    },
+    "hand_id": null,
+    "reason": "NO_NEARBY_CARD_EVENT",
+    "projected_card_count": 0
+  },
+  "context": [
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5330,
+      "row_index": 6,
+      "video_time": 177.66666666666666,
+      "row_pixel_sha256": "bbccd83be6296286b3a2844150c400d0739ab61091f054153d3128e07bb150ab",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000046",
+      "raw_ocr_text": "#2878366656",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5330,
+      "row_index": 7,
+      "video_time": 177.66666666666666,
+      "row_pixel_sha256": "7c518876d01f41b56e4da201eb7be6a465b27898c36a75353df7d1bebcdf46eb",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000047",
+      "raw_ocr_text": "Dealer: klark2316 posts Ante 80",
+      "hand_id": "2878366656",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5330,
+      "row_index": 8,
+      "video_time": 177.66666666666666,
+      "row_pixel_sha256": "eaa6150f59fc7edd8460b993ad8c0550099ba0a3c91dffb1935a77ddd6382571",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000048",
+      "raw_ocr_text": "Dealer: kayto998 posts Ante 80",
+      "hand_id": "2878366656",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5330,
+      "row_index": 9,
+      "video_time": 177.66666666666666,
+      "row_pixel_sha256": "8deefbaf52a63a03de5bc43b002b8570a55b10f5523a46f93ae23424808704fd",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000049",
+      "raw_ocr_text": "Dealer: krismoltisanta posts Ante 80",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5330,
+      "row_index": 10,
+      "video_time": 177.66666666666666,
+      "row_pixel_sha256": "cd8d9416d8338a07e052bb9d0afee475b8bc8e2ff5dff1852da8e0bb4f2a5787",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000050",
+      "raw_ocr_text": "Dealer: zerotolerance posts Ante 80",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5330,
+      "row_index": 11,
+      "video_time": 177.66666666666666,
+      "row_pixel_sha256": "8ef58abbe321b272066676b11740518fed92c0ee83e1c6c58bfe7cc2b2de07b6",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000051",
+      "raw_ocr_text": "Dealer: retre1 posts Ante 80",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5330,
+      "row_index": 12,
+      "video_time": 177.66666666666666,
+      "row_pixel_sha256": "5621d75e469e259fb83a89eef346fe6b002c6e696d208c09a8b0cf87d1cf7aa0",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000052",
+      "raw_ocr_text": "Dealer: u4itel88 posts Ante 80",
+      "hand_id": "2878366656",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5330,
+      "row_index": 13,
+      "video_time": 177.66666666666666,
+      "row_pixel_sha256": "490ad22ba4b517f10754379bcc682ccda953138d6bda57f2110103e5390ace0e",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000053",
+      "raw_ocr_text": "Dealer: callamity posts Ante 80",
+      "hand_id": "2878366656",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5330,
+      "row_index": 14,
+      "video_time": 177.66666666666666,
+      "row_pixel_sha256": "c2b8fe92ba506d0c01c01cc27c71d68f3286971c4f5fbd7157e6d7d2733fbe4d",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000054",
+      "raw_ocr_text": "Dealer: lotos67 posts Ante 80",
+      "hand_id": "2878366656",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5330,
+      "row_index": 15,
+      "video_time": 177.66666666666666,
+      "row_pixel_sha256": "fa22f181f39d49d9bb042fae5eea78804da36ff1fe50231b62bc542dd599ad63",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000055",
+      "raw_ocr_text": "Dealer: callamity posts Small Blind 300",
+      "hand_id": "2878366656",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5330,
+      "row_index": 16,
+      "video_time": 177.66666666666666,
+      "row_pixel_sha256": "89acf94780c371172141286b07b379e16fad153d14eed5834764f054e3783910",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000056",
+      "raw_ocr_text": "Dealer: lotos67 posts Big Blind 600",
+      "hand_id": "2878366656",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5330,
+      "row_index": 17,
+      "video_time": 177.66666666666666,
+      "row_pixel_sha256": "94d304b5c38411665fe70e0c6df6888f3d50c7f481e3c87572b6b65f0e05064e",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000057",
+      "raw_ocr_text": "Dealer: Dealing cards",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5649,
+      "row_index": 17,
+      "video_time": 188.3,
+      "row_pixel_sha256": "f66e4a002e060ec0e2a2c095ebe19da56fa7936bf2aae82bd1dec165c6abec71",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000090",
+      "raw_ocr_text": "Dealer: klark2316 folds",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5700,
+      "row_index": 17,
+      "video_time": 190.0,
+      "row_pixel_sha256": "8f273e5286b78fd85455e74cf5c01214aa0806d7fee1c63b90d50dd526f6c88d",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000091",
+      "raw_ocr_text": "Dealer: kayto998 calls 600",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5765,
+      "row_index": 17,
+      "video_time": 192.16666666666666,
+      "row_pixel_sha256": "7870303f91ed3df151f8466da0f46cc0b5bd117a6e52fef49e6805f72bbea3aa",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000092",
+      "raw_ocr_text": "Dealer: krismoltisanta folds",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 5770,
+      "row_index": 17,
+      "video_time": 192.33333333333334,
+      "row_pixel_sha256": "e34c8e994b8c80c8e3731e626a43557a8d655a1fa6f46479aca6754a87539112",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000093",
+      "raw_ocr_text": "Dealer: zerotolerance folds",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 6104,
+      "row_index": 17,
+      "video_time": 203.46666666666667,
+      "row_pixel_sha256": "1998d23af1f96a9d9d1be720efaa69db3ced7dfb5e39604dd1e56caaadb73e34",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000094",
+      "raw_ocr_text": "Dealer: retre1 calls 600",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 6264,
+      "row_index": 17,
+      "video_time": 208.8,
+      "row_pixel_sha256": "20d57c66b968d3ab5ebfc95190a8010d1f41ffacda09be2e3c44ba08c94f17bc",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000095",
+      "raw_ocr_text": "Dealer: u4itel88 raises to 2 400",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 6278,
+      "row_index": 17,
+      "video_time": 209.26666666666668,
+      "row_pixel_sha256": "da5ead8fd545b73353c9fef19c2928da5b5d954a1565db4e3e366aa96638da2c",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000096",
+      "raw_ocr_text": "Dealer: callamity folds",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 6482,
+      "row_index": 17,
+      "video_time": 216.06666666666666,
+      "row_pixel_sha256": "0a28f3005665746b3f23ab1eb1defb2e0bbddf0b29a00a307c48101f8ff2d8e9",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000097",
+      "raw_ocr_text": "Dealer: lotos67 folds",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 6539,
+      "row_index": 17,
+      "video_time": 217.96666666666667,
+      "row_pixel_sha256": "f2ebd807ebb738b807bb0df826b0994907692dee0ba4358fcdcc89a450b28db8",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000098",
+      "raw_ocr_text": "Dealer: kayto998 calls 1 800",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 6845,
+      "row_index": 17,
+      "video_time": 228.16666666666666,
+      "row_pixel_sha256": "b3fdeb4fa5460a05077418a48cb26e82debb7a84c6c7ad439ba41eef2d99d0a4",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000099",
+      "raw_ocr_text": "Dealer: retre1 calls 1 800",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 6866,
+      "row_index": 16,
+      "video_time": 228.86666666666667,
+      "row_pixel_sha256": "8c3a86147544a69b9ecc74551878a4af4e4477cbc25b63196b6f9400f79e9b46",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000100",
+      "raw_ocr_text": "Dealer: Dealing Flop",
+      "hand_id": "2878366656",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 6866,
+      "row_index": 17,
+      "video_time": 228.86666666666667,
+      "row_pixel_sha256": "29881932bdabc582d9670a2d8be66c54586a903b6a751f5972d546bbcaec649f",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000101",
+      "raw_ocr_text": "2452K0",
+      "origin": "NEW_CANDIDATE",
+      "status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 6989,
+      "row_index": 17,
+      "video_time": 232.96666666666667,
+      "row_pixel_sha256": "c70917681ead622ecc59683efcf74e8d56124f55413ba5a14b073ae8f38750fc",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000102",
+      "raw_ocr_text": "Dealer: kayto998 checks",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7044,
+      "row_index": 17,
+      "video_time": 234.8,
+      "row_pixel_sha256": "569fad297b447dc56e5dbc016ac42f75b045e95b3a384aa121f03e8ff8443c28",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000103",
+      "raw_ocr_text": "Dealer: retre1 checks",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7329,
+      "row_index": 17,
+      "video_time": 244.3,
+      "row_pixel_sha256": "bcea51b958e7a0e67a461510b7475d0a7090f25cfc3a79e32a069fef9c2e5fad",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000104",
+      "raw_ocr_text": "Dealer: u4itel88 bets 3 000",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7396,
+      "row_index": 17,
+      "video_time": 246.53333333333333,
+      "row_pixel_sha256": "b3371df53655de2f3b88e879bd087991e02e049efa11efff856c037a724d9b1e",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000105",
+      "raw_ocr_text": "Dealer: kayto998 calls 3 000",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7441,
+      "row_index": 17,
+      "video_time": 248.03333333333333,
+      "row_pixel_sha256": "35d84b3824ce056a8cd138e4e49b8c8ccf30e5a91c09b3f1d1b24d87506998b7",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000106",
+      "raw_ocr_text": "Dealer: retre1 calls 3 000",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7462,
+      "row_index": 16,
+      "video_time": 248.73333333333332,
+      "row_pixel_sha256": "3cf152fbc585daa3236ecc843cf46ba12ff0e13339c2e83aec403158f6094618",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000107",
+      "raw_ocr_text": "Dealer: Dealing Turn",
+      "hand_id": "2878366656",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7462,
+      "row_index": 17,
+      "video_time": 248.73333333333332,
+      "row_pixel_sha256": "46496ef009e66eb2f4d6107b4b0cdb2022471a3f19447f7919c750b76dffe54d",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000108",
+      "raw_ocr_text": "2450K009",
+      "origin": "NEW_CANDIDATE",
+      "status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7603,
+      "row_index": 17,
+      "video_time": 253.43333333333334,
+      "row_pixel_sha256": "56de2a957a237c169c2def49c9bb935dcd01b989c5da40f83439b47f8b4fa8ba",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000109",
+      "raw_ocr_text": "Dealer: kayto998 checks",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7646,
+      "row_index": 17,
+      "video_time": 254.86666666666667,
+      "row_pixel_sha256": "838f4e3738f34a485ce0dd3649c96238baac41b0adf6b399d328f8d21f9323a8",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000110",
+      "raw_ocr_text": "Dealer: retre1 checks",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7708,
+      "row_index": 17,
+      "video_time": 256.93333333333334,
+      "row_pixel_sha256": "7e0ce9ff8c95353b81aeaeaf98675bd2ee0a4b4360a75460f6a39d3d5d3487c8",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000111",
+      "raw_ocr_text": "Dealer: u4itel88 checks",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7719,
+      "row_index": 16,
+      "video_time": 257.3,
+      "row_pixel_sha256": "254697c4d025b04ebb1c3b0b660b129f6636ce95f39e5e86acf6b2f33635faeb",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000112",
+      "raw_ocr_text": "Dealer: Dealing River",
+      "hand_id": "2878366656",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7719,
+      "row_index": 17,
+      "video_time": 257.3,
+      "row_pixel_sha256": "7afb293826e168b0d572b9f46df703141bc145f339fb4b52ca09a438b203d547",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000113",
+      "raw_ocr_text": "2450K00O60",
+      "origin": "NEW_CANDIDATE",
+      "status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7872,
+      "row_index": 17,
+      "video_time": 262.4,
+      "row_pixel_sha256": "b91a232b03c72275267dede0d8b53659f027b180a5dec06f43e89c23d5abe200",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000114",
+      "raw_ocr_text": "Dealer: kayto998 checks",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 7916,
+      "row_index": 17,
+      "video_time": 263.8666666666667,
+      "row_pixel_sha256": "349324cc9afd3b0e4f5ac52864a578ac15417a7f9198b26115287aa015384d07",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000115",
+      "raw_ocr_text": "Dealer: retre1 checks",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 4,
+      "frame_id": 8008,
+      "row_index": 17,
+      "video_time": 266.93333333333334,
+      "row_pixel_sha256": "31227383707eb7fe9720e554ab21945ccc3f58e34f7419ba8a9186d4bb7056d0",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:R000116",
+      "raw_ocr_text": "Dealer: u4itel88 checks",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 5,
+      "frame_id": 8025,
+      "row_index": 9,
+      "video_time": 267.5,
+      "row_pixel_sha256": "0697f310aae4ade0faffeb7bd2395433e575eece9bf4c710d3fb4ae84306cfc0",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000058",
+      "raw_ocr_text": "Dealer: u4itel88 shows High card, K",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 5,
+      "frame_id": 8025,
+      "row_index": 10,
+      "video_time": 267.5,
+      "row_pixel_sha256": "38064588aa51e697285270327405f9985748f284cd9c81d48e48cd4ec6ee5c04",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000059",
+      "raw_ocr_text": "074",
+      "origin": "NEW_CANDIDATE",
+      "status": "UNKNOWN",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 5,
+      "frame_id": 8025,
+      "row_index": 11,
+      "video_time": 267.5,
+      "row_pixel_sha256": "ecc16bd431c43b818c846749e2435cbf6b3b6ff6f0a1e19789574ffa01f20e00",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000060",
+      "raw_ocr_text": "Dealer: kayto998 shows High card, A",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 5,
+      "frame_id": 8025,
+      "row_index": 12,
+      "video_time": 267.5,
+      "row_pixel_sha256": "e2443708f345d8dc50edd5a63ad8c0b8b8585a649afc3d6efc61d8c3a84c3da6",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000061",
+      "raw_ocr_text": "A2J+",
+      "origin": "NEW_CANDIDATE",
+      "status": "UNKNOWN",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 5,
+      "frame_id": 8025,
+      "row_index": 13,
+      "video_time": 267.5,
+      "row_pixel_sha256": "a0b5fd6323731112e68857b2340f354b823feadb6ff62966e8fc49956cef56a6",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000062",
+      "raw_ocr_text": "Dealer: retre1 shows Pair, 77",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 5,
+      "frame_id": 8025,
+      "row_index": 14,
+      "video_time": 267.5,
+      "row_pixel_sha256": "3d4f0b14542e0c04e879106b3af4275c237dac6ea7474dc582fb8c642d11fdc1",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000063",
+      "raw_ocr_text": "7272",
+      "origin": "NEW_CANDIDATE",
+      "status": "UNKNOWN",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 5,
+      "frame_id": 8025,
+      "row_index": 15,
+      "video_time": 267.5,
+      "row_pixel_sha256": "d71f3895cbff5a08f788d0879a6783863807e6a03ee3c750bca4e2797de1ee42",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000064",
+      "raw_ocr_text": "Dealer: retre1 wins 17 740 from the",
+      "origin": "NEW_CANDIDATE",
+      "status": "RAW_UNREVIEWED",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 5,
+      "frame_id": 8025,
+      "row_index": 16,
+      "video_time": 267.5,
+      "row_pixel_sha256": "7ad5643178e71769c32cc45b84bae9b529dfc559fe5038dea3d1cba05af73b1f",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000065",
+      "raw_ocr_text": "main pot with Pair,77",
+      "origin": "NEW_CANDIDATE",
+      "status": "UNKNOWN",
+      "row_identity_status": "UNKNOWN"
+    },
+    {
+      "table_id": "T09",
+      "session_id": "table_50cef80afeaffb41fd8d0e8f",
+      "epoch": 5,
+      "frame_id": 8025,
+      "row_index": 17,
+      "video_time": 267.5,
+      "row_pixel_sha256": "00bd91d6b5a9300137d6af53a5f0784cfba1b5b145ce887f7ccaaeef541a41ce",
+      "stable_row_id": "table_50cef80afeaffb41fd8d0e8f:F000066",
+      "raw_ocr_text": "7074K00060",
+      "origin": "NEW_CANDIDATE",
+      "status": "UNKNOWN",
+      "row_identity_status": "UNKNOWN"
+    }
+  ]
+}

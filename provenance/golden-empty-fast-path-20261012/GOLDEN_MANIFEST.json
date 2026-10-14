@@ -1,0 +1,250 @@
+{
+  "schema": "EMPTY_FAST_PATH_COMPONENT_GOLDEN_V1",
+  "version": "golden-empty-fast-path-20261012",
+  "date": "2026-10-12",
+  "status": "GOLDEN_EXACT_BYTE_COMPONENT_SNAPSHOT",
+  "scope": "EMPTY_CAPTURE_CLASSIFICATION_ONLY_IN_START_STACK_OBSERVE_FRAME",
+  "chain": [
+    "EXACT_LAST_ROI",
+    "SAD_BOUND_SAFE_REJECT",
+    "UNCHANGED_OLD_CLASSIFIER_FALLBACK"
+  ],
+  "active_production_installed": false,
+  "global_production_promoted": false,
+  "start_stack_semantics_changed": false,
+  "other_empty_mechanisms_changed": false,
+  "bundle_sha256": {
+    "off_empty_dispatch.py": "63911ecf8ddd380dae1e828386bf2a8eca524ffefb194b28754d967a8cef5328",
+    "off_empty_bound.py": "fac2e1548db17403fd89927e420079e985038b8923c2cb3a88021c4ab135f765",
+    "off_empty_pixels.py": "9bee66bd7094b31590390f6b7d1ef117c1139bacb3c1dfa255ed71ec09028334"
+  },
+  "live_shadow_seal_sha256": "22b09423bb158f8de937f19e1f41bd75da558e5364b3e4304308a8717af34491",
+  "live_shadow_final_receipt_sha256": "12a9021f57ede3caed339cfd58e4260f53dca4706956acef5c66cc637e67fead",
+  "recorded_live_shadow": {
+    "observations": 1608,
+    "semantic_source_pixel_parity": "1608/1608_PASS",
+    "exact_hits": 1038,
+    "safe_rejects": 520,
+    "old_fallbacks": 50,
+    "separate_old_verify_empty": 24,
+    "timing_load": "CONTENDED"
+  },
+  "old_fallback": {
+    "classify": "ORIGINAL_CLASSIFY",
+    "explicit_mode": "OLD",
+    "adapter_default": "OFF_EMPTY_MODE=OLD",
+    "snapshot_root": "rollback"
+  },
+  "production_docs_sha256_unchanged": {
+    "PRODUCTION.md": "ab4d72f56c7ef04f34dd3ea14362461f7675b417404988db6207debce577bdb1",
+    "production_manifest.json": "de18da908c6f52c611264b23b8b160cf51f64329c1a74404af4941e7a54efa4b"
+  },
+  "frozen_physical_tail_manifest_sha256_unchanged": "5aace0f12f4a70c33fd134e8bcc7179924023011b207d01747b7588934aa82a5",
+  "files": {
+    "README.md": {
+      "sha256": "969d9eb1b84d1434fb63d4409ac8c41d2f53e08d4d94792b814ea6e16cb183fe",
+      "source": "GENERATED_COMPONENT_SCOPE_AND_ROLLBACK",
+      "bytes": 2077
+    },
+    "evidence/live_ab_60/CENSUS_CONTEXT_COMPARISON.txt": {
+      "sha256": "96bb49343b9a2069f2e3f0e62b4b8617d37b4eaefff79a469d8819fe252318a1",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\CENSUS_CONTEXT_COMPARISON.txt",
+      "bytes": 1429
+    },
+    "evidence/live_ab_60/FILES_AND_HASHES.json": {
+      "sha256": "3937c48236c43ad27306011203d773b7c422cfdb93e00c5ea10b7c2e1442cab6",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\FILES_AND_HASHES.json",
+      "bytes": 14470
+    },
+    "evidence/live_ab_60/FINAL_RECEIPT.json": {
+      "sha256": "12a9021f57ede3caed339cfd58e4260f53dca4706956acef5c66cc637e67fead",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\FINAL_RECEIPT.json",
+      "bytes": 4852
+    },
+    "evidence/live_ab_60/README.txt": {
+      "sha256": "b74debcfc018d13d1e7a16bc1e3258fbbdfe2753e83099a49504a0475cf605b2",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\README.txt",
+      "bytes": 1975
+    },
+    "evidence/live_ab_60/REPORT.txt": {
+      "sha256": "dd6622cefb1f42f484f5e049a76e298f721cb4f07d41906abe660dfa88d29471",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\REPORT.txt",
+      "bytes": 4472
+    },
+    "evidence/live_ab_60/REVIEW_01.txt": {
+      "sha256": "c5cb7302951130d765a67ce9faf0d0630c150c9d3f219acccd491b444c1c91a2",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\REVIEW_01.txt",
+      "bytes": 1359
+    },
+    "evidence/live_ab_60/REVIEW_FINAL_01.txt": {
+      "sha256": "a63262b13c735e0a11813aa1eb736ccedb0ae667bcd6bb4971982871a47aa9d0",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\REVIEW_FINAL_01.txt",
+      "bytes": 1375
+    },
+    "evidence/live_ab_60/SEAL.json": {
+      "sha256": "22b09423bb158f8de937f19e1f41bd75da558e5364b3e4304308a8717af34491",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\SEAL.json",
+      "bytes": 4461
+    },
+    "evidence/live_ab_60/SUMMARY.json": {
+      "sha256": "44bb668d90b6c520118819015a7f9e1c797b5acf1f814341e7f4284f07e2ed52",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\SUMMARY.json",
+      "bytes": 2753
+    },
+    "evidence/live_ab_60/bounded.py": {
+      "sha256": "40f51b0cd81f6af2cb9b9d9018d8db02d4856755bce1bd4a08db4c8f6a8c3eba",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\bounded.py",
+      "bytes": 4461
+    },
+    "evidence/live_ab_60/common.py": {
+      "sha256": "a95865bc7f7afea05545a05400932b71d2cba8c22a437c88d5e9e4eadd9638bf",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\common.py",
+      "bytes": 1135
+    },
+    "evidence/live_ab_60/pipeline_output/final_summary.json": {
+      "sha256": "4dc7716b166f00be03832c03e22791f3ad98e169961e7aa3c62df1e7197447e3",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\pipeline_output\\final_summary.json",
+      "bytes": 4654
+    },
+    "evidence/live_ab_60/run_live.py": {
+      "sha256": "329c8fb9b8b2217b48013917a17d7e76056d954a2aa9d7a6cd867ffde282b4a7",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\run_live.py",
+      "bytes": 1769
+    },
+    "evidence/live_ab_60/seal.py": {
+      "sha256": "4f0e42776f29f6f02866b5e7957d7fd57efd18756bf24e9d5c39105d1c719cf3",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\seal.py",
+      "bytes": 1741
+    },
+    "evidence/live_ab_60/shadow.py": {
+      "sha256": "a40522a8db5c7b9957529b0753aff23d0cac9c620d72d7168a6ef766f3f09c55",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\shadow.py",
+      "bytes": 9328
+    },
+    "evidence/live_ab_60/shadow_output/observations.jsonl": {
+      "sha256": "b6e49c076e9a7a86162fb023db748e4f06544b8cabed63b861af05d629dd0b5f",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\shadow_output\\observations.jsonl",
+      "bytes": 1794160
+    },
+    "evidence/live_ab_60/shadow_output/pixels.npz": {
+      "sha256": "95909ca0e3adaa03ff6cb59c50c79b6fee07b9ffb4b602b4e809fa23c088c64d",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\shadow_output\\pixels.npz",
+      "bytes": 10281574
+    },
+    "evidence/live_ab_60/shadow_output/receipt.json": {
+      "sha256": "ba6791935a5fd8d969f9ce5053d576595566bcd31b8875becb04ba012f2fe4f1",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\shadow_output\\receipt.json",
+      "bytes": 2777
+    },
+    "evidence/live_ab_60/summarize.py": {
+      "sha256": "a0e2e0630e715981251f3223582b759486048b67ee0d15c232ed14bb702d25f3",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\summarize.py",
+      "bytes": 4326
+    },
+    "evidence/live_ab_60/validation/component_receipt_v2.json": {
+      "sha256": "d386cd38752246192329ac952fdcd6e824c037e88243e6153c361245d52f1429",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\validation\\component_receipt_v2.json",
+      "bytes": 4801
+    },
+    "evidence/live_ab_60/validation/postflight_01.json": {
+      "sha256": "9d079be81b72e6ad9685d7f311789db0813188477572ae7c878750201ab1788f",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\validation\\postflight_01.json",
+      "bytes": 2267
+    },
+    "evidence/live_ab_60/validation/preflight_01.json": {
+      "sha256": "47e52b3b9b8540191093444a6a7c8824c6b730a4f1453a03e213c99b853c0166",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\validation\\preflight_01.json",
+      "bytes": 781
+    },
+    "evidence/live_ab_60/wrapper_receipt.json": {
+      "sha256": "7678f0734ca5e39a86b58f6a5351077287a0ce8b91a489a4497f3f0b9f4fdfe3",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\live_ab_60\\wrapper_receipt.json",
+      "bytes": 18807
+    },
+    "evidence/prior/MEASUREMENT_SEAL.json": {
+      "sha256": "9eee9fc69075ff8334940f1e4d65ff0b0a6b805870a3d40f8e250debf88f0051",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\MEASUREMENT_SEAL.json",
+      "bytes": 3460
+    },
+    "evidence/prior/isolated/FINAL_RECEIPT.json": {
+      "sha256": "1311572a82ca54b0a11f5a0fc2160d94d10f3e4355a69bae6b93f09f9fdd815e",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\isolated\\FINAL_RECEIPT.json",
+      "bytes": 5277
+    },
+    "evidence/prior/isolated/SEAL.json": {
+      "sha256": "d52bb46e81aad3ef1e005cffe00ce57e8935a110519141e0c3627929ce9137d6",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\isolated\\SEAL.json",
+      "bytes": 5295
+    },
+    "evidence/prior/validation/proof_comparison_v2_01.json": {
+      "sha256": "61dcdb6a3b987e116a3cdaad126fa743b3056c1640d4d23cf73dd8b39bc998ab",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\validation\\proof_comparison_v2_01.json",
+      "bytes": 13110
+    },
+    "evidence/runtime_v2/off_native_runtime_seal.json": {
+      "sha256": "fb3cd14e299a6f2928b219ef9decf51c08fd7167f183735ff1cb1036bcbe8a9c",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\runtime_v2\\off_native_runtime_seal.json",
+      "bytes": 81249
+    },
+    "files/off_empty_bound.py": {
+      "sha256": "fac2e1548db17403fd89927e420079e985038b8923c2cb3a88021c4ab135f765",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\runtime_v2\\off_empty_bound.py",
+      "bytes": 2978
+    },
+    "files/off_empty_dispatch.py": {
+      "sha256": "63911ecf8ddd380dae1e828386bf2a8eca524ffefb194b28754d967a8cef5328",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\runtime_v2\\off_empty_dispatch.py",
+      "bytes": 12924
+    },
+    "files/off_empty_pixels.py": {
+      "sha256": "9bee66bd7094b31590390f6b7d1ef117c1139bacb3c1dfa255ed71ec09028334",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\runtime_v2\\off_empty_pixels.py",
+      "bytes": 594
+    },
+    "reference/PRODUCTION.md": {
+      "sha256": "ab4d72f56c7ef04f34dd3ea14362461f7675b417404988db6207debce577bdb1",
+      "source": "PRODUCTION.md",
+      "bytes": 115267
+    },
+    "reference/production_manifest.json": {
+      "sha256": "de18da908c6f52c611264b23b8b160cf51f64329c1a74404af4941e7a54efa4b",
+      "source": "production_manifest.json",
+      "bytes": 104724
+    },
+    "rollback/configs/layout_847x404.json": {
+      "sha256": "777d1f02e5a927cf7066e89cce53fb5f24e6e241ed2cc87841794037dfd35300",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\runtime_v2\\configs\\layout_847x404.json",
+      "bytes": 67024
+    },
+    "rollback/models/empty_seat_buttons.json": {
+      "sha256": "a2db2626d14eef31611940c85fb170cb51eb27c07360a566d4fce17a61b25008",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\runtime_v2\\models\\empty_seat_buttons.json",
+      "bytes": 44263
+    },
+    "rollback/parser_core/empty_seat_evidence.py": {
+      "sha256": "1136bdc12eca77258979448f5fac96c97553faea641549a9b905971bd6e1f285",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\runtime_v2\\parser_core\\empty_seat_evidence.py",
+      "bytes": 7168
+    },
+    "rollback/parser_core/start_stack_live.py": {
+      "sha256": "be78fc14054723eb3f23280836c55d32d4dc0ca9486cd8b53a31b998fe6c672a",
+      "source": "experiments\\performance\\empty_seat_native_replay_20261011\\runtime_v2\\parser_core\\start_stack_live.py",
+      "bytes": 40707
+    },
+    "verification/REVIEW.md": {
+      "sha256": "ee62f35b26fd5b38e13a481c1eb5af6aa76355da0569fafd5cd6bf3c92163822",
+      "source": "runs\\empty_fast_path_golden_20261012\\REVIEW.md",
+      "bytes": 5873
+    },
+    "verification/source_bytes_receipt.json": {
+      "sha256": "8388244269c6b4ac589357d17fccb2b67936c011203ace29acb56c850cd43f50",
+      "source": "runs\\empty_fast_path_golden_20261012\\validation\\source_bytes_receipt.json",
+      "bytes": 36343
+    },
+    "verification/verify_bytes.py": {
+      "sha256": "f2994c91c7345eb9f2ff382faf80ec3cfa065d827f830d80c59a40f813a8e969",
+      "source": "runs\\empty_fast_path_golden_20261012\\verify_bytes.py",
+      "bytes": 6057
+    }
+  }
+}

@@ -1,0 +1,528 @@
+{
+  "scope": "PROPOSED_086_PIXEL_MATCHER_TEST_ONLY; NO_RUNTIME_THRESHOLD_APPLIED",
+  "model_sha256": "05c1b036522ff26bffc60a53a431920671f0ecfea4d93ee8e6cc5f09f63e7f3b",
+  "model_code_sha256": "eee0d459bee9e2603d2bd4dad88ac6d6473120945d1a932070e64a61bcbfa070",
+  "root_label_sha256": "12e5b8c4a3dbe096ac8cf653d20be52c16476150c8eda8e7620f7d2ef9e27dc9",
+  "fixtures": [
+    {
+      "review_id": "I0048",
+      "path": "I0048.png",
+      "file_sha256": "ad08218edb65c4c1ded29d4b0e01d65184e6c448816e65781ea89a4d3a2620fc",
+      "gray_sha256": "2d669ed311292800921ac20fe4e18ca43922ec9e81445b3ae87fa3d831f3e01a",
+      "shape": [
+        13,
+        82
+      ],
+      "visual_label": "SIT_OUT_TEXT",
+      "expected_at_086": true,
+      "current_score": 0.9948174953460693,
+      "provenance": {
+        "source_file": "start_stack_capture.jsonl",
+        "source_line": 187464,
+        "native_rgb_sha256": "2546fa2bfcbec4c10e70155815be9720b7f08213ac5b3fcc1857ff78a092b80d",
+        "source_roi": [
+          436,
+          298,
+          518,
+          316
+        ],
+        "refined_roi": [
+          436,
+          300,
+          518,
+          313
+        ],
+        "table_id": 1,
+        "session_id": "table_e2c91193c8d8161edce3dc41",
+        "source_frame": 9381,
+        "source_pts": 4803072,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat4"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    },
+    {
+      "review_id": "I0033",
+      "path": "I0033.png",
+      "file_sha256": "e044a4bb157f6d777034fde7efe8b7461c9d33162676fb8e0f3d36edce103c62",
+      "gray_sha256": "08bf67a8dcd52372bc0ccfdffcf171417b98cc4e21c0c64eb090288f2732221e",
+      "shape": [
+        13,
+        83
+      ],
+      "visual_label": "SIT_OUT_TEXT",
+      "expected_at_086": true,
+      "current_score": 0.927970826625824,
+      "provenance": {
+        "source_file": "start_stack_capture.jsonl",
+        "source_line": 131650,
+        "native_rgb_sha256": "423cea014d756223917555d888ec7fe6bbf872a050babeb85706a0f3ab467772",
+        "source_roi": [
+          287,
+          74,
+          370,
+          92
+        ],
+        "refined_roi": [
+          287,
+          75,
+          370,
+          88
+        ],
+        "table_id": 2,
+        "session_id": "table_4c668b6acadfff87de46f8b6",
+        "source_frame": 6356,
+        "source_pts": 3254272,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat1"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    },
+    {
+      "review_id": "I0034",
+      "path": "I0034.png",
+      "file_sha256": "02128b9fd23fb88c4f05925de170d66b8d80c13b679e86ecc6a530072a8d34df",
+      "gray_sha256": "306d9f3af33e94a76ef52d9856f0f671586ed2c2ca1982987a836e97bbcd2ff9",
+      "shape": [
+        13,
+        82
+      ],
+      "visual_label": "SIT_OUT_TEXT",
+      "expected_at_086": true,
+      "current_score": 0.9955626726150513,
+      "provenance": {
+        "source_file": "start_stack_capture.jsonl",
+        "source_line": 133158,
+        "native_rgb_sha256": "0e090d8a83545e14def52525cd9a5a524565af8d609cb8d05fc24036b45e4244",
+        "source_roi": [
+          530,
+          198,
+          612,
+          216
+        ],
+        "refined_roi": [
+          530,
+          199,
+          612,
+          212
+        ],
+        "table_id": 4,
+        "session_id": "table_334222ac19659c5286d00af7",
+        "source_frame": 6441,
+        "source_pts": 3297792,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat3"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    },
+    {
+      "review_id": "I0031",
+      "path": "I0031.png",
+      "file_sha256": "85084a93c3690531bfabf00e13dc2f5e1a3ee81d66ec52ca5954b32e58e55d7f",
+      "gray_sha256": "f94bdf2c031eab7c4dd62073235b86a362e2485e5a70d84516ae9e0c9302523e",
+      "shape": [
+        13,
+        82
+      ],
+      "visual_label": "SIT_OUT_TEXT",
+      "expected_at_086": true,
+      "current_score": 0.9988342523574829,
+      "provenance": {
+        "source_file": "start_stack_capture.jsonl",
+        "source_line": 130012,
+        "native_rgb_sha256": "87f99ed1b72a5a73be38307bf7ad8bc5771004ab4e6ef801cd936d10b1a6352a",
+        "source_roi": [
+          134,
+          299,
+          216,
+          317
+        ],
+        "refined_roi": [
+          134,
+          299,
+          216,
+          312
+        ],
+        "table_id": 5,
+        "session_id": "table_74be70152c73c8b99d1194b9",
+        "source_frame": 6314,
+        "source_pts": 3232768,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat6"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    },
+    {
+      "review_id": "H004",
+      "path": "H004.png",
+      "file_sha256": "9aa44679514e2b4efbef2e69f82eb3932b74852dec360aa196762c5e98b8f614",
+      "gray_sha256": "c8dee53226ec4bbb77bc5078a3bda06e0b13768c86bc501358a8aeaca79d27cb",
+      "shape": [
+        14,
+        83
+      ],
+      "visual_label": "FOLD",
+      "expected_at_086": false,
+      "current_score": 0.12590600550174713,
+      "provenance": {
+        "source_file": "start_stack_live_receipts.jsonl",
+        "source_line": 3028,
+        "native_rgb_sha256": "8e9cc81498fd066a8d42ff88736a28167a33902e27abe5d56c70caee798ff276",
+        "source_roi": [
+          439,
+          104,
+          522,
+          122
+        ],
+        "refined_roi": [
+          439,
+          104,
+          522,
+          118
+        ],
+        "table_id": 6,
+        "session_id": "table_de6df4eff185ac16ec217d53",
+        "source_frame": 533,
+        "source_pts": 272896,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat2"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    },
+    {
+      "review_id": "H010",
+      "path": "H010.png",
+      "file_sha256": "763c9a50fe9b7e72b724ade8ad0fa0413676db9b138e829aba0e289c6ca849ab",
+      "gray_sha256": "cc585135f4a8c675055ebb64b5290798617abe7a9e18c37f179c59e5f4c9f9f5",
+      "shape": [
+        14,
+        83
+      ],
+      "visual_label": "FOLD",
+      "expected_at_086": false,
+      "current_score": 0.12521229684352875,
+      "provenance": {
+        "source_file": "start_stack_live_receipts.jsonl",
+        "source_line": 3043,
+        "native_rgb_sha256": "e9504b77d36bbee6a3c2dd021da4aea4784e1ced37360f310fa7011bad43a4e0",
+        "source_roi": [
+          439,
+          104,
+          522,
+          122
+        ],
+        "refined_roi": [
+          439,
+          104,
+          522,
+          118
+        ],
+        "table_id": 6,
+        "session_id": "table_de6df4eff185ac16ec217d53",
+        "source_frame": 540,
+        "source_pts": 276480,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat2"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    },
+    {
+      "review_id": "H016",
+      "path": "H016.png",
+      "file_sha256": "de90a492ef375718b9e02744c66931264907539031bbfe5eefbea59dd5d64302",
+      "gray_sha256": "85c5c291f64cb90971bd6f018a0f5ffb661eb6715d42d982ca130897243074c0",
+      "shape": [
+        14,
+        83
+      ],
+      "visual_label": "FOLD",
+      "expected_at_086": false,
+      "current_score": 0.12495844811201096,
+      "provenance": {
+        "source_file": "start_stack_live_receipts.jsonl",
+        "source_line": 3033,
+        "native_rgb_sha256": "f9fd84c1e10fc6926ce9dd92a93d23bec88270cc4bd268d0c78efe65ec4061f9",
+        "source_roi": [
+          439,
+          104,
+          522,
+          122
+        ],
+        "refined_roi": [
+          439,
+          104,
+          522,
+          118
+        ],
+        "table_id": 6,
+        "session_id": "table_de6df4eff185ac16ec217d53",
+        "source_frame": 536,
+        "source_pts": 274432,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat2"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    },
+    {
+      "review_id": "H022",
+      "path": "H022.png",
+      "file_sha256": "e67f7d99d8a7f719afe0e9ab6d2fdf43da8247e24b706a594a04fa3a376d4fd4",
+      "gray_sha256": "4ac1575ac031d05ad65e1acc507949ad84e5d9fc9c7d26f2fe87641978788ed0",
+      "shape": [
+        14,
+        83
+      ],
+      "visual_label": "FOLD",
+      "expected_at_086": false,
+      "current_score": 0.1249149739742279,
+      "provenance": {
+        "source_file": "start_stack_live_receipts.jsonl",
+        "source_line": 3031,
+        "native_rgb_sha256": "7e34fa6cf7c57e94f59408f2da620a28c043ffbc945f7b794474559f055d6cc8",
+        "source_roi": [
+          439,
+          104,
+          522,
+          122
+        ],
+        "refined_roi": [
+          439,
+          104,
+          522,
+          118
+        ],
+        "table_id": 6,
+        "session_id": "table_de6df4eff185ac16ec217d53",
+        "source_frame": 535,
+        "source_pts": 273920,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat2"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    },
+    {
+      "review_id": "H000",
+      "path": "H000.png",
+      "file_sha256": "08805cb3e0591cc346715d158ae28b1b794a28103f122b17ed9186b55884b007",
+      "gray_sha256": "5731a74912163906e6ece5c7cb5efe3eb42a74654f6ffb54628ea9b9900ff090",
+      "shape": [
+        15,
+        83
+      ],
+      "visual_label": "ANTE",
+      "expected_at_086": false,
+      "current_score": 0.3636595904827118,
+      "provenance": {
+        "source_file": "start_stack_live_receipts.jsonl",
+        "source_line": 25125,
+        "native_rgb_sha256": "b5e35179f934cee245bee9e1c336869c46c4ece68244c0c8ae1f5af20dee7b66",
+        "source_roi": [
+          133,
+          103,
+          216,
+          121
+        ],
+        "refined_roi": [
+          133,
+          103,
+          216,
+          118
+        ],
+        "table_id": 7,
+        "session_id": "table_e25d299903d57bd974d3ae55",
+        "source_frame": 9044,
+        "source_pts": 4630528,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat8"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    },
+    {
+      "review_id": "H005",
+      "path": "H005.png",
+      "file_sha256": "35348e3dc2a5ef707690e9130e02f8070233128b710614b16f26ba07597a1782",
+      "gray_sha256": "07eeb6e42e9e29951cfca48c4424689427fbd99bfb372412fca9ed783499a4e6",
+      "shape": [
+        14,
+        84
+      ],
+      "visual_label": "SB",
+      "expected_at_086": false,
+      "current_score": 0.22324234247207642,
+      "provenance": {
+        "source_file": "start_stack_live_receipts.jsonl",
+        "source_line": 18322,
+        "native_rgb_sha256": "7688ac7c339b7bb540b9f9eb2b0a6567e89b6a09d2877b0250d824588be315ec",
+        "source_roi": [
+          284,
+          71,
+          368,
+          89
+        ],
+        "refined_roi": [
+          284,
+          71,
+          368,
+          85
+        ],
+        "table_id": 7,
+        "session_id": "table_e25d299903d57bd974d3ae55",
+        "source_frame": 5776,
+        "source_pts": 2957312,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat1"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    },
+    {
+      "review_id": "H001",
+      "path": "H001.png",
+      "file_sha256": "b94b977e991f42fdc542f6c50c7868d6e5a43239ec0b690395b122259e8d93c1",
+      "gray_sha256": "cfe42140a2aa5736a4b1e0f3c25125434289a83900291c2c4cc2f3ff3ccf4572",
+      "shape": [
+        13,
+        83
+      ],
+      "visual_label": "BB",
+      "expected_at_086": false,
+      "current_score": 0.2375461757183075,
+      "provenance": {
+        "source_file": "start_stack_live_receipts.jsonl",
+        "source_line": 23875,
+        "native_rgb_sha256": "6881390faa6cafd383bc9bb6e5b6b4e6e655a12cf85bedf08cc2bd47aadefcf9",
+        "source_roi": [
+          289,
+          73,
+          372,
+          91
+        ],
+        "refined_roi": [
+          289,
+          73,
+          372,
+          86
+        ],
+        "table_id": 6,
+        "session_id": "table_de6df4eff185ac16ec217d53",
+        "source_frame": 8329,
+        "source_pts": 4264448,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat1"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    },
+    {
+      "review_id": "H003",
+      "path": "H003.png",
+      "file_sha256": "6f56a2252454e1b877409ea9815f9a59a9496578ba7d569f10e94e579c40adf6",
+      "gray_sha256": "5ec376208396e0d37b85f9ca337c8ab8709692e581473137a19a6621a20919fd",
+      "shape": [
+        13,
+        83
+      ],
+      "visual_label": "NUMERIC_50000",
+      "expected_at_086": false,
+      "current_score": 0.6964277029037476,
+      "provenance": {
+        "source_file": "start_stack_capture.jsonl",
+        "source_line": 108018,
+        "native_rgb_sha256": "f20dad2ac9ce9ce30da936dc0c4660ee42a2212653ed8d7667ce46faf226e41b",
+        "source_roi": [
+          289,
+          73,
+          372,
+          91
+        ],
+        "refined_roi": [
+          289,
+          73,
+          372,
+          86
+        ],
+        "table_id": 6,
+        "session_id": "table_de6df4eff185ac16ec217d53",
+        "source_frame": 4920,
+        "source_pts": 2519040,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat1"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    },
+    {
+      "review_id": "H002",
+      "path": "H002.png",
+      "file_sha256": "2c1aa55c3c7c8b4a4462a0e4d5d4ba78900662503d30f8e9c55ba01d67555933",
+      "gray_sha256": "ced4126e6bf6666f471a82384941360f3ad4e3cf9eefbd0d1c1f28cd4b40b6ee",
+      "shape": [
+        14,
+        83
+      ],
+      "visual_label": "NO_VISIBLE_TEXT",
+      "expected_at_086": false,
+      "current_score": 0.41132852435112,
+      "provenance": {
+        "source_file": "start_stack_capture.jsonl",
+        "source_line": 94052,
+        "native_rgb_sha256": "9faf96e7ed66bd82b5478bccf1c2ae00aa0352f067e4bac226099ffc13745736",
+        "source_roi": [
+          439,
+          104,
+          522,
+          122
+        ],
+        "refined_roi": [
+          439,
+          104,
+          522,
+          118
+        ],
+        "table_id": 6,
+        "session_id": "table_de6df4eff185ac16ec217d53",
+        "source_frame": 4270,
+        "source_pts": 2186240,
+        "time_base": [
+          1,
+          15360
+        ],
+        "seat": "seat2"
+      },
+      "authority": "TEST_PIXEL_LABEL_ONLY_NO_STATUS_IDENTITY_OR_HH"
+    }
+  ]
+}

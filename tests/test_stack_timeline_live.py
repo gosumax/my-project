@@ -10,6 +10,8 @@ import numpy as np
 from parser_core import stack_timeline_algorithms as algorithms
 from parser_core.stack_evidence import StackEvidenceProvider
 from parser_core.stack_timeline_live import StackTimelineLive
+from parser_core.stack_timeline_storage import resolve_stack_timeline_path, stack_timeline_source_name
+from parser_core.simple_saved_policy import saved_stack_observations
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -53,6 +55,10 @@ def test_real_initial_pixels_continuous_writer_and_gate(monkeypatch,tmp_path):
         def close(self):pass
     monkeypatch.setattr('parser_core.stack_timeline_live.RawTiny',Tiny)
     live = StackTimelineLive(tmp_path,video_sha256='a'*64,sessions={},frames=2)
+    assert live.path.drive.upper() == 'C:'
+    assert resolve_stack_timeline_path(tmp_path) == live.path
+    assert stack_timeline_source_name(tmp_path) == str(live.path)
+    assert not (live.output/'timeline.sqlite').exists()
     tables = {t:np.zeros((404,847,3),np.uint8) for t in range(1,10)}
     for table,seat,raw,w,h,status in rows:
         route = next(r for r in live.routes if r['table_id']==table and r['seat_id']==seat)
@@ -71,6 +77,11 @@ def test_real_initial_pixels_continuous_writer_and_gate(monkeypatch,tmp_path):
     assert len(calls)<72
     live.finish()
     live.finish()
+    (tmp_path/'start_stack_live_receipts.jsonl').write_text('', encoding='utf-8')
+    saved = [row for rows in saved_stack_observations(tmp_path).values() for row in rows]
+    assert len(saved) == len(calls)
+    assert all(row['source_file'] == str(live.path) for row in saved)
+    assert all(row['raw_text'] == row['original_sql_numeric'] == '12345' for row in saved)
     provider=StackEvidenceProvider(live.path,video_sha256='a'*64)
     assert len(provider.points)==72
     assert sum(p['stack_value'] is not None for p in provider.points)==len(calls)

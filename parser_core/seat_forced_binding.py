@@ -3,6 +3,8 @@ import base64
 import copy
 import hashlib
 import json
+import math
+from .nickname_policy import NICK_CONFIDENCE_MIN, FIRST_NICK_POLICIES
 import re
 import threading
 from collections import Counter, defaultdict
@@ -37,6 +39,13 @@ def adjacent_forced_rows(first, second):
 
 def parse_forced_snapshot(rows, hand_id, occupied_count, confidence=.95):
     """Return one complete physical pre-deal snapshot, never sum duplicate posts."""
+    def valid_score(value):
+        return type(value) in (int,float) and math.isfinite(value) and 0<=value<=1
+    if not valid_score(confidence) or confidence==0:
+        return None,'FORCED_CONFIDENCE_POLICY_INVALID'
+    if any(not valid_score(r.get('score')) for r in rows):
+        return None,'FORCED_ROW_CONFIDENCE_VALUE_INVALID'
+    small_tail_confidence=min(confidence,SPLIT_SMALL_BLIND_TAIL_CONFIDENCE)
     ordered = sorted(rows, key=lambda r:r['index'])
     if len({r.get('source_frame') for r in ordered})>1:
         return None,'FORCED_SOURCE_FRAME_CONFLICT'
@@ -66,7 +75,7 @@ def parse_forced_snapshot(rows, hand_id, occupied_count, confidence=.95):
         refs = [r['source_ref']]
         source_rows = [dict(r)]
         if i+1 < hi and split_small_blind(r, ordered[i+1]):
-            if r['score'] < confidence or ordered[i+1]['score'] < SPLIT_SMALL_BLIND_TAIL_CONFIDENCE:
+            if r['score'] < confidence or ordered[i+1]['score'] < small_tail_confidence:
                 return None,'FORCED_ROW_CONFIDENCE_UNKNOWN'
             i += 1
             text += ' ' + ordered[i]['text'].strip()
@@ -75,8 +84,7 @@ def parse_forced_snapshot(rows, hand_id, occupied_count, confidence=.95):
         elif (i+1 < hi and adjacent_forced_rows(r,ordered[i+1]) and
               re.fullmatch(r'Dealer:\s*.+?\s+posts Big',text,re.I) and
               re.fullmatch(r'Blind \d+(?:[ \u00a0]\d{3})*',ordered[i+1]['text'].strip(),re.I)):
-            # Unlike the prior measured Small/Blind exception, both Big/Blind
-            # source rows retain the ordinary .95 threshold.
+            # Both Big/Blind source rows use the requested prefix threshold.
             if r['score'] < confidence or ordered[i+1]['score'] < confidence:
                 return None,'FORCED_ROW_CONFIDENCE_UNKNOWN'
             i += 1
@@ -91,7 +99,7 @@ def parse_forced_snapshot(rows, hand_id, occupied_count, confidence=.95):
             if all_in_suffix and amount is None:
                 return None,'FORCED_AMOUNT_WRAP_UNKNOWN'
             if amount is None:
-                if i+1 >= hi or ordered[i+1]['index']!=r['index']+1 or ordered[i+1]['score'] < confidence or not NUMERIC.fullmatch(ordered[i+1]['text'].strip()):
+                if i+1 >= hi or not adjacent_forced_rows(r,ordered[i+1]) or ordered[i+1]['score'] < confidence or not NUMERIC.fullmatch(ordered[i+1]['text'].strip()):
                     return None,'FORCED_AMOUNT_WRAP_UNKNOWN'
                 i += 1
                 amount = ordered[i]['text'].strip()
@@ -109,6 +117,8 @@ def parse_forced_snapshot(rows, hand_id, occupied_count, confidence=.95):
                 source_rows.append(dict(ordered[i]))
             role = {'ante':'ANTE','small blind':'SB','big blind':'BB'}[role.lower()]
             value = int(amount.replace(' ','').replace('\u00a0',''))
+            if value<=0:
+                return None,'FORCED_AMOUNT_NOT_POSITIVE'
             k = (actor,role)
             if k in posts:
                 return None,'FORCED_DUPLICATE_ROW_RISK'
@@ -140,20 +150,63 @@ def parse_forced_snapshot(rows, hand_id, occupied_count, confidence=.95):
                 money_rows_after_deal=[dict(index=r['index'],text=r['text'],source_frame=r['source_frame'],source_ref=r['source_ref']) for r in ordered[hi+1:] if MONEY_ACTION.match(r['text'].strip())]),None
 
 
+class PendingSourceJobs(dict):
+    """Pending source indexes; never scan all retained jobs for every label."""
+    missing=object()
+
+    def __init__(self):
+        super().__init__();self.nick_frames=defaultdict(Counter)
+        self.earliest_pending={};self.pending_prefix=Counter()
+
+    def _track(self,value,delta):
+        key,meta=value;kind=meta.get('kind')
+        if kind=='NICK':
+            route=(*key,meta.get('seat'));frame=meta['source_frame'];frames=self.nick_frames[route]
+            frames[frame]+=delta
+            if not frames[frame]:del frames[frame]
+            if frames:self.earliest_pending[route]=min(frames)
+            else:self.earliest_pending.pop(route,None);self.nick_frames.pop(route,None)
+        elif kind in {'CHAT','CHAT_CANDIDATE'}:
+            self.pending_prefix[key]+=delta
+            if not self.pending_prefix[key]:del self.pending_prefix[key]
+
+    def __setitem__(self,key,value):
+        if key in self:self.pop(key)
+        super().__setitem__(key,value);self._track(value,1)
+
+    def pop(self,key,default=missing):
+        if key not in self:
+            if default is self.missing:raise KeyError(key)
+            return default
+        value=super().pop(key);self._track(value,-1);return value
+
+    def __delitem__(self,key):self.pop(key)
+
+    def clear(self):
+        super().clear();self.nick_frames.clear();self.earliest_pending.clear();self.pending_prefix.clear()
+
+    def update(self,other=(),**kwargs):
+        for key,value in dict(other,**kwargs).items():self[key]=value
+
+
 class SeatForcedBinding:
     def __init__(self, root, output, sidecar, stack_live, config, *, independent_occupancy=False,
                  roster_prefix_binding=False,empty_card_contract=False):
         self.root=Path(root);self.output=Path(output);self.sidecar=sidecar;self.stack_live=stack_live
         self.lock=threading.RLock();self.machine=SeatEpochMachine();self.counts=Counter()
-        self.seen_deals=set();self.jobs={};self.snapshots=defaultdict(dict);self.snapshot_sizes={}
+        self.seen_deals=set();self.jobs=PendingSourceJobs();self.snapshots=defaultdict(dict);self.snapshot_sizes={}
         self.seen_prefix_candidates=set();self.prefix_candidates=Counter()
+        self.candidate_sizes={};self.candidate_rows=defaultdict(dict)
+        self.pending_snapshots={};self.prefix_reuse={};self.observed_frames={}
+        self.nick_candidates=defaultdict(dict)
         self.forced={};self.blockers={};self.nick_schedule={};self.snapshot_occupied={}
         self.nick_runs={};self.nick_labels=defaultdict(list);self.state_events=[];self.closed=False
         self.roster_prefix_binding=roster_prefix_binding
         self.roster_nick_rows=defaultdict(list);self.roster_forced_rows=defaultdict(dict)
         from parser_core.seat_occupancy import SeatOccupancyEvidence
         self.occupancy = SeatOccupancyEvidence(sidecar.flags['stack_confidence'],
-            reject_empty_fragments=empty_card_contract) if independent_occupancy else None
+            reject_empty_fragments=empty_card_contract,
+            nickname_confidence=NICK_CONFIDENCE_MIN) if independent_occupancy else None
         self.occupancy_expired=set()
         self.log=(self.output/'seat_forced_inputs.jsonl').open('w',encoding='utf-8')
         def factory(worker):
@@ -162,6 +215,81 @@ class SeatForcedBinding:
         self.ocr=ParallelRowOCR(factory,workers=1,queue_size=32,batch_size=8,result_observer=self.completed)
 
     def write(self,r):self.log.write(json.dumps(r,ensure_ascii=False)+'\n')
+
+    def _hand_end_frame(self,key):
+        own=[t['source_frame'] for t in self.sidecar.triggers if
+             (t['table_id'],t['session_id'],t['hand_id'])==key]
+        start=min(own)
+        later=[t['source_frame'] for t in self.sidecar.triggers if
+            (t['table_id'],t['session_id'])==key[:2] and t['hand_id']!=key[2]
+            and t['source_frame']>start]
+        observed=getattr(self,'observed_frames',{}).get(key)
+        if observed is None:
+            observed=max([self.sidecar.windows[key].deal['source_frame']]+[
+                f for route,labels in self.nick_labels.items() if route[:3]==key
+                for label in labels for f in label['frames']]+[
+                r['source_frame'] for r in self.roster_nick_rows[key]])
+        return min(observed,min(later)-1) if later else observed
+
+    def _resolve_nick_labels(self):
+        """Choose FIRST by source order, after earlier pending OCR has returned."""
+        from .nickname_roster_binding import FIRST_NICK_POLICY
+        if isinstance(self.jobs,PendingSourceJobs):
+            earliest_pending=self.jobs.earliest_pending;pending_prefix=self.jobs.pending_prefix
+        else:
+            earliest_pending={};pending_prefix=set()
+            for key,meta in self.jobs.values():
+                if meta.get('kind') in {'CHAT','CHAT_CANDIDATE'}:pending_prefix.add(key)
+                if meta.get('kind')!='NICK':continue
+                pending_route=(*key,meta.get('seat'));pending_frame=meta['source_frame']
+                earliest_pending[pending_route]=min(earliest_pending.get(pending_route,pending_frame),pending_frame)
+        for route,candidates in getattr(self,'nick_candidates',{}).items():
+            if self.nick_labels[route]:continue
+            for frame,original in sorted(candidates.items()):
+                if earliest_pending.get(route,frame)<frame:break
+                text=(original['ocr_response'].get('raw_text') or '').strip()
+                if text.isdecimal():
+                    snapshot=self.forced.get(route[:3],{})
+                    if not snapshot.get('forced_snapshot_complete'):
+                        if (route[:3] not in self.seen_deals or route[:3] in self.pending_snapshots or
+                                route[:3] in pending_prefix):break
+                        continue
+                    if text not in snapshot['actors']:continue
+                self.nick_labels[route].append(dict(actor=text,frames=[frame],
+                    source_ref=original['pixel_sha256'],source_pts=original.get('source_pts'),
+                    time_base=original.get('time_base'),nickname_witness_policy=FIRST_NICK_POLICY))
+                break
+
+    def _resolve_prefix_snapshots(self, *, final=False):
+        """Return retained fallback batches for submission outside locks/callbacks."""
+        fallback=[]
+        for key,rows in list(self.pending_snapshots.items()):
+            expected=self.candidate_sizes.get(key,0)
+            if expected and len(self.candidate_rows[key])<expected and not final:continue
+            w=self.sidecar.windows[key]
+            candidates=list(self.candidate_rows[key].values())
+            snapshot,blocker=parse_forced_snapshot(candidates,key[2],len(w.deal['occupied_seats']),
+                self.sidecar.flags['stack_confidence']) if expected and len(candidates)==expected else (
+                    None,'EARLY_OCR_COVERAGE_INCOMPLETE')
+            if snapshot:
+                original=candidates[0]
+                for post in snapshot['posts']:
+                    post.update(source_frame=original['source_frame'],source_pts=original['source_pts'],
+                        time_base=original['time_base'])
+                snapshot['early_prefix_reused']=True
+                self.forced[key]=snapshot
+                self.prefix_reuse[key]=dict(status='REUSED_COMPLETE_EARLY_PREFIX',
+                    source_frame=original['source_frame'],source_pts=original['source_pts'],
+                    time_base=original['time_base'],rows=expected,
+                    historical_epoch_authority=False)
+                self.counts['FORCED_CHAT_OCR_ROWS_AVOIDED']+=len(rows)
+                for row in rows:self.jobs.pop(row_key(row))
+            else:
+                self.prefix_reuse[key]=dict(status='LATER_SNAPSHOT_REQUIRED',reason=blocker)
+                fallback.extend(rows)
+            del self.pending_snapshots[key]
+        self._resolve_nick_labels()
+        return fallback
 
     def observe_frame(self,table,session,frame,pts,time_base,rgb,chat):
         batch=[]
@@ -173,6 +301,8 @@ class SeatForcedBinding:
             if w is None:return
             trigger=next(t for t in self.sidecar.triggers if (t['table_id'],t['session_id'],t['hand_id'])==key)
             if frame<trigger['source_frame']:return
+            self.observed_frames[key]=frame
+            batch.extend(self._resolve_prefix_snapshots())
             if w.deal is not None:self.machine.hand(table,session,key[2],trigger['source_frame'])
             source=dict(table_id=table,session_id=session,hand_id=key[2],source_frame=frame,
                         source_pts=pts,time_base=time_base)
@@ -183,6 +313,7 @@ class SeatForcedBinding:
                 if key not in self.seen_prefix_candidates:
                     self.seen_prefix_candidates.add(key)
                     spans=physical_spans(chat)
+                    self.candidate_sizes[key]=len(spans)
                     for i in range(len(spans)):
                         a,b=padded_row_span(spans,i,len(chat));pixels=np.ascontiguousarray(chat[a:b]).copy()
                         row=self.row(table,session,frame,pts,time_base,2000+i,a,pixels,'FORCED_PREFIX_CANDIDATE')
@@ -196,8 +327,8 @@ class SeatForcedBinding:
             if w.deal is not None and key not in self.seen_deals:
                 self.seen_deals.add(key)
                 if occupancy is not None:
-                    # Pre-deal labels prove only the current occupancy mask.
-                    # Existing historical actor binding needs fresh post-deal labels.
+                    # Occupancy needs current pixels; a participant's first
+                    # qualified NICK stays fixed for this hand.
                     for route in list(self.nick_schedule):
                         if route[:3] == key:self.nick_schedule.pop(route)
                 for seat in w.deal.get('occupancy_receipt',{}).get('empty_seats',[]):
@@ -210,14 +341,17 @@ class SeatForcedBinding:
                 spans=physical_spans(chat)
                 self.snapshot_sizes[key]=len(spans)
                 self.snapshot_occupied[key]=len(w.deal['occupied_seats'])
+                fallback=[]
                 for i in range(len(spans)):
                     a,b=padded_row_span(spans,i,len(chat));pixels=np.ascontiguousarray(chat[a:b]).copy()
                     row=self.row(table,session,frame,pts,time_base,1000+i,a,pixels,'FORCED_SNAPSHOT')
                     meta=dict(source,kind='CHAT',index=i,row_bounds=[a,b],source_ref=row.pixel_sha256)
-                    self.jobs[row_key(row)]=(key,meta);batch.append(row)
+                    self.jobs[row_key(row)]=(key,meta);fallback.append(row)
+                self.pending_snapshots[key]=fallback
+                batch.extend(self._resolve_prefix_snapshots())
             # Nick labels are independent observations of fixed seats, not IDs.
-            if w.deal is not None and frame>w.deal['source_frame']+self.sidecar.flags['capture_frames']:return_batch=batch
-            elif w.deal is not None or (occupancy is not None and w.closed is None
+            if not self.roster_prefix_binding and w.deal is not None and frame>w.deal['source_frame']+self.sidecar.flags['capture_frames']:return_batch=batch
+            elif self.roster_prefix_binding or w.deal is not None or (occupancy is not None and w.closed is None
                     and frame<=trigger['source_frame']+self.sidecar.flags['capture_frames']):
                 boxes=self.sidecar.profile['slots'][f'slot_{table:02d}']['seats']
                 for i,(seat,b) in enumerate(boxes.items()):
@@ -229,7 +363,7 @@ class SeatForcedBinding:
                             occupancy is not None and schedule.get('last_frame')!=frame-1):
                         schedule=dict(sha=digest,count=0);self.nick_schedule[bk]=schedule
                     schedule['last_frame']=frame
-                    if schedule['count']<3:
+                    if schedule['count']<1 and not (w.deal is not None and self.nick_labels[bk]):
                         schedule['count']+=1
                         row=self.row(table,session,frame,pts,time_base,100+i,y,pixels,'NICK_ONLY')
                         meta=dict(source,kind='NICK',seat=seat,roi=b['nick'],source_ref=digest)
@@ -271,10 +405,11 @@ class SeatForcedBinding:
             if getattr(self,'roster_prefix_binding',False):
                 if meta['kind']=='CHAT':
                     self.roster_forced_rows[key][meta['index']]=dict(original,text=text,score=score)
-                elif meta['kind']=='NICK' and not meta.get('pre_deal'):
+                elif meta['kind']=='NICK':
                     self.roster_nick_rows[key].append(original)
             if meta['kind']=='CHAT_CANDIDATE':
                 self.prefix_candidates[meta['table_id']]+=1
+                self.candidate_rows[key][meta['index']]=dict(original,text=text,score=score)
                 return
             if meta['kind']=='CHAT':
                 self.snapshots[key][meta['index']]=dict(meta,text=text,score=score,
@@ -294,20 +429,19 @@ class SeatForcedBinding:
                 if getattr(self,'occupancy',None) is not None:
                     self.occupancy.completed(key,meta['seat'],row.frame_id,row.pixel_sha256,response,
                                             pts=row.source_pts,time_base=(row.time_base_num,row.time_base_den))
-                    if meta.get('pre_deal'):return
-                bk=(*key,meta['seat']);old=self.nick_runs.get(bk)
-                if score<self.sidecar.flags['stack_confidence'] or not text:
-                    self.nick_runs.pop(bk,None);return
-                frames=old['frames']+[row.frame_id] if old and old['text']==text and old['frames'][-1]==row.frame_id-1 else [row.frame_id]
-                self.nick_runs[bk]=dict(text=text,frames=frames[-3:])
-                if len(frames)<3:return
+                bk=(*key,meta['seat'])
+                if type(score) not in (int,float) or not math.isfinite(score) or score<NICK_CONFIDENCE_MIN or score>1 or not text:
+                    self._resolve_nick_labels();return
                 if text.upper()=='OPEN SEAT':
-                    self.machine.observe(key[0],key[1],meta['seat'],'EMPTY',frames[-1],hand_id=key[2],source_ref=row.pixel_sha256)
-                elif (text.upper() not in LABEL_OVERLAYS and not text.endswith('...') and
-                      (re.search(r'[A-Za-zА-Яа-я]',text) or
-                       text.isdecimal() and self.forced.get(key,{}).get('forced_snapshot_complete') and
-                       text in self.forced[key]['actors'])):
-                    self.nick_labels[bk].append(dict(actor=text,frames=frames[-3:],source_ref=row.pixel_sha256))
+                    if score<self.sidecar.flags['stack_confidence']:
+                        self._resolve_nick_labels();return
+                    self.machine.observe(key[0],key[1],meta['seat'],'EMPTY',row.frame_id,hand_id=key[2],source_ref=row.pixel_sha256)
+                elif text.upper() not in LABEL_OVERLAYS:
+                    from .chat_nick_actor import literal_constraint, prove_nick_ui_overlay
+                    if literal_constraint(text) is not None and (
+                            'roi' not in original or prove_nick_ui_overlay(original) is None):
+                        self.nick_candidates[bk][row.frame_id]=original
+            self._resolve_nick_labels()
 
     def ordinary_ocr(self,row,response):
         text=(response.get('raw_text') or '').strip();m=STATE.fullmatch(text)
@@ -319,11 +453,26 @@ class SeatForcedBinding:
                 frame=row.frame_id,source_index=row.source_span_index,actor=m.group(1),kind=m.group(2).lower(),
                 source_ref=row.pixel_sha256))
 
+    def label_matches_epoch(self,key,seat,label,epoch):
+        from .nickname_roster_binding import FIRST_NICK_POLICY, nickname_epoch_matches
+        if label.get('nickname_witness_policy') in FIRST_NICK_POLICIES:
+            window=self.sidecar.windows.get(key)
+            return bool(epoch and window and window.deal and all(nickname_epoch_matches(
+                self.machine,key,seat,f,window.deal['source_frame'],epoch) for f in label['frames']))
+        return self.machine.epoch_at(*key[:2],seat,label['frames'][-1])==epoch
+
     def seats_for_actor(self,key,actor,limit):
+        from .nickname_roster_binding import FIRST_NICK_POLICY, nickname_epoch_matches
+        deal_frame=self.sidecar.windows[key].deal['source_frame']
+        def membership_frame(r):
+            return max(r['frames'][-1],deal_frame) if r.get('nickname_witness_policy') in FIRST_NICK_POLICIES else r['frames'][-1]
         return [seat for seat in self.sidecar.windows[key].deal['occupied_seats']
             if any(r['actor']==actor and r['frames'][-1]<=limit
-                and self.machine.epoch_at(key[0],key[1],seat,r['frames'][-1]) is not None
-                and self.machine.epoch_at(key[0],key[1],seat,r['frames'][-1]) == self.machine.epoch_at(key[0],key[1],seat,limit)
+                and self.machine.epoch_at(key[0],key[1],seat,membership_frame(r)) is not None
+                and self.machine.epoch_at(key[0],key[1],seat,membership_frame(r)) == self.machine.epoch_at(key[0],key[1],seat,limit)
+                and (r.get('nickname_witness_policy') not in FIRST_NICK_POLICIES or
+                     nickname_epoch_matches(self.machine,key,seat,r['frames'][-1],deal_frame,
+                         self.machine.epoch_at(key[0],key[1],seat,limit)))
                 for r in self.nick_labels[(*key,seat)])]
 
     def historical_forced_binding(self,key,actor,posts,unresolved_events):
@@ -333,11 +482,13 @@ class SeatForcedBinding:
         retained separately from the earlier forced snapshot; no alias is inferred.
         """
         w=self.sidecar.windows[key]
+        from .nickname_roster_binding import FIRST_NICK_POLICY, nickname_epoch_matches
         sources={p.get('source_frame') for p in posts}
         if len(sources)!=1 or None in sources:return None,'FORCED_SOURCE_FRAME_UNKNOWN'
         source=next(iter(sources))
-        limit=w.deal['source_frame']+self.sidecar.flags['capture_frames']
-        if not w.deal['source_frame']<=source<=limit:return None,'FORCED_SOURCE_OUTSIDE_CAPTURE_HORIZON'
+        source_limit=w.deal['source_frame']+self.sidecar.flags['capture_frames']
+        if not w.deal['source_frame']<=source<=source_limit:return None,'FORCED_SOURCE_OUTSIDE_CAPTURE_HORIZON'
+        limit=self._hand_end_frame(key)
         labels=[(r['frames'][-1],seat,r) for seat in w.deal['occupied_seats']
             for r in self.nick_labels[(*key,seat)] if r['actor']==actor and r['frames'][-1]<=limit]
         if not labels:return None,'FORCED_ACTOR_LABEL_UNKNOWN'
@@ -350,7 +501,10 @@ class SeatForcedBinding:
         epoch=self.machine.epoch_at(key[0],key[1],seat,source)
         if not epoch or self.machine.epoch_at(key[0],key[1],seat,anchor)!=epoch:
             return None,'FORCED_LABEL_EPOCH_CONFLICT'
-        if any(self.machine.epoch_at(key[0],key[1],seat,f)!=epoch for s,r in first for f in r['frames']):
+        if any((not nickname_epoch_matches(self.machine,key,seat,f,w.deal['source_frame'],epoch)
+                if r.get('nickname_witness_policy') in FIRST_NICK_POLICIES else
+                self.machine.epoch_at(key[0],key[1],seat,f)!=epoch)
+                for s,r in first for f in r['frames']):
             return None,'FORCED_LABEL_TRIPLE_CROSSES_EPOCH'
         actor_seats={s for s in w.deal['occupied_seats'] for r in self.nick_labels[(*key,s)]
             if r['actor']==actor and r['frames'][-1]<=anchor}
@@ -363,8 +517,11 @@ class SeatForcedBinding:
         if any(e['table']==key[0] and e['session']==key[1] and e['frame']<=anchor
             and e['status']!='APPLIED' for e in self.machine.audit):
             return None,'FORCED_OCCUPANCY_EVIDENCE_UNKNOWN'
+        policies={r.get('nickname_witness_policy') for s,r in first}
+        policy=next(iter(policies)) if len(policies)==1 and policies<=FIRST_NICK_POLICIES else 'LEGACY_RETAINED_LABEL'
         return dict(table=key[0],session=key[1],hand_id=key[2],actor=actor,seat=seat,epoch=epoch,
             binding_rule='FIRST_EXACT_LABEL_HISTORICAL_EPOCH',forced_source_frame=source,
+            nickname_witness_policy=policy,
             label_confirmation_frame=confirmation,binding_anchor_frame=anchor,
             label_evidence=[dict(r) for s,r in first],
             forced_source_refs=[p['source_refs'] for p in posts],
@@ -372,11 +529,17 @@ class SeatForcedBinding:
                 for r in self.nick_labels[(*key,s)] if anchor<r['frames'][-1]<=limit
                 and ((s==seat and r['actor']!=actor) or (s!=seat and r['actor']==actor))]),None
 
-    def finish(self):
+    def finish(self, *, retained_unresolved_events=None):
         if self.closed:return
+        if getattr(self,'pending_snapshots',None):
+            self.ocr.jobs.join()
+            with self.sidecar.lock,self.lock:
+                fallback=self._resolve_prefix_snapshots(final=True)
+                self.counts['OCR_ATTEMPTED']+=len(fallback)
+            for start in range(0,len(fallback),8):self.ocr.submit_batch(fallback[start:start+8])
         self.ocr.finish()
         with self.sidecar.lock,self.lock:
-            unresolved_events=[]
+            unresolved_events=copy.deepcopy(retained_unresolved_events) if retained_unresolved_events is not None else []
             for t in self.sidecar.triggers:
                 self.machine.hand(t['table_id'],t['session_id'],t['hand_id'],t['source_frame'])
             self.machine.build()
@@ -386,8 +549,9 @@ class SeatForcedBinding:
                     unresolved_events.append(dict(e,blocker='SEAT_EVENT_HAND_OR_TABLE_UNKNOWN'));continue
                 seats=list({bk[3] for bk,labels in self.nick_labels.items() if bk[:2]==key[:2]
                     and any(r['actor']==e['actor'] and r['frames'][-1]<=e['frame']
-                        and self.machine.epoch_at(key[0],key[1],bk[3],r['frames'][-1]) is not None
-                        and self.machine.epoch_at(key[0],key[1],bk[3],r['frames'][-1])==self.machine.epoch_at(key[0],key[1],bk[3],e['frame'])
+                        and self.machine.epoch_at(key[0],key[1],bk[3],e['frame']) is not None
+                        and self.label_matches_epoch(bk[:3],bk[3],r,
+                            self.machine.epoch_at(key[0],key[1],bk[3],e['frame']))
                         for r in labels)})
                 if len(seats)!=1:
                     unresolved_events.append(dict(e,blocker='SEAT_EVENT_ACTOR_UNRESOLVED'));continue
@@ -409,15 +573,19 @@ class SeatForcedBinding:
                 w=self.sidecar.windows.get(key)
                 if w is None or w.deal is None:continue
                 roster_proof=None
+                roster_inputs=None
                 if getattr(self,'roster_prefix_binding',False):
                     from parser_core.nickname_roster_binding import prove_roster_binding, binding_receipt
-                    roster_proof=prove_roster_binding(dict(context=list(key),snapshot=copy.deepcopy(snapshot),
+                    roster_inputs=dict(context=list(key),snapshot=dict(copy.deepcopy(snapshot),
+                        table=key[0],session=key[1],hand_id=key[2]),
                         deal=copy.deepcopy(w.deal),forced_rows=list(self.roster_forced_rows[key].values()),
                         nick_rows=self.roster_nick_rows[key],
                         hand_triggers=[t for t in self.sidecar.triggers if (t['table_id'],t['session_id'])==key[:2]],
                         state_receipts=[e for e in self.machine.audit if (e['table'],e['session'])==key[:2]],
                         unresolved_events=[e for e in unresolved_events if (e['table'],e['session'])==key[:2]],
-                        capture_frames=self.sidecar.flags['capture_frames'],confidence=self.sidecar.flags['stack_confidence']))
+                        capture_frames=self.sidecar.flags['capture_frames'],confidence=self.sidecar.flags['stack_confidence'],
+                        observed_capture_end_frame=self._hand_end_frame(key))
+                    roster_proof=prove_roster_binding(roster_inputs)
                     roster_proofs.append(dict(table=key[0],session=key[1],hand_id=key[2],
                         **{k:v for k,v in roster_proof.items() if k not in {'source_inputs','label_evidence'}}))
                 for actor in snapshot['actors']:
@@ -425,11 +593,16 @@ class SeatForcedBinding:
                     receipt,blocker=self.historical_forced_binding(key,actor,posts,unresolved_events)
                     if receipt is None and roster_proof and roster_proof['status']=='PROVEN':
                         receipt=binding_receipt(roster_proof,actor,posts)
+                    if receipt is None and roster_inputs:
+                        from parser_core.nickname_actor_binding import prove_actor_binding, binding_receipt as actor_receipt
+                        actor_proof=prove_actor_binding(roster_inputs,actor)
+                        receipt=actor_receipt(actor_proof,actor,posts)
                     if receipt is None:
                         historical_blockers.append(dict(table=key[0],session=key[1],hand_id=key[2],actor=actor,blocker=blocker))
                         continue
                     historical_receipts.append(receipt)
-                    binding_metadata={'binding_rule':receipt['binding_rule']} if 'roster_proof' in receipt else {}
+                    binding_metadata={'binding_rule':receipt['binding_rule']} if (
+                        'roster_proof' in receipt or 'actor_prefix_proof' in receipt) else {}
                     bound.extend(dict(p,table=key[0],session=key[1],hand_id=key[2],seat=receipt['seat'],epoch=receipt['epoch'],
                                       **binding_metadata) for p in posts)
 
@@ -463,7 +636,7 @@ class SeatForcedBinding:
                             target=seats[0]
                             target_epoch=self.machine.epoch_at(key[0],key[1],target,limit)
                             reverse={r['actor'] for r in self.nick_labels[(*key,target)] if r['frames'][-1]<=limit
-                                and self.machine.epoch_at(key[0],key[1],target,r['frames'][-1])==target_epoch}
+                                and self.label_matches_epoch(key,target,r,target_epoch)}
                             uncertain=any(e['table']==key[0] and e['session']==key[1] and e['actor']==p['actor'] and e['frame']<=limit for e in unresolved_events)
                             if reverse!={p['actor']} or uncertain or not self.machine.membership(key[0],key[1],target,key[2],target_epoch)['participant']:
                                 special_unknown=True;continue
@@ -482,7 +655,7 @@ class SeatForcedBinding:
                         record['bb_amount']=next((b['BB'] for b in special.values() if 'BB' in b),None)
                         actors=[a for a in snapshot['actors'] if self.seats_for_actor(key,a,limit)==[seat]]
                         labels_at_seat={r['actor'] for r in self.nick_labels[(*key,seat)] if r['frames'][-1]<=limit
-                            and self.machine.epoch_at(key[0],key[1],seat,r['frames'][-1])==epoch}
+                            and self.label_matches_epoch(key,seat,r,epoch)}
                         bets=None
                         if standard is not None and snapshot.get('forced_snapshot_complete') and not auto_all_in:
                             if any(e['table']==key[0] and e['session']==key[1] and e['frame']<=limit for e in unresolved_events):
@@ -509,7 +682,8 @@ class SeatForcedBinding:
                             record['forced_bets_debited_before_snapshot_proven']=all(
                                 p.get('phase')=='BEFORE_DEAL' and p.get('source_frame',limit)<=limit
                                 for p in snapshot['posts'])
-                            if triple.get('clean_window_rule') != 'FIRST_VISIBLE_STABLE_STACK_TRIPLE_AFTER_DEAL_COMPLETE':
+                            from .start_stack_visibility import valid_numeric_witness
+                            if not valid_numeric_witness(triple):
                                 record['blocker']='FIRST_VISIBLE_STACK_TRIPLE_UNPROVEN'
                             elif record['deal_complete_frame'] is None or triple['frames'][0] <= record['deal_complete_frame']:
                                 record['blocker']='DEAL_COMPLETE_SOURCE_ORDER_UNKNOWN'
@@ -536,7 +710,11 @@ class SeatForcedBinding:
                 forced_snapshots=[dict(table=k[0],session=k[1],hand_id=k[2],**snapshot) for k,snapshot in self.forced.items()],
                 forced_snapshot_blockers={str(k):v for k,v in self.blockers.items()},counts=dict(self.counts),errors=self.ocr.errors,
                 candidate_prefix_contexts=len(self.seen_prefix_candidates),
-                candidate_prefix_rows_by_table=dict(self.prefix_candidates),candidate_prefix_authority='CANDIDATE_ONLY')
+                candidate_prefix_rows_by_table=dict(self.prefix_candidates),candidate_prefix_authority='CANDIDATE_ONLY',
+                observed_hand_ends=[dict(table=k[0],session=k[1],hand_id=k[2],source_frame=self._hand_end_frame(k))
+                                    for k in getattr(self,'observed_frames',{})],
+                early_prefix_reuse=[dict(table=k[0],session=k[1],hand_id=k[2],**v)
+                                   for k,v in getattr(self,'prefix_reuse',{}).items()])
             if getattr(self,'roster_prefix_binding',False):summary['roster_binding_proofs']=roster_proofs
             (self.output/'seat_forced_summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),'utf-8')
             with (self.output/'start_stack_facts.jsonl').open('w',encoding='utf-8') as stream:

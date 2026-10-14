@@ -19,13 +19,13 @@ EXPECTED = {
 }
 
 
-def diagnose_hand(hand):
+def diagnose_hand(hand, *, hidden_card_source=None,no_sb_source=None):
     """One first action break, independent complete observed ledger/card results."""
-    prefix = validate_hand(hand, diagnostic_stop=True)
+    prefix = validate_hand(hand, diagnostic_stop=True,no_sb_source=no_sb_source)
     ledger = audit_observed_ledger(hand)
     # Existing card evaluator remains separate. Its action cascade is neither
     # exposed as new diagnoses nor used as root-cause evidence.
-    layers = validate_hand(hand)
+    layers = validate_hand(hand, hidden_card_source=hidden_card_source,no_sb_source=no_sb_source)
     issue = prefix['first_issue']
     first = None
     if issue:

@@ -57,7 +57,8 @@ def amount_variants(event, state, future):
             for amount in sorted(amounts) if amount > 0]
 
 
-def solve(events, start_stacks=None, previous_hand=(), max_nodes=20000, *, strict_source_uniqueness=False):
+def solve(events, start_stacks=None, previous_hand=(), max_nodes=20000, *, strict_source_uniqueness=False,
+          require_small_blind=True):
     names = {e.player for e in events if e.player and e.kind not in {"WIN", "SHOW", "RETURN", "INFO", "UNKNOWN"}}
     initial = State(players={name: Player(start_stack=(start_stacks or {}).get(name)) for name in sorted(names)})
     branches = [(initial, [], [])]
@@ -80,6 +81,9 @@ def solve(events, start_stacks=None, previous_hand=(), max_nodes=20000, *, stric
                     candidate.apply(variant, choice)
                     if inference:
                         candidate.inferences.append(inference)
+                    if variant.source.get('numeric_amount_proof'):
+                        candidate.inferences.append(dict(variant.source['numeric_amount_proof'],
+                            reason='EXHAUSTIVE_NUMERIC_SOURCE_CANDIDATE', source=variant.source))
                     candidate.trace.append({"source_indices": [r.get("source_index") for r in variant.source.get("rows", [])],
                         "candidate_event": {"kind": variant.kind, "player": variant.player, "amount": variant.amount, "semantics": choice or variant.semantics},
                         "decision": "KEEP", "street": candidate.street,
@@ -114,7 +118,8 @@ def solve(events, start_stacks=None, previous_hand=(), max_nodes=20000, *, stric
     for state, kept, dropped in branches:
         ledger = audit(state)
         diagnostics.append(ledger)
-        if index == len(events) and not exhausted and state.blind_kinds == {"SB", "BB"} and state.seen_payout and state.closed() and ledger["calculated_pot"] > 0 and ledger["pot_delta"] == 0 and ledger["payout_eligible"]:
+        required_blinds = {'SB', 'BB'} if require_small_blind else {'BB'}
+        if index == len(events) and not exhausted and required_blinds <= state.blind_kinds and state.seen_payout and state.closed() and ledger["calculated_pot"] > 0 and ledger["pot_delta"] == 0 and ledger["payout_eligible"]:
             # Unreturned unmatched excess is never a pot layer that can be won.
             if any(len(layer["contributors"]) == 1 for layer in ledger["pot_layers"]):
                 continue

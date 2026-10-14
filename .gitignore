@@ -22,3 +22,6 @@
 # Generated editor and OS files
 .DS_Store
 Thumbs.db
+# Mutable local player confirmations
+/data/players.sqlite
+/data/players.sqlite-*

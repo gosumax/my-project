@@ -281,10 +281,24 @@ def test_boundary_conflict_retained():
     assert 'HAND_BOUNDARY_CONFLICT' in codes(hands[0])
 
 
-def test_unproven_amount_semantics_blocks_certification():
+def test_unique_call_effect_needs_no_predeclared_amount_contract():
     value = runout('A calls 5', 'B checks')
     value.pop('semantics')
-    assert 'AMOUNT_SEMANTICS_UNPROVEN' in codes(value)
+    before = copy.deepcopy(value)
+    result = validate_hand(value)
+    assert result['status'] == 'FULLY_VALID_HAND'
+    assert result['amount_resolution_proofs'][0]['resolved_semantics'] == 'ADDED'
+    assert result['amount_resolution_proofs'][0]['delta'] == '5'
+    assert value == before
+
+
+def test_ambiguous_allin_call_effect_still_blocks_certification():
+    value = basic('B raises to 30', 'A calls 10 and is All-in')
+    value.pop('semantics')
+    result = validate_hand(value)
+    assert 'AMOUNT_SEMANTICS_UNPROVEN' in {i['code'] for i in result['issues']}
+    assert result['amount_resolution_proofs'][0]['status'] == 'AMBIGUOUS'
+    assert result['status'] != 'FULLY_VALID_HAND'
 
 
 def test_holdem_wheel_and_fullhouse():

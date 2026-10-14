@@ -1,0 +1,667 @@
+{
+  "status": "COMPLETE",
+  "certified": true,
+  "blockers": [],
+  "table": "T05",
+  "hand_number": "2878365559",
+  "players": [
+    {
+      "player": "bvg72",
+      "seat": "seat7",
+      "START_STACK": 30434,
+      "START_STACK_status": "PROVEN"
+    },
+    {
+      "player": "franticma",
+      "seat": "seat8",
+      "START_STACK": 27491,
+      "START_STACK_status": "PROVEN"
+    },
+    {
+      "player": "iplayupay",
+      "seat": "seat6",
+      "START_STACK": 5744,
+      "START_STACK_status": "PROVEN"
+    },
+    {
+      "player": "leopold7024",
+      "seat": "seat4",
+      "START_STACK": 11125,
+      "START_STACK_status": "PROVEN"
+    },
+    {
+      "player": "mexan",
+      "seat": "seat5",
+      "START_STACK": 28330,
+      "START_STACK_status": "PROVEN"
+    },
+    {
+      "player": "ragna_r",
+      "seat": "seat1",
+      "START_STACK": 17786,
+      "START_STACK_status": "PROVEN"
+    },
+    {
+      "player": "stoleyourblind",
+      "seat": "seat2",
+      "START_STACK": 36667,
+      "START_STACK_status": "PROVEN"
+    },
+    {
+      "player": "twixspb",
+      "seat": "seat3",
+      "START_STACK": 10180,
+      "START_STACK_status": "PROVEN"
+    }
+  ],
+  "final_pot": 5360,
+  "actions": [
+    {
+      "action": "HAND_HEADER",
+      "player": null,
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Hand #2878365559"
+    },
+    {
+      "action": "NEW_HAND",
+      "player": null,
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: Starting a new hand"
+    },
+    {
+      "action": "HAND_HEADER",
+      "player": null,
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "#2878365559"
+    },
+    {
+      "action": "ANTE",
+      "player": "ragna_r",
+      "amount": "70",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: ragna_r posts Ante 70",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:F000004"
+        ],
+        "kind": "ANTE",
+        "actor": "ragna_r",
+        "observed_amount": "70",
+        "derived_amount": 70,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 0,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "ANTE",
+      "player": "stoleyourblind",
+      "amount": "70",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: stoleyourblind posts Ante 70",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:F000005"
+        ],
+        "kind": "ANTE",
+        "actor": "stoleyourblind",
+        "observed_amount": "70",
+        "derived_amount": 70,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 0,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "ANTE",
+      "player": "twixspb",
+      "amount": "70",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: twixspb posts Ante 70",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:F000006"
+        ],
+        "kind": "ANTE",
+        "actor": "twixspb",
+        "observed_amount": "70",
+        "derived_amount": 70,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 0,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "ANTE",
+      "player": "leopold7024",
+      "amount": "70",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: leopold7024 posts Ante 70",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:F000007"
+        ],
+        "kind": "ANTE",
+        "actor": "leopold7024",
+        "observed_amount": "70",
+        "derived_amount": 70,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 0,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "ANTE",
+      "player": "mexan",
+      "amount": "70",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: mexan posts Ante 70",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:F000008"
+        ],
+        "kind": "ANTE",
+        "actor": "mexan",
+        "observed_amount": "70",
+        "derived_amount": 70,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 0,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "ANTE",
+      "player": "iplayupay",
+      "amount": "70",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: iplayupay posts Ante 70",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:F000009"
+        ],
+        "kind": "ANTE",
+        "actor": "iplayupay",
+        "observed_amount": "70",
+        "derived_amount": 70,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 0,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "ANTE",
+      "player": "bvg72",
+      "amount": "70",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: bvg72 posts Ante 70",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:F000010"
+        ],
+        "kind": "ANTE",
+        "actor": "bvg72",
+        "observed_amount": "70",
+        "derived_amount": 70,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 0,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "ANTE",
+      "player": "franticma",
+      "amount": "70",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: franticma posts Ante 70",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:F000011"
+        ],
+        "kind": "ANTE",
+        "actor": "franticma",
+        "observed_amount": "70",
+        "derived_amount": 70,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 0,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "SMALL_BLIND",
+      "player": "ragna_r",
+      "amount": "300",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: ragna_r posts Small Blind 300",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:F000012"
+        ],
+        "kind": "SB",
+        "actor": "ragna_r",
+        "observed_amount": "300",
+        "derived_amount": 300,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 300,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "BIG_BLIND",
+      "player": "stoleyourblind",
+      "amount": "600",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: stoleyourblind posts Big Blind 600",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:F000013",
+          "table_74be70152c73c8b99d1194b9:F000014"
+        ],
+        "kind": "BB",
+        "actor": "stoleyourblind",
+        "observed_amount": "600",
+        "derived_amount": 600,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 600,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "DEAL",
+      "player": null,
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: Dealing cards"
+    },
+    {
+      "action": "FOLD",
+      "player": "twixspb",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: twixspb folds"
+    },
+    {
+      "action": "CALL",
+      "player": "leopold7024",
+      "amount": "600",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer:leopold7024 calls 600",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:R000028"
+        ],
+        "kind": "CALL",
+        "actor": "leopold7024",
+        "observed_amount": "600",
+        "derived_amount": 600,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 600,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "FOLD",
+      "player": "mexan",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: mexan folds"
+    },
+    {
+      "action": "CALL",
+      "player": "iplayupay",
+      "amount": "600",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: iplayupay calls 600",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:R000030"
+        ],
+        "kind": "CALL",
+        "actor": "iplayupay",
+        "observed_amount": "600",
+        "derived_amount": 600,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 600,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "FOLD",
+      "player": "bvg72",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: bvg72 folds"
+    },
+    {
+      "action": "FOLD",
+      "player": "franticma",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: franticma folds"
+    },
+    {
+      "action": "CALL",
+      "player": "ragna_r",
+      "amount": "300",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: ragna_r calls 300",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:R000033"
+        ],
+        "kind": "CALL",
+        "actor": "ragna_r",
+        "observed_amount": "300",
+        "derived_amount": 300,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 300,
+        "resulting_street_contribution": 600,
+        "street": "PREFLOP",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "CHECK",
+      "player": "stoleyourblind",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: stoleyourblind checks"
+    },
+    {
+      "action": "FLOP",
+      "player": null,
+      "amount": null,
+      "cards": [
+        "6s",
+        "8c",
+        "3h"
+      ],
+      "all_in": false,
+      "raw_text": "Dealer: Dealing Flop 628030"
+    },
+    {
+      "action": "CHECK",
+      "player": "ragna_r",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: ragna_r checks"
+    },
+    {
+      "action": "CHECK",
+      "player": "stoleyourblind",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: stoleyourblind checks"
+    },
+    {
+      "action": "CHECK",
+      "player": "leopold7024",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer:leopold7024 checks"
+    },
+    {
+      "action": "CHECK",
+      "player": "iplayupay",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: iplayupay checks"
+    },
+    {
+      "action": "TURN",
+      "player": null,
+      "amount": null,
+      "cards": [
+        "6s",
+        "8c",
+        "3h",
+        "Js"
+      ],
+      "all_in": false,
+      "raw_text": "Dealer: Dealing Turn 62830JO"
+    },
+    {
+      "action": "CHECK",
+      "player": "ragna_r",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: ragna_r checks"
+    },
+    {
+      "action": "CHECK",
+      "player": "stoleyourblind",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: stoleyourblind checks"
+    },
+    {
+      "action": "CHECK",
+      "player": "leopold7024",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer:leopold7024 checks"
+    },
+    {
+      "action": "BET",
+      "player": "iplayupay",
+      "amount": "1200",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: iplayupay bets 1 200",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:R000046"
+        ],
+        "kind": "BET",
+        "actor": "iplayupay",
+        "observed_amount": "1200",
+        "derived_amount": 1200,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 1200,
+        "street": "TURN",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "CALL",
+      "player": "ragna_r",
+      "amount": "1200",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: ragna_r calls 1 200",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:R000047"
+        ],
+        "kind": "CALL",
+        "actor": "ragna_r",
+        "observed_amount": "1200",
+        "derived_amount": 1200,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 1200,
+        "street": "TURN",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "FOLD",
+      "player": "stoleyourblind",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: stoleyourblind folds"
+    },
+    {
+      "action": "FOLD",
+      "player": "leopold7024",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer:leopold7024 folds"
+    },
+    {
+      "action": "RIVER",
+      "player": null,
+      "amount": null,
+      "cards": [
+        "6s",
+        "8c",
+        "3h",
+        "Js",
+        "2d"
+      ],
+      "all_in": false,
+      "raw_text": "Dealer: Dealing River 62830JC20"
+    },
+    {
+      "action": "CHECK",
+      "player": "ragna_r",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: ragna_r checks"
+    },
+    {
+      "action": "BET",
+      "player": "iplayupay",
+      "amount": "3874",
+      "cards": [],
+      "all_in": true,
+      "raw_text": "Dealer: iplayupay bets 3 874 and is All-in",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:R000053",
+          "table_74be70152c73c8b99d1194b9:R000054"
+        ],
+        "kind": "BET",
+        "actor": "iplayupay",
+        "observed_amount": "3874",
+        "derived_amount": 3874,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 3874,
+        "street": "RIVER",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "FOLD",
+      "player": "ragna_r",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: ragna_r folds"
+    },
+    {
+      "action": "UNCALLED_RETURN",
+      "player": "iplayupay",
+      "amount": "3874",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: iplayupay gets uncalled bet 3874 back",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:R000056",
+          "table_74be70152c73c8b99d1194b9:R000057"
+        ],
+        "kind": "RETURN",
+        "actor": "iplayupay",
+        "observed_amount": "3874",
+        "derived_amount": 3874,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 3874,
+        "resulting_street_contribution": 0,
+        "street": "RIVER",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    },
+    {
+      "action": "NO_SHOW",
+      "player": "iplayupay",
+      "amount": null,
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: iplayupay doesn't show cards"
+    },
+    {
+      "action": "WIN",
+      "player": "iplayupay",
+      "amount": "5360",
+      "cards": [],
+      "all_in": false,
+      "raw_text": "Dealer: iplayupay wins 5 360 from the main pot",
+      "amount_proof": {
+        "source_row_ids": [
+          "table_74be70152c73c8b99d1194b9:R000059",
+          "table_74be70152c73c8b99d1194b9:R000060"
+        ],
+        "kind": "WIN",
+        "actor": "iplayupay",
+        "observed_amount": "5360",
+        "derived_amount": 5360,
+        "chosen_interpretation": "DELTA",
+        "prior_street_contribution": 0,
+        "resulting_street_contribution": 0,
+        "street": "RIVER",
+        "rule": "EXHAUSTIVE_UNIQUE_ORDERED_ECONOMIC_TRACE"
+      }
+    }
+  ]
+}

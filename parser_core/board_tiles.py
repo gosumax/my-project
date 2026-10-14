@@ -134,6 +134,80 @@ def _glyphs(gray: np.ndarray, start: int, end: int) -> tuple[np.ndarray, np.ndar
     return glyphs[0], glyphs[1]
 
 
+SPLIT_PARTITION_RULE = "SECONDARY_PARTITION_RANK_COMPONENT_BRIDGE_V1"
+
+
+def prove_split_card_partition(gray: np.ndarray) -> dict | None:
+    """Resolve a primary subset only from an independently complete partition.
+
+    The missing y3 background must be split by the rank's own connected ink,
+    not by an arbitrary dark gap. Existing primary boxes are never moved, and
+    at least two unchanged cards supply independent width/spacing references.
+    Card recognition and the event's expected card count remain separate gates.
+    """
+    if gray.ndim != 2 or gray.shape[0] != 16:
+        return None
+    primary, _ = card_spans(gray, recover_split=True)
+    secondary, _ = secondary_card_spans(gray)
+    if (len(primary) < 2 or len(secondary) <= len(primary)
+            or any(span not in secondary for span in primary)):
+        return None
+    references = [end-start+1 for start, end in primary]
+    runs = _runs(np.flatnonzero(gray[3, :min(150, gray.shape[1])] > 150))
+    bridges = []
+    for start, end in secondary:
+        if (start, end) in primary:
+            continue
+        fragments = [(a, b) for a, b in runs if a <= end and b >= start]
+        if (len(fragments) != 2 or fragments[0][0] != start or fragments[1][1] != end
+                or any(b-a+1 >= 18 for a, b in fragments)
+                or any(abs(end-start+1-width) > 1 for width in references)
+                or not np.all(gray[2, start:end+1] > 150)):
+            return None
+        gap_start, gap_end = fragments[0][1]+1, fragments[1][0]-1
+        components = _glyph_components(gray, start, end)
+        boxes = _glyph_boxes(gray, start, end)
+        if components is None or boxes is None:
+            return None
+        labels, _, indices = components
+        rx, ry, rw, rh = boxes[0]
+        if (not start < gap_start <= gap_end < end
+                or not rx <= gap_start <= gap_end < rx+rw or ry != 3
+                or not np.all(labels[0, gap_start-start-1:gap_end-start] == indices[0])):
+            return None
+        bridges.append(dict(source=SPLIT_PARTITION_RULE, box_inclusive=[start, end],
+            fragment_boxes_inclusive=[list(span) for span in fragments],
+            ink_gap_inclusive=[gap_start, gap_end], rank_glyph_box_xywh=list(boxes[0]),
+            support_scanline_y=2))
+    return dict(rule=SPLIT_PARTITION_RULE,
+        model_gray_sha256=hashlib.sha256(gray.tobytes()).hexdigest(),
+        primary_spans_inclusive=[list(span) for span in primary],
+        chosen_spans_inclusive=[list(span) for span in secondary],
+        reference_card_widths=references,
+        inter_card_gaps=[b[0]-a[1]-1 for a, b in zip(secondary, secondary[1:])],
+        bridged_spans=bridges)
+
+
+def verify_card_geometry_resolution(gray: np.ndarray, hybrid: dict) -> bool:
+    """Replay the new partition receipt; retain the legacy no-recovery contract."""
+    if gray.ndim != 2 or gray.shape[0] != 16 or gray.shape[1] <= 112:
+        return False
+    model = gray[:, :-12]
+    proof = prove_split_card_partition(model)
+    if (hybrid.get('row_geometry_source') == SPLIT_PARTITION_RULE
+            or 'secondary_partition_proof' in hybrid):
+        _, legacy_recovery = card_spans(model, recover_split=True)
+        return bool(proof and hybrid.get('row_geometry_source') == SPLIT_PARTITION_RULE
+            and hybrid.get('secondary_partition_proof') == proof
+            and hybrid.get('detected_spans_inclusive') == proof['chosen_spans_inclusive']
+            and hybrid.get('primary_incomplete_spans_inclusive') == proof['primary_spans_inclusive']
+            and hybrid.get('recovered_split_spans') == legacy_recovery+proof['bridged_spans'])
+    # Stripping the recovery envelope cannot turn this newly admitted partition
+    # into a legacy receipt. Other legacy recovery types retain their old veto.
+    return not hybrid.get('recovered_split_spans') and (proof is None or
+        hybrid.get('detected_spans_inclusive') == proof['primary_spans_inclusive'])
+
+
 def _scores(glyph: np.ndarray, templates: list[dict]) -> list[tuple[str, int]]:
     by_label: dict[str, int] = {}
     for template in templates:

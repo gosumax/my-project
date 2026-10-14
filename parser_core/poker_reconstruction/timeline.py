@@ -7,6 +7,7 @@ from xml.etree import ElementTree as ET
 from .models import Event
 from parser_core.poker_hand_assembly import split_small_blind, observed_wrapped_continuation
 from parser_core.canonical_semantics import bound_forced_all_in
+from parser_core.service_text_normalizer import normalize_service, physical_service_group, ServiceText
 
 NS = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 NUMBER = r"\d+(?:[ \u00a0]\d{3})*"
@@ -84,8 +85,17 @@ def raw_text(row):
 def parse_text(text, source):
     if any(r.get('canonical_conflict') or r.get('canonical_duplicate_of') for r in source.get('rows', [])):
         return Event('UNKNOWN',source=dict(source,canonical_withheld=True))
-    clean = re.sub(r"^\s*\[\d+:\d+\]\s*", "", text)
+    normalized = (normalize_service(text) if physical_service_group(source.get('rows', []))
+                  else ServiceText(text, text, ()))
+    if normalized.changes:
+        source = dict(source, service_normalizations=list(normalized.changes),
+                      normalized_text=normalized.normalized_text)
+    clean = re.sub(r"^\s*\[\d+:\d+\]\s*", "", normalized.normalized_text)
     clean = re.sub(r"^(?:Dealer|Дилер)\s*[:;]\s*", "", clean, flags=re.I).strip()
+    from parser_core.table_service_events import describe_service
+    service = describe_service(clean)
+    if service and service['kind'] in {'REBUY', 'BOUNTY', 'RESEATING', 'BREAK'}:
+        return Event('INFO', source=dict(source, service_event=service))
     header = re.search(r"(?:Hand\s*#|^#)\s*(\d+)", clean, re.I)
     if header:
         return Event("START_HAND", source=dict(source, parsed_hand_id=header.group(1)))
@@ -114,7 +124,7 @@ def parse_text(text, source):
         amount = None
         if number:
             suffix = tail[number.end():].strip()
-            if not suffix or re.fullmatch(r"(?:back|and is All-in|is All-in|All-in|and is|and)?[.!●]?", suffix, re.I) or (kind == "WIN" and re.match(r"from\b", suffix, re.I)):
+            if not suffix or re.fullmatch(r"(?:back|and is All[ -]?in|is All[ -]?in|All[ -]?in|and is|and)?[.!●]?", suffix, re.I) or (kind == "WIN" and re.match(r"from\b", suffix, re.I)):
                 amount = int(number.group().replace(" ", "").replace("\u00a0", ""))
         semantics = "TO" if "to" in match.group().lower().split() else "DELTA"
         if kind == "RAISE" and semantics != "TO":
@@ -127,7 +137,7 @@ def parse_text(text, source):
                      source=dict(source,all_in_provenance=all_in_proof) if all_in_proof else source)
     if re.fullmatch(r"[\s\[\],]*(?:(?:[2-9TJQKA]|10)[shdc♠♥♦♣][\s\[\],]*)+", clean, re.I):
         return Event("INFO", source=source)  # Card rows are retained; payouts are observed.
-    if re.fullmatch(r"Limits going up: stakes.*|Waiting for .+ to(?: (?:reconnect|rebuy)\.{0,3})?|(?:reconnect|rebuy)\.{0,3}|.+ (?:is reconnected|uses Time Bank|sits out|sits in|finished the tournament|has joined the table|has left the table)[.!]?", clean, re.I):
+    if re.fullmatch(r"Limits going up: stakes.*|Waiting for .+ to(?: (?:reconnect|rebuy)\.{0,3})?|(?:reconnect|rebuy)\.{0,3}|.+[ _](?:is reconnected|uses Time Bank|sits out|sits in|finished the tournament|has joined the table|has left the table)[.!]?", clean, re.I):
         return Event("INFO", source=source)
     return Event("UNKNOWN", source=source)
 
@@ -144,13 +154,17 @@ def parse_rows(rows):
         if events and not re.match(r"^\s*(?:\[\d+:\d+\]|Dealer:|Дилер:)", raw_text(row), re.I):
             prior = events[-1]
             previous = prior.source["rows"][-1]
+            continuation_text = raw_text(row)
+            if physical_service_group(prior.source['rows'] + [row]):
+                continuation_text = normalize_service(continuation_text,
+                    previous_clause=prior.source["raw_text"]).normalized_text
             adjacent = (row.get("frame_id") is not None and row.get("frame_id") == previous.get("frame_id")
                         and row.get("epoch") == previous.get("epoch")
                         and isinstance(row.get("row_index"), int) and isinstance(previous.get("row_index"), int)
                         and row["row_index"] == previous["row_index"] + 1)
             continuation = ((prior.kind in {"SB", "BB", "ANTE", "CALL", "BET", "RAISE", "RETURN", "WIN"}
-                             and (prior.amount is None or re.fullmatch(r"(?:and is All-in|is All-in|All-in|back)[.!●]?", raw_text(row).strip(), re.I))
-                             and re.fullmatch(NUMBER + r"(?:\s+(?:back|and is All-in|is All-in))?[.!●]?|(?:and is All-in|is All-in|All-in|back)[.!●]?", raw_text(row).strip(), re.I))
+                             and (prior.amount is None or re.fullmatch(r"(?:and is All[ -]?in|is All[ -]?in|All[ -]?in|back)[.!●]?", continuation_text.strip(), re.I))
+                             and re.fullmatch(NUMBER + r"(?:\s+(?:back|and is All[ -]?in|is All[ -]?in))?[.!●]?|(?:and is All[ -]?in|is All[ -]?in|All[ -]?in|back)[.!●]?", continuation_text.strip(), re.I))
                             or (re.search(r"Starting a new hand", prior.source["raw_text"], re.I) and re.fullmatch(r"\s*#\d+\s*", raw_text(row))))
             continuation = continuation or (prior.kind == "WIN" and re.fullmatch(r"(?:from )?(?:the )?(?:main pot|side pot(?: #\d+)?)(?: with .*)?", raw_text(row).strip(), re.I))
             continuation = continuation or (len(prior.source['rows']) == 1 and split_small_blind(previous, row))

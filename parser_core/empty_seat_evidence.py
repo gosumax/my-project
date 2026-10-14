@@ -37,9 +37,13 @@ class EmptySeatButtonModel:
         path=Path(model_path) if model_path else self.root/'models/empty_seat_buttons.json'
         raw=path.read_bytes();self.sha256=hashlib.sha256(raw).hexdigest()
         self.model=json.loads(raw)
-        if (self.model['schema']!='native-full-empty-seat-button-v1' or
-                self.model['full_ncc_min']<.98 or self.model['text_ncc_min']<.98 or self.model['border_ncc_min']<.98 or
-                self.model['translation_radius']>2):
+        legacy=(self.model['schema']=='native-full-empty-seat-button-v1' and
+                self.model['full_ncc_min']>=.98 and self.model['text_ncc_min']>=.98 and
+                self.model['border_ncc_min']>=.98 and self.model.get('border_check_enabled',True) is True)
+        calibrated=(self.model['schema']=='native-full-text-border-empty-seat-button-v2' and
+                self.model['full_ncc_min']==.91 and self.model['text_ncc_min']==.95 and
+                self.model['border_ncc_min']==.08 and self.model.get('border_check_enabled') is True)
+        if (not (legacy or calibrated) or self.model['translation_radius']>2):
             raise ValueError('EMPTY_BUTTON_MODEL_CONTRACT_UNKNOWN')
         self.templates=[]
         for row in self.model['templates']:

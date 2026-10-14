@@ -76,7 +76,10 @@ def analyze_timeline(timeline, *, ocr_status, join_show_description=False):
         'blocking_issues': dict(Counter(i['code'] for r in records
                                        for i in r['validation']['certification_blockers'])),
         'monetary_semantics': 'UNPROVEN_UNLESS_EXPLICIT_SOURCE_CONTRACT',
-        'card_authority': 'VERIFIED_PIXEL_PROJECTION_ONLY',
+        'card_authority': ('VERIFIED_PIXEL_OR_UNIQUE_SOURCE_CARD_SET' if any(
+            m.get('field_sources',{}).get('cards')=='DERIVED_UNIQUE_CARD_SET' or
+            m.get('field_sources',{}).get('win_best_five')=='DERIVED_UNIQUE_CARD_SET'
+            for h in hands for m in h['messages']) else 'VERIFIED_PIXEL_PROJECTION_ONLY'),
         'resolver': 'DISABLED_NO_EXTERNAL_HYPOTHESES',
         'wall_seconds': time.perf_counter() - started,
     }

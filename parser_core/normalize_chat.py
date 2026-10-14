@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from parser_core.table_service_events import describe_service
+from parser_core.service_text_normalizer import normalize_service, ServiceText
 
 
 NORMALIZER_VERSION = "candidate_bilingual_v8"
@@ -54,6 +56,9 @@ ENGLISH_ACTIONS = (
 
 def english_candidate(text: str) -> Candidate | None:
     """Shared literal grammar; amount suffixes cannot supply extra numbers."""
+    service = describe_service(text)
+    if service and service['kind'] == 'REBUY':
+        return Candidate('TABLE_INFO')
     header = re.match(r'^Hand\s*#\s*(\d+)', text, re.I)
     if header:
         return Candidate('HAND_HEADER', hand_number=header.group(1))
@@ -92,7 +97,7 @@ def english_candidate(text: str) -> Candidate | None:
         if number:
             suffix = tail[number.end():].strip()
             if (not suffix or suffix in {'.', '!', '●'} or
-                    re.fullmatch(r'(?:and\s*(?:is All-in)?|is All-in|back)\s*[.!●]?', suffix, re.I) or
+                    re.fullmatch(r'(?:and\s*(?:is All[ -]?in)?|is All[ -]?in|back)\s*[.!●]?', suffix, re.I) or
                     kind == 'WIN' and re.match(r'from\b', suffix, re.I)):
                 amount = number.group().replace(' ', '').replace('\u00a0', '')
         if amount is None:
@@ -132,9 +137,27 @@ def _player_candidate(text: str, start: int, end: int,
 
 
 def normalize(raw_fragments: list[str | None]) -> Candidate:
+    return normalize_with_service(raw_fragments)[0]
+
+
+def normalize_with_service(raw_fragments: list[str | None], *, apply_service=True):
+    """Return the existing candidate plus a separate derived service receipt."""
     # The chat viewport border is often OCR'd as a trailing vertical bar.
     text = " ".join(fragment.strip().rstrip("|").strip()
                     for fragment in raw_fragments if fragment).strip()
+    service = normalize_service(text) if apply_service else ServiceText(text, text, ())
+    if service.changes:
+        originals = [fragment for fragment in raw_fragments if fragment]
+        raw = ' '.join(originals)
+        changes = tuple(dict(change, raw_ocr=raw, source_raw_fragments=originals,
+                             prepared_service_input=text,
+                             source_span_basis='PREPARED_SERVICE_INPUT')
+                        for change in service.changes)
+        service = ServiceText(raw, service.normalized_text, changes)
+    return _normalize_prepared(service.normalized_text), service
+
+
+def _normalize_prepared(text: str) -> Candidate:
     if not text:
         return Candidate("UNKNOWN_EVENT", reason="OCR_MISSING")
     header = HAND_HEADER.match(text)

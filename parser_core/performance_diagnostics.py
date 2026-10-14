@@ -61,6 +61,8 @@ class Diagnostics:
         self.running_jobs={}
         self.stop=threading.Event();self.capture_bounds=None
         self.active_workers=Counter();self.max_active=Counter();self.last_progress=0
+        from .performance_work import WorkCounters
+        self.work=WorkCounters(self)
 
     def tick(self):return time.perf_counter(),time.thread_time(),time.process_time()
 
@@ -166,6 +168,9 @@ class Diagnostics:
             self.wrap(getattr(importlib.import_module(module),cls),'__init__',cls+'/init','container',
                       after=lambda a,k,r:self.measure_owner_locks(a[0]))
 
+        from .performance_work_targets import install
+        install(self.work,runner)
+
     def measure_owner_locks(self,owner):
         for attr in ('lock','_lock'):
             lock=getattr(owner,attr,None)
@@ -203,7 +208,13 @@ class Diagnostics:
         with self.lock:
             for row in rows:self.job_submit[(id(owner),row.table_id,row.frame_id,row.source_span_index)]=(now,lane)
         self.count(lane+'/jobs_submitted',len(rows))
-        for row in rows:self.count(f'T{row.table_id:02d}/{lane}/jobs_submitted')
+        for row in rows:
+            self.count(f'T{row.table_id:02d}/{lane}/jobs_submitted')
+            pixel_hash=getattr(row,'pixel_sha256',None)
+            shape=getattr(getattr(row,'pixels',None),'shape',None)
+            self.work.note('ocr/'+lane+'/submitted_crop', category='model/ocr_input',
+                key=dict(pixel_sha256=pixel_hash,shape=list(shape) if shape is not None else None)
+                    if pixel_hash is not None else None, crops=1)
 
     def batch_started(self,owner,batch):
         now=time.perf_counter();lane=self.queues[id(owner.jobs)][0]
@@ -259,6 +270,8 @@ class Diagnostics:
         data=dict(elapsed=time.perf_counter()-self.start,phase=state.get('phase'),gc_count=gc.get_count(),gc_stats=gc.get_stats(),
                   system=psutil.virtual_memory()._asdict(),per_core_cpu_percent=psutil.cpu_percent(interval=None,percpu=True),processes=[])
         data['diagnostic_retained_bytes_estimate']=self.retained_diagnostic_bytes()
+        data['work_events_recorded']=self.work.events.count
+        data['work_calls_aggregated']=self.work.aggregated_calls
         for p in members:
             try:
                 ct=p.cpu_times();io=p.io_counters()
@@ -309,6 +322,20 @@ class Diagnostics:
         self.sampler=threading.Thread(target=run,daemon=True);self.sampler.start()
 
     def finish(self,summary):
+        try:
+            return self._finish(summary)
+        finally:
+            self.stop.set()
+            for owner,attr,original in reversed(self.patches):
+                if isinstance(owner,dict):owner[attr]=original
+                else:setattr(owner,attr,original)
+            self.patches.clear()
+            global ACTIVE
+            ACTIVE=None
+            try:self.work.events.close()
+            except Exception:pass
+
+    def _finish(self,summary):
         self.stop.set();self.sampler.join(timeout=6)
         wall=time.perf_counter()-self.start;cpu=time.process_time()-self.cpu_start
         stages=[]
@@ -430,17 +457,17 @@ class Diagnostics:
             next_experiment=('Isolated ordered START/HAND-worker replay with exact source/availability parity' if observer_cost>ocr_backpressure
                              else 'Bounded OCR-worker-count A/B with identical batches/source/order'),
             scope='Measured run only; residual critical-path time may require narrower timers before an optimization decision')
+        try:
+            report['work_counts']=self.work.finish()
+        except Exception as exc:
+            report['work_counts']=dict(status='COUNTER_AGGREGATION_FAILED',error=repr(exc))
+            try:self.work.events.close()
+            except Exception:pass
         (self.output/'performance_diagnostics.json').write_text(json.dumps(report,indent=2),'utf-8')
         for records in (self.jobs,self.samples,self.ocr_compute):
             if isinstance(records,DiskRecords):records.close()
         self.intervals.close()
         self.write_report(report)
-        for owner,attr,original in reversed(self.patches):
-            if isinstance(owner,dict):owner[attr]=original
-            else:setattr(owner,attr,original)
-        global ACTIVE
-        ACTIVE=None
-
     def write_report(self,r):
         lines=['# Opt-in performance evidence',f"FULL WALL: {r['FULL_WALL']} s",f"RTF: {r['RTF']}",f"PEAK RSS sampled: {r['PEAK_RSS']} bytes",f"AVG CPU sampled: {r['AVG_CPU']}%",f"EFFECTIVE CORES sampled: {r['EFFECTIVE_CORES']}",
                '','Inclusive stage sums overlap. Critical path uses interval unions on the main capture thread.',
@@ -463,6 +490,19 @@ class Diagnostics:
             '', 'Verdict evidence: largest wall/CPU/wait stages are ranked in performance_diagnostics.json. More-core blocker and next experiment remain conditional on queue/CPU/critical-path coverage; no GIL or speedup claim follows from these timers alone.',
             '', json.dumps(r['verdict_answers'],indent=2),
             '', 'Limitations:', *['- '+x for x in r['limitations']]]
+        work=r.get('work_counts',{})
+        lines += ['', 'Work counters (inclusive; repeated keys do not prove removable work):',
+                  'Full results: performance_work_counts.json; source events: performance_work_events.jsonl.']
+        if work.get('status') == 'COUNTER_AGGREGATION_FAILED':
+            lines.append('Counter aggregation failed: '+str(work.get('error')))
+        else:
+            lines += ['','| Operation | Calls | Unique keys | Repeated keys | Unknown keys | Wall s | Thread CPU s |',
+                      '|---|---:|---:|---:|---:|---:|---:|']
+            for op in sorted(work.get('operations',[]),key=lambda v:v['wall_seconds'],reverse=True)[:30]:
+                lines.append(f"| {op['operation']} | {op['calls']} | {op['unique_request_keys']} | {op['repeated_request_keys']} | {op['unknown_identity_calls']} | {op['wall_seconds']:.6f} | {op['thread_cpu_seconds']:.6f} |")
+            lines += ['', 'Actual cache counters: '+json.dumps(work.get('actual_cache_counters',{})),
+                      'Counter self-cost: '+json.dumps(work.get('instrumentation',{})),
+                      'Measurement errors: '+json.dumps(work.get('measurement_errors',{}))]
         (self.output/'PERFORMANCE_REPORT.md').write_text('\n'.join(lines),'utf-8')
 
     def inference_concurrency(self,lane):

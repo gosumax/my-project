@@ -36,7 +36,7 @@ def economic_source_signature(solution):
 def reconstruct_hand(events, *, table="UNKNOWN", hand_id=None, at_eof=False,
                      start_stacks=None, previous_hand=(), max_nodes=20000,
                      assemblies=None, assembly_exhausted=False, alias_candidates=None,
-                     strict_source_uniqueness=False):
+                     strict_source_uniqueness=False, require_small_blind=True):
     hypotheses, identity_exhausted, rejected = identity_hypotheses(alias_candidates)
     solutions, outcome, spent = [], None, 0
     for assembly in assemblies or [events]:
@@ -57,7 +57,8 @@ def reconstruct_hand(events, *, table="UNKNOWN", hand_id=None, at_eof=False,
             if stack_conflict:
                 continue
             current = solve(interpreted, mapped_stacks, previous_hand, max(1, max_nodes - spent),
-                            strict_source_uniqueness=strict_source_uniqueness)
+                            strict_source_uniqueness=strict_source_uniqueness,
+                            require_small_blind=require_small_blind)
             spent += current["nodes"]
             for state, kept, dropped, ledger in current.pop("solutions"):
                 if hypothesis["aliases"]:
@@ -120,6 +121,7 @@ def reconstruct_hand(events, *, table="UNKNOWN", hand_id=None, at_eof=False,
               "calculated_pot": None, "observed_payout": None, "pot_delta": None,
               "players": {}, "uncalled_returns": {}, "solution_count": len(solutions), **outcome}
     result.update(strict_source_uniqueness=strict_source_uniqueness,
+                  required_blinds=['SB', 'BB'] if require_small_blind else ['BB'],
                   raw_solution_count=raw_solution_count,equivalent_interpretations=equivalent_interpretations)
     result["identity_hypotheses"] = hypotheses
     result["identity_candidates_rejected"] = rejected

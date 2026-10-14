@@ -4,6 +4,7 @@ This establishes a current seat mask only. It grants no past actor/epoch binding
 forced-debit authority, clean action interval, or START_STACK authority.
 """
 import re
+import math
 
 OVERLAYS = {'ANTE', 'SB', 'BB', 'FOLD', 'CHECK', 'CALL', 'BET', 'RAISE',
             'ALL-IN', 'ALL IN', 'SITOUT', 'SIT OUT'}
@@ -12,8 +13,9 @@ OVERLAY_PATTERN = re.compile(r'(?:(?:ANTE|SB|BB|FOLD|CHECK|CALL|BET|RAISE)(?:\s+
 
 
 class SeatOccupancyEvidence:
-    def __init__(self, confidence=.95, *, reject_empty_fragments=False):
+    def __init__(self, confidence=.95, *, reject_empty_fragments=False, nickname_confidence=None):
         self.confidence = confidence
+        self.nickname_confidence = confidence if nickname_confidence is None else nickname_confidence
         self.reject_empty_fragments = reject_empty_fragments
         self.sources = {}
         self.readings = {}
@@ -28,6 +30,7 @@ class SeatOccupancyEvidence:
                                    first=previous['first'] if continuous else frame)
         if not continuous:
             self.proofs.pop(route, None)
+            self.readings.pop(route, None)
             self.conflicts.discard(route)
 
     def completed(self, key, seat, frame, pixel_sha256, response, *, pts, time_base):
@@ -44,7 +47,8 @@ class SeatOccupancyEvidence:
                        and not any(s in text for s in ('\ufffd', '?'))
                        and re.search(r'[A-Za-zА-Яа-я]', text))
         valid = (response.get('status') == 'OK' and isinstance(score, (int, float))
-                 and not isinstance(score, bool) and score >= self.confidence and (empty or literal))
+                 and not isinstance(score, bool) and math.isfinite(score) and score<=1 and
+                 score >= (self.confidence if empty else self.nickname_confidence) and (empty or literal))
         old = self.readings.get(route, [])
         if valid and any(r['pixel_sha256'] == pixel_sha256 and r['raw_text'] != text
                          and r['frame'] >= latest['first'] for r in old):
@@ -54,10 +58,9 @@ class SeatOccupancyEvidence:
             return
         observation = dict(frame=frame, source_pts=pts, time_base=list(time_base),
                            pixel_sha256=pixel_sha256, raw_text=text, confidence=score)
-        contiguous = old and old[-1]['frame'] == frame-1 and old[-1]['raw_text'] == text
-        readings = (old + [observation])[-3:] if contiguous and valid else [observation] if valid else []
+        readings = sorted(old+[observation],key=lambda r:r['frame'])[:1] if valid else []
         self.readings[route] = readings
-        if (len(readings) == 3 and latest and latest['first'] <= readings[0]['frame']
+        if (readings and latest and latest['first'] <= readings[0]['frame']
                 and latest['sha256'] == pixel_sha256
                 and all(r['pixel_sha256'] == pixel_sha256 for r in readings)):
             self.proofs[route] = dict(state='EMPTY' if empty else 'OCCUPIED',
@@ -71,7 +74,8 @@ class SeatOccupancyEvidence:
             route = (*key, seat)
             latest, proof = self.sources.get(route), self.proofs.get(route)
             if (not latest or not proof or latest['frame'] != frame
-                    or latest['first'] > proof['observations'][0]['frame']):
+                    or latest['first'] > proof['observations'][0]['frame']
+                    or frame-latest['first']<2):
                 return None
             evidence[seat] = dict(proof, current_source_frame=frame,
                                   current_pixel_sha256=latest['sha256'],
@@ -83,7 +87,7 @@ class SeatOccupancyEvidence:
         return dict(table_id=key[0], session_id=key[1], hand_id=key[2], source_frame=frame,
                     occupied_seats=occupied, empty_seats=[s for s in seats if s not in occupied],
                     seats=evidence, evidence_status='PROVEN',
-                    proof='ALL_FIXED_SEATS_EXACT_LABEL_TRIPLES_AND_CONTINUOUS_IDENTICAL_PIXELS',
+                    proof='ALL_FIXED_SEATS_FIRST_QUALIFIED_LABEL_AND_CONTINUOUS_IDENTICAL_PIXELS',
                     authority='CURRENT_OCCUPANCY_ONLY; NO_HISTORICAL_IDENTITY_OR_STACK_AUTHORITY')
 
     def current_labels(self, key, frame, seats):
@@ -92,7 +96,7 @@ class SeatOccupancyEvidence:
         for seat in seats:
             route=(*key,seat);latest=self.sources.get(route);proof=self.proofs.get(route)
             if (latest and proof and latest['frame']==frame and
-                    latest['first']<=proof['observations'][0]['frame']):
+                    latest['first']<=proof['observations'][0]['frame'] and frame-latest['first']>=2):
                 result[seat]=dict(proof,table_id=key[0],session_id=key[1],hand_id=key[2],
                     source_frame=frame,current_pixel_sha256=latest['sha256'])
         return result
