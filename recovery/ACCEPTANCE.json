@@ -1,0 +1,238 @@
+{
+  "schema": "production-recovery-acceptance-v1",
+  "verified_at_utc": "2026-10-14T19:03:09.475326+00:00",
+  "verified_kit_commit": "f741c5b71af238de6e92189ff362d033496856c5",
+  "source_snapshot_commit": "1b2af48ea4c530c41f8140ca545b0b54e67471ee",
+  "production_version": "candidate-smoke19-nick90-terminal-scope-v22-20261014",
+  "source_production_manifest_sha256": "a7aaf9c6a657e63073a09722bea7f39b9ea43f650fbf60b4e49f8282dc3aa798",
+  "scope": "Fresh GitHub sparse clone and fresh restore on existing Windows x64; bounded official 60-frame startup, OCR and XLSX export.",
+  "payloads": {
+    "part_count": 63,
+    "bytes": 492516262,
+    "final_manifest_independent_match": true,
+    "git_alternates": false
+  },
+  "local_production_payload_borrowing": false,
+  "cache_provenance": "62 parts downloaded from immutable GitHub HTTP commit URLs; each cache copy rehashed. Final OpenMP part fetched by the shipped Git promisor installer.",
+  "installer_network_coverage": "PASS_NEW_MSVC_PART_GENUINELY_FETCHED_PREVIOUS_UNCHANGED_HELPER_FETCHES_RETAINED",
+  "unchanged_helper_previous_network_coverage": "Both PowerShell bootstrap and Python blob fetching exercised against GitHub; one initial 120-second bootstrap fetch timeout recovered by the built-in retry.",
+  "database_policy": {
+    "included": false,
+    "initial_registry_files": 0,
+    "reason": "Explicit user instruction"
+  },
+  "immutable_files_verified_before_and_after_launch": 22578,
+  "integrity": {
+    "baseline_pass": 374,
+    "baseline_failures": [],
+    "registered_unchanged": 370,
+    "registered_changed": [
+      "configs/card_hybrid_local.json",
+      "configs/ocr_tiny_local.json",
+      "configs/rank_ncc_production.json",
+      "configs/suit_backup_local.json"
+    ],
+    "frozen_unchanged": 433,
+    "frozen_changed": [
+      "runs/card_train_smoke16_test_20260930/split_v2/train_manifest.jsonl"
+    ],
+    "png_pass": 431,
+    "png_total": 431
+  },
+  "targeted_pytest": {
+    "file": "tests/test_production_integrity.py",
+    "passed": 21,
+    "failed": 0
+  },
+  "step_results": {
+    "fetch_final": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 5.592427499999758
+    },
+    "sparse_helpers": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 30.626496199998655
+    },
+    "checkout_final": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 0.13208020000092802
+    },
+    "bootstrap_actual_clone": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 81.26440770000045
+    },
+    "current_verify": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 12.840570399999706
+    },
+    "strict_integrity": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 2.3507253999996465
+    },
+    "pytest_integrity": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 5.112023699999554
+    },
+    "main_paths": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 0.8029704000000493
+    },
+    "ocr_paths": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 9.422973200002161
+    },
+    "node_path": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 0.2858717999988585
+    },
+    "isolated_official_launch60": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 70.9689982000018
+    },
+    "post_recovery_verify": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 12.569567499998811
+    },
+    "post_strict_integrity": {
+      "exit_code": 0,
+      "timeout": false,
+      "wall_seconds": 2.0225767999982054
+    }
+  },
+  "official_launch": {
+    "command": [
+      "$RESTORE\\runtime\\main\\Scripts\\python.exe",
+      "-B",
+      "$RESTORE\\production\\run_production.py",
+      "--profile",
+      "FULL_HH_PRODUCTION",
+      "--video",
+      "D:\\Новый парсер\\video\\smoke_18.mp4",
+      "--frames",
+      "60",
+      "--output",
+      "$RESTORE\\isolated_run60",
+      "--ocr-workers",
+      "2",
+      "--visual-workers",
+      "2",
+      "--card-workers",
+      "2",
+      "--node",
+      "$RESTORE\\runtime\\node\\bin\\node.exe"
+    ],
+    "cwd": "$RESTORE\\production",
+    "exit_code": 0,
+    "timeout": false,
+    "wall_seconds": 70.9689982000018,
+    "classification": "INSTRUMENTED_OFFICIAL_ENTRYPOINT_EXACT_RUN_WRAPPER_ARGUMENTS_AND_ENV_PLUS_AUDIT_HOOK"
+  },
+  "launch_results": {
+    "frames": 60,
+    "ocr_calls": 30,
+    "status": "COMPLETE",
+    "error_rows": 0,
+    "retry_count": 0,
+    "unknown_rows": 4,
+    "xlsx_bytes": 32950,
+    "xlsx_crc": "PASS",
+    "xlsx_sheets": 12,
+    "HH_quality": "NOT_MEASURED",
+    "full_video_RTF": "NOT_MEASURED"
+  },
+  "loaded_openmp": {
+    "paths": [
+      "$RESTORE\\runtime\\python\\vcomp140.dll"
+    ],
+    "all_within_owned_runtime": true,
+    "hashes": {
+      "$RESTORE\\runtime\\python\\vcomp140.dll": "95d4ce4a6802d1e18b5e0e1722cc30ea72ca7e033f83828f05c0b7b993fe7cbf"
+    }
+  },
+  "loaded_msvc": {
+    "paths": {
+      "main": [
+        "$RESTORE\\runtime\\main\\Lib\\site-packages\\numpy.libs\\msvcp140-a4c2229bdc2a2a630acdc095b4d86008.dll",
+        "$RESTORE\\runtime\\python\\vcruntime140_1.dll",
+        "$RESTORE\\runtime\\python\\vcruntime140.dll",
+        "C:\\Windows\\System32\\msvcp_win.dll"
+      ],
+      "ocr": [
+        "$RESTORE\\runtime\\ocr\\Lib\\site-packages\\shapely.libs\\msvcp140-90bc62d4947a5878f1dc1057312f3be2.dll",
+        "$RESTORE\\runtime\\python\\msvcp140.dll",
+        "$RESTORE\\runtime\\ocr\\Lib\\site-packages\\numpy.libs\\msvcp140-a4c2229bdc2a2a630acdc095b4d86008.dll",
+        "$RESTORE\\runtime\\python\\vcomp140.dll",
+        "$RESTORE\\runtime\\python\\vcruntime140_1.dll",
+        "$RESTORE\\runtime\\python\\vcruntime140.dll",
+        "C:\\Windows\\System32\\msvcp_win.dll"
+      ]
+    },
+    "os_component_paths": [
+      "C:\\Windows\\System32\\msvcp_win.dll",
+      "C:\\Windows\\System32\\msvcp_win.dll"
+    ],
+    "outside_owned_runtime": []
+  },
+  "actual_run_msvc": {
+    "process_exit_records": 10,
+    "module_paths": [
+      "C:\\Windows\\System32\\msvcp_win.dll",
+      "$RESTORE\\runtime\\main\\Lib\\site-packages\\numpy.libs\\msvcp140-a4c2229bdc2a2a630acdc095b4d86008.dll",
+      "$RESTORE\\runtime\\ocr\\Lib\\site-packages\\numpy.libs\\msvcp140-a4c2229bdc2a2a630acdc095b4d86008.dll",
+      "$RESTORE\\runtime\\ocr\\Lib\\site-packages\\shapely.libs\\msvcp140-90bc62d4947a5878f1dc1057312f3be2.dll",
+      "$RESTORE\\runtime\\python\\msvcp140.dll",
+      "$RESTORE\\runtime\\python\\vcomp140.dll",
+      "$RESTORE\\runtime\\python\\vcruntime140.dll",
+      "$RESTORE\\runtime\\python\\vcruntime140_1.dll"
+    ],
+    "outside_owned_runtime": [],
+    "audit_errors": []
+  },
+  "model_logs": {
+    "expected": "$RESTORE\\runtime\\paddlex-cache\\official_models\\PP-OCRv6_tiny_rec",
+    "logs": [
+      {
+        "path": "tiny_header_worker_0.stderr.log",
+        "owned_model_path_seen": true
+      },
+      {
+        "path": "tiny_seat_forced_0.stderr.log",
+        "owned_model_path_seen": true
+      },
+      {
+        "path": "tiny_start_stack_0.stderr.log",
+        "owned_model_path_seen": true
+      },
+      {
+        "path": "tiny_worker_0.stderr.log",
+        "owned_model_path_seen": true
+      },
+      {
+        "path": "tiny_worker_1.stderr.log",
+        "owned_model_path_seen": true
+      }
+    ]
+  },
+  "post_launch_helper_hash_changes": [],
+  "isolation_audit": {
+    "hook_sha256": "bcb3ae34eb55dc8021eb15c2cc2959433e457ab3628f3f12a3ee6094745fe5fa",
+    "enabled_interpreters": 10,
+    "blocked_old_accesses": 0,
+    "coverage": "Python open, ctypes.dlopen, subprocess.Popen audits plus restored module path checks; not an OS sandbox"
+  },
+  "production_logic": "Original production tree unchanged. Restored copy changes only four configuration path bindings, training JSONL tile paths and their derived manifest hashes.",
+  "input_video_included": false,
+  "source_receipt_sha256": "061096dc2364b9088e38d72b3e9d02e2279bdc00faa4d3effe8c702a52a05159"
+}
