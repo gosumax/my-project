@@ -381,20 +381,20 @@
       "name": "msvc-openmp",
       "archive_format": "zip-deflate",
       "compression_level": 6,
-      "archive_bytes": 109507,
-      "archive_sha256": "407239292a0954ef184e6106fb33802425dbb5446c239ca2fc66ef7b792935af",
-      "uncompressed_bytes": 214068,
-      "file_count": 2,
+      "archive_bytes": 218205,
+      "archive_sha256": "3b0d4812207cd8cf799e740a712689196af3dec842b38db52f2d9fe92bf1df54",
+      "uncompressed_bytes": 427093,
+      "file_count": 3,
       "longest_relative_path": "ocr/Lib/site-packages/paddle/libs/vcomp140.provenance.json",
       "longest_relative_path_characters": 58,
       "files_catalog": "recovery/bundles/msvc-openmp.files.json.gz",
-      "files_catalog_bytes": 243,
-      "files_catalog_sha256": "b9c21fff71f1d61c20c358c24aa2642472dee4df989b4ae5428f693b2f493eae",
+      "files_catalog_bytes": 253,
+      "files_catalog_sha256": "5e099a100e6fdfdd96ba7288f9f51da1628a37e66069aeaf60978b7d274d70ef",
       "parts": [
         {
           "path": "recovery/bundles/msvc-openmp.zip.part0000",
-          "bytes": 109507,
-          "sha256": "407239292a0954ef184e6106fb33802425dbb5446c239ca2fc66ef7b792935af"
+          "bytes": 218205,
+          "sha256": "3b0d4812207cd8cf799e740a712689196af3dec842b38db52f2d9fe92bf1df54"
         }
       ],
       "zip_testzip": "PASS"

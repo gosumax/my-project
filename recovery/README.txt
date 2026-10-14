@@ -3,6 +3,8 @@
 Требуются Windows x64, PowerShell 5.1+, Git и установленный шрифт Arial.
 Установленные Python, Node и OCR не требуются. Используйте новый короткий
 путь назначения, например C:\PDrestore. Не используйте рабочую production-папку.
+Для неизменённого STACK storage нужен доступ на запись в
+C:\PARSER_PD_RUNTIME\stack_timeline: каждый запуск создаёт там новую свою БД.
 
 Полный клон (после полного скачивания восстановление работает без сети):
 git clone https://github.com/gosumax/my-project.git C:\PDclone
